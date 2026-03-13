@@ -101,11 +101,10 @@ function Card({ card, index, totalCards }: { card: any, index: number, totalCard
     >
       <motion.div
         ref={cardRef}
-        className="relative min-h-[500px] md:h-[600px] rounded-[3rem] border border-white/10 overflow-hidden glass-premium group"
+        className="relative min-h-[500px] md:h-[600px] rounded-[3rem] border border-white/10 overflow-hidden glass-premium group will-change-transform"
         style={{
           scale: index === totalCards - 1 ? 1 : scale,
-          // We only want the previous cards to dim/scale when the next ones come over
-          // But since they are in a list, this simple sticky approach works well
+          opacity: index === totalCards - 1 ? 1 : opacity,
         }}
       >
         {/* Background Accents */}

@@ -251,17 +251,17 @@ export default function HomePage() {
               <Link href="/services" className="block h-full">
                 {/* Binary Stream Background */}
                 <div className="absolute inset-0 z-0 opacity-10 pointer-events-none overflow-hidden font-mono text-[8px] text-blue-400/40 select-none">
-                   {Array.from({ length: 20 }).map((_, i) => (
+                   {Array.from({ length: 12 }).map((_, i) => (
                      <motion.div 
                        key={i}
                        animate={{ y: [0, -500] }}
                        transition={{ duration: 15 + Math.random() * 10, repeat: Infinity, ease: "linear" }}
                        className="whitespace-nowrap"
-                       style={{ marginLeft: `${i * 5}%` }}
+                       style={{ marginLeft: `${i * 8}%` }}
                      >
-                        {Array.from({ length: 50 }).map(() => Math.round(Math.random())).join(' ')}<br/>
-                        {Array.from({ length: 50 }).map(() => Math.round(Math.random())).join(' ')}<br/>
-                        {Array.from({ length: 50 }).map(() => Math.round(Math.random())).join(' ')}
+                        {Array.from({ length: 40 }).map(() => Math.round(Math.random())).join(' ')}<br/>
+                        {Array.from({ length: 40 }).map(() => Math.round(Math.random())).join(' ')}<br/>
+                        {Array.from({ length: 40 }).map(() => Math.round(Math.random())).join(' ')}
                      </motion.div>
                    ))}
                 </div>
@@ -394,7 +394,7 @@ export default function HomePage() {
                        <motion.div 
                          key={i}
                          animate={{ 
-                           height: ["20%", "90%", "30%", "100%", "40%"],
+                           scaleY: [0.2, 1, 0.3, 1, 0.4],
                            opacity: [0.3, 1, 0.5, 1, 0.4]
                          }}
                          transition={{ 
@@ -402,7 +402,7 @@ export default function HomePage() {
                            repeat: Infinity, 
                            ease: "easeInOut" 
                          }}
-                         className="flex-1 bg-cyan-400/30 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.3)] min-h-[4px]"
+                         className="flex-1 bg-cyan-400/30 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.3)] min-h-[4px] h-full will-change-transform origin-bottom"
                        />
                      ))}
                   </div>
