@@ -99,18 +99,14 @@ export default function HomePage() {
           fill="#0ea5e9"
         />
 
-        {/* Spline 3D Robot — ABSOLUTE on mobile (background), flex item on desktop */}
+        {/* Spline 3D Robot — ABSOLUTE positioned, behind text */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute right-0 top-0 w-full h-full lg:relative lg:flex-1 lg:h-auto z-[5] lg:z-10"
+          className="absolute inset-0 z-[5]"
         >
-          {/* Glow behind robot */}
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_60%_50%,rgba(14,165,233,0.12)_0%,transparent_60%)] pointer-events-none" />
-          
-          {/* Mobile: offset robot to right side, Desktop: full container */}
-          <div className="absolute right-[-15%] top-[5%] w-[90%] h-[90%] lg:relative lg:right-auto lg:top-auto lg:w-full lg:h-[700px]">
+          <div className="absolute right-[-10%] top-[10%] w-[80%] h-[80%] sm:right-[-5%] sm:top-[5%] sm:w-[70%] sm:h-[90%] lg:right-0 lg:top-0 lg:w-[55%] lg:h-full">
             <SplineScene 
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full"
@@ -118,15 +114,19 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        {/* Text Content — overlays on top of robot on mobile */}
-        <div className="relative z-20 max-w-[1550px] mx-auto px-4 sm:px-6 w-full">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center min-h-screen lg:min-h-[80vh] py-24 lg:py-0">
+        {/* Dark gradient overlay — ensures text readability on all screens */}
+        <div className="absolute inset-0 z-[6] pointer-events-none bg-gradient-to-r from-obsidian via-obsidian/80 to-transparent lg:via-obsidian/60" />
+        <div className="absolute inset-0 z-[6] pointer-events-none bg-gradient-to-t from-obsidian via-transparent to-obsidian/50 lg:from-transparent lg:via-transparent lg:to-transparent" />
+
+        {/* Text Content */}
+        <div className="relative z-20 max-w-[1550px] mx-auto px-5 sm:px-6 w-full">
+          <div className="flex flex-col justify-center min-h-screen py-28 lg:py-0">
             
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="flex-1 space-y-6 lg:space-y-8 z-10"
+              className="max-w-xl lg:max-w-2xl space-y-6 lg:space-y-8"
             >
               <div className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full glass-premium border-blue-400/20 magnetic-wrap hover:border-blue-400/40 transition-colors">
                 <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
@@ -135,31 +135,29 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <div className="relative overflow-visible">
-                <h1 
-                  ref={headlineRef}
-                  className="text-[2.8rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] font-heading font-black leading-[0.8] tracking-tighter max-w-4xl uppercase"
-                >
-                  ARCHITECTING<br />
-                  <span className="gradient-text italic opacity-90">DIGITAL</span><br className="hidden lg:block" /> FRONTIERS.
-                </h1>
-              </div>
+              <h1 
+                ref={headlineRef}
+                className="text-[2.8rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] font-heading font-black leading-[0.8] tracking-tighter uppercase"
+              >
+                ARCHITECTING<br />
+                <span className="gradient-text italic opacity-90">DIGITAL</span><br className="hidden lg:block" /> FRONTIERS.
+              </h1>
 
               <p 
                 ref={subheadlineRef}
-                className="text-sm sm:text-base md:text-lg text-white/60 max-w-md lg:max-w-lg font-mono font-light leading-relaxed tracking-wide"
+                className="text-sm sm:text-base md:text-lg text-white/70 max-w-md font-mono font-light leading-relaxed tracking-wide"
               >
                 Engineering mission-critical digital infrastructure for the next generation of autonomous AI and high-performance enterprises.
               </p>
               
-              <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 pt-2 lg:pt-4">
+              <div className="flex flex-row items-center gap-4 sm:gap-6 pt-2 lg:pt-4">
                 <div className="magnetic-wrap">
-                  <Link href="/contact" className="btn-primary px-8 sm:px-10 py-4 sm:py-5 text-sm sm:text-base">
-                    INITIALIZE PROJECT <ArrowUpRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+                  <Link href="/contact" className="btn-primary px-7 sm:px-10 py-4 sm:py-5 text-xs sm:text-base">
+                    INITIALIZE PROJECT <ArrowUpRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                   </Link>
                 </div>
-                <div className="magnetic-wrap flex items-center h-[48px] sm:h-[56px]">
-                  <Link href="/portfolio" className="text-blue-400/60 hover:text-blue-400 font-mono text-xs sm:text-sm uppercase tracking-widest underline underline-offset-8 transition-all">
+                <div className="magnetic-wrap">
+                  <Link href="/portfolio" className="text-blue-400/60 hover:text-blue-400 font-mono text-[10px] sm:text-sm uppercase tracking-widest underline underline-offset-8 transition-all whitespace-nowrap">
                     Access Archive
                   </Link>
                 </div>
