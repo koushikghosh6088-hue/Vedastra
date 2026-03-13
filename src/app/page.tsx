@@ -389,8 +389,6 @@ export default function HomePage() {
           {/* BENTO GRID END */}
         </div>
       </section>
-        </div>
-      </section>
 
 
       {/* ═══════════ SOCIAL PROOF / TESTIMONIALS ═══════════ */}
