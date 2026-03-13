@@ -33,12 +33,18 @@ export default function AnimatedSection({
         opacity: 0,
         y: directionMap[direction].y,
         x: directionMap[direction].x,
+        filter: 'blur(10px)',
       }}
-      animate={isInView ? { opacity: 1, y: 0, x: 0 } : {}}
+      animate={isInView ? { 
+        opacity: 1, 
+        y: 0, 
+        x: 0,
+        filter: 'blur(0px)',
+      } : {}}
       transition={{
-        duration: 0.7,
+        duration: 1.2,
         delay,
-        ease: [0.25, 0.4, 0.25, 1],
+        ease: [0.16, 1, 0.3, 1], // Cinematic quintic ease
       }}
       className={className}
     >

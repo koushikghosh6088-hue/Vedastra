@@ -28,10 +28,19 @@ const services = [
   { id: 'chat', icon: MessageSquare, title: 'AI Chat', desc: 'Smart conversion bots.', span: 'col-span-1 md:col-span-1 row-span-1' },
 ];
 
+const projects = [
+  { title: 'NeuralFlow', category: 'AI Infrastructure', image: 'https://images.unsplash.com/photo-1639762681485-359997ed782e?auto=format&fit=crop&q=80&w=800' },
+  { title: 'Nexus UI', category: 'Design System', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800' },
+  { title: 'Quantum App', category: 'Mobile Solution', image: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800' },
+  { title: 'Aether OS', category: 'Web Ecosystem', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800' },
+];
+
 export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadlineRef = useRef<HTMLParagraphElement>(null);
+  const horizontalSectionRef = useRef<HTMLDivElement>(null);
+  const horizontalTrackRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
@@ -52,6 +61,28 @@ export default function HomePage() {
         "-=0.8"
       );
     }
+
+    // Horizontal Scroll Logic
+    if (horizontalSectionRef.current && horizontalTrackRef.current) {
+      const track = horizontalTrackRef.current;
+      const amountToScroll = track.offsetWidth - window.innerWidth;
+
+      gsap.to(track, {
+        x: -amountToScroll,
+        ease: "none",
+        scrollTrigger: {
+          trigger: horizontalSectionRef.current,
+          pin: true,
+          scrub: 1,
+          start: "top top",
+          end: () => `+=${track.offsetWidth}`,
+        }
+      });
+    }
+
+    return () => {
+      ScrollTrigger.getAll().forEach(t => t.kill());
+    };
   }, []);
 
   return (
@@ -169,11 +200,14 @@ export default function HomePage() {
                 className={`${svc.span} group perspective-1200`}
                 delay={i * 0.1}
               >
-                <div className={`w-full h-full rounded-[2.5rem] border overflow-hidden relative transition-all duration-700 hover-3d glass-premium ${
-                  svc.accent 
-                    ? 'bg-blue-400 border-blue-400 text-black shadow-[0_20px_50px_rgba(14,165,233,0.3)]' 
-                    : 'border-white/10 text-white hover:border-blue-400/40'
-                }`}>
+                <div 
+                  className={`w-full h-full rounded-[2.5rem] border overflow-hidden relative transition-all duration-700 hover-3d glass-premium ${
+                    svc.accent 
+                      ? 'bg-blue-400 border-blue-400 text-black shadow-[0_20px_50px_rgba(14,165,233,0.3)]' 
+                      : 'border-white/10 text-white hover:border-blue-400/40'
+                  }`}
+                  data-cursor-text="EXPLORE"
+                >
                   
                   {/* Background Accents based on sizing */}
                   {svc.accent && (
@@ -232,70 +266,119 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════ METHODOLOGY CONTRAST ═══════════ */}
-      <section className="relative py-32 bg-[#e5e5e5] text-black rounded-t-[4rem] -mx-4 md:mx-0 px-6 mt-32 z-20 mb-32">
-        <div className="max-w-[1550px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-          
-          <div>
-            <AnimatedSection>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-black/5 mb-8">
-                <span className="text-xs font-mono uppercase tracking-widest text-black/60">Execution Framework</span>
+      {/* ═══════════ HORIZONTAL SHOWCASE ═══════════ */}
+      <section ref={horizontalSectionRef} className="relative h-screen bg-obsidian overflow-hidden z-20">
+        <div className="absolute top-0 left-0 w-full p-20 z-30 pointer-events-none">
+          <h2 className="text-[3rem] md:text-[6rem] font-heading font-black tracking-tighter leading-none text-white/10 uppercase">
+            FEATURED_<br/><span className="text-blue-400">ARCHIVE</span>
+          </h2>
+        </div>
+
+        <div ref={horizontalTrackRef} className="flex h-full items-center gap-12 px-[10vw] w-fit">
+          {projects.map((project, i) => (
+            <div 
+              key={i} 
+              className="group relative w-[350px] md:w-[600px] h-[500px] flex-shrink-0 rounded-[3rem] overflow-hidden glass-premium border-white/5"
+              data-cursor-text="VIEW"
+            >
+              <img 
+                src={project.image} 
+                className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-110 group-hover:opacity-80 transition-all duration-1000"
+                alt={project.title}
+              />
+              <div className="absolute inset-x-0 bottom-0 p-12 bg-gradient-to-t from-black to-transparent">
+                <p className="font-mono text-xs text-blue-400 uppercase tracking-widest mb-4">{project.category}</p>
+                <h3 className="text-4xl md:text-6xl font-heading font-black text-white">{project.title}</h3>
               </div>
-              <h2 className="text-5xl md:text-7xl font-heading font-black tracking-tighter leading-[0.9] mb-12">
-                HOW WE BUILD <br/><span className="italic font-light text-blue-400">SYSTEMS</span>
+            </div>
+          ))}
+          
+          <div className="w-[400px] h-[500px] flex-shrink-0 flex flex-col justify-center gap-6">
+            <h4 className="text-3xl font-heading font-bold text-white/40">AND MORE_</h4>
+            <Link href="/portfolio" className="btn-secondary w-fit">
+              View All Projects
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════ SYSTEM ARCHITECTURE ═══════════ */}
+      <section className="relative py-40 bg-mesh-dark overflow-hidden z-10">
+        <div className="absolute inset-0 bg-[#080808]/80 z-0" />
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent" />
+        
+        <div className="max-w-[1550px] mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+            
+            <AnimatedSection>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-400/10 bg-blue-400/5 mb-8">
+                <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                <span className="text-xs font-mono uppercase tracking-widest text-blue-400/80">Protocol Framework</span>
+              </div>
+              
+              <h2 className="text-5xl md:text-8xl font-heading font-black tracking-tighter leading-[0.8] mb-12 uppercase">
+                ENGINEERING <br/><span className="italic font-light text-blue-400">SOLID</span> LOGIC.
               </h2>
 
-              <div className="space-y-12">
+              <div className="space-y-16 mt-16">
                 {[
-                  { num: '01', title: 'Architecture Planning', desc: 'Blueprint generation focused on scaling potential, AI integration points, and component hierarchy.' },
-                  { num: '02', title: 'Agile Implementation', desc: 'Rapid prototyping and deployment using Next.js, Node.js, and specialized AI models.' },
-                  { num: '03', title: 'System Validation', desc: 'Rigorous conversion tracking and load testing before public access is granted.' },
+                  { num: '01', title: 'Neural Blueprints', desc: 'Generating complex digital architectures with AI-driven scaling foundations.' },
+                  { num: '02', title: 'System Hardening', desc: 'Stress-testing infrastructure against ultra-high concurrency loads.' },
+                  { num: '03', title: 'Deployment Zero', desc: 'Final initialization of mission-critical systems across global clusters.' },
                 ].map((step, i) => (
-                  <div key={step.num} className="flex gap-6 group cursor-default">
-                    <div className="font-mono text-2xl font-bold text-black/20 group-hover:text-black transition-colors shrink-0 pt-1">
+                  <div key={step.num} className="flex gap-8 group cursor-default">
+                    <div className="font-mono text-3xl font-bold text-white/10 group-hover:text-blue-400 transition-colors shrink-0 pt-1">
                       {step.num}
                     </div>
                     <div>
-                      <h4 className="text-2xl font-bold font-heading mb-3">{step.title}</h4>
-                      <p className="text-black/60 text-lg leading-relaxed max-w-md">{step.desc}</p>
+                      <h4 className="text-2xl font-bold font-heading mb-4 text-white group-hover:translate-x-2 transition-transform">{step.title}</h4>
+                      <p className="text-white/40 text-lg leading-relaxed max-w-md font-mono">{step.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </AnimatedSection>
-          </div>
-
-          <div className="relative h-[600px] w-full items-center justify-center hidden lg:flex">
-             {/* 3D secondary Interactive element */}
-             <div className="w-[500px] h-[500px] bg-black rounded-full overflow-hidden flex items-center justify-center shadow-2xl relative">
+            
+            <div className="relative h-[700px] w-full flex items-center justify-center">
+              {/* Architecture Block Visual */}
+              <div className="absolute inset-0 bg-blue-400/5 blur-[120px] rounded-full animate-pulse-glow" />
+              
+              <div className="w-full h-full relative cursor-grab active:cursor-grabbing">
                 <Canvas shadows dpr={[1, 2]}>
                   <PerspectiveCamera makeDefault position={[0, 0, 5]} fov={45} />
-                  <ambientLight intensity={1} />
-                  <directionalLight position={[5, 5, 2]} intensity={3} color="#ffffff" />
-                  <Environment preset="studio" />
-                  <PresentationControls 
-                    global 
-                    rotation={[0.13, 0.1, 0]} 
-                    polar={[-0.4, 0.2]} 
-                    azimuth={[-1, 0.75]} 
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={2} color="#0ea5e9" />
+                  <PresentationControls
+                    global
+                    rotation={[0.1, 0.5, 0]}
+                    polar={[-0.4, 0.4]}
+                    azimuth={[-1, 1]}
                   >
-                    <CyberTorus />
+                    <group scale={1.8}>
+                      <CyberTorus /> {/* This is now our ArchitectureBlock */}
+                    </group>
                   </PresentationControls>
                 </Canvas>
+              </div>
 
-                {/* Glass testimonial overlay */}
-                <div className="absolute -bottom-10 -left-10 bg-white/20 backdrop-blur-2xl border border-white/40 p-6 rounded-3xl w-80 shadow-2xl transform rotate-3 animate-float border-white/20 z-30">
-                  <div className="flex gap-1 mb-4">
-                     {[1,2,3,4,5].map(s => <Star key={s} className="w-4 h-4 fill-black text-black" />)}
-                  </div>
-                  <p className="font-heading font-medium text-black leading-snug mb-4">
-                    "Total architectural overhaul. The AI pipelines saved 40 hours a week."
-                  </p>
-                  <p className="font-mono text-xs text-black/60 uppercase">System Admin - TechFlow</p>
-                </div>
-             </div>
+              {/* Data Node Tags */}
+              <motion.div 
+                style={{ y: useTransform(scrollYProgress, [0.6, 0.9], [0, -100]) }}
+                className="absolute top-1/4 -right-10 glass-premium px-6 py-4 rounded-2xl border-blue-400/20 backdrop-blur-xl animate-float pointer-events-none"
+              >
+                 <p className="font-mono text-[10px] text-blue-400/60 mb-1">NODE_ALPHA</p>
+                 <p className="text-white font-bold tracking-tight">ENCRYPTED_DATA_FLOW</p>
+              </motion.div>
+              <motion.div 
+                style={{ y: useTransform(scrollYProgress, [0.6, 0.9], [0, 100]) }}
+                className="absolute bottom-1/4 -left-10 glass-premium px-6 py-4 rounded-2xl border-blue-400/20 backdrop-blur-xl animate-float [animation-delay:2s] pointer-events-none"
+              >
+                 <p className="font-mono text-[10px] text-blue-400/60 mb-1">INSTANCE_08</p>
+                 <p className="text-white font-bold tracking-tight">AI_LOGIC_ACTIVE</p>
+              </motion.div>
+            </div>
+
           </div>
-
         </div>
       </section>
     </>
