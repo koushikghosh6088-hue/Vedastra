@@ -50,8 +50,8 @@ export default function WhyChooseUs() {
   const containerRef = useRef<HTMLDivElement>(null);
   
   return (
-    <section ref={containerRef} className="relative bg-black py-20">
-      <div className="max-w-[1550px] mx-auto px-6 mb-20 text-center">
+    <section ref={containerRef} className="relative bg-black transition-colors duration-1000">
+      <div className="max-w-[1550px] mx-auto px-6 py-20 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -65,96 +65,102 @@ export default function WhyChooseUs() {
           THE <span className="gradient-text italic">NEW STANDARD</span><br/>OF GROWTH
         </h2>
         <p className="font-mono text-sm text-white/40 uppercase tracking-[0.2em] max-w-2xl mx-auto">
-          We don&apos;t build for the present. We engineer for the future. Every card below represents a non-negotiable pillar of your digital dominance.
+          Every card below represents a non-negotiable pillar of your digital dominance.
         </p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 relative space-y-10 pb-40">
+      {/* The stacking cards container */}
+      <div className="max-w-7xl mx-auto px-6 relative flex flex-col items-center">
         {cards.map((card, index) => (
           <Card key={card.id} card={card} index={index} totalCards={cards.length} />
         ))}
       </div>
+      <div className="h-[20vh]" /> {/* Bottom Buffer */}
     </section>
   );
 }
 
 function Card({ card, index, totalCards }: { card: any, index: number, totalCards: number }) {
-  const cardRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
   
-  // Custom hook logic for stacking effect
+  // Each card has a "travel" zone. When the bottom of the card container hits the top of the viewport, 
+  // we consider it fully stacked.
   const { scrollYProgress } = useScroll({
-    target: cardRef,
-    offset: ["start end", "start start"],
+    target: targetRef,
+    offset: ["start start", "end start"],
   });
 
-  // Calculate dynamic scaling and dimming for the "underneath" cards
-  // This logic works by making the cards sticky and then transforming them
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
+  // Scale and opacity transformations for the "stacked" effect
+  // As the user scrolls through THIS card's zone, it scales down and fades out
+  // to make room for the NEXT one.
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
 
   return (
     <div 
-      className="sticky top-24 md:top-32 w-full pt-10"
+      ref={targetRef}
+      className="h-[70vh] md:h-[90vh] w-full flex flex-col items-center sticky top-[10vh] md:top-[15vh]"
       style={{ 
-        zIndex: index + 10,
+        zIndex: index + 1,
+        // The sticky container defines how long the card stays in view
       }}
     >
       <motion.div
-        ref={cardRef}
-        className="relative min-h-[500px] md:h-[600px] rounded-[3rem] border border-white/10 overflow-hidden glass-premium group will-change-transform"
+        className="relative w-full min-h-[500px] md:h-full rounded-[3rem] border border-white/10 overflow-hidden glass-premium group will-change-transform shadow-[0_50px_100px_rgba(0,0,0,0.5)]"
         style={{
           scale: index === totalCards - 1 ? 1 : scale,
           opacity: index === totalCards - 1 ? 1 : opacity,
+          backfaceVisibility: 'hidden',
+          transform: 'translateZ(0)',
         }}
       >
         {/* Background Accents */}
         <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-5 group-hover:opacity-10 transition-opacity duration-700`} />
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-white/5 rounded-full blur-[120px] group-hover:bg-white/10 transition-all duration-700" />
         
-        <div className="relative z-10 p-8 md:p-16 h-full flex flex-col md:flex-row gap-12">
+        <div className="relative z-10 p-8 md:p-12 lg:p-16 h-full flex flex-col md:flex-row gap-8 md:gap-12">
           {/* Left Content */}
           <div className="flex-1 flex flex-col justify-center">
-             <div className="mb-8 relative">
-                <div className={`w-20 h-20 rounded-2xl bg-${card.accent}/20 flex items-center justify-center border border-${card.accent}/10 relative z-10`}>
-                   <card.icon className={`w-10 h-10 text-${card.accent}`} />
+             <div className="mb-6 relative inline-block">
+                <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-${card.accent}/20 flex items-center justify-center border border-${card.accent}/10 relative z-10`}>
+                   <card.icon className={`w-8 h-8 md:w-10 md:h-10 text-${card.accent}`} />
                 </div>
                 <div className={`absolute -inset-4 bg-${card.accent}/30 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000`} />
              </div>
              
-             <h3 className="text-[2.5rem] md:text-[4.5rem] font-heading font-black text-white leading-none tracking-tighter uppercase mb-2">
+             <h3 className="text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] font-heading font-black text-white leading-none tracking-tighter uppercase mb-2">
                 {card.title}
              </h3>
-             <div className={`font-mono text-sm md:text-lg text-${card.accent} uppercase tracking-widest mb-6 font-bold`}>
+             <div className={`font-mono text-xs md:text-sm lg:text-lg text-${card.accent} uppercase tracking-widest mb-4 md:mb-6 font-bold`}>
                 {card.subtitle}
              </div>
              
-             <p className="text-white/60 font-mono text-base md:text-lg leading-relaxed max-w-xl">
+             <p className="text-white/60 font-mono text-sm md:text-base lg:text-lg leading-relaxed max-w-xl">
                 {card.description}
              </p>
           </div>
 
           {/* Right Visual / Stats */}
-          <div className="flex-1 flex flex-col justify-center gap-6">
-             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="flex-1 flex flex-col justify-center gap-4 md:gap-6">
+             <div className="grid grid-cols-2 gap-3 md:gap-4">
                 {card.stats.map((stat: any) => (
-                   <div key={stat.label} className="glass-premium p-8 rounded-[2rem] border-white/5 group-hover:border-white/10 transition-all">
-                      <div className="text-white/30 text-xs font-mono uppercase tracking-widest mb-2">{stat.label}</div>
-                      <div className="text-white font-heading font-black text-4xl tracking-tighter">{stat.val}</div>
+                   <div key={stat.label} className="glass-premium p-4 md:p-6 lg:p-8 rounded-[1.5rem] md:rounded-[2rem] border-white/5 group-hover:border-white/10 transition-all">
+                      <div className="text-white/30 text-[10px] md:text-xs font-mono uppercase tracking-widest mb-1 md:mb-2">{stat.label}</div>
+                      <div className="text-white font-heading font-black text-2xl md:text-3xl lg:text-4xl tracking-tighter">{stat.val}</div>
                    </div>
                 ))}
              </div>
              
              {/* Abstract Visual Component */}
-             <div className="flex-1 glass-strong border-white/5 rounded-[2.5rem] p-8 relative overflow-hidden hidden sm:block">
+             <div className="flex-1 glass-strong border-white/5 rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-8 relative overflow-hidden hidden sm:block">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
                 <div className="relative h-full flex flex-col justify-between">
                    <div className="flex items-center gap-3">
-                      <Shield className={`w-5 h-5 text-${card.accent}`} />
-                      <span className="text-white/20 text-[10px] font-mono uppercase">System Integrity: Optimal</span>
+                      <Shield className={`w-4 h-4 md:w-5 md:h-5 text-${card.accent}`} />
+                      <span className="text-white/20 text-[8px] md:text-[10px] font-mono uppercase">Neural Guard Active</span>
                    </div>
                    
-                   <div className="space-y-4">
-                      <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                   <div className="space-y-3 md:space-y-4">
+                      <div className="h-1.5 md:h-2 w-full bg-white/5 rounded-full overflow-hidden">
                          <motion.div 
                            initial={{ width: 0 }}
                            whileInView={{ width: '85%' }}
@@ -162,7 +168,7 @@ function Card({ card, index, totalCards }: { card: any, index: number, totalCard
                            className={`h-full bg-gradient-to-r ${card.color}`} 
                          />
                       </div>
-                      <div className="h-2 w-3/4 bg-white/5 rounded-full overflow-hidden">
+                      <div className="h-1.5 md:h-2 w-3/4 bg-white/5 rounded-full overflow-hidden">
                          <motion.div 
                            initial={{ width: 0 }}
                            whileInView={{ width: '65%' }}
@@ -173,10 +179,10 @@ function Card({ card, index, totalCards }: { card: any, index: number, totalCard
                    </div>
                    
                    <div className="flex justify-between items-end">
-                      <Cpu className="w-8 h-8 text-white/5" />
+                      <Cpu className="w-6 h-6 md:w-8 md:h-8 text-white/5" />
                       <div className="text-right">
-                         <div className="text-white font-heading font-black text-2xl">V6.0</div>
-                         <div className="text-white/20 text-[8px] font-mono uppercase">Quantum Engine</div>
+                         <div className="text-white font-heading font-black text-xl md:text-2xl tracking-tighter">V6.2 PRO</div>
+                         <div className="text-white/20 text-[6px] md:text-[8px] font-mono uppercase">Advanced Processing</div>
                       </div>
                    </div>
                 </div>
@@ -184,16 +190,17 @@ function Card({ card, index, totalCards }: { card: any, index: number, totalCard
                 {/* Decorative scanning line */}
                 <motion.div 
                   animate={{ y: [0, 400] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                   className={`absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-transparent via-${card.accent}/5 to-transparent pointer-events-none`}
                 />
              </div>
           </div>
         </div>
 
-        {/* Hover Arrow */}
-        <div className="absolute top-10 right-10 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-           <Zap className={`w-8 h-8 text-${card.accent}`} />
+        {/* Status Indicator */}
+        <div className="absolute top-8 right-8 flex items-center gap-2">
+           <div className={`w-1.5 h-1.5 rounded-full bg-${card.accent} animate-pulse shadow-[0_0_10px_${card.accent}]`} />
+           <span className={`text-[8px] font-mono text-${card.accent} uppercase tracking-tighter`}>Live Deployment</span>
         </div>
       </motion.div>
     </div>
