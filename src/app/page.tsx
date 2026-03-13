@@ -109,13 +109,13 @@ export default function HomePage() {
         <div className="absolute inset-0 z-[4] pointer-events-none bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/30 lg:from-transparent lg:to-transparent" />
 
         {/* Text Content — pointer-events-none so mouse passes through to Spline */}
-        <div className="relative z-20 max-w-[1550px] mx-auto px-5 sm:px-6 w-full pointer-events-none">
-          <div className="flex flex-col justify-center min-h-screen pt-[45vh] sm:pt-48 pb-20 lg:py-0">
+        <div className="relative z-20 max-w-[1550px] mx-auto px-5 sm:px-6 lg:px-20 w-full pointer-events-none">
+          <div className="flex flex-col justify-center min-h-screen pt-[45vh] sm:pt-48 pb-20 lg:pt-20 lg:pb-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-lg sm:max-w-xl lg:max-w-2xl space-y-6 lg:space-y-8 mx-auto lg:mx-0 text-center lg:text-left"
+              className="max-w-lg sm:max-w-xl lg:max-w-4xl space-y-6 lg:space-y-8 mx-auto lg:mx-0 text-center lg:text-left"
             >
               <div className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full glass-premium border-blue-400/20">
                 <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
@@ -126,7 +126,7 @@ export default function HomePage() {
 
               <h1 
                 ref={headlineRef}
-                className="text-[2.8rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[7rem] xl:text-[8.5rem] font-heading font-black leading-[0.8] tracking-tighter uppercase"
+                className="text-[2.8rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] xl:text-[8rem] 2xl:text-[9.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase"
               >
                 ARCHITECTING<br />
                 <span className="gradient-text italic opacity-90">DIGITAL</span>{' '}
