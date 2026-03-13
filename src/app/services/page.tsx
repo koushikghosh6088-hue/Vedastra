@@ -199,10 +199,10 @@ export default function ServicesPage() {
         <div className="max-w-[1550px] mx-auto px-6 text-center relative z-10">
           <AnimatedSection>
             <div className="inline-flex items-center justify-center p-6 rounded-full glass mb-8 animate-float">
-                <Cog className="w-8 h-8 text-lime-400" />
+                <Cog className="w-8 h-8 text-blue-400" />
             </div>
             <h2 className="text-[4rem] md:text-[5rem] font-heading font-black tracking-tighter mb-6">
-              SYSTEM <span className="text-lime-400 italic">INITIALIZATION</span>
+              SYSTEM <span className="text-blue-400 italic">INITIALIZATION</span>
             </h2>
             <p className="font-mono text-sm text-white/40 uppercase tracking-widest max-w-xl mx-auto mb-10">
               Initiate contact protocols to deploy custom digital architecture for your enterprise.
