@@ -34,8 +34,8 @@ export default function PortfolioPage() {
 
   return (
     <>
-      <section className="relative pt-32 pb-20 overflow-hidden min-h-[50vh] flex flex-col justify-center border-b border-white/5 bg-cyber-black">
-        <div className="absolute top-0 right-[-20%] w-[800px] h-[800px] bg-lime-400/[0.03] rounded-full blur-[150px] pointer-events-none" />
+      <section className="relative pt-32 pb-20 overflow-hidden min-h-[50vh] flex flex-col justify-center border-b border-white/5 bg-black">
+        <div className="absolute top-0 right-[-20%] w-[800px] h-[800px] bg-blue-400/[0.03] rounded-full blur-[150px] pointer-events-none" />
         
         {/* Background 3D element */}
         <div className="absolute inset-y-0 right-10 w-1/3 z-0 opacity-20 mix-blend-screen pointer-events-none hidden lg:block">
@@ -52,31 +52,32 @@ export default function PortfolioPage() {
 
         <div className="max-w-[1550px] mx-auto px-6 relative z-10 w-full">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
-            <span className="font-mono text-[10px] tracking-widest uppercase block mb-6 text-lime-400 font-bold">
-              [ Archive_Access_07 ]
+            <span className="font-mono text-[10px] tracking-widest uppercase block mb-6 text-blue-400">
+              <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse inline-block mr-2" />
+              Project Archive
             </span>
-            <h1 className="text-[4rem] md:text-[6rem] lg:text-[7.5rem] font-heading font-black leading-[0.85] tracking-tighter mb-8 max-w-5xl uppercase">
-              PROJECT <br/><span className="text-lime-400 italic">REPOSITORY_</span>
+            <h1 className="text-[4rem] md:text-[6rem] lg:text-[7.5rem] font-heading font-extrabold leading-[0.85] tracking-tighter mb-8 max-w-5xl">
+              DIGITAL <br/><span className="gradient-text italic">FUTURES</span>
             </h1>
-            <p className="text-lg text-white/40 max-w-2xl font-mono leading-relaxed border-l-2 border-white/10 pl-6">
-              Deployed architectures across high-performance web systems and autonomous neural networks.
+            <p className="text-lg text-white/50 max-w-2xl font-mono leading-relaxed">
+              Explore our repository of deployed architectures across high-performance web, scaleable mobile, and autonomous AI systems.
             </p>
           </motion.div>
         </div>
       </section>
 
-      <section className="py-8 sticky top-20 z-30 bg-black/60 backdrop-blur-3xl border-b border-white/5">
+      <section className="py-8 sticky top-20 z-30 bg-black/80 backdrop-blur-3xl border-b border-white/10">
         <div className="max-w-[1550px] mx-auto px-6">
           <div className="flex flex-wrap items-center gap-3">
-            <span className="font-mono text-[9px] text-white/20 uppercase tracking-[0.3em] mr-4">Filter_Protocol:</span>
+            <FolderGit2 className="w-5 h-5 text-white/40 hidden md:block mr-4" />
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`px-6 py-2 border font-mono text-[10px] uppercase tracking-widest transition-all duration-300 ${
+                className={`px-6 py-2.5 rounded-full text-xs font-mono uppercase tracking-widest transition-all duration-300 ${
                   activeFilter === cat
-                    ? 'bg-lime-400 text-black border-lime-400 shadow-[0_0_20px_rgba(204,255,0,0.1)]'
-                    : 'bg-white/5 border-white/10 text-white/40 hover:text-white hover:border-white/30'
+                    ? 'bg-blue-400 text-black shadow-[0_0_20px_rgba(14,165,233,0.2)] font-bold'
+                    : 'bg-white/5 border border-white/10 text-white/60 hover:bg-white/10 hover:text-white'
                 }`}
               >
                 {cat}
@@ -86,47 +87,55 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      <section className="py-24 bg-cyber-black relative min-h-screen">
-        <div className="absolute inset-0 bg-grain pointer-events-none opacity-30 mix-blend-overlay" />
+      <section className="py-24 bg-obsidian relative min-h-screen">
+        <div className="absolute inset-0 bg-grain pointer-events-none opacity-50 mix-blend-overlay" />
         <div className="max-w-[1550px] mx-auto px-6 relative z-10">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[300px]">
             <AnimatePresence mode="popLayout">
               {filtered.map((project, i) => (
                 <motion.div
                   key={project.title}
                   layout
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className={`${project.size?.includes('md:col-span-2') ? 'md:col-span-2' : 'col-span-1'} ${project.size?.includes('row-span-2') ? 'row-span-2' : ''}`}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4 }}
+                  className={`${project.size || 'col-span-1'} h-full`}
                 >
-                  <div className="group cyber-frame p-8 bg-black/40 h-full flex flex-col justify-between hover:border-lime-400 transition-colors duration-500">
-                    <div>
-                      <div className="flex justify-between items-start mb-8">
-                        <span className="font-mono text-[9px] text-lime-400/50 uppercase tracking-widest">Sys_Node_{i+1}</span>
-                        <FolderGit2 className="w-4 h-4 text-white/10 group-hover:text-lime-400 transition-colors" />
-                      </div>
+                  <div className="group glass-panel border-white/5 rounded-[2.5rem] overflow-hidden cursor-pointer h-full relative flex flex-col justify-end hover:border-blue-400/30 transition-colors duration-500">
+                    
+                    {/* Dark gradient overlay */}
+                    <div className={`absolute inset-0 ${
+                      i % 3 === 0 ? 'bg-gradient-to-t from-blue-400/10 via-black/80 to-black/20' : 'bg-gradient-to-t from-white/10 via-black/80 to-black/20'
+                    } group-hover:scale-105 transition-transform duration-700 pointer-events-none`} />
+
+                    {/* Scanline texture */}
+                    <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,0,0,0.2)_50%)] bg-[length:100%_4px] opacity-20 pointer-events-none" />
+
+                    <div className="relative z-10 p-8 h-full flex flex-col justify-end">
                       
                       {/* Tags */}
                       <div className="flex flex-wrap gap-2 mb-6">
                         {project.tags.map((tag) => (
-                          <span key={tag} className="px-2 py-1 bg-white/5 border border-white/5 text-[9px] font-mono text-white/40 uppercase tracking-widest">
+                          <span key={tag} className="px-3 py-1.5 rounded-md bg-black/60 border border-white/10 text-[10px] font-mono text-white/70 uppercase tracking-widest backdrop-blur-md">
                             {tag}
                           </span>
                         ))}
                       </div>
                       
-                      <h3 className="text-2xl font-black font-heading text-white mb-4 uppercase group-hover:text-lime-400 transition-colors">
+                      <h3 className={`font-heading font-bold mb-3 text-white group-hover:text-blue-400 transition-colors ${
+                        project.size?.includes('row-span-2') ? 'text-4xl' : 'text-2xl'
+                      }`}>
                         {project.title}
                       </h3>
                       
-                      <p className="text-white/40 text-sm font-mono leading-relaxed italic mb-8">
+                      <p className="text-white/50 text-sm font-mono leading-relaxed max-w-lg line-clamp-3">
                         {project.desc}
                       </p>
-                    </div>
-
-                    <div className="mt-auto flex items-center gap-2 text-lime-400 text-[10px] font-mono uppercase tracking-[0.2em] font-bold opacity-0 group-hover:opacity-100 transition-all">
-                      [ ACCESS ARCHIVE_ ] <ArrowUpRight className="w-3 h-3" />
+                      
+                      <div className="mt-8 flex items-center gap-2 text-blue-400 text-sm font-bold opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-300">
+                        ACCESS ARCHIVE <ArrowUpRight className="w-4 h-4" />
+                      </div>
                     </div>
                   </div>
                 </motion.div>
@@ -137,17 +146,17 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA Footnote */}
-      <section className="py-32 relative bg-cyber-black border-t border-white/5">
+      <section className="py-32 relative bg-black border-t border-white/5">
         <div className="max-w-[1550px] mx-auto px-6 text-center relative z-10">
           <AnimatedSection>
-            <h2 className="text-[4rem] md:text-[5rem] font-heading font-black tracking-tighter mb-6 uppercase">
-              READY TO <span className="text-lime-400 italic">DEPLOY?</span>
+            <h2 className="text-[4rem] md:text-[5rem] font-heading font-black tracking-tighter mb-6">
+              READY TO <span className="text-blue-400 italic">DEPLOY?</span>
             </h2>
-            <p className="font-mono text-xs text-white/30 uppercase tracking-[0.3em] max-w-xl mx-auto mb-10">
-              Initiate technical build for your organization.
+            <p className="font-mono text-sm text-white/40 uppercase tracking-widest max-w-xl mx-auto mb-10">
+              Let's engineer a custom architecture for your organization.
             </p>
-            <Link href="/contact" className="btn-primary">
-              Initialize_Build_Sequence
+            <Link href="/contact" className="btn-primary group">
+              Initiate Project Request <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </AnimatedSection>
         </div>

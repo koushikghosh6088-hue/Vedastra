@@ -10,12 +10,9 @@ const config: Config = {
     extend: {
       colors: {
         obsidian: "#0c0c0c",
-        "cyber-black": "#060606",
-        "cyber-grey": "#1a1a1a",
-        lime: {
-          400: "#ccff00",
-          500: "#C1FF00",
-          glow: "rgba(204, 255, 0, 0.3)"
+        blue: {
+          400: "#0ea5e9", // Sky blue
+          glow: "rgba(14, 165, 233, 0.3)"
         },
         emerald: {
           glow: "#10b981"
@@ -27,25 +24,18 @@ const config: Config = {
         heading: ['var(--font-space-grotesk)', 'sans-serif'],
         body: ['var(--font-space-grotesk)', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)', 'monospace'],
-        display: ['var(--font-space-grotesk)', 'sans-serif'],
       },
       letterSpacing: {
         tighter: '-0.06em',
-        widest: '0.25em',
       },
       animation: {
         'float': 'float 6s infinite ease-in-out',
         'pulse-fast': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'scanline': 'scanline 8s linear infinite',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0)' },
           '50%': { transform: 'translateY(-10px)' },
-        },
-        scanline: {
-          '0%': { transform: 'translateY(-100%)' },
-          '100%': { transform: 'translateY(100%)' },
         }
       }
     },

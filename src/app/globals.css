@@ -48,74 +48,38 @@ body {
   background-size: 256px 256px;
 }
 
-/* ── Gradient Text (white → lime) ── */
+/* ── Gradient Text (white → blue) ── */
 .gradient-text {
-  background: linear-gradient(to right, #ffffff, #CCFF00);
+  background: linear-gradient(to right, #ffffff, #0ea5e9);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.gradient-text-lime {
-  background: linear-gradient(135deg, #CCFF00, #8aff00);
+.gradient-text-blue {
+  background: linear-gradient(135deg, #0ea5e9, #3b82f6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* ── Cyberpunk / HUD Utilities ── */
-.cyber-border {
-  border: 1px solid #ccff00;
-  box-shadow: 0 0 15px rgba(204, 255, 0, 0.2);
+/* ── Glow Effects ── */
+.glow-blue {
+  box-shadow: 0 0 30px rgba(14, 165, 233, 0.1), 0 0 80px rgba(14, 165, 233, 0.03);
 }
 
-.cyber-frame {
-  position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(6, 6, 6, 0.8);
-  clip-path: polygon(
-    0% 0%, 
-    calc(100% - 20px) 0%, 100% 20px, 
-    100% 100%, 
-    20px 100%, 0% calc(100% - 20px)
-  );
+.glow-text-blue {
+  text-shadow: 0 0 40px rgba(14, 165, 233, 0.2);
 }
 
-.cyber-frame::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(204, 255, 0, 0.3);
-  pointer-events: none;
-  clip-path: polygon(
-    0% 0%, 
-    calc(100% - 20px) 0%, 100% 20px, 
-    100% 100%, 
-    20px 100%, 0% calc(100% - 20px)
-  );
-}
-
-.cyber-line {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #ccff00, transparent);
-  opacity: 0.5;
-}
-
-.cyber-box-header {
-  border-left: 4px solid #ccff00;
-  padding-left: 1rem;
-}
-
-/* ── Primary Action Button (rectangular) ── */
+/* ── Primary Action Button (blue pulse) ── */
 .btn-primary {
-  background-color: #CCFF00;
-  color: #000000;
-  font-weight: 800;
-  font-family: var(--font-jetbrains-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.75rem 2rem;
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+  background-color: #0ea5e9;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 9999px;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 30px rgba(14, 165, 233, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: inline-flex;
   align-items: center;
@@ -124,54 +88,52 @@ body {
 
 .btn-primary:hover {
   background-color: #ffffff;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(204, 255, 0, 0.4);
+  color: #0ea5e9;
+  box-shadow: 0 0 30px rgba(14, 165, 233, 0.3);
+  transform: scale(1.05);
 }
 
-/* ── Secondary Button ── */
+.btn-primary:active {
+  transform: scale(0.97);
+}
+
+/* ── Secondary Button (glass) ── */
 .btn-secondary {
-  background: transparent;
-  border: 1px solid rgba(204, 255, 0, 0.5);
-  color: #ccff00;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   font-weight: 600;
-  font-family: var(--font-jetbrains-mono), monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.75rem 2rem;
-  clip-path: polygon(0 0, 90% 0, 100% 100%, 10% 100%);
-  transition: all 0.3s ease;
+  border-radius: 9999px;
+  padding: 1rem 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-secondary:hover {
-  background: rgba(204, 255, 0, 0.1);
-  border-color: #ccff00;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(14, 165, 233, 0.4);
+  transform: scale(1.02);
 }
 
-/* ── Scanline Effect ── */
-.scanline {
-  width: 100%;
-  height: 2px;
-  background: rgba(204, 255, 0, 0.1);
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  pointer-events: none;
-  animation: scanline 8s linear infinite;
+/* ── 3D Hover Tilt ── */
+.hover-3d {
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  transform: perspective(1000px);
 }
 
 /* ── Background Grid ── */
 .bg-grid {
   background-image:
-    linear-gradient(rgba(204, 255, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(204, 255, 0, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
 
 /* ── Section Divider ── */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(204, 255, 0, 0.15), transparent);
+  background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.15), transparent);
 }
 
 /* ── Scrollbar ── */
@@ -184,12 +146,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(193, 255, 0, 0.3);
+  background: rgba(14, 165, 233, 0.3);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(193, 255, 0, 0.5);
+  background: rgba(14, 165, 233, 0.5);
 }
 
 /* ── Keyframes ── */
@@ -199,19 +161,19 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(193, 255, 0, 0.15); }
-  50% { box-shadow: 0 0 40px rgba(193, 255, 0, 0.3); }
+  0%, 100% { box-shadow: 0 0 20px rgba(14, 165, 233, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(14, 165, 233, 0.3); }
 }
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
 }
 
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
-.animate-scroll {
-  animation: scroll 20s linear infinite;
+/* ── Parallax ── */
+.parallax-item {
+  will-change: transform;
 }
