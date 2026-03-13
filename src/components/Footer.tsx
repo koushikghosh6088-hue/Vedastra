@@ -20,42 +20,15 @@ const footerLinks = {
 
 export default function Footer() {
   return (
-    <footer className="relative bg-black pt-32 pb-12 overflow-hidden mt-12 rounded-b-[2.5rem]">
-      {/* Massive Background Watermark */}
+    <footer className="relative bg-black pt-24 pb-12 overflow-hidden border-t border-white/5">
+      {/* Background Watermark */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full text-center pointer-events-none select-none overflow-hidden">
-        <h2 className="text-[12rem] md:text-[20rem] font-heading font-bold text-white/[0.03] leading-none tracking-tighter w-full overflow-hidden">
-          SUPER
+        <h2 className="text-[12rem] md:text-[20rem] font-heading font-bold text-white/[0.02] leading-none tracking-tighter w-full overflow-hidden">
+          JOINT
         </h2>
       </div>
 
       <div className="relative z-10 max-w-[1400px] mx-auto px-6">
-        
-        {/* Giant CTA Area */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end mb-32">
-          <div>
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-6">
-              <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-              <span className="text-xs font-mono uppercase tracking-widest text-white/70">Ready to initiate</span>
-            </div>
-            <h3 className="text-5xl md:text-7xl font-heading font-bold tracking-tighter leading-[0.9] mb-6">
-              LET'S BUILD<br/>
-              <span className="text-blue-400 italic pr-4">SOMETHING</span>
-            </h3>
-          </div>
-          <div className="flex lg:justify-end">
-            <Link 
-              href="/contact"
-              className="group relative overflow-hidden bg-blue-400 text-black px-12 py-8 rounded-full text-2xl font-bold transition-all duration-500 hover:scale-[1.02] shadow-[0_0_40px_rgba(14,165,233,0.15)] flex items-center gap-4 w-full md:w-auto justify-between"
-            >
-              <span className="relative z-10">Start Project</span>
-              <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center relative z-10 group-hover:bg-white transition-colors duration-300">
-                <ArrowUpRight className="w-6 h-6 text-blue-400 group-hover:text-black transition-colors" />
-              </div>
-              {/* Hover background slide up */}
-              <div className="absolute inset-0 bg-white translate-y-[100%] group-hover:translate-y-0 transition-transform duration-500 ease-out z-0 rounded-full" />
-            </Link>
-          </div>
-        </div>
 
         <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-16" />
 
