@@ -97,7 +97,7 @@ export default function HomePage() {
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#0ea5e9" />
 
         {/* Spline 3D Robot — ALL SCREENS, positioned right */}
-        <div className="absolute right-0 top-0 w-full h-full sm:w-[75%] lg:w-[55%] z-[3]">
+        <div className="absolute right-0 top-[-5%] sm:top-0 w-full h-full sm:w-[75%] lg:w-[55%] z-[3]">
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"
@@ -110,7 +110,7 @@ export default function HomePage() {
 
         {/* Text Content — pointer-events-none so mouse passes through to Spline */}
         <div className="relative z-20 max-w-[1550px] mx-auto px-5 sm:px-6 w-full pointer-events-none">
-          <div className="flex flex-col justify-center min-h-screen pt-36 pb-20 lg:py-0">
+          <div className="flex flex-col justify-center min-h-screen pt-[50vh] sm:pt-48 pb-20 lg:py-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
