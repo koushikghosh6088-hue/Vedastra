@@ -96,25 +96,20 @@ export default function HomePage() {
         {/* Spotlight */}
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#0ea5e9" />
 
-        {/* Mobile: Animated Orb Background (lightweight CSS, no WebGL) */}
-        <div className="absolute inset-0 z-[2] pointer-events-none lg:hidden">
-          <div className="absolute right-[-20%] top-[15%] w-[70vw] h-[70vw] rounded-full bg-[radial-gradient(circle,rgba(14,165,233,0.15)_0%,rgba(14,165,233,0.05)_40%,transparent_70%)] animate-float" />
-          <div className="absolute right-[5%] top-[25%] w-[40vw] h-[40vw] rounded-full bg-[radial-gradient(circle,rgba(14,165,233,0.1)_0%,transparent_60%)] animate-float" style={{ animationDelay: '-3s' }} />
-        </div>
-
-        {/* Desktop: Spline 3D Robot (right side, only on lg+) */}
-        <div className="absolute right-0 top-0 w-[55%] h-full z-[3] hidden lg:block">
+        {/* Spline 3D Robot — ALL SCREENS, positioned right */}
+        <div className="absolute right-0 top-0 w-full h-full sm:w-[75%] lg:w-[55%] z-[3]">
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"
           />
         </div>
 
-        {/* Desktop: Dark gradient over left side for text readability */}
-        <div className="absolute inset-0 z-[4] pointer-events-none hidden lg:block bg-gradient-to-r from-obsidian via-obsidian/70 to-transparent" />
+        {/* Dark gradient overlay for text readability — all screens */}
+        <div className="absolute inset-0 z-[4] pointer-events-none bg-gradient-to-r from-obsidian via-obsidian/80 to-transparent sm:via-obsidian/70 lg:via-obsidian/60" />
+        <div className="absolute inset-0 z-[4] pointer-events-none bg-gradient-to-t from-obsidian/60 via-transparent to-obsidian/30 lg:from-transparent lg:to-transparent" />
 
-        {/* Text Content */}
-        <div className="relative z-20 max-w-[1550px] mx-auto px-5 sm:px-6 w-full">
+        {/* Text Content — pointer-events-none so mouse passes through to Spline */}
+        <div className="relative z-20 max-w-[1550px] mx-auto px-5 sm:px-6 w-full pointer-events-none">
           <div className="flex flex-col justify-center min-h-screen py-28 lg:py-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -122,7 +117,7 @@ export default function HomePage() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-lg sm:max-w-xl lg:max-w-2xl space-y-6 lg:space-y-8 mx-auto lg:mx-0 text-center lg:text-left"
             >
-              <div className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full glass-premium border-blue-400/20 magnetic-wrap hover:border-blue-400/40 transition-colors">
+              <div className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full glass-premium border-blue-400/20">
                 <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
                 <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-shimmer">
                   Neural Hub // Protocol 8.42
@@ -145,7 +140,8 @@ export default function HomePage() {
                 Engineering mission-critical digital infrastructure for the next generation of autonomous AI and high-performance enterprises.
               </p>
               
-              <div className="flex flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 pt-2 lg:pt-4">
+              {/* pointer-events-auto on interactive elements */}
+              <div className="flex flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 pt-2 lg:pt-4 pointer-events-auto">
                 <div className="magnetic-wrap">
                   <Link href="/contact" className="btn-primary px-7 sm:px-10 py-4 sm:py-5 text-xs sm:text-base">
                     INITIALIZE PROJECT <ArrowUpRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5" />
