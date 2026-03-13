@@ -210,129 +210,185 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ SERVICES / CAPABILITIES ═══════════ */}
-      <section className="relative py-32 bg-obsidian z-10 rounded-t-[4rem] border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <section className="relative py-32 bg-black z-10 rounded-t-[4rem] border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
         <div className="max-w-[1550px] mx-auto px-6">
-          <AnimatedSection className="mb-16">
-            <h2 className="text-[3rem] md:text-[5rem] font-heading font-bold leading-none tracking-tighter mb-4">
-              CAPABILITIES_<br/><span className="text-blue-400 italic">GRID</span>
-            </h2>
-            <p className="font-mono text-sm text-white/40 uppercase tracking-widest max-w-xl">
-              Comprehensive architectural components engineered to scale operations through logic and design.
-            </p>
+          <AnimatedSection className="mb-20">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+              <div className="space-y-4">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-blue-400">Core Capabilities</span>
+                </div>
+                <h2 className="text-[3.5rem] md:text-[5.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase">
+                  ENGINEERING<br/><span className="gradient-text italic">SUPERIORITY</span>
+                </h2>
+              </div>
+              <p className="font-mono text-xs md:text-sm text-white/40 uppercase tracking-[0.2em] max-w-md leading-relaxed">
+                A modular ecosystem of specialized neural nodes designed to architect the next generation of digital frontiers.
+              </p>
+            </div>
           </AnimatedSection>
 
-          {/* Featured Hero Card */}
-          <AnimatedSection className="mb-6">
-            <Link href="/services">
-              <div className="group relative rounded-[2.5rem] border border-white/10 overflow-hidden transition-all duration-700 hover:border-blue-400/40 cursor-pointer" data-cursor-text="EXPLORE">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-transparent to-cyan-500/5 pointer-events-none" />
-                <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-400/[0.06] rounded-full blur-[100px] pointer-events-none group-hover:bg-blue-400/[0.12] transition-all duration-700" />
-                <div className="glass-premium rounded-[2.5rem] p-10 md:p-14 relative z-10">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-                    <div>
-                      <div className="flex items-center gap-3 mb-6">
-                        <div className="w-14 h-14 rounded-2xl bg-blue-400 text-black flex items-center justify-center shadow-[0_0_30px_rgba(14,165,233,0.3)]">
-                          <Globe className="w-7 h-7" />
-                        </div>
-                        <div>
-                          <h3 className="text-2xl font-heading font-bold text-white">Web Development</h3>
-                          <p className="font-mono text-[10px] text-blue-400/60 uppercase tracking-widest">Core Service</p>
-                        </div>
-                      </div>
-                      <p className="text-white/50 font-mono text-sm leading-relaxed mb-8 max-w-lg">
-                        High-performance, scalable web architectures built with modern frameworks. From lightning-fast landing pages to complex SaaS platforms — we engineer for speed, SEO, and conversion.
-                      </p>
-                      <div className="flex flex-wrap gap-2 mb-8">
-                        {['Next.js', 'React', 'TypeScript', 'Node.js', 'PostgreSQL', 'Vercel'].map((tech) => (
-                          <span key={tech} className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-white/50 group-hover:border-blue-400/20 group-hover:text-blue-400/70 transition-all duration-500">
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="flex items-center gap-3 text-blue-400 font-mono text-sm uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        Explore Service <ArrowRight className="w-4 h-4" />
-                      </div>
+          {/* BENTO GRID START */}
+          <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-6 lg:h-[900px]">
+            
+            {/* 1. WEB INTEL (FEATURED LARGE - 8 COL) */}
+            <div className="md:col-span-8 md:row-span-1 group relative rounded-[2.5rem] border border-white/10 overflow-hidden cursor-pointer" data-cursor-text="LAUNCH">
+              <Link href="/services" className="block h-full">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-cyan-400/10 z-0" />
+                <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] group-hover:bg-blue-500/20 transition-all duration-700" />
+                
+                <div className="relative z-10 p-8 md:p-12 flex flex-col h-full lg:flex-row lg:items-center gap-12">
+                  <div className="flex-1 space-y-6">
+                    <div className="w-16 h-16 rounded-2xl bg-blue-500 text-black flex items-center justify-center shadow-[0_0_40px_rgba(59,130,246,0.4)] group-hover:scale-110 group-hover:rotate-12 transition-all duration-500">
+                      <Globe className="w-8 h-8" />
                     </div>
-                    <div className="hidden lg:block relative h-[280px]">
-                      {/* Mini code preview */}
-                      <div className="glass-panel rounded-2xl p-6 h-full relative overflow-hidden border-white/5 group-hover:border-blue-400/20 transition-colors duration-500">
-                        <div className="flex items-center gap-2 mb-4">
-                          <div className="w-2.5 h-2.5 rounded-full bg-red-500/40" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/40" />
-                          <div className="w-2.5 h-2.5 rounded-full bg-green-500/40" />
-                          <span className="font-mono text-[9px] text-white/20 ml-2">app/page.tsx</span>
+                    <div>
+                      <h3 className="text-3xl md:text-4xl font-heading font-black text-white mb-4 uppercase tracking-tighter">Web Infrastructure</h3>
+                      <p className="text-white/50 font-mono text-sm leading-relaxed max-w-sm">
+                        High-performance neural architectures engineered for sub-400ms load times and infinite scalability.
+                      </p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {['Next.js', 'TRPC', 'Edge Runtime'].map(t => (
+                        <span key={t} className="px-3 py-1 rounded-full glass-premium text-[10px] font-mono text-blue-400/80 uppercase tracking-widest">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex-1 relative hidden lg:block">
+                    {/* Visual: Abstract floating code layers */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-full h-48 bg-blue-400/5 rounded-2xl border border-blue-400/20 flex flex-col p-4 backdrop-blur-sm group-hover:translate-y-[-10px] transition-transform duration-700">
+                        <div className="flex gap-1.5 mb-3">
+                          <div className="w-2 h-2 rounded-full bg-red-500/40" />
+                          <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
+                          <div className="w-2 h-2 rounded-full bg-green-500/40" />
                         </div>
-                        <div className="font-mono text-xs leading-6 text-white/30">
-                          <div><span className="text-blue-400/60">import</span> {'{'} Hero {'}'} <span className="text-blue-400/60">from</span> <span className="text-amber-400/60">&apos;@/components&apos;</span></div>
-                          <div><span className="text-blue-400/60">import</span> {'{'} Analytics {'}'} <span className="text-blue-400/60">from</span> <span className="text-amber-400/60">&apos;@/lib&apos;</span></div>
-                          <div className="mt-2"><span className="text-blue-400/60">export default</span> <span className="text-green-400/60">function</span> <span className="text-white/50">Page</span>() {'{'}</div>
-                          <div className="pl-4"><span className="text-blue-400/60">return</span> (</div>
-                          <div className="pl-8">&lt;<span className="text-cyan-400/60">main</span> <span className="text-purple-400/60">className</span>=<span className="text-amber-400/60">&quot;...&quot;</span>&gt;</div>
-                          <div className="pl-12">&lt;<span className="text-cyan-400/60">Hero</span> /&gt;</div>
-                          <div className="pl-12">&lt;<span className="text-cyan-400/60">Analytics</span> /&gt;</div>
-                          <div className="pl-8">&lt;/<span className="text-cyan-400/60">main</span>&gt;</div>
-                          <div className="pl-4">)</div>
-                          <div>{'}'}</div>
+                        <div className="space-y-2">
+                          <div className="h-2 w-3/4 bg-white/5 rounded" />
+                          <div className="h-2 w-1/2 bg-white/5 rounded" />
+                          <div className="h-2 w-5/6 bg-blue-400/20 rounded" />
                         </div>
-                        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[rgba(10,10,10,1)] to-transparent pointer-events-none" />
+                      </div>
+                      <div className="absolute top-10 right-[-10px] w-3/4 h-40 glass-strong border-white/10 p-4 rounded-2xl shadow-2xl group-hover:translate-x-10 transition-transform duration-700 delay-75">
+                         <div className="h-full border-l-2 border-blue-400/30 pl-4 flex flex-col justify-center">
+                            <span className="text-white/20 font-mono text-[10px] uppercase">latency test</span>
+                            <span className="text-blue-400 font-heading font-black text-2xl tracking-tighter">0.34s</span>
+                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          </AnimatedSection>
+              </Link>
+            </div>
 
-          {/* Service Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {[
-              { id: 'mobile', icon: Smartphone, title: 'Mobile Apps', desc: 'Native iOS & Android experiences built for speed.', features: ['React Native', 'Swift', 'Kotlin'], color: 'from-violet-500/15 to-purple-600/5', iconBg: 'bg-violet-500', href: '/services' },
-              { id: 'ai-agents', icon: Phone, title: 'AI Voice Agents', desc: 'Intelligent calling agents that qualify leads 24/7.', features: ['Twilio', 'OpenAI', 'Whisper'], color: 'from-blue-500/15 to-cyan-500/5', iconBg: 'bg-blue-400', href: '/ai-solutions' },
-              { id: 'automation', icon: Cog, title: 'Automation', desc: 'End-to-end workflow elimination for operations.', features: ['n8n', 'Zapier', 'Custom'], color: 'from-emerald-500/15 to-green-600/5', iconBg: 'bg-emerald-500', href: '/services' },
-              { id: 'marketing', icon: TrendingUp, title: 'Marketing', desc: 'Data-driven growth engines and funnels.', features: ['SEO', 'Analytics', 'Ads'], color: 'from-amber-500/15 to-orange-600/5', iconBg: 'bg-amber-500', href: '/services' },
-              { id: 'chat', icon: MessageSquare, title: 'AI Chat', desc: 'Smart conversion bots for your website.', features: ['GPT-4', 'RAG', 'Embed'], color: 'from-pink-500/15 to-rose-600/5', iconBg: 'bg-pink-500', href: '/ai-solutions' },
-            ].map((svc, i) => (
-              <AnimatedSection key={svc.id} delay={i * 0.08}>
-                <Link href={svc.href}>
-                  <div className="group relative h-[320px] rounded-[2rem] border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 cursor-pointer" data-cursor-text="EXPLORE">
-                    {/* Gradient background */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${svc.color} pointer-events-none opacity-100 group-hover:opacity-100 transition-opacity duration-500`} />
-                    <div className="absolute inset-0 glass-premium rounded-[2rem]" />
-                    
-                    {/* Hover glow */}
-                    <div className="absolute -bottom-20 -right-20 w-[200px] h-[200px] rounded-full bg-white/[0.02] blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-
-                    <div className="relative z-10 p-7 flex flex-col h-full">
-                      {/* Icon */}
-                      <div className={`w-12 h-12 rounded-xl ${svc.iconBg} text-black flex items-center justify-center mb-5 shadow-lg group-hover:scale-110 transition-transform duration-500`}>
-                        <svc.icon className="w-5 h-5" />
-                      </div>
-
-                      {/* Title */}
-                      <h3 className="text-lg font-heading font-bold text-white mb-2 group-hover:text-blue-400 transition-colors duration-300">{svc.title}</h3>
-                      
-                      {/* Description */}
-                      <p className="text-white/40 font-mono text-xs leading-relaxed mb-auto">{svc.desc}</p>
-
-                      {/* Tech tags */}
-                      <div className="flex flex-wrap gap-1.5 mt-4">
-                        {svc.features.map((f) => (
-                          <span key={f} className="px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-white/40 uppercase tracking-wider">
-                            {f}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Hover arrow */}
-                      <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 scale-75 group-hover:scale-100">
-                        <ArrowUpRight className="w-3.5 h-3.5 text-white/60" />
+            {/* 2. MOBILE FORGE (4 COL) */}
+            <div className="md:col-span-4 group relative rounded-[2.5rem] border border-white/5 overflow-hidden cursor-pointer bg-[#0A0A0A]">
+              <Link href="/services" className="block h-full">
+                <div className="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent z-0" />
+                <div className="p-8 relative z-10 flex flex-col h-full">
+                  <div className="w-12 h-12 rounded-xl bg-purple-500 text-black flex items-center justify-center mb-6 shadow-lg group-hover:-translate-y-2 transition-all duration-500">
+                    <Smartphone className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-heading font-black text-white mb-2 uppercase tracking-tighter">Mobile Forge</h3>
+                  <p className="text-white/30 font-mono text-xs leading-relaxed mb-8">
+                    Native precision. iOS & Android ecosystems optimized for zero latency.
+                  </p>
+                  <div className="mt-auto relative h-32 flex items-end justify-center">
+                    <div className="w-24 h-40 bg-white/5 border border-white/10 rounded-2xl relative translate-y-8 group-hover:translate-y-4 transition-transform duration-700">
+                      <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-white/10 rounded-full" />
+                      <div className="absolute inset-2 bg-purple-500/5 rounded-lg flex items-center justify-center">
+                        <div className="w-6 h-6 rounded-full border border-purple-500/20 animate-ping" />
                       </div>
                     </div>
                   </div>
-                </Link>
-              </AnimatedSection>
-            ))}
+                </div>
+              </Link>
+            </div>
+
+            {/* 3. AI VOICE (4 COL) */}
+            <div className="md:col-span-4 group relative rounded-[2.5rem] border border-white/5 overflow-hidden cursor-pointer bg-obsidian">
+              <Link href="/ai-solutions" className="block h-full">
+                <div className="p-8 flex flex-col h-full relative z-10">
+                  <div className="flex items-center justify-between mb-8">
+                    <div className="w-12 h-12 rounded-xl bg-cyan-400 text-black flex items-center justify-center shadow-lg group-hover:rotate-[360deg] transition-transform duration-1000">
+                      <Phone className="w-6 h-6" />
+                    </div>
+                    <div className="px-3 py-1 rounded-full border border-cyan-400/20 bg-cyan-400/5 text-[9px] font-mono text-cyan-400 tracking-widest uppercase animate-shimmer">Autonomous</div>
+                  </div>
+                  <h3 className="text-2xl font-heading font-black text-white mb-2 uppercase tracking-tighter">Neural Voice</h3>
+                  <p className="text-white/30 font-mono text-xs leading-relaxed">
+                    AI voice agents that handle lead qualification with human-level natural speech 24/7.
+                  </p>
+                  <div className="mt-8 flex items-center gap-1 h-8">
+                     {[0.2, 0.5, 0.8, 0.4, 0.9, 0.3, 0.6, 0.4, 0.7].map((h, i) => (
+                       <div key={i} className="flex-1 bg-cyan-400/20 rounded-full overflow-hidden min-h-[4px]">
+                          <motion.div 
+                            animate={{ height: [`${h*100}%`, `${(1-h)*100}%`, `${h*100}%`] }}
+                            transition={{ duration: 1 + h, repeat: Infinity, ease: "easeInOut" }}
+                            className="w-full bg-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)]"
+                          />
+                       </div>
+                     ))}
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            {/* 4. AI CHAT (4 COL) */}
+            <div className="md:col-span-4 group relative rounded-[2.5rem] border border-white/10 overflow-hidden cursor-pointer" data-cursor-text="CHAT">
+              <Link href="/ai-solutions" className="block h-full">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(244,63,94,0.1)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <div className="p-8 h-full flex flex-col">
+                  <div className="w-12 h-12 rounded-xl bg-rose-500 text-black flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 transition-transform duration-500">
+                    <MessageSquare className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-heading font-black text-white mb-2 uppercase tracking-tighter">Liquid Chat</h3>
+                  <p className="text-white/30 font-mono text-xs leading-relaxed">
+                    Dynamic RAG-powered assistants trained on your specific business knowledge base.
+                  </p>
+                  <div className="mt-6 flex flex-col gap-3">
+                     <div className="w-4/5 h-8 glass-premium rounded-xl rounded-bl-none self-start flex items-center px-3">
+                        <div className="w-2 h-1 bg-rose-500/20 rounded-full animate-bounce" />
+                     </div>
+                     <div className="w-3/4 h-8 bg-rose-500/10 rounded-xl rounded-br-none self-end flex items-center justify-end px-3">
+                        <div className="w-1/2 h-1 bg-rose-500/40 rounded-full" />
+                     </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+
+            {/* 5. AUTOMATION (4 COL) */}
+            <div className="md:col-span-4 group relative rounded-[2.5rem] border border-white/5 overflow-hidden cursor-pointer bg-[#0D0D0D]">
+              <Link href="/services" className="block h-full">
+                <div className="absolute top-0 right-0 p-8">
+                  <ArrowUpRight className="w-6 h-6 text-white/20 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500" />
+                </div>
+                <div className="p-8 flex flex-col h-full">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-500 text-black flex items-center justify-center mb-6 shadow-lg group-hover:animate-spin-slow transition-all duration-500">
+                    <Cog className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-2xl font-heading font-black text-white mb-2 uppercase tracking-tighter">Flow Logic</h3>
+                  <p className="text-white/30 font-mono text-xs leading-relaxed mb-6">
+                    Connect 1000+ apps into a seamless, autonomous ecosystem that scales profit.
+                  </p>
+                  <div className="mt-auto grid grid-cols-3 gap-2">
+                     {[1,2,3].map(i => (
+                       <div key={i} className="aspect-square glass-premium border-white/5 rounded-2xl flex items-center justify-center group-hover:border-emerald-500/20 transition-colors">
+                          <div className={`w-3 h-3 rounded-full ${i === 2 ? 'bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'bg-white/5'}`} />
+                       </div>
+                     ))}
+                  </div>
+                </div>
+              </Link>
+            </div>
+
           </div>
+          {/* BENTO GRID END */}
+        </div>
+      </section>
         </div>
       </section>
 
