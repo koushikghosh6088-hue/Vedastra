@@ -110,7 +110,7 @@ export default function HomePage() {
 
         {/* Text Content — pointer-events-none so mouse passes through to Spline */}
         <div className="relative z-20 max-w-[1550px] mx-auto px-5 sm:px-6 w-full pointer-events-none">
-          <div className="flex flex-col justify-center min-h-screen pt-[50vh] sm:pt-48 pb-20 lg:py-0">
+          <div className="flex flex-col justify-center min-h-screen pt-[45vh] sm:pt-48 pb-20 lg:py-0">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}

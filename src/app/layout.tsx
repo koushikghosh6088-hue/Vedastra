@@ -3,7 +3,7 @@ import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import BottomNav from "@/components/BottomNav";
+
 import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import PerformanceManager from "@/components/PerformanceManager";
@@ -47,7 +47,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
-        <BottomNav />
+        
       </body>
     </html>
   );
