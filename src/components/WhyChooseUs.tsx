@@ -221,8 +221,13 @@ export default function WhyChooseUs() {
                 className={`relative z-10 flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-4 lg:gap-16 w-full`}
               >
                 
+                {/* Interactive 3D Image Side (Desktop & Mobile) */}
+                <div className="w-full lg:w-1/2 flex flex-col items-center justify-center relative pb-8 lg:pb-0">
+                    <Floating3DImage imageSrc={card.imageSrc} solidColor={card.solidColor} index={index} />
+                </div>
+
                 {/* Content Side */}
-                <div className={`w-full lg:w-1/2 flex flex-col ${isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-center text-center`}>
+                <div className={`w-full lg:w-1/2 flex flex-col ${!isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-center text-center`}>
                   <div className={`mb-6 relative inline-block`}>
                     <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl ${card.bgAccent} flex items-center justify-center border ${card.borderAccent} relative z-10 backdrop-blur-md`}>
                         <card.icon className={`w-8 h-8 md:w-10 md:h-10 ${card.textAccent}`} />
@@ -244,7 +249,7 @@ export default function WhyChooseUs() {
                     {card.description}
                   </p>
 
-                  <div className={`flex gap-4 w-full justify-center ${isEven ? 'lg:justify-start' : 'lg:justify-end'}`}>
+                  <div className={`flex gap-4 w-full justify-center ${!isEven ? 'lg:justify-start' : 'lg:justify-end'}`}>
                     {card.stats.map((stat: any) => (
                       <div key={stat.label} className="glass-panel p-4 md:p-5 rounded-2xl border-white/5 min-w-[140px]">
                           <div className="text-white/30 text-[10px] md:text-xs font-mono uppercase tracking-widest mb-2">{stat.label}</div>
@@ -252,11 +257,6 @@ export default function WhyChooseUs() {
                       </div>
                     ))}
                   </div>
-                </div>
-
-                {/* Interactive 3D Image Side (Desktop & Mobile) */}
-                <div className="w-full lg:w-1/2 flex flex-col items-center justify-center relative pt-8 lg:pt-0">
-                    <Floating3DImage imageSrc={card.imageSrc} solidColor={card.solidColor} index={index} />
                 </div>
 
                 {/* Center Node on Desktop */}
