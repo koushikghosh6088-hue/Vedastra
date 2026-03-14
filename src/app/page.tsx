@@ -265,34 +265,37 @@ export default function HomePage() {
       {/* ═══════════ ABOUT US / BENTO GRID ═══════════ */}
       <section className="relative py-32 bg-black z-10 rounded-t-[4rem] border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
         <div className="max-w-[1550px] mx-auto px-6">
-          <AnimatedSection className="mb-20">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-              <div className="space-y-4">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-blue-400">Our Identity</span>
+          {/* TEXT + TIMELINE SPLIT GRID */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[600px]">
+            <AnimatedSection>
+              <div className="flex flex-col gap-8">
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 w-max">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-blue-400">Our Identity</span>
+                  </div>
+                  <h2 className="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase">
+                    ABOUT<br/><span className="gradient-text italic text-blue-400">US_</span>
+                  </h2>
                 </div>
-                <h2 className="text-[3.5rem] md:text-[5.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase">
-                  ABOUT<br/><span className="gradient-text italic text-blue-400">US_</span>
-                </h2>
+                <div className="max-w-xl space-y-6">
+                   <p className="font-mono text-sm md:text-base text-white/60 uppercase tracking-[0.1em] leading-relaxed">
+                     We are a team of visionary architects, engineers, and designers dedicated to pushing the boundaries of digital possibility. We don&apos;t just build products; we engineer ecosystems that empower brands to dominate the neural frontier.
+                   </p>
+                   <div className="h-px w-full bg-gradient-to-r from-blue-400/30 to-transparent" />
+                   <p className="font-mono text-[10px] md:text-xs text-white/30 uppercase tracking-[0.3em]">
+                     Mission Protocol: Accelerate human potential through autonomous intelligence and high-fidelity design.
+                   </p>
+                </div>
               </div>
-              <div className="max-w-xl space-y-6">
-                 <p className="font-mono text-sm md:text-base text-white/60 uppercase tracking-[0.1em] leading-relaxed">
-                   We are a team of visionary architects, engineers, and designers dedicated to pushing the boundaries of digital possibility. We don&apos;t just build products; we engineer ecosystems that empower brands to dominate the neural frontier.
-                 </p>
-                 <div className="h-px w-full bg-gradient-to-r from-blue-400/30 to-transparent" />
-                 <p className="font-mono text-[10px] md:text-xs text-white/30 uppercase tracking-[0.3em]">
-                   Mission Protocol: Accelerate human potential through autonomous intelligence and high-fidelity design.
-                 </p>
-              </div>
-            </div>
-          </AnimatedSection>
+            </AnimatedSection>
 
-          {/* TIMELINE INTERFACE START */}
-          <AnimatedSection className="w-full">
-             <RadialOrbitalTimeline timelineData={aboutUsTimelineData} />
-          </AnimatedSection>
-          {/* TIMELINE INTERFACE END */}
+            {/* TIMELINE INTERFACE START */}
+            <AnimatedSection className="w-full h-full relative z-20">
+               <RadialOrbitalTimeline timelineData={aboutUsTimelineData} />
+            </AnimatedSection>
+            {/* TIMELINE INTERFACE END */}
+          </div>
         </div>
       </section>
 
