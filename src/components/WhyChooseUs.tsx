@@ -1,14 +1,15 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Rocket, Brain, BarChart3, Zap, Globe } from 'lucide-react';
+import { Rocket, Smartphone, Bot, MessageSquare, Globe, Zap } from 'lucide-react';
 import { useRef } from 'react';
+import Image from 'next/image';
 
 const cards = [
   {
     id: 1,
-    title: "High-Fidelity Web Systems",
-    subtitle: "Conversion Supremacy",
+    title: "Website Development",
+    subtitle: "High-Fidelity Web Systems",
     description: "In the digital frontier, milliseconds are the difference between a lead and a lost opportunity. We architect sub-400ms neural ecosystems that aren't just websites—they're high-performance conversion engines designed for global dominance.",
     icon: Globe,
     stats: [
@@ -23,19 +24,19 @@ const cards = [
     nodeBorder: "border-blue-400",
     shadow: "shadow-[0_0_20px_2px_rgba(59,130,246,0.2)]",
     solidColor: "bg-blue-500",
-    baseColorName: "blue-500"
+    imageSrc: "/3d-icons/web_dev.png"
   },
   {
     id: 2,
-    title: "Autonomous Operations",
-    subtitle: "Neural Scalability",
-    description: "Scale your business without the overhead. Our autonomous agents handle lead qualification, customer support, and complex logic 24/7. It's not just automation; it's an intelligent workforce that never sleeps and always learns.",
-    icon: Brain,
+    title: "Mobile App Development",
+    subtitle: "Omnichannel Dominance",
+    description: "Your clients are everywhere; your digital presence should be too. We create seamless, platform-agnostic native experiences that adapt liquidly from a 4K desktop display to the smartphone in their pocket.",
+    icon: Smartphone,
     stats: [
-      { label: 'Operating Cost', val: '-60%' },
-      { label: 'Response Time', val: 'INSTANT' },
+      { label: 'Mobile Retention', val: '+185%' },
+      { label: 'Cross-platform UX', val: '100%' },
     ],
-    color: "from-purple-600 to-rose-400",
+    color: "from-purple-600 to-fuchsia-400",
     textAccent: "text-purple-400",
     bgAccent: "bg-purple-400/10",
     borderAccent: "border-purple-400/20",
@@ -43,17 +44,17 @@ const cards = [
     nodeBorder: "border-purple-400",
     shadow: "shadow-[0_0_20px_2px_rgba(168,85,247,0.2)]",
     solidColor: "bg-purple-500",
-    baseColorName: "purple-500"
+    imageSrc: "/3d-icons/mobile_app.png"
   },
   {
     id: 3,
-    title: "Algorithmic Growth",
-    subtitle: "Data-Driven Intelligence",
-    description: "Ditch the guesswork. We deploy data-driven targeting protocols and viral content loops that put your brand exactly where your audience lives. Stop chasing leads; start being the destination they can't ignore.",
-    icon: BarChart3,
+    title: "AI Calling Agent",
+    subtitle: "Autonomous Voice Ops",
+    description: "Scale your business without the overhead. Our autonomous neural conversational agents handle lead qualification and customer support over the phone 24/7. An intelligent workforce that never sleeps and always sounds human.",
+    icon: Bot,
     stats: [
-      { label: 'Ad Performance', val: '+210%' },
-      { label: 'ROAS Average', val: '8.4x' },
+      { label: 'Operating Cost', val: '-60%' },
+      { label: 'Response Time', val: 'INSTANT' },
     ],
     color: "from-emerald-600 to-lime-400",
     textAccent: "text-emerald-400",
@@ -63,17 +64,17 @@ const cards = [
     nodeBorder: "border-emerald-400",
     shadow: "shadow-[0_0_20px_2px_rgba(16,185,129,0.2)]",
     solidColor: "bg-emerald-500",
-    baseColorName: "emerald-500"
+    imageSrc: "/3d-icons/ai_calling.png"
   },
   {
     id: 4,
-    title: "Omnichannel Dominance",
-    subtitle: "Mobile & Web Power",
-    description: "Your clients are everywhere; your digital presence should be too. We create seamless, platform-agnostic experiences that adapt liquidly from a 4K desktop display to the smartphone in their pocket.",
-    icon: Rocket,
+    title: "AI Messaging Agent",
+    subtitle: "Conversational Supremacy",
+    description: "Intercept, engage, and convert website visitors into booked appointments automatically. Our intelligent messaging algorithms adapt to client intent instantly on SMS, WhatsApp, and Web Chat.",
+    icon: MessageSquare,
     stats: [
-      { label: 'Mobile Retention', val: '+185%' },
-      { label: 'Cross-platform UX', val: '100%' },
+      { label: 'Lead Volume', val: '3x-5x' },
+      { label: 'System Uptime', val: '99.9%' },
     ],
     color: "from-sky-600 to-indigo-400",
     textAccent: "text-sky-400",
@@ -83,17 +84,17 @@ const cards = [
     nodeBorder: "border-sky-400",
     shadow: "shadow-[0_0_20px_2px_rgba(14,165,233,0.2)]",
     solidColor: "bg-sky-500",
-    baseColorName: "sky-500"
+    imageSrc: "/3d-icons/ai_messaging.png"
   },
   {
     id: 5,
-    title: "Exponential ROI",
-    subtitle: "Automated Lead Gen",
-    description: "We don't sell websites, we install revenue plumbing. Our interconnected systems automatically capture, nurture, and route highly qualified leads straight to your calendar, turning cold traffic into booked deals.",
-    icon: Zap,
+    title: "Digital Marketing",
+    subtitle: "Algorithmic Growth",
+    description: "Ditch the guesswork. We deploy data-driven targeting protocols and viral content loops that put your brand exactly where your audience lives. Stop chasing leads; start being the destination they can't ignore.",
+    icon: Rocket,
     stats: [
-      { label: 'Lead Volume', val: '3x-5x' },
-      { label: 'System Uptime', val: '99.9%' },
+      { label: 'Ad Performance', val: '+210%' },
+      { label: 'ROAS Average', val: '8.4x' },
     ],
     color: "from-amber-600 to-orange-400",
     textAccent: "text-amber-400",
@@ -103,12 +104,12 @@ const cards = [
     nodeBorder: "border-amber-400",
     shadow: "shadow-[0_0_20px_2px_rgba(245,158,11,0.2)]",
     solidColor: "bg-amber-500",
-    baseColorName: "amber-500"
+    imageSrc: "/3d-icons/digital_marketing.png"
   }
 ];
 
-// Interactive 3D Floating Object Component
-function Floating3DShape({ colorClass, solidColor, index }: { colorClass: string, solidColor: string, index: number }) {
+// Interactive 3D Image Component
+function Floating3DImage({ imageSrc, solidColor, index }: { imageSrc: string, solidColor: string, index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -131,48 +132,38 @@ function Floating3DShape({ colorClass, solidColor, index }: { colorClass: string
     y.set(0);
   }
 
-  // Choose a different shape for each card based on index (Sphere vs Torus vs Prism aesthetics)
-  const isCircle = index % 2 === 0;
-
   return (
     <div 
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full h-[250px] md:h-[350px] lg:h-full flex items-center justify-center perspective-[1000px] group cursor-pointer"
+      className="relative w-full h-[300px] md:h-[450px] lg:h-[500px] flex items-center justify-center perspective-[1000px] group cursor-pointer"
     >
       <motion.div 
         style={{
-          rotateX: useTransform(mouseY, [-100, 100], [25, -25]),
-          rotateY: useTransform(mouseX, [-100, 100], [-25, 25]),
-          x: useTransform(mouseX, [-150, 150], [-25, 25]),
-          y: useTransform(mouseY, [-150, 150], [-25, 25]),
+          rotateX: useTransform(mouseY, [-200, 200], [15, -15]),
+          rotateY: useTransform(mouseX, [-200, 200], [-15, 15]),
+          x: useTransform(mouseX, [-200, 200], [-15, 15]),
+          y: useTransform(mouseY, [-200, 200], [-15, 15]),
         }}
-        className={`relative z-20 ${isCircle ? 'rounded-full w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72' : 'rounded-[2.5rem] md:rounded-[4rem] w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64'} border border-white/20 glass-premium duration-200 shadow-[0_30px_60px_rgba(0,0,0,0.8)] flex items-center justify-center overflow-hidden`}
+        className="relative z-20 w-full h-full flex items-center justify-center"
       >
-        <div className={`absolute inset-0 bg-gradient-to-br ${colorClass} opacity-30 group-hover:opacity-60 transition-opacity duration-500`} />
-        
-        {/* Inner glow or geometric structure */}
-        <div className={`w-3/4 h-3/4 border border-white/10 ${isCircle ? 'rounded-full' : 'rounded-[2rem]'} flex items-center justify-center`}>
-           <div className={`w-1/2 h-1/2 ${solidColor} opacity-30 ${isCircle ? 'rounded-full' : 'rounded-xl'} blur-xl animate-pulse`} />
-        </div>
-        
-        {/* Subtle Number overlay inside the 3D shape */}
-        <div className="absolute inset-0 flex items-center justify-center text-white/20 font-heading font-black text-[5rem] md:text-[8rem] mix-blend-overlay select-none">
-          0{index + 1}
-        </div>
-        
-        {/* Specular highlight */}
-        <div className="absolute top-4 left-4 w-12 h-12 bg-white/30 rounded-full blur-xl" />
+        <Image
+           src={imageSrc}
+           alt="3D Service Rendering"
+           fill
+           priority={index < 2}
+           className="object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)] mix-blend-screen hover:scale-105 transition-transform duration-500 ease-out"
+        />
       </motion.div>
       
-      {/* Background shadow matching shape that moves oppositely for parallax depth */}
+      {/* Dynamic ambient underglow based on mouse movement */}
       <motion.div 
         style={{
-          x: useTransform(mouseX, [-100, 100], [15, -15]),
-          y: useTransform(mouseY, [-100, 100], [15, -15]),
+          x: useTransform(mouseX, [-200, 200], [30, -30]),
+          y: useTransform(mouseY, [-200, 200], [30, -30]),
         }}
-        className={`absolute z-10 ${isCircle ? 'rounded-full w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72' : 'rounded-[2.5rem] md:rounded-[4rem] w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64'} ${solidColor} opacity-10 blur-3xl transition-opacity duration-500 group-hover:opacity-30`}
+        className={`absolute z-10 w-48 h-48 md:w-64 md:h-64 rounded-full ${solidColor} opacity-10 blur-[80px] transition-opacity duration-500 group-hover:opacity-40`}
       />
     </div>
   );
@@ -181,7 +172,7 @@ function Floating3DShape({ colorClass, solidColor, index }: { colorClass: string
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative py-24 md:py-40 bg-black overflow-hidden relative z-10">
+    <section className="relative py-24 md:py-40 bg-black overflow-hidden z-10">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(14,165,233,0.03)_0%,transparent_60%)] pointer-events-none" />
       
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
@@ -217,7 +208,6 @@ export default function WhyChooseUs() {
             return (
               <motion.div 
                 key={card.id}
-                // Snappier POP animation
                 initial={{ opacity: 0, scale: 0.75, y: 150 }}
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true, margin: "-15%" }}
@@ -228,7 +218,7 @@ export default function WhyChooseUs() {
                   mass: 0.8,
                   delay: 0.05
                 }}
-                className={`relative z-10 flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-8 lg:gap-16 w-full`}
+                className={`relative z-10 flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-4 lg:gap-16 w-full`}
               >
                 
                 {/* Content Side */}
@@ -264,9 +254,9 @@ export default function WhyChooseUs() {
                   </div>
                 </div>
 
-                {/* Interactive 3D Visual Side (Desktop & Mobile) */}
+                {/* Interactive 3D Image Side (Desktop & Mobile) */}
                 <div className="w-full lg:w-1/2 flex flex-col items-center justify-center relative pt-8 lg:pt-0">
-                    <Floating3DShape colorClass={card.color} solidColor={card.solidColor} index={index} />
+                    <Floating3DImage imageSrc={card.imageSrc} solidColor={card.solidColor} index={index} />
                 </div>
 
                 {/* Center Node on Desktop */}
