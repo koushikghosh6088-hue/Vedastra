@@ -304,59 +304,140 @@ export default function HomePage() {
 
       <FeaturedArchive />
 
-      {/* ═══════════ SOCIAL PROOF / TESTIMONIALS ═══════════ */}
-      <section className="relative py-32 bg-black overflow-hidden z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(14,165,233,0.06)_0%,transparent_60%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,#000_40%,transparent_100%)] pointer-events-none" />
+      {/* ═══════════ CLIENT TRANSMISSIONS ═══════════ */}
+      <section className="relative py-20 md:py-32 bg-black z-10 overflow-hidden">
+        {/* Ambient glows */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-[#0ea5e9]/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
 
-        <div className="max-w-[1550px] mx-auto px-6 relative z-10">
-          <AnimatedSection className="text-center mb-20">
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-white/10 bg-white/5 mb-8">
-              <Star className="w-3 h-3 text-blue-400" />
-              <span className="text-xs font-mono uppercase tracking-widest text-white/50">Client Transmissions</span>
+        <div className="relative z-10 max-w-[1550px] mx-auto px-6">
+          {/* Header */}
+          <AnimatedSection className="text-center mb-16 md:mb-24">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 mb-6 backdrop-blur-md">
+              <Star className="w-3.5 h-3.5 text-[#0ea5e9] fill-[#0ea5e9]" />
+              <span className="font-mono text-xs uppercase tracking-widest text-[#0ea5e9]">Client Transmissions</span>
             </div>
-            <h2 className="text-[3rem] md:text-[5rem] font-heading font-black tracking-tighter leading-none mb-6">
-              TRUSTED BY <span className="gradient-text italic">LEADERS</span>
+            <h2 className="text-[2.5rem] md:text-[5rem] lg:text-[6rem] font-heading font-black leading-none tracking-tighter uppercase mb-4">
+              TRUSTED BY <span className="gradient-text italic text-[#0ea5e9]">LEADERS</span>
             </h2>
-            <p className="font-mono text-sm text-white/30 uppercase tracking-widest max-w-lg mx-auto">
-              Feedback from enterprise partners across 4 continents.
+            <p className="font-mono text-sm text-white/30 uppercase tracking-[0.2em] max-w-lg mx-auto">
+              Real signals from enterprise partners across 4 continents.
             </p>
           </AnimatedSection>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { quote: "Joint WebSolutions completely reimagined our digital infrastructure. Their AI agents now handle 70% of our lead qualification autonomously.", name: "Sarah Chen", role: "CTO, Nexus Dynamics", rating: 5 },
-              { quote: "The performance optimization they delivered was insane — our platform went from 3s load times to under 400ms. Revenue jumped 34% in Q1.", name: "Marcus Rivera", role: "Head of Product, FlowStack", rating: 5 },
-              { quote: "We've worked with 6 agencies before Joint. None delivered this level of engineering precision. They don't just build — they architect.", name: "Elena Kowalski", role: "Founder, AetherLabs", rating: 5 },
-            ].map((testimonial, i) => (
-              <AnimatedSection key={testimonial.name} delay={i * 0.15}>
-                <div className="glass-panel rounded-[2.5rem] p-8 md:p-10 h-full flex flex-col justify-between group hover:border-blue-400/30 transition-all duration-700 relative overflow-hidden">
-                  <div className="absolute -inset-20 bg-blue-400/5 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
-                  <div className="relative z-10">
-                    <div className="flex gap-1 mb-6">
-                      {Array.from({ length: testimonial.rating }).map((_, j) => (
-                        <Star key={j} className="w-4 h-4 text-blue-400 fill-blue-400" />
-                      ))}
-                    </div>
-                    <p className="text-white/60 text-lg leading-relaxed font-mono font-light mb-8">
-                      &ldquo;{testimonial.quote}&rdquo;
-                    </p>
+        {/* ── MARQUEE ROW 1 — left scroll ── */}
+        <div className="relative mb-6 group overflow-hidden">
+          <div className="flex gap-5 animate-marquee-left group-hover:pause-animation whitespace-nowrap w-max">
+            {[...[
+              { quote: "Joint WebSolutions completely reimagined our digital infrastructure. Their AI agents now handle 70% of our lead qualification autonomously.", name: "Sarah Chen", role: "CTO, Nexus Dynamics", rating: 5, accent: "text-blue-400", border: "border-blue-500/20" },
+              { quote: "The performance optimization was insane — our platform went from 3s load times to under 400ms. Revenue jumped 34% in just one quarter.", name: "Marcus Rivera", role: "Head of Product, FlowStack", rating: 5, accent: "text-purple-400", border: "border-purple-500/20" },
+              { quote: "We've worked with 6 agencies before Joint. None delivered this level of engineering precision. They don't just build — they architect.", name: "Elena Kowalski", role: "Founder, AetherLabs", rating: 5, accent: "text-emerald-400", border: "border-emerald-500/20" },
+              { quote: "Their AI calling agent converted 40% of cold leads into demo calls in the first week. We've never seen results like this.", name: "Raj Patel", role: "VP Sales, QuantumLeap", rating: 5, accent: "text-sky-400", border: "border-sky-500/20" },
+            ], ...[
+              { quote: "Joint WebSolutions completely reimagined our digital infrastructure. Their AI agents now handle 70% of our lead qualification autonomously.", name: "Sarah Chen", role: "CTO, Nexus Dynamics", rating: 5, accent: "text-blue-400", border: "border-blue-500/20" },
+              { quote: "The performance optimization was insane — our platform went from 3s load times to under 400ms. Revenue jumped 34% in just one quarter.", name: "Marcus Rivera", role: "Head of Product, FlowStack", rating: 5, accent: "text-purple-400", border: "border-purple-500/20" },
+              { quote: "We've worked with 6 agencies before Joint. None delivered this level of engineering precision. They don't just build — they architect.", name: "Elena Kowalski", role: "Founder, AetherLabs", rating: 5, accent: "text-emerald-400", border: "border-emerald-500/20" },
+              { quote: "Their AI calling agent converted 40% of cold leads into demo calls in the first week. We've never seen results like this.", name: "Raj Patel", role: "VP Sales, QuantumLeap", rating: 5, accent: "text-sky-400", border: "border-sky-500/20" },
+            ]].map((t, i) => (
+              <div
+                key={`r1-${i}`}
+                className={`inline-flex shrink-0 w-[340px] md:w-[420px] flex-col justify-between gap-5 glass-panel rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border ${t.border} group/card hover:scale-[1.02] transition-transform duration-300 cursor-default`}
+              >
+                <div className="flex gap-1 mb-2">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <Star key={j} className={`w-3.5 h-3.5 ${t.accent} fill-current`} />
+                  ))}
+                </div>
+                <p className="text-white/70 text-sm md:text-base font-mono leading-relaxed whitespace-normal">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className={`flex items-center gap-4 pt-4 border-t border-white/5`}>
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br from-white/10 to-white/5 border ${t.border} flex items-center justify-center shrink-0`}>
+                    <span className={`font-heading font-black text-sm ${t.accent}`}>{t.name[0]}</span>
                   </div>
-                  <div className="relative z-10 flex items-center gap-4 pt-6 border-t border-white/5">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400/20 to-blue-600/20 border border-white/10 flex items-center justify-center">
-                      <Users className="w-5 h-5 text-blue-400" />
-                    </div>
-                    <div>
-                      <div className="text-sm font-bold text-white">{testimonial.name}</div>
-                      <div className="text-[10px] font-mono text-white/40 uppercase tracking-widest">{testimonial.role}</div>
-                    </div>
+                  <div>
+                    <div className="text-sm font-bold text-white">{t.name}</div>
+                    <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest">{t.role}</div>
                   </div>
                 </div>
-              </AnimatedSection>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ── MARQUEE ROW 2 — right scroll ── */}
+        <div className="relative group overflow-hidden">
+          <div className="flex gap-5 animate-marquee-right group-hover:pause-animation whitespace-nowrap w-max">
+            {[...[
+              { quote: "Our ecommerce platform's conversion rate went from 1.8% to 4.9% after Joint rebuilt our funnel. Absolutely transformative work.", name: "Nina Torres", role: "CEO, LuxeCart", rating: 5, accent: "text-amber-400", border: "border-amber-500/20" },
+              { quote: "The AI messaging bot they built for us now books 30+ appointments daily on autopilot. The ROI is genuinely incredible.", name: "James Okonkwo", role: "Director, ScaleForce", rating: 5, accent: "text-fuchsia-400", border: "border-fuchsia-500/20" },
+              { quote: "We asked for a mobile app and they delivered a full product ecosystem. The design quality rivals top-tier Silicon Valley products.", name: "Priya Nair", role: "CPO, NovaBridge", rating: 5, accent: "text-teal-400", border: "border-teal-500/20" },
+              { quote: "Their team understands business, not just code. Everything they built ties directly to our revenue and growth metrics.", name: "Leo Strauss", role: "Co-Founder, ArcVentures", rating: 5, accent: "text-rose-400", border: "border-rose-500/20" },
+            ], ...[
+              { quote: "Our ecommerce platform's conversion rate went from 1.8% to 4.9% after Joint rebuilt our funnel. Absolutely transformative work.", name: "Nina Torres", role: "CEO, LuxeCart", rating: 5, accent: "text-amber-400", border: "border-amber-500/20" },
+              { quote: "The AI messaging bot they built for us now books 30+ appointments daily on autopilot. The ROI is genuinely incredible.", name: "James Okonkwo", role: "Director, ScaleForce", rating: 5, accent: "text-fuchsia-400", border: "border-fuchsia-500/20" },
+              { quote: "We asked for a mobile app and they delivered a full product ecosystem. The design quality rivals top-tier Silicon Valley products.", name: "Priya Nair", role: "CPO, NovaBridge", rating: 5, accent: "text-teal-400", border: "border-teal-500/20" },
+              { quote: "Their team understands business, not just code. Everything they built ties directly to our revenue and growth metrics.", name: "Leo Strauss", role: "Co-Founder, ArcVentures", rating: 5, accent: "text-rose-400", border: "border-rose-500/20" },
+            ]].map((t, i) => (
+              <div
+                key={`r2-${i}`}
+                className={`inline-flex shrink-0 w-[340px] md:w-[420px] flex-col justify-between gap-5 glass-panel rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border ${t.border} group/card hover:scale-[1.02] transition-transform duration-300 cursor-default`}
+              >
+                <div className="flex gap-1 mb-2">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <Star key={j} className={`w-3.5 h-3.5 ${t.accent} fill-current`} />
+                  ))}
+                </div>
+                <p className="text-white/70 text-sm md:text-base font-mono leading-relaxed whitespace-normal">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <div className={`flex items-center gap-4 pt-4 border-t border-white/5`}>
+                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br from-white/10 to-white/5 border ${t.border} flex items-center justify-center shrink-0`}>
+                    <span className={`font-heading font-black text-sm ${t.accent}`}>{t.name[0]}</span>
+                  </div>
+                  <div>
+                    <div className="text-sm font-bold text-white">{t.name}</div>
+                    <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest">{t.role}</div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* edge fades */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none" />
+
+        {/* stat bar */}
+        <div className="relative z-10 max-w-[1550px] mx-auto px-6 mt-20 md:mt-28">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            {[
+              { metric: "98%", label: "Client Retention Rate" },
+              { metric: "200+", label: "Projects Delivered" },
+              { metric: "4.9★", label: "Average Rating" },
+              { metric: "4", label: "Continents Served" },
+            ].map((s) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ type: "spring", stiffness: 120, damping: 18 }}
+                className="glass-panel rounded-2xl md:rounded-3xl p-5 md:p-8 border border-white/5 text-center hover:border-[#0ea5e9]/30 transition-colors duration-500"
+              >
+                <div className="text-3xl md:text-5xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40 tracking-tighter mb-2">
+                  {s.metric}
+                </div>
+                <div className="font-mono text-[10px] md:text-xs text-white/30 uppercase tracking-widest">{s.label}</div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
+
 
       {/* ═══════════ WHY JOINT — DIFFERENTIATORS (POPUP CARDS) ═══════════ */}
       <section className="relative py-32 bg-obsidian overflow-hidden z-10 border-t border-white/5">
