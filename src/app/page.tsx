@@ -9,7 +9,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   ArrowRight, Globe, Smartphone, Phone, MessageSquare, Cog, TrendingUp,
   ArrowUpRight, Bot, Workflow, Users, Target, Star, Shield, Zap, Server,
-  Code2, Layers, Database, Cpu, Lock, BarChart3
+  Code2, Layers, Database, Cpu, Lock, BarChart3, Mail, MapPin, Send
 } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 import WhyChooseUs from '@/components/WhyChooseUs';
@@ -479,59 +479,7 @@ export default function HomePage() {
       </section>
 
 
-      {/* ═══════════ WHY JOINT — DIFFERENTIATORS (POPUP CARDS) ═══════════ */}
-      <section className="relative py-32 bg-obsidian overflow-hidden z-10 border-t border-white/5">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-400/[0.03] rounded-full blur-[150px] pointer-events-none" />
-        
-        <div className="max-w-[1550px] mx-auto px-6 relative z-10 text-center">
-          <div className="mb-20">
-              <AnimatedSection>
-                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-400/10 bg-blue-400/5 mb-8">
-                  <Target className="w-3 h-3 text-blue-400" />
-                  <span className="text-xs font-mono uppercase tracking-widest text-blue-400/80">The Joint Advantage</span>
-                </div>
-                <h2 className="text-[3.5rem] md:text-[6rem] font-heading font-black tracking-tighter leading-none mb-6">
-                  NOT ANOTHER <span className="gradient-text italic">AGENCY_</span>
-                </h2>
-              </AnimatedSection>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: Zap, title: 'Sub-400ms Speed', desc: 'Atomic-speed performance protocols for total dominance.', metric: '400ms' },
-              { icon: Shield, title: 'Elite Security', desc: 'Defense-grade encryption and SOC2 ready architecture.', metric: 'SOC2+' },
-              { icon: Bot, title: 'AI-Native DNA', desc: 'Smarter ecosystems that grow with your business.', metric: 'AI+UX' },
-              { icon: Workflow, title: 'Deep Logic', desc: 'End-to-end workflow elimination and cost reduction.', metric: '99.9%' },
-            ].map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, scale: 0.6, y: 100 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ 
-                  type: "spring",
-                  stiffness: 150,
-                  damping: 15,
-                  delay: i * 0.1 
-                }}
-                className="glass-premium rounded-[3rem] p-10 group hover:border-blue-500/50 transition-all duration-300 relative overflow-hidden flex flex-col items-center performance-layer"
-              >
-                <div className="w-20 h-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:bg-blue-500 group-hover:text-black group-hover:shadow-[0_0_40px_rgba(14,165,233,0.4)] transition-all duration-700 transform group-hover:rotate-[360deg]">
-                  <item.icon className="w-9 h-9" />
-                </div>
-                <h4 className="text-2xl font-heading font-black text-white mb-4 uppercase tracking-tighter">{item.title}</h4>
-                <p className="text-white/40 text-sm font-mono leading-relaxed mb-10 flex-1">
-                  {item.desc}
-                </p>
-                <div className="w-full pt-6 border-t border-white/5 flex justify-between items-center text-[10px] font-mono text-white/20 uppercase tracking-widest">
-                  <span>METRIC_</span>
-                  <span className="text-blue-400 font-bold">{item.metric}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* REDUNDANT ADVANTAGE SECTION REMOVED */}
 
       {/* ═══════════ TECH PROCESS SECTION ═══════════ */}
       <section className="relative py-40 bg-black overflow-hidden z-10">
@@ -651,51 +599,86 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ═══════════ CINEMATIC CTA ═══════════ */}
-      <section className="relative py-40 bg-obsidian overflow-hidden z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(14,165,233,0.08)_0%,transparent_70%)] pointer-events-none" />
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/20 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+      {/* ═══════════ CINEMATIC CONTACT SECTION ═══════════ */}
+      <section className="relative py-20 bg-obsidian overflow-hidden z-10 border-t border-white/5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(14,165,233,0.15)_0%,transparent_60%)] pointer-events-none" />
         
-        <div className="max-w-[1200px] mx-auto px-6 relative z-10 text-center">
-          <AnimatedSection>
-            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full border border-blue-400/20 bg-blue-400/5 mb-10">
-              <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
-              <span className="text-xs font-mono uppercase tracking-widest text-blue-400/80">Ready to Deploy</span>
-            </div>
-            
-            <h2 className="text-[4rem] md:text-[6rem] lg:text-[8rem] font-heading font-black tracking-tighter leading-[0.8] mb-10 uppercase">
-              LET&apos;S BUILD<br/>
-              <span className="gradient-text italic">SOMETHING</span><br/>
-              EXTRAORDINARY.
-            </h2>
-            
-            <p className="text-white/40 text-lg md:text-xl font-mono font-light max-w-2xl mx-auto mb-14 leading-relaxed">
-              Initiate contact protocols and let our engineering syndicate architect your next digital masterpiece.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <Link href="/contact" className="btn-primary px-12 py-6 text-base">
-                START PROJECT <ArrowRight className="ml-3 w-5 h-5" />
-              </Link>
-              <Link href="/services" className="btn-secondary px-10 py-5">
-                Explore Services
-              </Link>
-            </div>
-
-            <div className="flex items-center justify-center gap-12 mt-20">
-              {[
-                { label: 'Response Time', value: '< 2hrs' },
-                { label: 'Free Consultation', value: '60 min' },
-                { label: 'Project Kickoff', value: '48 hrs' },
-              ].map((item) => (
-                <div key={item.label} className="text-center hidden md:block">
-                  <div className="text-lg font-bold text-white/70">{item.value}</div>
-                  <div className="text-[10px] font-mono text-white/20 uppercase tracking-widest mt-1">{item.label}</div>
+        <div className="max-w-[1550px] mx-auto px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-6">
+              <AnimatedSection>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-400/20 bg-blue-400/5 mb-8">
+                  <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
+                  <span className="text-xs font-mono uppercase tracking-widest text-[#0ea5e9]">Secure Channel Active</span>
                 </div>
-              ))}
+                <h2 className="text-[3.5rem] md:text-[6rem] font-heading font-black tracking-tighter leading-[0.8] mb-10 uppercase">
+                  INITIATE <br/><span className="gradient-text italic text-[#0ea5e9]">CONNECTION</span>
+                </h2>
+                <p className="text-white/50 text-lg font-mono font-light max-w-xl mb-12 leading-relaxed">
+                  Open a direct line to our engineering syndicate. Propose architectures, request deployments, or inquire about enterprise scaling.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                   <div className="glass-panel p-6 rounded-3xl border-white/5 hover:border-[#0ea5e9]/30 transition-all group">
+                      <Mail className="w-6 h-6 text-[#0ea5e9] mb-4" />
+                      <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">Email Protocol</div>
+                      <div className="text-sm font-bold text-white">hello@jointwebsolutions.com</div>
+                   </div>
+                   <div className="glass-panel p-6 rounded-3xl border-white/5 hover:border-[#0ea5e9]/30 transition-all group">
+                      <Phone className="w-6 h-6 text-[#0ea5e9] mb-4" />
+                      <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">Voice Link</div>
+                      <div className="text-sm font-bold text-white">+1 (555) 123-4567</div>
+                   </div>
+                </div>
+              </AnimatedSection>
             </div>
-          </AnimatedSection>
+
+            {/* Right Form */}
+            <div className="lg:col-span-6">
+              <AnimatedSection delay={0.2}>
+                <div className="glass-premium rounded-[3rem] p-8 md:p-12 border-white/10 relative overflow-hidden">
+                   <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#0ea5e9]/50 to-transparent" />
+                   
+                   <form className="space-y-6">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                           <input
+                             type="text"
+                             placeholder="IDENTIFIER / NAME"
+                             className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white font-mono text-xs focus:outline-none focus:border-[#0ea5e9] focus:ring-1 focus:ring-[#0ea5e9]/50 transition-all placeholder:text-white/20"
+                           />
+                        </div>
+                        <div className="space-y-2">
+                           <input
+                             type="email"
+                             placeholder="COMM LINK / EMAIL"
+                             className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white font-mono text-xs focus:outline-none focus:border-[#0ea5e9] focus:ring-1 focus:ring-[#0ea5e9]/50 transition-all placeholder:text-white/20"
+                           />
+                        </div>
+                      </div>
+                      
+                      <select className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white font-mono text-xs focus:outline-none focus:border-[#0ea5e9] transition-all appearance-none cursor-pointer">
+                        <option className="bg-black text-white">WEB ARCHITECTURE</option>
+                        <option className="bg-black text-white">AI SOLUTIONS</option>
+                        <option className="bg-black text-white">WORKFLOW AUTOMATION</option>
+                        <option className="bg-black text-white">OTHER</option>
+                      </select>
+
+                      <textarea
+                        placeholder="SYSTEM REQUIREMENTS / MESSAGE"
+                        rows={4}
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white font-mono text-xs focus:outline-none focus:border-[#0ea5e9] transition-all resize-none placeholder:text-white/20"
+                      />
+
+                      <button className="w-full py-5 rounded-2xl bg-[#0ea5e9] text-black font-black font-mono tracking-[0.2em] uppercase hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(14,165,233,0.3)] flex items-center justify-center gap-3">
+                        Transmit Data <Send className="w-4 h-4" />
+                      </button>
+                   </form>
+                </div>
+              </AnimatedSection>
+            </div>
+          </div>
         </div>
       </section>
     </>
