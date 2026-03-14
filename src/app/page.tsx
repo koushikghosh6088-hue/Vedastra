@@ -16,7 +16,7 @@ import WhyChooseUs from '@/components/WhyChooseUs';
 
 import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
-
+import RadialOrbitalTimeline, { TimelineItem } from "@/components/ui/radial-orbital-timeline";
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -36,6 +36,64 @@ const projects = [
   { title: 'Nexus UI', category: 'Design System', image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800', tech: ['Next.js', 'Figma', 'Storybook'] },
   { title: 'Quantum App', category: 'Mobile Solution', image: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800', tech: ['React Native', 'Firebase', 'Swift'] },
   { title: 'Aether OS', category: 'Web Ecosystem', image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=800', tech: ['Vue', 'Node.js', 'AWS'] },
+];
+
+const aboutUsTimelineData: TimelineItem[] = [
+  {
+    id: 1,
+    title: "Web Intel",
+    date: "Core",
+    content: "Architecting high-fidelity web ecosystems that load at the speed of thought. Engineered for dominance.",
+    category: "Web Development",
+    icon: Globe,
+    relatedIds: [2, 3],
+    status: "completed",
+    energy: 100,
+  },
+  {
+    id: 2,
+    title: "Mobile Forge",
+    date: "Core",
+    content: "Sculpting elite mobile experiences for iOS and Android. Zero-latency interfaces designed for touch.",
+    category: "Mobile Apps",
+    icon: Smartphone,
+    relatedIds: [1, 5],
+    status: "completed",
+    energy: 90,
+  },
+  {
+    id: 3,
+    title: "Liquid Chat",
+    date: "AI",
+    content: "Conversational RAG architectures. We train neural agents on your private knowledge nodes for absolute precision.",
+    category: "AI Chat",
+    icon: MessageSquare,
+    relatedIds: [1, 4],
+    status: "completed",
+    energy: 95,
+  },
+  {
+    id: 4,
+    title: "Neural Voice",
+    date: "AI",
+    content: "Autonomous conversational intelligence that speaks your brand language. Liquid-smooth lead qualification.",
+    category: "AI Voice Agents",
+    icon: Phone,
+    relatedIds: [3, 5],
+    status: "in-progress",
+    energy: 85,
+  },
+  {
+    id: 5,
+    title: "Flow Logic",
+    date: "Automation",
+    content: "Automating the mundane. We connect 1000+ nodes to create a self-optimizing business engine.",
+    category: "Automation",
+    icon: Cog,
+    relatedIds: [2, 4],
+    status: "in-progress",
+    energy: 80,
+  },
 ];
 
 export default function HomePage() {
@@ -230,272 +288,11 @@ export default function HomePage() {
             </div>
           </AnimatedSection>
 
-          {/* BENTO GRID START */}
-          <div className="grid grid-cols-1 md:grid-cols-12 md:grid-rows-2 gap-6 lg:h-[950px]">
-            
-            {/* 1. WEB INTEL (FEATURED LARGE - 8 COL) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="md:col-span-8 md:row-span-1 group relative rounded-[2.5rem] border border-white/10 overflow-hidden cursor-pointer" 
-              data-cursor-text="LAUNCH"
-            >
-              <Link href="/services" className="block h-full">
-                {/* Binary Stream Background */}
-                <div className="absolute inset-0 z-0 opacity-10 pointer-events-none overflow-hidden font-mono text-[8px] text-blue-400/40 select-none">
-                   {Array.from({ length: 12 }).map((_, i) => (
-                     <motion.div 
-                       key={i}
-                       animate={{ y: [0, -500] }}
-                       transition={{ duration: 15 + Math.random() * 10, repeat: Infinity, ease: "linear" }}
-                       className="whitespace-nowrap"
-                       style={{ marginLeft: `${i * 8}%` }}
-                     >
-                        {Array.from({ length: 40 }).map(() => Math.round(Math.random())).join(' ')}<br/>
-                        {Array.from({ length: 40 }).map(() => Math.round(Math.random())).join(' ')}<br/>
-                        {Array.from({ length: 40 }).map(() => Math.round(Math.random())).join(' ')}
-                     </motion.div>
-                   ))}
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/30 via-transparent to-cyan-400/10 z-[1]" />
-                
-                <div className="relative z-10 p-8 md:p-12 flex flex-col h-full lg:flex-row lg:items-center gap-12">
-                  <div className="flex-1 space-y-6">
-                    <div className="w-20 h-20 rounded-2xl bg-blue-500 text-black flex items-center justify-center shadow-[0_0_50px_rgba(59,130,246,0.6)] group-hover:scale-110 group-hover:rotate-[360deg] transition-all duration-1000">
-                      <Globe className="w-10 h-10" />
-                    </div>
-                    <div>
-                      <h3 className="text-4xl md:text-5xl font-heading font-black text-white mb-4 uppercase tracking-tighter">Web Intel</h3>
-                      <p className="text-white/70 font-mono text-sm leading-relaxed max-w-sm">
-                        Architecting high-fidelity web ecosystems that load at the speed of thought. Engineered for dominance.
-                      </p>
-                    </div>
-                    <div className="flex flex-wrap gap-2 pt-4">
-                      {['Next.js 14', 'Turbopack', 'Edge'].map(t => (
-                        <span key={t} className="px-4 py-2 rounded-full glass-premium text-[10px] font-mono text-blue-400 uppercase tracking-widest border border-blue-400/20">{t}</span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="flex-1 relative hidden lg:block h-full py-12">
-                    <div className="h-full border-l border-white/10 pl-12 flex flex-col justify-center space-y-8">
-                       <div className="space-y-2">
-                          <div className="text-[10px] font-mono text-blue-400 uppercase tracking-[0.4em]">Optimizing core_vitals</div>
-                          <div className="w-full bg-white/5 h-1.5 rounded-full overflow-hidden">
-                             <motion.div 
-                                initial={{ width: 0 }}
-                                whileInView={{ width: "98%" }}
-                                transition={{ duration: 2, delay: 0.5 }}
-                                className="h-full bg-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.8)]" 
-                             />
-                          </div>
-                       </div>
-                       <div className="grid grid-cols-2 gap-4">
-                          {[
-                            { label: 'SEO Score', val: '100' },
-                            { label: 'Performance', val: '99' },
-                            { label: 'UX Fidelity', val: 'AA+' },
-                            { label: 'Scaling', val: 'AUTO' },
-                          ].map(stat => (
-                            <div key={stat.label} className="glass-premium p-4 rounded-xl border-white/5 group-hover:border-blue-400/20 transition-colors">
-                               <div className="text-white/20 text-[9px] uppercase font-mono mb-1">{stat.label}</div>
-                               <div className="text-white font-heading font-black text-xl">{stat.val}</div>
-                            </div>
-                          ))}
-                       </div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* 2. MOBILE FORGE (4 COL) */}
-            <motion.div 
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="md:col-span-4 group relative rounded-[2.5rem] border border-white/10 overflow-hidden cursor-pointer bg-[#050505]"
-            >
-              <Link href="/services" className="block h-full">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(168,85,247,0.15)_0%,transparent_70%)]" />
-                <div className="p-10 relative z-10 flex flex-col h-full">
-                  <div className="w-14 h-14 rounded-2xl bg-purple-500 text-black flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(168,85,247,0.4)] group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500">
-                    <Smartphone className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-3xl font-heading font-black text-white mb-2 uppercase tracking-tighter">Mobile Forge</h3>
-                  <p className="text-white/40 font-mono text-xs leading-relaxed">
-                    Sculpting elite mobile experiences for iOS and Android. Zero-latency interfaces designed for touch.
-                  </p>
-                  
-                  {/* Visual: Moving App Cards */}
-                  <div className="mt-auto pt-10 relative flex justify-center">
-                    <div className="relative w-32 h-44 bg-obsidian border border-white/10 rounded-2xl p-3 shadow-2xl group-hover:translate-y-[-10px] transition-transform duration-700">
-                       <div className="w-full h-24 bg-white/5 rounded-lg mb-2 relative overflow-hidden">
-                          <motion.div 
-                            animate={{ scale: [1, 1.1, 1] }}
-                            transition={{ duration: 4, repeat: Infinity }}
-                            className="absolute inset-0 bg-purple-500/10" 
-                          />
-                       </div>
-                       <div className="space-y-1.5">
-                          <div className="h-1.5 w-full bg-white/5 rounded" />
-                          <div className="h-1.5 w-2/3 bg-white/5 rounded" />
-                       </div>
-                       {/* Floating UI Element */}
-                       <motion.div 
-                         initial={{ y: 0 }}
-                         animate={{ y: [-10, 10, -10] }}
-                         transition={{ duration: 3, repeat: Infinity }}
-                         className="absolute -right-6 top-10 w-12 h-12 glass-strong rounded-xl flex items-center justify-center shadow-xl border-purple-500/20"
-                       >
-                          <div className="w-6 h-6 rounded-full bg-purple-500 shadow-[0_0_10px_purple]" />
-                       </motion.div>
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* 3. NEURAL VOICE (4 COL) */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="md:col-span-4 group relative rounded-[2.5rem] border border-white/5 overflow-hidden cursor-pointer bg-obsidian"
-            >
-              <Link href="/ai-solutions" className="block h-full">
-                <div className="p-10 flex flex-col h-full relative z-10">
-                  <div className="flex items-center justify-between mb-10">
-                    <div className="w-14 h-14 rounded-2xl bg-cyan-400 text-black flex items-center justify-center shadow-[0_0_30px_rgba(34,211,238,0.4)] group-hover:scale-125 transition-transform duration-500">
-                      <Phone className="w-7 h-7" />
-                    </div>
-                    <div className="flex gap-1">
-                       {[1,2,3].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" style={{ animationDelay: `${i*0.2}s` }} />)}
-                    </div>
-                  </div>
-                  <h3 className="text-3xl font-heading font-black text-white mb-2 uppercase tracking-tighter">Neural Voice</h3>
-                  <p className="text-white/40 font-mono text-xs leading-relaxed">
-                    Autonomous conversational intelligence that speaks your brand language. Liquid-smooth lead qualification.
-                  </p>
-                  
-                  {/* Advanced organic waveforms */}
-                  <div className="mt-12 flex items-center gap-1.5 h-20 group-hover:gap-2 transition-all duration-500">
-                     {Array.from({ length: 12 }).map((_, i) => (
-                       <motion.div 
-                         key={i}
-                         animate={{ 
-                           scaleY: [0.2, 1, 0.3, 1, 0.4],
-                           opacity: [0.3, 1, 0.5, 1, 0.4]
-                         }}
-                         transition={{ 
-                           duration: 1.5 + (i * 0.1), 
-                           repeat: Infinity, 
-                           ease: "easeInOut" 
-                         }}
-                         className="flex-1 bg-cyan-400/30 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.3)] min-h-[4px] h-full will-change-transform origin-bottom"
-                       />
-                     ))}
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* 4. LIQUID CHAT (4 COL) */}
-            <motion.div 
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="md:col-span-4 group relative rounded-[2.5rem] border border-white/10 overflow-hidden cursor-pointer bg-[#080808]" 
-              data-cursor-text="CHAT"
-            >
-              <Link href="/ai-solutions" className="block h-full">
-                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-rose-500/10 to-transparent" />
-                <div className="p-10 h-full flex flex-col relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-rose-500 text-black flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(244,63,94,0.4)] group-hover:rotate-12 transition-transform duration-500">
-                    <MessageSquare className="w-7 h-7" />
-                  </div>
-                  <h3 className="text-3xl font-heading font-black text-white mb-2 uppercase tracking-tighter">Liquid Chat</h3>
-                  <p className="text-white/40 font-mono text-xs leading-relaxed">
-                    Conversational RAG architectures. We train neural agents on your private knowledge nodes for absolute precision.
-                  </p>
-                  
-                  {/* Chat Bubbles Visual */}
-                  <div className="mt-10 space-y-3">
-                     <motion.div 
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 1 }}
-                        className="w-4/5 h-10 glass-premium rounded-2xl rounded-bl-none flex items-center px-4 border-white/5"
-                     >
-                        <div className="flex gap-1.5">
-                           <div className="w-1 h-1 bg-rose-400 rounded-full animate-bounce" style={{ animationDelay: '0s' }} />
-                           <div className="w-1 h-1 bg-rose-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }} />
-                           <div className="w-1 h-1 bg-rose-400 rounded-full animate-bounce" style={{ animationDelay: '0.4s' }} />
-                        </div>
-                     </motion.div>
-                     <motion.div 
-                        initial={{ opacity: 0, x: 20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 1.5 }}
-                        className="w-3/4 h-10 bg-rose-500/20 rounded-2xl rounded-br-none self-end flex items-center justify-end px-4 border border-rose-500/30"
-                     >
-                        <div className="w-full h-1 bg-rose-400/40 rounded-full" />
-                     </motion.div>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* 5. FLOW LOGIC (4 COL) */}
-            <motion.div 
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.5 }}
-              className="md:col-span-4 group relative rounded-[2.5rem] border border-white/10 overflow-hidden cursor-pointer bg-[#0D0D0D]"
-            >
-              <Link href="/services" className="block h-full">
-                {/* Connecting lines SVG pattern */}
-                <svg className="absolute inset-0 w-full h-full opacity-5 group-hover:opacity-20 transition-opacity duration-700">
-                   <pattern id="grid-nodes" width="40" height="40" patternUnits="userSpaceOnUse">
-                      <circle cx="20" cy="20" r="1" fill="#10b981" />
-                      <line x1="0" y1="20" x2="40" y2="20" stroke="#10b981" strokeWidth="0.5" />
-                      <line x1="20" y1="0" x2="20" y2="40" stroke="#10b981" strokeWidth="0.5" />
-                   </pattern>
-                   <rect width="100%" height="100%" fill="url(#grid-nodes)" />
-                </svg>
-
-                <div className="p-10 flex flex-col h-full relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-emerald-500 text-black flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(16,185,129,0.4)] group-hover:scale-110 transition-all duration-500">
-                    <Cog className="w-7 h-7 group-hover:rotate-180 transition-transform duration-1000" />
-                  </div>
-                  <h3 className="text-3xl font-heading font-black text-white mb-2 uppercase tracking-tighter">Flow Logic</h3>
-                  <p className="text-white/40 font-mono text-xs leading-relaxed">
-                    Automating the mundane. We connect 1000+ nodes to create a self-optimizing business engine.
-                  </p>
-                  
-                  <div className="mt-auto grid grid-cols-4 gap-3 pt-10">
-                     {[1,2,3,4].map(i => (
-                       <motion.div 
-                          key={i}
-                          whileHover={{ scale: 1.1, backgroundColor: 'rgba(16, 185, 129, 0.1)' }}
-                          className="aspect-square glass-premium border-white/10 rounded-xl flex items-center justify-center group-hover:border-emerald-500/30 transition-all duration-300"
-                       >
-                          <div className={`w-2.5 h-2.5 rounded-full transition-all duration-500 ${i === 1 || i === 4 ? 'bg-emerald-500 shadow-[0_0_10px_#10b981]' : 'bg-white/5'}`} />
-                       </motion.div>
-                     ))}
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-          </div>
-          {/* BENTO GRID END */}
+          {/* TIMELINE INTERFACE START */}
+          <AnimatedSection className="w-full">
+             <RadialOrbitalTimeline timelineData={aboutUsTimelineData} />
+          </AnimatedSection>
+          {/* TIMELINE INTERFACE END */}
         </div>
       </section>
 
