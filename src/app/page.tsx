@@ -263,7 +263,7 @@ export default function HomePage() {
       </section>
 
       {/* ═══════════ ABOUT US / BENTO GRID ═══════════ */}
-      <section className="relative py-32 bg-black z-10 rounded-t-[4rem] border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
+      <section className="relative pt-20 pb-8 lg:py-32 bg-black z-10 rounded-t-[4rem] border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)]">
         <div className="max-w-[1550px] mx-auto px-6">
           {/* TEXT + TIMELINE SPLIT GRID */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 items-center min-h-[450px] lg:min-h-[600px]">
