@@ -1,9 +1,10 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Rocket, Smartphone, Bot, Workflow, Globe, Zap } from 'lucide-react';
+import { Rocket, Smartphone, Bot, Workflow, Globe, Zap, ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const cards = [
   {
@@ -24,7 +25,8 @@ const cards = [
     nodeBorder: "border-blue-400",
     shadow: "shadow-[0_0_20px_2px_rgba(59,130,246,0.2)]",
     solidColor: "bg-blue-500",
-    imageSrc: "/3d-icons/web_dev.png"
+    imageSrc: "/3d-icons/web_dev.png",
+    link: "/services"
   },
   {
     id: 2,
@@ -44,7 +46,8 @@ const cards = [
     nodeBorder: "border-purple-400",
     shadow: "shadow-[0_0_20px_2px_rgba(168,85,247,0.2)]",
     solidColor: "bg-purple-500",
-    imageSrc: "/3d-icons/mobile_app.png"
+    imageSrc: "/3d-icons/mobile_app.png",
+    link: "/services"
   },
   {
     id: 3,
@@ -64,7 +67,8 @@ const cards = [
     nodeBorder: "border-emerald-400",
     shadow: "shadow-[0_0_20px_2px_rgba(16,185,129,0.2)]",
     solidColor: "bg-emerald-500",
-    imageSrc: "/3d-icons/ai_calling.png"
+    imageSrc: "/3d-icons/ai_calling.png",
+    link: "/ai-solutions"
   },
   {
     id: 4,
@@ -84,7 +88,8 @@ const cards = [
     nodeBorder: "border-fuchsia-400",
     shadow: "shadow-[0_0_20px_2px_rgba(192,38,211,0.2)]",
     solidColor: "bg-fuchsia-500",
-    imageSrc: "/3d-icons/ai_automation.png"
+    imageSrc: "/3d-icons/ai_automation.png",
+    link: "/ai-solutions"
   },
   {
     id: 5,
@@ -104,7 +109,8 @@ const cards = [
     nodeBorder: "border-amber-400",
     shadow: "shadow-[0_0_20px_2px_rgba(245,158,11,0.2)]",
     solidColor: "bg-amber-500",
-    imageSrc: "/3d-icons/digital_marketing.png"
+    imageSrc: "/3d-icons/digital_marketing.png",
+    link: "/services"
   }
 ];
 
@@ -227,29 +233,32 @@ export default function WhyChooseUs() {
                 </div>
 
                 {/* Content Side */}
-                <div className={`w-full lg:w-1/2 flex flex-col ${!isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-center text-center`}>
-                  <div className={`mb-6 relative inline-block`}>
-                    <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl ${card.bgAccent} flex items-center justify-center border ${card.borderAccent} relative z-10 backdrop-blur-md`}>
-                        <card.icon className={`w-8 h-8 md:w-10 md:h-10 ${card.textAccent}`} />
+                <div className={`w-full lg:w-1/2 flex flex-col ${!isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-center text-center group`}>
+                  <Link href={card.link} className={`flex flex-col ${!isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-center text-center cursor-pointer relative z-20`}>
+                    <div className={`mb-6 relative inline-block transition-transform duration-300 group-hover:scale-110`}>
+                      <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl ${card.bgAccent} flex items-center justify-center border ${card.borderAccent} relative z-10 backdrop-blur-md`}>
+                          <card.icon className={`w-8 h-8 md:w-10 md:h-10 ${card.textAccent}`} />
+                      </div>
+                      <div className={`absolute -inset-4 ${card.glowAccent} blur-2xl rounded-full opacity-50`} />
                     </div>
-                    <div className={`absolute -inset-4 ${card.glowAccent} blur-2xl rounded-full opacity-50`} />
-                  </div>
-                  
-                  <div className={`font-mono text-xs md:text-sm ${card.textAccent} uppercase tracking-widest mb-3 font-bold flex items-center gap-2`}>
-                    {!isEven && <span className="hidden lg:block w-8 h-px bg-white/20" />}
-                    {card.subtitle}
-                    {isEven && <span className="hidden lg:block w-8 h-px bg-white/20" />}
-                  </div>
-                  
-                  <h3 className="text-[2rem] md:text-[3.5rem] font-heading font-black text-white leading-[0.9] tracking-tighter uppercase mb-6">
-                    {card.title}
-                  </h3>
-                  
-                  <p className="text-white/60 font-mono text-sm md:text-base leading-relaxed max-w-lg mb-8">
-                    {card.description}
-                  </p>
+                    
+                    <div className={`font-mono text-xs md:text-sm ${card.textAccent} uppercase tracking-widest mb-3 font-bold flex items-center gap-2 transition-colors duration-300 group-hover:text-white`}>
+                      {!isEven && <span className="hidden lg:block w-8 h-px bg-white/20" />}
+                      {card.subtitle}
+                      {isEven && <span className="hidden lg:block w-8 h-px bg-white/20" />}
+                    </div>
+                    
+                    <h3 className="text-[2rem] md:text-[3.5rem] font-heading font-black text-white leading-[0.9] tracking-tighter uppercase mb-6 flex items-center gap-4 transition-all duration-300 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/50">
+                      {card.title}
+                      <ArrowRight className={`w-6 h-6 md:w-8 md:h-8 ${card.textAccent} opacity-0 -ml-8 group-hover:opacity-100 group-hover:ml-0 transition-all duration-300`} />
+                    </h3>
+                    
+                    <p className="text-white/60 font-mono text-sm md:text-base leading-relaxed max-w-lg mb-8 transition-colors duration-300 group-hover:text-white/80">
+                      {card.description}
+                    </p>
+                  </Link>
 
-                  <div className={`flex gap-4 w-full justify-center ${!isEven ? 'lg:justify-start' : 'lg:justify-end'}`}>
+                  <div className={`flex gap-4 w-full justify-center ${!isEven ? 'lg:justify-start' : 'lg:justify-end'} relative z-20`}>
                     {card.stats.map((stat: any) => (
                       <div key={stat.label} className="glass-panel p-4 md:p-5 rounded-2xl border-white/5 min-w-[140px]">
                           <div className="text-white/30 text-[10px] md:text-xs font-mono uppercase tracking-widest mb-2">{stat.label}</div>
