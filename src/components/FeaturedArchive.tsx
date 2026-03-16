@@ -146,8 +146,7 @@ export default function FeaturedArchive() {
 
   return (
     <section className="relative py-20 md:py-32 bg-black z-10 overflow-hidden">
-      {/* Background glow grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:80px_80px] pointer-events-none" />
+      {/* Background glow grid removed */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(14,165,233,0.06)_0%,transparent_50%)] pointer-events-none" />
 
       <div className="relative z-10 max-w-[1550px] mx-auto px-6">

@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { Mail, Phone, MapPin, Send, MessageSquare, Terminal } from 'lucide-react';
 import Image from 'next/image';
 import AnimatedSection from '@/components/AnimatedSection';
+import TypewriterSubline from '@/components/TypewriterSubline';
 
 const DynamicCoreSphere = dynamic(() => import('@/components/ServiceModels').then(mod => mod.CoreSphere), { ssr: false });
 
@@ -28,9 +29,8 @@ export default function ContactPage() {
     <>
       <section className="relative pt-32 pb-20 overflow-hidden min-h-[70vh] flex flex-col justify-center cursor-default">
         {/* Immersive Atmosphere */}
-        <div className="absolute inset-0 bg-obsidian z-0" />
+        <div className="absolute inset-0 bg-black z-0" />
         <div className="absolute top-0 right-[-10%] w-[1000px] h-[1000px] bg-blue-400/[0.05] rounded-full blur-[150px] pointer-events-none" />
-        <div className="bg-grain opacity-10" />
 
         <div className="max-w-[1550px] mx-auto px-6 relative z-10 w-full text-center lg:text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -49,9 +49,15 @@ export default function ContactPage() {
               <h1 className="text-[4.5rem] md:text-[6.5rem] lg:text-[8rem] font-heading font-extrabold leading-[0.8] tracking-tighter mb-8 text-white">
                 INITIATE <br/><span className="gradient-text italic">CONNECTION</span>
               </h1>
-              <p className="text-xl text-white/50 max-w-2xl font-mono leading-relaxed mb-10">
-                Open a direct line to our engineering syndicate. Propose architectures, request technical deployments, or inquire about enterprise scaling.
-              </p>
+              <TypewriterSubline 
+                phrases={[
+                  "Request Technical Deployment",
+                  "Inquire Enterprise Scaling",
+                  "Propose Custom Architecture",
+                  "Initiate Direct Connection"
+                ]}
+                className="mb-10 text-xl md:text-2xl justify-center lg:justify-start"
+              />
             </motion.div>
 
             {/* Interactive Hero Visual Piece */}
@@ -75,7 +81,6 @@ export default function ContactPage() {
       </section>
 
       <section className="py-24 relative bg-obsidian">
-        <div className="absolute inset-0 bg-grain pointer-events-none opacity-50 mix-blend-overlay" />
         <div className="max-w-[1550px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             

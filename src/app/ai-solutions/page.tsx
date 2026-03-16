@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import AnimatedSection from '@/components/AnimatedSection';
+import TypewriterSubline from '@/components/TypewriterSubline';
 
 const DynamicCoreSphere = dynamic(() => import('@/components/ServiceModels').then(mod => mod.CoreSphere), { ssr: false });
 const DynamicCyberTorus = dynamic(() => import('@/components/ServiceModels').then(mod => mod.CyberTorus), { ssr: false });
@@ -34,16 +35,21 @@ export default function AISolutionsPage() {
             <h1 className="text-[4rem] md:text-[6rem] lg:text-[7.5rem] font-heading font-extrabold leading-[0.85] tracking-tighter mb-8 max-w-5xl">
               SYSTEMS THAT <span className="gradient-text italic">THINK</span>
             </h1>
-            <p className="text-lg text-white/50 max-w-2xl font-mono leading-relaxed">
-              Deploy autonomous AI architectures that handle client interactions, automate deeply integrated workflows, and execute operations 24/7 without human intervention.
-            </p>
+            <TypewriterSubline 
+              phrases={[
+                "Autonomous Interaction Hubs",
+                "Deep Workflow Orchestration",
+                "24/7 Operational Autonomy",
+                "Neural Processing Architectures"
+              ]}
+              className="text-lg md:text-xl"
+            />
           </motion.div>
         </div>
       </section>
 
       {/* ── AI Voice Agent ── */}
       <section id="calling" className="py-24 relative z-20 bg-black rounded-t-[4rem] border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-hidden">
-        <div className="absolute inset-0 bg-grain pointer-events-none opacity-50 mix-blend-overlay" />
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400/[0.02] rounded-full blur-[100px] pointer-events-none" />
         
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
@@ -142,7 +148,7 @@ export default function AISolutionsPage() {
       </section>
 
       {/* ── AI Messaging Agent ── */}
-      <section id="messaging" className="py-24 relative bg-obsidian">
+      <section id="messaging" className="py-24 relative bg-black">
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
             
@@ -210,9 +216,15 @@ export default function AISolutionsPage() {
               <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-white">
                 Omnichannel <span className="text-white/60">Messaging</span>
               </h2>
-              <p className="text-white/50 text-xl leading-relaxed mb-10 font-mono font-light">
-                Capture leads intrinsically across your website, WhatsApp, and SMS using context-aware NLP models designed strictly for conversion.
-              </p>
+              <TypewriterSubline 
+              phrases={[
+                "Autonomous Interaction Hubs",
+                "Deep Workflow Orchestration",
+                "24/7 Operational Autonomy",
+                "Neural Processing Architectures"
+              ]}
+              className="text-lg md:text-xl"
+            />
               
               <div className="space-y-4 mb-10">
                 {['Omnichannel Architecture', 'Semantic Search Native', 'Seamless Human Handoff', 'Token-Efficient RAG'].map((item) => (

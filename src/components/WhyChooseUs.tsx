@@ -224,8 +224,10 @@ export default function WhyChooseUs() {
                   mass: 0.8,
                   delay: 0.05
                 }}
-                className={`relative z-10 flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-4 lg:gap-16 w-full`}
+                className={`relative z-10 flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-4 lg:gap-16 w-full group`}
               >
+                {/* Border Animation Container */}
+                <div className="absolute inset-x-0 -inset-y-4 rounded-[4rem] border border-white/0 group-hover:border-blue-500/30 transition-all duration-700 pointer-events-none" />
                 
                 {/* Interactive 3D Image Side (Desktop & Mobile) */}
                 <div className="w-full lg:w-1/2 flex flex-col items-center justify-center relative pb-8 lg:pb-0">
@@ -236,10 +238,10 @@ export default function WhyChooseUs() {
                 <div className={`w-full lg:w-1/2 flex flex-col ${!isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-center text-center group`}>
                   <Link href={card.link} className={`flex flex-col ${!isEven ? 'lg:items-start lg:text-left' : 'lg:items-end lg:text-right'} items-center text-center cursor-pointer relative z-20`}>
                     <div className={`mb-6 relative inline-block transition-transform duration-300 group-hover:scale-110`}>
-                      <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl ${card.bgAccent} flex items-center justify-center border ${card.borderAccent} relative z-10 backdrop-blur-md`}>
+                      <div className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl ${card.bgAccent} flex items-center justify-center border ${card.borderAccent} relative z-10 backdrop-blur-2xl`}>
                           <card.icon className={`w-8 h-8 md:w-10 md:h-10 ${card.textAccent}`} />
                       </div>
-                      <div className={`absolute -inset-4 ${card.glowAccent} blur-2xl rounded-full opacity-50`} />
+                      <div className={`absolute -inset-4 ${card.glowAccent} blur-2xl rounded-full opacity-50 transition-opacity group-hover:opacity-100`} />
                     </div>
                     
                     <div className={`font-mono text-xs md:text-sm ${card.textAccent} uppercase tracking-widest mb-3 font-bold flex items-center gap-2 transition-colors duration-300 group-hover:text-white`}>
@@ -260,7 +262,7 @@ export default function WhyChooseUs() {
 
                   <div className={`flex gap-4 w-full justify-center ${!isEven ? 'lg:justify-start' : 'lg:justify-end'} relative z-20`}>
                     {card.stats.map((stat: any) => (
-                      <div key={stat.label} className="glass-panel p-4 md:p-5 rounded-2xl border-white/5 min-w-[140px]">
+                      <div key={stat.label} className="glass-premium p-4 md:p-5 rounded-2xl border-white/10 min-w-[140px] hover:border-blue-400/30 transition-colors">
                           <div className="text-white/30 text-[10px] md:text-xs font-mono uppercase tracking-widest mb-2">{stat.label}</div>
                           <div className="text-white font-heading font-black text-2xl md:text-3xl tracking-tighter">{stat.val}</div>
                       </div>
@@ -270,7 +272,7 @@ export default function WhyChooseUs() {
 
                 {/* Center Node on Desktop */}
                 <div className="hidden lg:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-                  <div className={`w-6 h-6 rounded-full bg-black border-4 ${card.nodeBorder} ${card.shadow}`} />
+                  <div className={`w-6 h-6 rounded-full bg-black border-4 ${card.nodeBorder} ${card.shadow} group-hover:scale-150 transition-transform duration-500`} />
                 </div>
               </motion.div>
             );

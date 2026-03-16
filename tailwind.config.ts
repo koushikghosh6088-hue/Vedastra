@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        obsidian: "#0c0c0c",
+        obsidian: "#000000",
         blue: {
           400: "#0ea5e9", // Sky blue
           glow: "rgba(14, 165, 233, 0.3)"

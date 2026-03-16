@@ -14,6 +14,12 @@ import {
 import AnimatedSection from '@/components/AnimatedSection';
 import WhyChooseUs from '@/components/WhyChooseUs';
 import FeaturedArchive from '@/components/FeaturedArchive';
+import HeroEnvironment from '@/components/HeroEnvironment';
+import ProblemSolution from '@/components/ProblemSolution';
+import ServicesDeepDive from '@/components/ServicesDeepDive';
+import PricingSection from '@/components/PricingSection';
+
+import { Canvas } from '@react-three/fiber';
 
 import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
@@ -137,6 +143,90 @@ function Floating3DNeuralCore() {
   );
 }
 
+// Mini Typewriter Component
+function TypewriterSubline() {
+  const [text, setText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  const phrases = [
+    "We Build Websites.",
+    "We Build Mobile Apps.",
+    "We Build AI Systems.",
+    "We Run Marketing Campaigns."
+  ];
+
+  useEffect(() => {
+    const handleTyping = () => {
+      const i = loopNum % phrases.length;
+      const fullText = phrases[i];
+
+      setText(isDeleting 
+        ? fullText.substring(0, text.length - 1) 
+        : fullText.substring(0, text.length + 1)
+      );
+
+      setTypingSpeed(isDeleting ? 50 : 150);
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), 1500);
+      } else if (isDeleting && text === '') {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    };
+
+    const timer = setTimeout(handleTyping, typingSpeed);
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, loopNum, typingSpeed, phrases]);
+
+  return <span className="text-blue-400 border-r-2 border-blue-400 ml-1 pr-1">{text}</span>;
+}
+
+// Stats Counter Component
+function StatCounter({ value, label, suffix }: { value: string, label: string, suffix: string }) {
+  const [count, setCount] = useState(0);
+  const target = parseFloat(value);
+
+  useEffect(() => {
+    const duration = 2000;
+    const start = 0;
+    const step = (target / duration) * 10;
+    
+    let current = start;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(current * 10) / 10);
+      }
+    }, 10);
+
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return (
+    <div className="text-center group cursor-default py-4">
+      <div className="relative inline-block mb-2">
+        {/* Orbiting Ring Visual */}
+        <div className="absolute inset-0 -m-8 border border-blue-400/20 rounded-full animate-[spin_10s_linear_infinite]" />
+        <div className="absolute inset-0 -m-12 border border-purple-500/10 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
+        
+        <div className="text-[3.5rem] md:text-[5rem] font-heading font-black leading-none tracking-tighter text-white group-hover:text-blue-400 transition-colors duration-500">
+          {count}{suffix}
+        </div>
+      </div>
+      <div className="font-mono text-[10px] md:text-xs text-white/30 uppercase tracking-[0.3em] mt-3">
+        {label}
+      </div>
+      <div className="w-12 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent mx-auto mt-4 group-hover:w-24 transition-all duration-500" />
+    </div>
+  );
+}
+
 export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
@@ -185,10 +275,13 @@ export default function HomePage() {
         {/* Background */}
         <div className="absolute inset-0 bg-obsidian z-0" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(14,165,233,0.08)_0%,transparent_70%)] pointer-events-none z-0" />
-        <div className="bg-grain opacity-[0.05]" />
 
-        {/* Spotlight */}
-        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#0ea5e9" />
+        {/* R3F Hero Scene — High-Impact UI */}
+        <div className="absolute inset-0 z-[2] opacity-40 pointer-events-none">
+          <Canvas camera={{ position: [0, 0, 5] }}>
+            <HeroEnvironment />
+          </Canvas>
+        </div>
 
         {/* Spline 3D Robot — ALL SCREENS, positioned right */}
         <div className="absolute right-0 top-[-5%] sm:top-0 w-full h-full sm:w-[75%] lg:w-[55%] z-[3]">
@@ -231,13 +324,15 @@ export default function HomePage() {
                 ref={subheadlineRef}
                 className="text-sm sm:text-base md:text-lg text-white/60 max-w-md mx-auto lg:mx-0 font-mono font-light leading-relaxed tracking-wide"
               >
-                Engineering mission-critical digital infrastructure for the next generation of autonomous AI and high-performance enterprises.
+                Engineering mission-critical digital infrastructure for the next generation of autonomous AI and high-performance enterprises.<br/>
+                <TypewriterSubline />
               </p>
               
               {/* pointer-events-auto on interactive elements */}
               <div className="flex flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 pt-2 lg:pt-4 pointer-events-auto">
-                <div className="magnetic-wrap">
-                  <Link href="/contact" className="btn-primary px-7 sm:px-10 py-4 sm:py-5 text-xs sm:text-base">
+                <div className="magnetic-wrap relative">
+                  <div className="absolute -inset-1 bg-blue-400/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
+                  <Link href="/contact" className="btn-primary px-7 sm:px-10 py-4 sm:py-5 text-xs sm:text-base relative">
                     INITIALIZE PROJECT <ArrowUpRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                   </Link>
                 </div>
@@ -282,21 +377,13 @@ export default function HomePage() {
         <div className="max-w-[1550px] mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { value: '150+', label: 'Projects Deployed', suffix: '' },
-              { value: '50+', label: 'Global Clients', suffix: '' },
+              { value: '150', label: 'Projects Deployed', suffix: '+' },
+              { value: '50', label: 'Global Clients', suffix: '+' },
               { value: '99.9', label: 'Uptime SLA', suffix: '%' },
               { value: '4.9', label: 'Client Rating', suffix: '/5' },
             ].map((stat, i) => (
               <AnimatedSection key={stat.label} delay={i * 0.15}>
-                <div className="text-center group cursor-default py-4">
-                  <div className="text-[3.5rem] md:text-[5rem] font-heading font-black leading-none tracking-tighter text-white group-hover:text-blue-400 transition-colors duration-500">
-                    {stat.value}<span className="text-blue-400 text-[2rem] md:text-[3rem]">{stat.suffix}</span>
-                  </div>
-                  <div className="font-mono text-[10px] md:text-xs text-white/30 uppercase tracking-[0.3em] mt-3">
-                    {stat.label}
-                  </div>
-                  <div className="w-12 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent mx-auto mt-4 group-hover:w-24 transition-all duration-500" />
-                </div>
+                <StatCounter {...stat} />
               </AnimatedSection>
             ))}
           </div>
@@ -340,16 +427,24 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className="relative bg-black z-10">
+        <ProblemSolution />
+      </section>
+
+      <ServicesDeepDive />
+
       <WhyChooseUs />
 
       <FeaturedArchive />
+
+      <PricingSection />
 
       {/* ═══════════ CLIENT TRANSMISSIONS ═══════════ */}
       <section className="relative py-20 md:py-32 bg-black z-10 overflow-hidden">
         {/* Ambient glows */}
         <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-[#0ea5e9]/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:60px_60px] pointer-events-none" />
+        <div className="absolute inset-0 bg-transparent pointer-events-none" />
 
         <div className="relative z-10 max-w-[1550px] mx-auto px-6">
           {/* Header */}

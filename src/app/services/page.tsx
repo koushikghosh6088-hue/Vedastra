@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import AnimatedSection from '@/components/AnimatedSection';
+import TypewriterSubline from '@/components/TypewriterSubline';
 
 // Dynamically load 3D components to keep the page fast
 const DynamicCoreSphere = dynamic(() => import('@/components/ServiceModels').then(mod => mod.CoreSphere), { ssr: false });
@@ -77,9 +78,8 @@ export default function ServicesPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden min-h-[70vh] flex flex-col justify-center cursor-default">
         {/* Immersive Atmosphere */}
-        <div className="absolute inset-0 bg-obsidian z-0" />
+        <div className="absolute inset-0 bg-black z-0" />
         <div className="absolute top-0 left-[-10%] w-[1000px] h-[1000px] bg-blue-400/[0.05] rounded-full blur-[150px] pointer-events-none" />
-        <div className="bg-grain opacity-10" />
 
         <div className="max-w-[1550px] mx-auto px-6 relative z-10 w-full text-center lg:text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -99,9 +99,15 @@ export default function ServicesPage() {
                 SOLUTIONS<br />
                 <span className="gradient-text italic">ENGINEERED</span>
               </h1>
-              <p className="text-xl text-white/50 max-w-2xl font-mono leading-relaxed mb-10">
-                Deploying mission-critical digital infrastructure powered by autonomous AI agents and refined 3D interface design.
-              </p>
+              <TypewriterSubline 
+                phrases={[
+                  "Optimizing Enterprise Workflows",
+                  "Deploying Mission-Critical Labs",
+                  "Engineering Autonomous Systems",
+                  "Architecting Digital Futures"
+                ]}
+                className="mb-10 text-xl md:text-2xl justify-center lg:justify-start"
+              />
               
               <div className="flex flex-wrap gap-6 pt-4 justify-center lg:justify-start">
                 <div className="magnetic-wrap">
@@ -141,7 +147,6 @@ export default function ServicesPage() {
 
       {/* Services Grid (Alternating split blocks) */}
       <div className="bg-black border-t border-white/10 rounded-t-[4rem] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)] overflow-hidden pt-24 pb-32">
-        <div className="absolute inset-0 bg-grain pointer-events-none opacity-50 mix-blend-overlay" />
         
         {services.map((service, i) => (
           <section key={service.id} id={service.id} className="py-24 relative">
@@ -160,9 +165,15 @@ export default function ServicesPage() {
                   <h2 className={`text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 ${service.accent ? 'text-blue-400' : 'text-white'}`}>
                     {service.title}
                   </h2>
-                  <p className="text-white/50 text-xl leading-relaxed mb-10 font-mono font-light">
-                    {service.desc}
-                  </p>
+                  <TypewriterSubline 
+                phrases={[
+                  "Optimizing Enterprise Workflows",
+                  "Deploying Mission-Critical Labs",
+                  "Engineering Autonomous Systems",
+                  "Architecting Digital Futures"
+                ]}
+                className="mb-10 text-xl md:text-2xl justify-center lg:justify-start"
+              />
 
                   <div className="space-y-4 mb-10">
                     {service.benefits.map((benefit) => (
@@ -254,9 +265,15 @@ export default function ServicesPage() {
             <h2 className="text-[4rem] md:text-[5rem] font-heading font-black tracking-tighter mb-6">
               SYSTEM <span className="text-blue-400 italic">INITIALIZATION</span>
             </h2>
-            <p className="font-mono text-sm text-white/40 uppercase tracking-widest max-w-xl mx-auto mb-10">
-              Initiate contact protocols to deploy custom digital architecture for your enterprise.
-            </p>
+              <TypewriterSubline 
+                phrases={[
+                  "Optimizing Enterprise Workflows",
+                  "Deploying Mission-Critical Labs",
+                  "Engineering Autonomous Systems",
+                  "Architecting Digital Futures"
+                ]}
+                className="mb-10 text-xl md:text-2xl justify-center lg:justify-start"
+              />
             <Link href="/contact" className="btn-primary group">
               Start Project Sequence <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>

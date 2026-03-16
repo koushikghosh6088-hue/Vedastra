@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { PhoneCall } from 'lucide-react';
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -19,11 +20,13 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [showSticky, setShowSticky] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 50);
+    setShowSticky(latest > 600);
+  });
 
   return (
     <motion.nav
@@ -68,17 +71,38 @@ export default function Navbar() {
         </div>
 
         {/* Right Actions */}
-        <div className="hidden lg:flex items-center gap-6 bg-white/[0.02] backdrop-blur-[12px] border border-white/5 rounded-full p-1.5 pr-2">
-          <div className="flex items-center gap-2 pl-4 pr-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse-fast inline-block" />
-            System Online
+        <div className="hidden lg:flex items-center gap-4">
+          <AnimatePresence>
+            {showSticky && (
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+              >
+                <Link
+                  href="/contact"
+                  className="bg-blue-400 text-black px-6 py-2.5 rounded-full text-sm font-bold shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:scale-105 transition-all flex items-center gap-2"
+                >
+                  <PhoneCall className="w-4 h-4" /> Book a call
+                </Link>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          
+          <div className="flex items-center gap-6 bg-white/[0.02] backdrop-blur-[12px] border border-white/5 rounded-full p-1.5 pr-2">
+            <div className="flex items-center gap-2 pl-4 pr-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse-fast inline-block" />
+              System Online
+            </div>
+            {!showSticky && (
+              <Link
+                href="/contact"
+                className="bg-white text-black hover:bg-blue-400 hover:shadow-[0_0_30px_rgba(14,165,233,0.3)] transition-all duration-300 px-6 py-2.5 rounded-full text-sm font-bold"
+              >
+                Start Project
+              </Link>
+            )}
           </div>
-          <Link
-            href="/contact"
-            className="bg-white text-black hover:bg-blue-400 hover:shadow-[0_0_30px_rgba(14,165,233,0.3)] transition-all duration-300 px-6 py-2.5 rounded-full text-sm font-bold"
-          >
-            Start Project
-          </Link>
         </div>
 
         {/* Mobile Toggle */}

@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { ArrowRight, ArrowUpRight, FolderGit2 } from 'lucide-react';
 import Image from 'next/image';
 import AnimatedSection from '@/components/AnimatedSection';
+import TypewriterSubline from '@/components/TypewriterSubline';
 
 const DynamicCyberTorus = dynamic(() => import('@/components/ServiceModels').then(mod => mod.CyberTorus), { ssr: false });
 
@@ -38,9 +39,8 @@ export default function PortfolioPage() {
     <>
       <section className="relative pt-32 pb-20 overflow-hidden min-h-[70vh] flex flex-col justify-center cursor-default">
         {/* Immersive Atmosphere */}
-        <div className="absolute inset-0 bg-obsidian z-0" />
+        <div className="absolute inset-0 bg-black z-0" />
         <div className="absolute top-0 right-[-10%] w-[1000px] h-[1000px] bg-blue-400/[0.05] rounded-full blur-[150px] pointer-events-none" />
-        <div className="bg-grain opacity-10" />
 
         <div className="max-w-[1550px] mx-auto px-6 relative z-10 w-full text-center lg:text-left">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -60,9 +60,15 @@ export default function PortfolioPage() {
                 DIGITAL<br />
                 <span className="gradient-text italic">FUTURES</span>
               </h1>
-              <p className="text-xl text-white/50 max-w-2xl font-mono leading-relaxed mb-10">
-                Explore our repository of mission-critical architectures across high-performance web, scaleable mobile, and autonomous AI systems.
-              </p>
+              <TypewriterSubline 
+                phrases={[
+                  "Engineering High-Performance Web",
+                  "Scaling Advanced Mobile Systems",
+                  "Developing Autonomous AI Pipelines",
+                  "Architecting Mission-Critical Platforms"
+                ]}
+                className="mb-10 text-xl md:text-2xl justify-center lg:justify-start"
+              />
             </motion.div>
 
             {/* Interactive Hero Visual Piece */}
@@ -107,7 +113,6 @@ export default function PortfolioPage() {
       </section>
 
       <section className="py-24 bg-obsidian relative min-h-screen">
-        <div className="absolute inset-0 bg-grain pointer-events-none opacity-50 mix-blend-overlay" />
         <div className="max-w-[1550px] mx-auto px-6 relative z-10">
           <motion.div layout className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 auto-rows-[300px]">
             <AnimatePresence mode="popLayout">
@@ -159,9 +164,10 @@ export default function PortfolioPage() {
                         {project.title}
                       </h3>
                       
-                      <p className="text-white/40 text-[10px] font-mono leading-relaxed max-w-lg line-clamp-2 uppercase tracking-widest bg-black/20 backdrop-blur-sm inline-block px-2 py-1 rounded">
-                        {project.desc}
-                      </p>
+                      <TypewriterSubline 
+                        phrases={[project.desc]}
+                        className="text-white/40 text-[10px] font-mono leading-relaxed max-w-lg line-clamp-2 uppercase tracking-widest bg-black/20 backdrop-blur-sm inline-block px-2 py-1 rounded"
+                      />
                     </div>
                   </div>
                 </motion.div>
@@ -178,9 +184,15 @@ export default function PortfolioPage() {
             <h2 className="text-[4rem] md:text-[5rem] font-heading font-black tracking-tighter mb-6">
               READY TO <span className="text-blue-400 italic">DEPLOY?</span>
             </h2>
-            <p className="font-mono text-sm text-white/40 uppercase tracking-widest max-w-xl mx-auto mb-10">
-              Let's engineer a custom architecture for your organization.
-            </p>
+              <TypewriterSubline 
+                phrases={[
+                  "Engineering High-Performance Web",
+                  "Scaling Advanced Mobile Systems",
+                  "Developing Autonomous AI Pipelines",
+                  "Architecting Mission-Critical Platforms"
+                ]}
+                className="mb-10 text-xl md:text-2xl justify-center lg:justify-start"
+              />
             <Link href="/contact" className="btn-primary group">
               Initiate Project Request <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>

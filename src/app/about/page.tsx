@@ -6,6 +6,7 @@ import dynamic from 'next/dynamic';
 import { ArrowRight, Zap, Target, Eye, Heart, Users, Globe, Award, ArrowUpRight } from 'lucide-react';
 import Image from 'next/image';
 import AnimatedSection from '@/components/AnimatedSection';
+import TypewriterSubline from '@/components/TypewriterSubline';
 
 const DynamicCoreSphere = dynamic(() => import('@/components/ServiceModels').then(mod => mod.CoreSphere), { ssr: false });
 
@@ -46,7 +47,6 @@ export default function AboutPage() {
         {/* Immersive Atmosphere */}
         <div className="absolute inset-0 bg-obsidian z-0" />
         <div className="absolute top-0 right-[-10%] w-[1000px] h-[1000px] bg-blue-400/[0.05] rounded-full blur-[150px] pointer-events-none" />
-        <div className="bg-grain opacity-10" />
 
         <div className="max-w-[1550px] mx-auto px-6 relative z-10 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -66,9 +66,15 @@ export default function AboutPage() {
                 THE JOINT<br />
                 <span className="gradient-text italic">PHILOSOPHY</span>
               </h1>
-              <p className="text-xl text-white/50 max-w-2xl font-mono leading-relaxed mb-10">
-                We are a high-performance digital laboratory engineering the next generation of enterprise architecture through logic, AI, and immersive design.
-              </p>
+              <TypewriterSubline 
+                phrases={[
+                  "Engineering Enterprise Architecture",
+                  "Logic-Driven Performance Labs",
+                  "Next-Generation AI Processing",
+                  "Immersive Interface Engineering"
+                ]}
+                className="mb-10 text-xl md:text-2xl justify-center lg:justify-start"
+              />
             </motion.div>
 
             {/* Interactive Hero Visual Piece */}
@@ -112,7 +118,6 @@ export default function AboutPage() {
 
       {/* Origin Story */}
       <section className="py-32 relative bg-obsidian border-t border-white/10 mt-12 rounded-t-[4rem] shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
-        <div className="absolute inset-0 bg-grain pointer-events-none opacity-50 mix-blend-overlay" />
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             
@@ -200,7 +205,7 @@ export default function AboutPage() {
 
       {/* Team Roster */}
       <section className="py-32 bg-obsidian border-t border-white/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,#000_70%,transparent_100%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-transparent pointer-events-none" />
 
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
           <AnimatedSection className="mb-16 text-center">
