@@ -1,7 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, useCallback } from 'react';
-import Lenis from 'lenis';
+import { useLayoutEffect, useRef, useCallback, useEffect } from 'react';
 import './ScrollStack.css';
 
 export const ScrollStackItem = ({ children, itemClassName = '' }: { children: React.ReactNode, itemClassName?: string }) => (
@@ -42,7 +41,6 @@ const ScrollStack = ({
   const scrollerRef = useRef<HTMLDivElement>(null);
   const stackCompletedRef = useRef(false);
   const animationFrameRef = useRef<number | null>(null);
-  const lenisRef = useRef<Lenis | null>(null);
   const cardsRef = useRef<HTMLElement[]>([]);
   const lastTransformsRef = useRef(new Map());
   const isUpdatingRef = useRef(false);
@@ -213,61 +211,7 @@ const ScrollStack = ({
     updateCardTransforms();
   }, [updateCardTransforms]);
 
-  const setupLenis = useCallback(() => {
-    if (useWindowScroll) {
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        touchMultiplier: 2,
-        infinite: false,
-        wheelMultiplier: 1,
-        lerp: 0.1,
-        syncTouch: true,
-        syncTouchLerp: 0.075
-      });
-
-      lenis.on('scroll', handleScroll);
-
-      const raf = (time: number) => {
-        lenis.raf(time);
-        animationFrameRef.current = requestAnimationFrame(raf);
-      };
-      animationFrameRef.current = requestAnimationFrame(raf);
-
-      lenisRef.current = lenis;
-      return lenis;
-    } else {
-      const scroller = scrollerRef.current;
-      if (!scroller) return;
-
-      const lenis = new Lenis({
-        wrapper: scroller,
-        content: scroller.querySelector('.scroll-stack-inner') as HTMLElement,
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smoothWheel: true,
-        touchMultiplier: 2,
-        infinite: false,
-        gestureOrientation: 'vertical',
-        wheelMultiplier: 1,
-        lerp: 0.1,
-        syncTouch: true,
-        syncTouchLerp: 0.075,
-      });
-
-      lenis.on('scroll', handleScroll);
-
-      const raf = (time: number) => {
-        lenis.raf(time);
-        animationFrameRef.current = requestAnimationFrame(raf);
-      };
-      animationFrameRef.current = requestAnimationFrame(raf);
-
-      lenisRef.current = lenis;
-      return lenis;
-    }
-  }, [handleScroll, useWindowScroll]);
+  // Removed local setupLenis as we use global SmoothScrollProvider
 
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
@@ -301,18 +245,16 @@ const ScrollStack = ({
     });
 
     measure();
-    setupLenis();
     updateCardTransforms();
 
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', measure);
 
     return () => {
       window.removeEventListener('resize', measure);
+      window.removeEventListener('scroll', handleScroll);
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
-      }
-      if (lenisRef.current) {
-        lenisRef.current.destroy();
       }
       stackCompletedRef.current = false;
       cardsRef.current = [];
@@ -329,10 +271,11 @@ const ScrollStack = ({
     scaleDuration,
     rotationAmount,
     blurAmount,
+    blurAmount,
     useWindowScroll,
     onStackComplete,
-    setupLenis,
     updateCardTransforms,
+    handleScroll,
     getElementOffset
   ]);
 

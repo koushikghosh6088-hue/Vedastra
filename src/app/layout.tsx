@@ -10,6 +10,7 @@ import Preloader from "@/components/Preloader";
 import PerformanceManager from "@/components/PerformanceManager";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
+import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -44,7 +45,9 @@ export default function RootLayout({
           <Navbar />
           <main className="flex-grow z-10 w-full relative">
             <PerformanceManager>
-              {children}
+              <SmoothScrollProvider>
+                {children}
+              </SmoothScrollProvider>
             </PerformanceManager>
           </main>
           <Footer />

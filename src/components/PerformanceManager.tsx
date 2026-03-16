@@ -21,13 +21,15 @@ export default function PerformanceManager({ children }: { children: React.React
           zIndex: -1,
         }}
         eventSource={container as any}
-        dpr={[1, 1.5]} // Limit DPR for performance
+        frameloop="always" // Use always for smooth transitions, but keep DPR low
+        dpr={[1, 1.5]}
         gl={{ 
-          antialias: false, // Antialiasing is heavy
+          antialias: false,
           alpha: true,
-          powerPreference: 'high-performance'
+          powerPreference: 'high-performance',
+          preserveDrawingBuffer: false
         }}
-        shadows={false} // Shadows are extreme performance killers
+        performance={{ min: 0.5 }}
       >
         <View.Port />
         <Preload all />

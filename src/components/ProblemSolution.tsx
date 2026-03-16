@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import { Activity, Globe, Smartphone, Bot, BarChart3, AlertTriangle } from 'lucide-react';
-import { Canvas } from '@react-three/fiber';
+import { View } from '@react-three/drei';
 import AnimatedSection from './AnimatedSection';
 import SystemScanner from './SystemScanner';
 import ScrollStack, { ScrollStackItem } from './ui/ScrollStack';
@@ -95,19 +95,14 @@ export default function ProblemSolution() {
                </div>
             </div>
 
-            <div className="w-full h-[350px] md:h-[450px] lg:h-[550px] relative rounded-[3rem] overflow-hidden border border-white/10 bg-black/40 backdrop-blur-md shadow-[0_0_100px_rgba(239,68,68,0.15)] pointer-events-auto">
+            <div className="w-full h-[350px] md:h-[450px] lg:h-[550px] relative rounded-[3rem] overflow-hidden border border-white/10 bg-black/40 backdrop-blur-md shadow-[0_0_100px_rgba(239,68,68,0.15)] pointer-events-auto" id="diagnose-3d-stage">
               <div className="absolute inset-0 z-0">
-                 <Canvas 
-                   camera={{ position: [0, 0, 10], fov: 35 }}
-                   dpr={[1, 1.5]}
-                   performance={{ min: 0.5 }}
-                   gl={{ antialias: true, powerPreference: "high-performance" }}
-                 >
+                 <View track={document.getElementById('diagnose-3d-stage') as any}>
                     <ambientLight intensity={1.5} />
                     <pointLight position={[10, 10, 10]} intensity={3} />
                     <spotLight position={[5, 10, 5]} angle={0.4} penumbra={1} intensity={25} color="#ef4444" castShadow />
                     <SystemScanner />
-                 </Canvas>
+                 </View>
               </div>
               
               {/* Terminal Overlays */}

@@ -18,7 +18,7 @@ import HeroEnvironment from '@/components/HeroEnvironment';
 import ProblemSolution from '@/components/ProblemSolution';
 import PricingSection from '@/components/PricingSection';
 
-import { Canvas } from '@react-three/fiber';
+import { View, Preload } from '@react-three/drei';
 
 import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
@@ -281,15 +281,10 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(14,165,233,0.08)_0%,transparent_70%)] pointer-events-none z-0" />
 
         {/* R3F Hero Scene — High-Impact UI */}
-        <div className="absolute inset-0 z-[2] opacity-40 pointer-events-none">
-          <Canvas 
-            camera={{ position: [0, 0, 5] }}
-            dpr={[1, 1.5]}
-            performance={{ min: 0.5 }}
-            gl={{ antialias: false, powerPreference: "high-performance" }}
-          >
+        <div className="absolute inset-0 z-[2] opacity-40 pointer-events-none" id="hero-3d-container">
+          <View track={document.getElementById('hero-3d-container') as any}>
             <HeroEnvironment />
-          </Canvas>
+          </View>
         </div>
 
         {/* Cinematic Spotlight focal point */}

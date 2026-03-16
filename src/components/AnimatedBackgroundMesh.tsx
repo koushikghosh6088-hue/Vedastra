@@ -86,17 +86,16 @@ function MeshBackground() {
   );
 }
 
+import { View } from '@react-three/drei';
+
 export default function AnimatedBackgroundMesh() {
+  const container = useRef<HTMLDivElement>(null);
+
   return (
-    <div className="fixed inset-0 -z-10 bg-black overflow-hidden pointer-events-none">
-      <Canvas 
-        camera={{ position: [0, 0, 5], fov: 75 }}
-        dpr={[1, 1.5]}
-        performance={{ min: 0.5 }}
-        gl={{ antialias: false, powerPreference: "high-performance" }}
-      >
+    <div ref={container} className="fixed inset-0 -z-10 bg-black overflow-hidden pointer-events-none">
+      <View track={container as any}>
         <MeshBackground />
-      </Canvas>
+      </View>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black pointer-events-none" />
     </div>
   );
