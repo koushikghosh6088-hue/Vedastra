@@ -56,23 +56,23 @@ export default function ProblemSolution() {
   return (
     <section ref={containerRef} className="relative py-12 md:py-24 bg-black overflow-hidden border-t border-white/5">
       {/* Background glow effects */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(14,165,233,0.05)_0%,transparent_50%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(239,68,68,0.05)_0%,transparent_50%)] pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-black via-black to-transparent pointer-events-none z-10" />
       
       <div className="max-w-[1550px] mx-auto px-6 relative z-20">
         
         {/* Section Header */}
         <AnimatedSection className="text-center mb-16 md:mb-24">
-           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#fbbf24]/20 bg-[#fbbf24]/10 mb-8 backdrop-blur-md animate-pulse">
-              <Activity className="w-4 h-4 text-[#fbbf24]" />
-              <span className="font-mono text-xs uppercase tracking-[0.2em] text-[#fbbf24] font-bold">Deep System Scan</span>
+           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-red-500/20 bg-red-500/10 mb-8 backdrop-blur-md animate-pulse">
+              <Activity className="w-4 h-4 text-red-500" />
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-red-500 font-bold">Deep System Scan</span>
            </div>
            
            <h2 className="text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase mb-6">
-              DIAGNOSING <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-[#fbbf24] to-amber-500 italic">YOUR BUSINESS</span>
+              DIAGNOSING <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 italic">YOUR BUSINESS</span>
            </h2>
            <p className="font-mono text-white/50 text-sm md:text-base max-w-2xl mx-auto leading-relaxed uppercase tracking-wider mb-8">
-              Scroll to trigger the luxury diagnostic sequence and reveal critical failure points.
+              Scroll through the automated diagnostic sequence to reveal critical failure points and their solutions.
            </p>
         </AnimatedSection>
 
@@ -83,13 +83,13 @@ export default function ProblemSolution() {
             
             {/* STAGE HUD */}
             <div className="w-full flex flex-col items-center lg:items-start gap-4 font-mono">
-               <div className="text-[10px] text-[#fbbf24]/60 uppercase tracking-[0.5em] mb-2">Sequence_Status</div>
+               <div className="text-[10px] text-red-500/60 uppercase tracking-[0.5em] mb-2">Sequence_Status</div>
                <div className="text-3xl font-black text-white">
-                 ACTIVE_SCAN<span className="text-[#fbbf24] animate-pulse">...</span>
+                 ACTIVE_SCAN<span className="text-red-500 animate-pulse">...</span>
                </div>
             </div>
 
-            <div className="w-full h-[350px] md:h-[450px] lg:h-full relative rounded-[3rem] overflow-hidden border border-white/10 bg-black/40 backdrop-blur-sm shadow-[0_0_100px_rgba(251,191,36,0.1)] pointer-events-auto">
+            <div className="w-full h-[350px] md:h-[450px] lg:h-full relative rounded-[3rem] overflow-hidden border border-white/10 bg-black/40 backdrop-blur-sm shadow-[0_0_100px_rgba(239,68,68,0.1)] pointer-events-auto">
               <div className="absolute inset-0 z-0">
                  <Canvas 
                    camera={{ position: [0, 0, 10], fov: 35 }}
@@ -99,14 +99,14 @@ export default function ProblemSolution() {
                  >
                     <ambientLight intensity={1.5} />
                     <pointLight position={[10, 10, 10]} intensity={3} />
-                    <spotLight position={[5, 10, 5]} angle={0.4} penumbra={1} intensity={20} color="#fbbf24" castShadow />
+                    <spotLight position={[5, 10, 5]} angle={0.4} penumbra={1} intensity={20} color="#ef4444" castShadow />
                     <SystemScanner />
                  </Canvas>
               </div>
               
               {/* Terminal Overlays */}
-              <div className="absolute top-0 left-0 p-8 font-mono text-[11px] text-[#fbbf24] uppercase tracking-widest z-10 drop-shadow-[0_0_10px_rgba(251,191,36,0.5)]">
-                [ SCANNING_GOLD_OS ] <br/>
+              <div className="absolute top-0 left-0 p-8 font-mono text-[11px] text-red-500 uppercase tracking-widest z-10 drop-shadow-[0_0_10px_rgba(239,68,68,0.5)]">
+                [ SCANNING_CORE_OS ] <br/>
                 PRIME_UNIT_01
               </div>
             </div>

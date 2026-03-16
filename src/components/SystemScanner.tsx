@@ -54,16 +54,16 @@ export default function SystemScanner() {
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
       <group>
-        {/* The Diagnostic Luxury Mainframe (Gold & Chrome - High Visibility) */}
+        {/* The Diagnostic Luxury Mainframe (Red & Chrome - High Visibility) */}
         <group ref={meshRef}>
-          {/* Main Chassis: Polished Gold & Chrome */}
+          {/* Main Chassis: Polished Red & Chrome */}
           <mesh position={[0, -0.2, 0]}>
             <boxGeometry args={[4.5, 2.2, 0.4]} />
             <meshStandardMaterial 
-              color="#fbbf24" 
+              color="#ef4444" 
               roughness={0.05} 
               metalness={1} 
-              emissive="#fbbf24"
+              emissive="#ef4444"
               emissiveIntensity={0.05}
             />
           </mesh>
@@ -78,7 +78,7 @@ export default function SystemScanner() {
             />
           </mesh>
 
-          {/* High-Contrast Violet Glass Display Overlay */}
+          {/* High-Contrast Glass Display Overlay */}
           <mesh position={[0, -0.2, 0.25]}>
             <planeGeometry args={[4.1, 1.8]} />
             <MeshTransmissionMaterial
@@ -88,41 +88,41 @@ export default function SystemScanner() {
               chromaticAberration={0.05}
               anisotropy={1}
               distortion={0}
-              color="#4c1d95"
+              color="#000000"
               transmission={0.8}
             />
           </mesh>
 
-          {/* Luxury Detail: Gold Side Pylons */}
+          {/* Luxury Detail: Red Side Pylons */}
           <mesh position={[-2.4, -0.2, 0]}>
             <cylinderGeometry args={[0.2, 0.2, 2.6, 6]} />
-            <meshStandardMaterial color="#fbbf24" metalness={1} roughness={0.1} />
+            <meshStandardMaterial color="#ef4444" metalness={1} roughness={0.1} />
           </mesh>
           <mesh position={[2.4, -0.2, 0]}>
             <cylinderGeometry args={[0.2, 0.2, 2.6, 6]} />
-            <meshStandardMaterial color="#fbbf24" metalness={1} roughness={0.1} />
+            <meshStandardMaterial color="#ef4444" metalness={1} roughness={0.1} />
           </mesh>
 
-          {/* Floating Violet Neon "Brain" Core */}
+          {/* Floating Red Neon "Brain" Core */}
           <group position={[0, -0.2, 0.1]}>
              <mesh>
                 <sphereGeometry args={[0.5, 32, 32]} />
                 <MeshDistortMaterial
-                  color="#a78bfa"
+                  color="#ef4444"
                   speed={4}
                   distort={0.4}
                   radius={1}
-                  emissive="#a78bfa"
+                  emissive="#ef4444"
                   emissiveIntensity={2}
                 />
              </mesh>
-             <pointLight color="#a78bfa" intensity={15} distance={3} />
+             <pointLight color="#ef4444" intensity={15} distance={3} />
           </group>
 
-          {/* Technical Detail: Gold Mechanical Blades (Base) */}
+          {/* Technical Detail: Red Mechanical Blades (Base) */}
           <mesh position={[0, -1.8, -0.2]}>
              <boxGeometry args={[1.5, 1.2, 0.05]} />
-             <meshStandardMaterial color="#fbbf24" metalness={1} roughness={0.05} />
+             <meshStandardMaterial color="#ef4444" metalness={1} roughness={0.05} />
           </mesh>
           <mesh position={[0, -2.4, 0]}>
              <boxGeometry args={[3.5, 0.1, 2.5]} />
@@ -140,11 +140,11 @@ export default function SystemScanner() {
           </mesh>
         </group>
 
-        {/* Orbiting Tech Rings (High-Impact Gold) */}
+        {/* Orbiting Tech Rings (High-Impact Red) */}
         <group rotation={[Math.PI / 3, 0, 0]}>
           <mesh>
             <torusGeometry args={[5.2, 0.02, 16, 100]} />
-            <meshStandardMaterial color="#fbbf24" metalness={1} roughness={0.1} emissive="#fbbf24" emissiveIntensity={0.2} />
+            <meshStandardMaterial color="#ef4444" metalness={1} roughness={0.1} emissive="#ef4444" emissiveIntensity={0.2} />
           </mesh>
         </group>
 
@@ -160,6 +160,7 @@ export default function SystemScanner() {
           </mesh>
           <pointLight color="#ef4444" intensity={20} distance={8} />
         </group>
+
 
         {/* Data Stream Particles (High Visibility Platinum) */}
         <group ref={particlesRef}>
