@@ -216,6 +216,8 @@ export default function FeaturedArchive() {
                     src={project.image}
                     alt={project.title}
                     fill
+                    sizes="(max-width: 768px) 640px, 1280px"
+                    loading="lazy"
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                   {/* Scanline overlay */}

@@ -11,6 +11,7 @@ import PerformanceManager from "@/components/PerformanceManager";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import ExitIntentPopup from "@/components/ExitIntentPopup";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
+import Head from "next/head";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],

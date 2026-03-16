@@ -13,25 +13,39 @@ export default function Preloader() {
       setProgress(prev => {
         if (prev >= 100) {
           clearInterval(timer);
-          setTimeout(() => setLoading(false), 500);
+          setTimeout(() => setLoading(false), 300);
           return 100;
         }
-        return prev + Math.random() * 15;
+        // Accelerated loading: 0 to 100 in ~1 second
+        return prev + Math.random() * 25;
       });
-    }, 100);
+    }, 80);
 
     return () => clearInterval(timer);
   }, []);
+
+  const handleSkip = () => {
+    setLoading(false);
+  };
 
   return (
     <AnimatePresence>
       {loading && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 1, ease: 'easeInOut' } }}
+          exit={{ opacity: 0, transition: { duration: 0.8, ease: 'easeInOut' } }}
           className="fixed inset-0 z-[10000] bg-black flex flex-col items-center justify-center overflow-hidden"
         >
-          {/* Background Tech Detail Removed */}
+          {/* Skip Button */}
+          <motion.button
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            onClick={handleSkip}
+            className="absolute top-10 right-10 z-50 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full font-mono text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-all group"
+          >
+            SKIP_PROTOCOL <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
+          </motion.button>
 
           <div className="relative w-80">
             {/* Progress Label */}
@@ -49,7 +63,7 @@ export default function Preloader() {
                 className="absolute top-0 left-0 h-full bg-blue-400 shadow-[0_0_15px_#0ea5e9]"
                 initial={{ width: 0 }}
                 animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.1 }}
               />
             </div>
 
@@ -74,7 +88,6 @@ export default function Preloader() {
 
           {/* Decorative Corners */}
           <div className="absolute top-10 left-10 w-4 h-4 border-t border-l border-white/20" />
-          <div className="absolute top-10 right-10 w-4 h-4 border-t border-r border-white/20" />
           <div className="absolute bottom-10 left-10 w-4 h-4 border-b border-l border-white/20" />
           <div className="absolute bottom-10 right-10 w-4 h-4 border-b border-r border-white/20" />
         </motion.div>

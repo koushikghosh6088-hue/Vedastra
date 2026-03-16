@@ -208,7 +208,11 @@ const ScrollStack = ({
   ]);
 
   const handleScroll = useCallback(() => {
-    updateCardTransforms();
+    if (animationFrameRef.current) return;
+    animationFrameRef.current = requestAnimationFrame(() => {
+      updateCardTransforms();
+      animationFrameRef.current = null;
+    });
   }, [updateCardTransforms]);
 
   // Removed local setupLenis as we use global SmoothScrollProvider

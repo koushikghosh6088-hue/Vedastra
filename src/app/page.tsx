@@ -2,9 +2,10 @@
 
 import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useMotionValueEvent, useMotionValue, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent, useMotionValue, useSpring, useInView } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
 import {
   ArrowRight, Globe, Smartphone, Phone, MessageSquare, Cog, TrendingUp,
@@ -132,7 +133,14 @@ function Floating3DNeuralCore() {
         }}
         className="relative z-20 w-4/5 h-4/5 flex items-center justify-center"
       >
-        <img src="/3d-icons/neural_core.png" alt="Neural Core" className="w-full h-full object-contain pointer-events-none mix-blend-screen drop-shadow-[0_0_60px_rgba(14,165,233,0.3)] group-hover:scale-105 transition-transform duration-700" />
+        <Image 
+          src="/3d-icons/neural_core.png" 
+          alt="Neural Core" 
+          width={640}
+          height={640}
+          className="w-full h-full object-contain pointer-events-none mix-blend-screen drop-shadow-[0_0_60px_rgba(14,165,233,0.3)] group-hover:scale-105 transition-transform duration-700" 
+          priority
+        />
       </motion.div>
       <motion.div 
         style={{ x: useTransform(mouseX, [-300, 300], [40, -40]), y: useTransform(mouseY, [-300, 300], [40, -40]) }}
@@ -187,8 +195,12 @@ function TypewriterSubline() {
 function StatCounter({ value, label, suffix }: { value: string, label: string, suffix: string }) {
   const [count, setCount] = useState(0);
   const target = parseFloat(value);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
 
   useEffect(() => {
+    if (!isInView) return;
+
     const duration = 2000;
     const start = 0;
     const step = (target / duration) * 10;
@@ -205,10 +217,10 @@ function StatCounter({ value, label, suffix }: { value: string, label: string, s
     }, 10);
 
     return () => clearInterval(timer);
-  }, [target]);
+  }, [target, isInView]);
 
   return (
-    <div className="text-center group cursor-default py-4">
+    <div ref={ref} className="text-center group cursor-default py-4">
       <div className="relative inline-block mb-2">
         {/* Orbiting Ring Visual */}
         <div className="absolute inset-0 -m-8 border border-blue-400/20 rounded-full animate-[spin_10s_linear_infinite]" />
@@ -230,11 +242,19 @@ export default function HomePage() {
   const heroRef = useRef<HTMLElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadlineRef = useRef<HTMLParagraphElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const [isTabActive, setIsTabActive] = useState(true);
+  const isMarqueeInView = useInView(marqueeRef, { amount: 0.1 });
+
   const { scrollYProgress } = useScroll();
   const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
 
   useEffect(() => {
+    // Visibility API listener to pause animations
+    const handleVisibilityChange = () => setIsTabActive(!document.hidden);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
     if (headlineRef.current && subheadlineRef.current) {
       const tl = gsap.timeline();
       
@@ -251,9 +271,12 @@ export default function HomePage() {
     }
 
     return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
   }, []);
+
+  const pauseAnimations = !isTabActive || !isMarqueeInView;
 
   return (
     <>
@@ -448,10 +471,10 @@ export default function HomePage() {
       <PricingSection />
 
       {/* ═══════════ CLIENT TRANSMISSIONS ═══════════ */}
-      <section className="relative py-20 md:py-32 bg-black z-10 overflow-hidden">
+      <section ref={marqueeRef} className="relative py-20 md:py-32 bg-black z-10 overflow-hidden">
         {/* Ambient glows */}
         <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-[#0ea5e9]/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-purple-500/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-purple-50/5 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute inset-0 bg-transparent pointer-events-none" />
 
         <div className="relative z-10 max-w-[1550px] mx-auto px-6">
@@ -472,7 +495,7 @@ export default function HomePage() {
 
         {/* ── MARQUEE ROW 1 — left scroll ── */}
         <div className="relative mb-6 group overflow-hidden">
-          <div className="flex gap-5 animate-marquee-left group-hover:pause-animation whitespace-nowrap w-max">
+          <div className={`flex gap-5 animate-marquee-left group-hover:pause-animation ${pauseAnimations ? 'pause-animation' : ''} whitespace-nowrap w-max will-change-transform`}>
             {[...[
               { quote: "Joint WebSolutions completely reimagined our digital infrastructure. Their AI agents now handle 70% of our lead qualification autonomously.", name: "Sarah Chen", role: "CTO, Nexus Dynamics", rating: 5, accent: "text-blue-400", border: "border-blue-500/20" },
               { quote: "The performance optimization was insane — our platform went from 3s load times to under 400ms. Revenue jumped 34% in just one quarter.", name: "Marcus Rivera", role: "Head of Product, FlowStack", rating: 5, accent: "text-purple-400", border: "border-purple-500/20" },
@@ -512,7 +535,7 @@ export default function HomePage() {
 
         {/* ── MARQUEE ROW 2 — right scroll ── */}
         <div className="relative group overflow-hidden">
-          <div className="flex gap-5 animate-marquee-right group-hover:pause-animation whitespace-nowrap w-max">
+          <div className={`flex gap-5 animate-marquee-right group-hover:pause-animation ${pauseAnimations ? 'pause-animation' : ''} whitespace-nowrap w-max will-change-transform`}>
             {[...[
               { quote: "Our ecommerce platform's conversion rate went from 1.8% to 4.9% after Joint rebuilt our funnel. Absolutely transformative work.", name: "Nina Torres", role: "CEO, LuxeCart", rating: 5, accent: "text-amber-400", border: "border-amber-500/20" },
               { quote: "The AI messaging bot they built for us now books 30+ appointments daily on autopilot. The ROI is genuinely incredible.", name: "James Okonkwo", role: "Director, ScaleForce", rating: 5, accent: "text-fuchsia-400", border: "border-fuchsia-500/20" },
