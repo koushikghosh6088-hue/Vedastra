@@ -85,7 +85,12 @@ export default function ProblemSolution() {
           {/* Left: 3D Diagnostic Environment */}
           <div className="lg:col-span-5 h-[400px] md:h-[600px] relative rounded-[3rem] overflow-hidden border border-white/10 bg-white/[0.02] shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]">
             <div className="absolute inset-0 z-0 mix-blend-screen opacity-80">
-               <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
+               <Canvas 
+                 camera={{ position: [0, 0, 5], fov: 45 }}
+                 dpr={[1, 1.5]}
+                 performance={{ min: 0.5 }}
+                 gl={{ antialias: false, powerPreference: "high-performance" }}
+               >
                   <ambientLight intensity={0.5} />
                   <pointLight position={[10, 10, 10]} intensity={1} />
                   <SystemScanner />

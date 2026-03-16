@@ -268,7 +268,12 @@ export default function HomePage() {
       {/* ═══════════ CINEMATIC HERO ═══════════ */}
       <motion.section
         ref={heroRef}
-        style={{ opacity: heroOpacity, scale: heroScale }}
+        style={{ 
+          opacity: heroOpacity, 
+          scale: heroScale,
+          willChange: "transform, opacity",
+          transform: "translateZ(0)"
+        }}
         className="relative min-h-screen flex items-center overflow-hidden cursor-default"
       >
         {/* Background */}
@@ -277,7 +282,12 @@ export default function HomePage() {
 
         {/* R3F Hero Scene — High-Impact UI */}
         <div className="absolute inset-0 z-[2] opacity-40 pointer-events-none">
-          <Canvas camera={{ position: [0, 0, 5] }}>
+          <Canvas 
+            camera={{ position: [0, 0, 5] }}
+            dpr={[1, 1.5]}
+            performance={{ min: 0.5 }}
+            gl={{ antialias: false, powerPreference: "high-performance" }}
+          >
             <HeroEnvironment />
           </Canvas>
         </div>

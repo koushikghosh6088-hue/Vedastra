@@ -47,6 +47,7 @@ export default function AnimatedSection({
         ease: [0.16, 1, 0.3, 1], // Cinematic quintic ease
       }}
       className={className}
+      style={{ willChange: "transform, opacity", transform: "translateZ(0)" }}
     >
       {children}
     </motion.div>

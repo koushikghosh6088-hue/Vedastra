@@ -52,7 +52,7 @@ export function CoreSphere() {
         
         {/* Core AI Intelligence */}
         <mesh ref={innerRef}>
-          <sphereGeometry args={[1, 64, 64]} />
+          <sphereGeometry args={[1, 32, 32]} />
           <MeshDistortMaterial
             color="#0ea5e9"
             envMapIntensity={1}
@@ -66,7 +66,7 @@ export function CoreSphere() {
 
         {/* Dynamic Light Pulses */}
         <pointLight intensity={10} distance={10} color="#0ea5e9">
-          <Sphere args={[0.05, 16, 16]}>
+          <Sphere args={[0.05, 8, 8]}>
             <meshBasicMaterial color="#0ea5e9" />
           </Sphere>
         </pointLight>
@@ -93,7 +93,7 @@ export function CyberTorus() {
           <boxGeometry args={[1.5, 1.5, 1.5]} />
           <MeshTransmissionMaterial
             backside
-            samples={4}
+            samples={2}
             thickness={1}
             chromaticAberration={0.02}
             anisotropy={0.1}

@@ -56,7 +56,7 @@ export default function SystemScanner() {
       <group>
         {/* The Diagnostic Core */}
         <mesh ref={meshRef}>
-          <sphereGeometry args={[1.2, 64, 64]} />
+          <sphereGeometry args={[1.2, 32, 32]} />
           <MeshDistortMaterial
             color="#0ea5e9"
             speed={3}
@@ -69,10 +69,10 @@ export default function SystemScanner() {
         </mesh>
 
         <mesh scale={0.9}>
-          <sphereGeometry args={[1.2, 32, 32]} />
+          <sphereGeometry args={[1.2, 16, 16]} />
           <MeshTransmissionMaterial
             backside
-            samples={4}
+            samples={2}
             thickness={2}
             chromaticAberration={0.05}
             anisotropy={0.1}
@@ -86,11 +86,11 @@ export default function SystemScanner() {
         {/* Scanning Beam Visual */}
         <group ref={beamRef}>
           <mesh rotation={[Math.PI / 2, 0, 0]}>
-            <ringGeometry args={[1.3, 1.35, 64]} />
+            <ringGeometry args={[1.3, 1.35, 32]} />
             <meshBasicMaterial color="#ef4444" transparent opacity={0.6} side={THREE.DoubleSide} />
           </mesh>
           <mesh rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0.01]}>
-            <ringGeometry args={[0, 1.3, 64]} />
+            <ringGeometry args={[0, 1.3, 32]} />
             <meshBasicMaterial color="#ef4444" transparent opacity={0.05} side={THREE.DoubleSide} />
           </mesh>
           <pointLight color="#ef4444" intensity={5} distance={3} />

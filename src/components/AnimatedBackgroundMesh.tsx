@@ -89,7 +89,12 @@ function MeshBackground() {
 export default function AnimatedBackgroundMesh() {
   return (
     <div className="fixed inset-0 -z-10 bg-black overflow-hidden pointer-events-none">
-      <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
+      <Canvas 
+        camera={{ position: [0, 0, 5], fov: 75 }}
+        dpr={[1, 1.5]}
+        performance={{ min: 0.5 }}
+        gl={{ antialias: false, powerPreference: "high-performance" }}
+      >
         <MeshBackground />
       </Canvas>
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black pointer-events-none" />
