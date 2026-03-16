@@ -3,13 +3,13 @@
   width: 100%;
   height: 100%;
   overflow-y: auto;
-  overflow-x: visible;
+  overflow-x: hidden;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+  /* scroll-behavior: smooth; REMOVED - Conflicts with Lenis */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  will-change: scroll-position;
+  will-change: transform;
 }
 
 .scroll-stack-inner {
