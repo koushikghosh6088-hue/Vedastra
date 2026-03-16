@@ -54,12 +54,28 @@ export default function SystemScanner() {
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
       <group>
+        {/* Background Halo / Backglow */}
+        <mesh position={[0, 0, -0.5]}>
+          <planeGeometry args={[5, 4]} />
+          <meshBasicMaterial color="#0ea5e9" transparent opacity={0.03} />
+        </mesh>
+
         {/* The Diagnostic Computer/Terminal Model */}
         <group ref={meshRef}>
           {/* Main Monitor Case */}
           <mesh position={[0, 0, 0]}>
             <boxGeometry args={[2.5, 1.8, 0.4]} />
-            <meshStandardMaterial color="#0f172a" roughness={0.1} metalness={0.8} />
+            <meshStandardMaterial color="#1e293b" roughness={0.2} metalness={0.9} />
+          </mesh>
+
+          {/* Glowing Side Strips */}
+          <mesh position={[-1.26, 0, 0]}>
+            <boxGeometry args={[0.05, 1.6, 0.42]} />
+            <meshBasicMaterial color="#0ea5e9" transparent opacity={0.8} />
+          </mesh>
+          <mesh position={[1.26, 0, 0]}>
+            <boxGeometry args={[0.05, 1.6, 0.42]} />
+            <meshBasicMaterial color="#0ea5e9" transparent opacity={0.8} />
           </mesh>
 
           {/* Screen Surface (Glowing) */}
@@ -67,7 +83,7 @@ export default function SystemScanner() {
             <planeGeometry args={[2.3, 1.6]} />
             <MeshTransmissionMaterial
               backside
-              samples={2}
+              samples={4}
               thickness={0.5}
               chromaticAberration={0.05}
               anisotropy={0.1}
@@ -75,8 +91,10 @@ export default function SystemScanner() {
               distortionScale={0.5}
               temporalDistortion={0.1}
               color="#0ea5e9"
+              emissive="#0ea5e9"
+              emissiveIntensity={0.5}
               transparent
-              opacity={0.8}
+              opacity={0.9}
             />
           </mesh>
 
@@ -90,28 +108,32 @@ export default function SystemScanner() {
               radius={1}
               wireframe
               transparent
-              opacity={0.1}
+              opacity={0.2}
             />
           </mesh>
 
           {/* Monitor Stand */}
           <mesh position={[0, -1.2, -0.1]}>
             <boxGeometry args={[0.3, 0.8, 0.1]} />
-            <meshStandardMaterial color="#1e293b" />
+            <meshStandardMaterial color="#334155" />
           </mesh>
           <mesh position={[0, -1.6, 0]}>
             <boxGeometry args={[1, 0.1, 0.8]} />
-            <meshStandardMaterial color="#0f172a" />
+            <meshStandardMaterial color="#1e293b" />
           </mesh>
 
           {/* Glowing Status Lights */}
           <mesh position={[-1.0, -0.7, 0.22]}>
-            <sphereGeometry args={[0.03, 16, 16]} />
+            <sphereGeometry args={[0.04, 16, 16]} />
             <meshBasicMaterial color="#ef4444" />
           </mesh>
           <mesh position={[-0.9, -0.7, 0.22]}>
-            <sphereGeometry args={[0.03, 16, 16]} />
+            <sphereGeometry args={[0.04, 16, 16]} />
             <meshBasicMaterial color="#10b981" />
+          </mesh>
+          <mesh position={[-0.8, -0.7, 0.22]}>
+            <sphereGeometry args={[0.04, 16, 16]} />
+            <meshBasicMaterial color="#0ea5e9" />
           </mesh>
         </group>
 
