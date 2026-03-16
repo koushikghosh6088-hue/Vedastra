@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Activity, Globe, Smartphone, Bot, BarChart3, ChevronRight, AlertTriangle } from 'lucide-react';
 import { Canvas } from '@react-three/fiber';
 import AnimatedSection from './AnimatedSection';
@@ -48,17 +48,31 @@ const painPoints = [
 
 export default function ProblemSolution() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const containerRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-  // Auto-cycle through the problems
+  // Calculate index based on scroll progress
+  const scrollIndex = useTransform(
+    scrollYProgress,
+    [0, 0.25, 0.5, 0.75, 1],
+    [0, 1, 2, 3, 3]
+  );
+
   useEffect(() => {
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % painPoints.length);
-    }, 6000); // 6 seconds per card
-    return () => clearInterval(timer);
-  }, []);
+    return scrollIndex.onChange((v) => {
+      const index = Math.min(Math.floor(v), painPoints.length - 1);
+      if (index !== activeIndex) {
+        setActiveIndex(index);
+      }
+    });
+  }, [scrollIndex, activeIndex]);
 
   return (
-    <section className="relative py-24 md:py-40 bg-black overflow-hidden border-t border-white/5">
+    <section ref={containerRef} className="relative py-24 md:py-40 bg-black overflow-hidden border-t border-white/5 min-h-[300vh]">
       {/* Background glow effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(14,165,233,0.05)_0%,transparent_50%)] pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 top-1/2 bg-gradient-to-t from-black via-black to-transparent pointer-events-none z-10" />
@@ -75,15 +89,23 @@ export default function ProblemSolution() {
            <h2 className="text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase mb-6">
               WHY YOU NEED <br/><span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 italic">AN UPGRADE</span>
            </h2>
-           <p className="font-mono text-white/50 text-sm md:text-base max-w-2xl mx-auto leading-relaxed uppercase tracking-wider">
+           <p className="font-mono text-white/50 text-sm md:text-base max-w-2xl mx-auto leading-relaxed uppercase tracking-wider mb-8">
               We identify the critical failure points in your current business architecture and deploy high-performance engineering solutions.
            </p>
+           <div className="flex flex-col items-center gap-2 text-red-500/40 font-mono text-[10px] tracking-widest uppercase">
+              <span>Scroll to Diagnose</span>
+              <motion.div 
+                animate={{ y: [0, 5, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="w-px h-12 bg-gradient-to-b from-red-500/50 to-transparent" 
+              />
+           </div>
         </AnimatedSection>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           
-          {/* Left: 3D Diagnostic Environment */}
-          <div className="lg:col-span-5 h-[400px] md:h-[600px] relative rounded-[3rem] overflow-hidden border border-white/10 bg-white/[0.02] shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]">
+          {/* Left: Sticky 3D Diagnostic Environment */}
+          <div className="lg:col-span-5 h-[400px] md:h-[600px] sticky top-32 rounded-[3rem] overflow-hidden border border-white/10 bg-white/[0.02] shadow-[inset_0_0_100px_rgba(0,0,0,0.8)]">
             <div className="absolute inset-0 z-0 mix-blend-screen opacity-80">
                <Canvas 
                  camera={{ position: [0, 0, 5], fov: 45 }}
