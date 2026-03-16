@@ -119,46 +119,46 @@ export default function ProblemSolution() {
           <div className="lg:col-span-7">
             <ScrollStack 
               useWindowScroll={true} 
-              itemDistance={150} 
-              itemScale={0.02} 
-              itemStackDistance={70}
-              stackPosition="12%"
-              baseScale={0.96}
+              itemDistance={120} 
+              itemScale={0.015} 
+              itemStackDistance={45}
+              stackPosition="8%"
+              baseScale={0.97}
             >
               {painPoints.map((point, index) => (
                 <ScrollStackItem key={point.id}>
-                  <div className="relative h-full w-full rounded-[2.3rem] p-8 md:p-12 overflow-hidden">
+                  <div className="relative h-full w-full rounded-[2.3rem] p-6 md:p-10 overflow-hidden">
                     <div className={`absolute top-0 right-0 w-[400px] h-[400px] bg-red-500/5 blur-[120px] pointer-events-none`} />
                     
-                    <div className="flex items-center gap-4 mb-8">
-                       <div className={`w-14 h-14 rounded-2xl flex items-center justify-center bg-red-500/10 border border-red-500/20`}>
+                    <div className="flex items-center gap-4 mb-6">
+                       <div className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-red-500/10 border border-red-500/20`}>
                           {(() => {
                              const Icon = point.icon;
-                             return <Icon className={`w-7 h-7 text-red-400`} />;
+                             return <Icon className={`w-6 h-6 text-red-400`} />;
                           })()}
                        </div>
                        <div>
-                          <span className="font-mono text-xs uppercase tracking-[0.3em] text-white/40 block mb-1">{point.id}</span>
-                          <h3 className="text-2xl md:text-3xl font-heading font-black text-white uppercase tracking-tight">
+                          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 block mb-1">{point.id}</span>
+                          <h3 className="text-xl md:text-2xl font-heading font-black text-white uppercase tracking-tight">
                              {point.problem}
                           </h3>
                        </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-6">
-                       <div className="p-6 rounded-2xl bg-red-500/5 border border-red-500/10">
-                          <div className="flex items-center gap-2 mb-3">
+                    <div className="grid grid-cols-1 gap-4">
+                       <div className="p-5 rounded-2xl bg-red-500/5 border border-red-500/10">
+                          <div className="flex items-center gap-2 mb-2">
                              <AlertTriangle className="w-4 h-4 text-red-500" />
-                             <span className="text-xs font-mono text-red-500 uppercase tracking-widest">Diagnosis</span>
+                             <span className="text-[10px] font-mono text-red-500 uppercase tracking-widest">Diagnosis</span>
                           </div>
-                          <p className="text-sm md:text-base text-white/70 leading-relaxed font-mono">
+                          <p className="text-sm text-white/70 leading-relaxed font-mono">
                              {point.details}
                           </p>
                        </div>
 
-                       <div className={`p-6 rounded-2xl bg-red-500/10 border border-red-500/30`}>
-                          <span className={`text-xs font-mono text-red-400 uppercase tracking-widest mb-3 block font-bold`}>Premium Solution</span>
-                          <p className="text-lg md:text-xl text-white font-bold leading-tight">
+                       <div className={`p-5 rounded-2xl bg-red-500/10 border border-red-500/30`}>
+                          <span className={`text-[10px] font-mono text-red-400 uppercase tracking-widest mb-2 block font-bold`}>Premium Solution</span>
+                          <p className="text-base md:text-lg text-white font-bold leading-tight">
                              {point.solution}
                           </p>
                        </div>
