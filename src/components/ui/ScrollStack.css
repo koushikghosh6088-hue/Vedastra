@@ -13,7 +13,7 @@
 }
 
 .scroll-stack-inner {
-  padding: 10vh 2rem 30rem;
+  padding: 15vh 1.5rem 30rem;
   min-height: 100vh;
 }
 
@@ -46,13 +46,17 @@
 
 /* Square mobile cards */
 @media (max-width: 768px) {
+  .scroll-stack-inner {
+    padding-top: 25vh !important;
+  }
   .scroll-stack-card {
     aspect-ratio: 1 / 1;
     min-height: unset;
-    padding: 1.5rem;
+    padding: 1rem !important;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Switch to top-start for more breathing room */
+    padding-top: 1.2rem !important;
   }
 }
 

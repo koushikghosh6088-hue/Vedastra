@@ -131,38 +131,38 @@ export default function ProblemSolution() {
                     <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
                     <div className={`absolute top-0 right-0 w-[400px] h-[400px] bg-red-500/[0.03] blur-[120px] pointer-events-none`} />
                     
-                    <div className="flex items-center gap-4 md:gap-5 mb-4 md:mb-8 relative z-10">
-                       <div className={`w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl flex items-center justify-center bg-red-500/10 border border-red-500/30 shadow-[0_0_20px_rgba(239,68,68,0.1)]`}>
+                    <div className="flex items-center gap-3 md:gap-5 mb-3 md:mb-8 relative z-10">
+                       <div className={`w-8 h-8 md:w-14 md:h-14 rounded-lg md:rounded-2xl flex items-center justify-center bg-red-500/10 border border-red-500/30 shadow-[0_0_20px_rgba(239,68,68,0.1)] shrink-0`}>
                           {(() => {
                              const Icon = point.icon;
-                             return <Icon className={`w-5 h-5 md:w-7 md:h-7 text-red-500`} />;
+                             return <Icon className={`w-4 h-4 md:w-7 md:h-7 text-red-500`} />;
                           })()}
                        </div>
-                       <div>
+                       <div className="min-w-0">
                           <div className="flex items-center gap-2 mb-0.5 md:mb-1">
                             <span className="font-mono text-[8px] md:text-[10px] uppercase tracking-[0.4em] text-red-500/50 font-bold">{point.id}</span>
                             <div className="h-[1px] w-6 md:w-8 bg-red-500/20" />
                           </div>
-                          <h3 className="text-lg md:text-3xl font-heading font-black text-white uppercase tracking-tighter leading-none">
+                          <h3 className="text-base md:text-3xl font-heading font-black text-white uppercase tracking-tighter leading-none truncate">
                              {point.problem}
                           </h3>
                        </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-3 md:gap-5 relative z-10">
-                       <div className="p-4 md:p-6 rounded-[1rem] md:rounded-[1.5rem] bg-white/[0.02] border border-white/5 backdrop-blur-sm">
-                          <div className="flex items-center gap-2 mb-2 md:mb-3">
+                     <div className="grid grid-cols-1 gap-2 md:gap-5 relative z-10">
+                       <div className="p-3 md:p-6 rounded-[1rem] md:rounded-[1.5rem] bg-white/[0.02] border border-white/5 backdrop-blur-sm">
+                          <div className="flex items-center gap-2 mb-1.5 md:mb-3">
                              <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-red-600" />
                              <span className="text-[8px] md:text-[10px] font-mono text-red-500/80 uppercase tracking-[0.2em] font-bold">Diagnostic_Report</span>
                           </div>
-                          <p className="text-[11px] md:text-base text-white/60 leading-relaxed font-mono">
+                          <p className="text-[10px] md:text-base text-white/60 leading-relaxed font-mono">
                              {point.details}
                           </p>
                        </div>
 
-                       <div className={`p-4 md:p-6 rounded-[1rem] md:rounded-[1.5rem] bg-red-500/[0.08] border border-red-500/30 shadow-[0_0_30px_rgba(239,68,68,0.05)]`}>
-                          <span className={`text-[8px] md:text-[10px] font-mono text-red-400 uppercase tracking-[0.3em] mb-2 md:mb-4 block font-black underline decoration-red-500/30 underline-offset-4 md:underline-offset-8`}>OPTIMIZED_SOLUTION</span>
-                          <p className="text-sm md:text-2xl text-white font-black leading-tight tracking-tight uppercase">
+                       <div className={`p-3 md:p-6 rounded-[1rem] md:rounded-[1.5rem] bg-red-500/[0.08] border border-red-500/30 shadow-[0_0_30px_rgba(239,68,68,0.05)]`}>
+                          <span className={`text-[8px] md:text-[10px] font-mono text-red-400 uppercase tracking-[0.3em] mb-1.5 md:mb-4 block font-black underline decoration-red-500/30 underline-offset-4 md:underline-offset-8`}>OPTIMIZED_SOLUTION</span>
+                          <p className="text-[13px] md:text-2xl text-white font-black leading-[1.1] tracking-tight uppercase">
                              {point.solution}
                           </p>
                        </div>
