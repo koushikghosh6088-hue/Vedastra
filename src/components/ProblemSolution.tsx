@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { Activity, Globe, Smartphone, Bot, BarChart3, AlertTriangle } from 'lucide-react';
 import { View } from '@react-three/drei';
 import AnimatedSection from './AnimatedSection';
@@ -49,9 +49,12 @@ const painPoints = [
 export default function ProblemSolution() {
   const [activeIndex, setActiveIndex] = useState(0);
   const containerRef = useRef<HTMLElement>(null);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [, setMounted] = useState(false);
   
-  // HUD update based on active card in stack
-  // ScrollStack handles the actual animation logic
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <section ref={containerRef} className="relative py-12 md:py-24 bg-black overflow-hidden border-t border-white/5">
@@ -79,10 +82,10 @@ export default function ProblemSolution() {
            </p>
         </AnimatedSection>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start min-h-[220vh]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start min-h-[400vh]">
           
           {/* Left: Sticky 3D Diagnostic Environment */}
-          <div className="lg:col-span-5 h-auto lg:h-[80vh] sticky top-20 lg:top-[15vh] flex flex-col items-center justify-center gap-6 pointer-events-none z-30">
+          <div className="lg:col-span-5 h-auto lg:h-[80vh] sticky top-20 lg:top-[12vh] flex flex-col items-center justify-center gap-6 pointer-events-none z-30">
             
             {/* STAGE HUD */}
             <div className="w-full flex flex-col items-center lg:items-start gap-4 font-mono">
@@ -95,14 +98,19 @@ export default function ProblemSolution() {
                </div>
             </div>
 
-            <div className="w-full h-[350px] md:h-[450px] lg:h-[550px] relative rounded-[3rem] overflow-hidden border border-white/10 bg-black/40 backdrop-blur-md shadow-[0_0_100px_rgba(239,68,68,0.15)] pointer-events-auto" id="diagnose-3d-stage">
+            <div 
+              ref={stageRef}
+              className="w-full h-[350px] md:h-[450px] lg:h-[550px] relative rounded-[3rem] overflow-hidden border border-white/10 bg-black/40 backdrop-blur-md shadow-[0_0_100px_rgba(239,68,68,0.15)] pointer-events-auto"
+            >
               <div className="absolute inset-0 z-0">
-                 <View track={document.getElementById('diagnose-3d-stage') as any}>
-                    <ambientLight intensity={1.5} />
-                    <pointLight position={[10, 10, 10]} intensity={3} />
-                    <spotLight position={[5, 10, 5]} angle={0.4} penumbra={1} intensity={25} color="#ef4444" castShadow />
-                    <SystemScanner />
-                 </View>
+                 {stageRef.current && (
+                   <View track={stageRef as any}>
+                      <ambientLight intensity={1.5} />
+                      <pointLight position={[10, 10, 10]} intensity={3} />
+                      <spotLight position={[5, 10, 5]} angle={0.4} penumbra={1} intensity={25} color="#ef4444" castShadow />
+                      <SystemScanner />
+                   </View>
+                 )}
               </div>
               
               {/* Terminal Overlays */}
