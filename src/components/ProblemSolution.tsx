@@ -113,9 +113,9 @@ export default function ProblemSolution() {
                  performance={{ min: 0.5 }}
                  gl={{ antialias: false, powerPreference: "high-performance" }}
                >
-                  <ambientLight intensity={1.5} />
-                  <pointLight position={[10, 10, 10]} intensity={2} />
-                  <spotLight position={[-5, 5, 5]} angle={0.25} penumbra={1} intensity={3} castShadow />
+                  <ambientLight intensity={0.4} />
+                  <pointLight position={[10, 10, 10]} intensity={1} />
+                  <spotLight position={[5, 5, 5]} angle={0.3} penumbra={1} intensity={10} color="#ef4444" castShadow />
                   <SystemScanner />
                </Canvas>
             </div>

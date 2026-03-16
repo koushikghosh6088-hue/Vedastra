@@ -54,57 +54,49 @@ export default function SystemScanner() {
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
       <group>
-        {/* Background Halo / Backglow */}
-        <mesh position={[0, 0, -0.5]}>
-          <planeGeometry args={[5, 4]} />
-          <meshBasicMaterial color="#0ea5e9" transparent opacity={0.03} />
-        </mesh>
-
-        {/* The Diagnostic Computer/Terminal Model */}
+        {/* The Diagnostic High-Tech Terminal (Obsidian Style) */}
         <group ref={meshRef}>
-          {/* Main Monitor Case */}
+          {/* Main Case (Sleek Obsidian) */}
           <mesh position={[0, 0, 0]}>
-            <boxGeometry args={[2.5, 1.8, 0.4]} />
-            <meshStandardMaterial color="#1e293b" roughness={0.2} metalness={0.9} />
-          </mesh>
-
-          {/* Glowing Side Strips */}
-          <mesh position={[-1.26, 0, 0]}>
-            <boxGeometry args={[0.05, 1.6, 0.42]} />
-            <meshBasicMaterial color="#0ea5e9" transparent opacity={0.8} />
-          </mesh>
-          <mesh position={[1.26, 0, 0]}>
-            <boxGeometry args={[0.05, 1.6, 0.42]} />
-            <meshBasicMaterial color="#0ea5e9" transparent opacity={0.8} />
-          </mesh>
-
-          {/* Screen Surface (Glowing) */}
-          <mesh position={[0, 0, 0.21]}>
-            <planeGeometry args={[2.3, 1.6]} />
-            <MeshTransmissionMaterial
-              backside
-              samples={4}
-              thickness={0.5}
-              chromaticAberration={0.05}
-              anisotropy={0.1}
-              distortion={0.2}
-              distortionScale={0.5}
-              temporalDistortion={0.1}
-              color="#0ea5e9"
-              emissive="#0ea5e9"
-              emissiveIntensity={0.5}
-              transparent
-              opacity={0.9}
+            <boxGeometry args={[3, 2, 0.4]} />
+            <meshStandardMaterial 
+              color="#050505" 
+              roughness={0} 
+              metalness={1} 
+              transparent 
+              opacity={0.9} 
             />
           </mesh>
 
-          {/* Inner Electronic "Core" (Visible through screen) */}
-          <mesh position={[0, 0, 0.05]}>
-            <boxGeometry args={[2.1, 1.4, 0.1]} />
+          {/* Red Technical Wireframe Outline */}
+          <mesh position={[0, 0, 0]}>
+            <boxGeometry args={[3.01, 2.01, 0.41]} />
+            <meshBasicMaterial color="#ef4444" wireframe transparent opacity={0.15} />
+          </mesh>
+
+          {/* Screen (Dark Glass) */}
+          <mesh position={[0, 0, 0.21]}>
+            <planeGeometry args={[2.8, 1.8]} />
+            <MeshTransmissionMaterial
+              backside
+              samples={4}
+              thickness={0.2}
+              chromaticAberration={0.1}
+              anisotropy={0.5}
+              distortion={0.1}
+              distortionScale={0.5}
+              temporalDistortion={0.1}
+              color="#000000"
+            />
+          </mesh>
+
+          {/* Holographic Inner Core (Red Grid) */}
+          <mesh position={[0, 0, 0.05]} rotation={[0, 0, Math.PI / 4]}>
+            <boxGeometry args={[1.5, 1.5, 0.1]} />
             <MeshDistortMaterial
-              color="#0ea5e9"
-              speed={2}
-              distort={0.3}
+              color="#ef4444"
+              speed={4}
+              distort={0.4}
               radius={1}
               wireframe
               transparent
@@ -112,28 +104,20 @@ export default function SystemScanner() {
             />
           </mesh>
 
-          {/* Monitor Stand */}
+          {/* Sleek Support Plate */}
           <mesh position={[0, -1.2, -0.1]}>
-            <boxGeometry args={[0.3, 0.8, 0.1]} />
-            <meshStandardMaterial color="#334155" />
-          </mesh>
-          <mesh position={[0, -1.6, 0]}>
-            <boxGeometry args={[1, 0.1, 0.8]} />
-            <meshStandardMaterial color="#1e293b" />
+            <boxGeometry args={[1.2, 0.1, 0.8]} />
+            <meshStandardMaterial color="#0a0a0a" roughness={0} metalness={1} />
           </mesh>
 
-          {/* Glowing Status Lights */}
-          <mesh position={[-1.0, -0.7, 0.22]}>
+          {/* High-Intensity Alert/Status Indicators */}
+          <mesh position={[-1.3, -0.85, 0.22]}>
             <sphereGeometry args={[0.04, 16, 16]} />
             <meshBasicMaterial color="#ef4444" />
           </mesh>
-          <mesh position={[-0.9, -0.7, 0.22]}>
-            <sphereGeometry args={[0.04, 16, 16]} />
-            <meshBasicMaterial color="#10b981" />
-          </mesh>
-          <mesh position={[-0.8, -0.7, 0.22]}>
-            <sphereGeometry args={[0.04, 16, 16]} />
-            <meshBasicMaterial color="#0ea5e9" />
+          <mesh position={[-1.15, -0.85, 0.22]}>
+            <sphereGeometry args={[0.02, 16, 16]} />
+            <meshBasicMaterial color="#ef4444" transparent opacity={0.4} />
           </mesh>
         </group>
 
