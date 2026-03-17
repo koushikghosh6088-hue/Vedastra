@@ -243,10 +243,13 @@ export default function HomePage() {
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subheadlineRef = useRef<HTMLParagraphElement>(null);
   const marqueeRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
   const [isTabActive, setIsTabActive] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const isMarqueeInView = useInView(marqueeRef, { amount: 0.1 });
 
   useEffect(() => {
+    setMounted(true);
     // Visibility API listener to pause animations
     const handleVisibilityChange = () => setIsTabActive(!document.hidden);
     document.addEventListener('visibilitychange', handleVisibilityChange);
@@ -286,10 +289,12 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(14,165,233,0.08)_0%,transparent_70%)] pointer-events-none z-0" />
 
         {/* R3F Hero Scene — High-Impact UI */}
-        <div className="absolute inset-0 z-[2] opacity-40 pointer-events-none" id="hero-3d-container">
-          <View track={document.getElementById('hero-3d-container') as any}>
-            <HeroEnvironment />
-          </View>
+        <div ref={trackRef} className="absolute inset-0 z-[2] opacity-40 pointer-events-none" id="hero-3d-container">
+          {mounted && trackRef.current && (
+            <View track={trackRef as any}>
+              <HeroEnvironment />
+            </View>
+          )}
         </div>
 
         {/* Cinematic Spotlight focal point */}

@@ -231,7 +231,7 @@ const ScrollStack = ({
     const measure = () => {
       cardOffsetsRef.current = cards.map(card => getElementOffset(card));
       const endElement = (useWindowScroll
-        ? document.querySelector('.scroll-stack-end')
+        ? document.querySelector('.scroll-stack-end') as HTMLElement
         : (scrollerRef.current?.querySelector('.scroll-stack-end') as HTMLElement));
       endElementOffsetRef.current = endElement ? getElementOffset(endElement) : 0;
     };
