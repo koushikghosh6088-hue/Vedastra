@@ -1,11 +1,11 @@
 'use client';
 
-import { useRef, useMemo } from 'react';
+import { useRef, useMemo, useState, useEffect } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Plane } from '@react-three/drei';
+import { Plane, View } from '@react-three/drei';
 import * as THREE from 'three';
 
-function MeshBackground() {
+function NebulaBackground() {
   const meshRef = useRef<THREE.Mesh>(null);
   const mouse = useRef({ x: 0, y: 0 });
 
@@ -21,11 +21,13 @@ function MeshBackground() {
       
       // Calculate distance from mouse for interaction
       float dist = distance(uv, uMouse);
-      float glow = 1.0 - smoothstep(0.0, 0.8, dist);
+      float glow = 1.0 - smoothstep(0.0, 1.2, dist);
       
-      // Wave effect
-      float wave = sin(uv.x * 12.0 + uTime) * cos(uv.y * 12.0 + uTime) * 0.2;
-      pos.z += wave + (glow * 0.5);
+      // Multi-layered Wave effect
+      float wave = sin(uv.x * 8.0 + uTime * 0.5) * cos(uv.y * 8.0 + uTime * 0.5) * 0.3;
+      wave += sin(uv.x * 20.0 - uTime * 0.8) * 0.1;
+      
+      pos.z += wave + (glow * 0.8);
       
       vZ = pos.z;
       gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
@@ -36,21 +38,42 @@ function MeshBackground() {
     varying vec2 vUv;
     varying float vZ;
     uniform float uTime;
+    uniform vec2 uMouse;
+
+    // Pseudo-noise function
+    float noise(vec2 p) {
+      return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
+    }
 
     void main() {
       // Create a grid pattern
-      vec2 grid = abs(fract(vUv * 40.0 - 0.5) - 0.5) / fwidth(vUv * 40.0);
+      vec2 grid = abs(fract(vUv * 30.0 - 0.5) - 0.5) / fwidth(vUv * 30.0);
       float line = min(grid.x, grid.y);
       float gridAlpha = 1.0 - smoothstep(0.0, 1.0, line);
       
-      // Color based on height (vZ)
-      vec3 color = mix(vec3(0.02), vec3(0.05, 0.2, 0.4), vZ + 0.2);
+      // Nebula cloud noise
+      float n = noise(vUv * 3.0 + uTime * 0.1);
+      float n2 = noise(vUv * 5.0 - uTime * 0.05);
+      float nebula = smoothstep(0.4, 0.6, (n + n2) * 0.5);
+      
+      // Dynamic colors
+      vec3 baseColor = vec3(0.01, 0.01, 0.02); // Deep Obsidian
+      vec3 blueNebula = vec3(0.05, 0.4, 0.8) * 0.2; // Dim Blue
+      vec3 limeGlow = vec3(0.75, 1.0, 0.0) * 0.05; // Faint Neon Lime
+      
+      vec3 finalColor = mix(baseColor, blueNebula, nebula);
+      finalColor = mix(finalColor, limeGlow, vZ * 0.5);
       
       // Add pulsing glow to grid lines
-      float pulse = (sin(uTime * 2.0) * 0.5 + 0.5) * 0.1;
-      float finalAlpha = (gridAlpha * 0.1) + pulse;
+      float pulse = (sin(uTime * 1.5) * 0.5 + 0.5) * 0.05;
+      float alpha = (gridAlpha * 0.05) + pulse + (vZ * 0.1);
       
-      gl_FragColor = vec4(color, finalAlpha);
+      // Mouse interaction glow
+      float dist = distance(vUv, uMouse);
+      float mouseGlow = 1.0 - smoothstep(0.0, 0.6, dist);
+      finalColor += vec3(0.05, 0.2, 0.5) * mouseGlow * 0.3;
+      
+      gl_FragColor = vec4(finalColor, alpha * 0.8);
     }
   `;
 
@@ -69,34 +92,48 @@ function MeshBackground() {
     uniforms.uMouse.value.set(mouse.current.x, mouse.current.y);
 
     if (meshRef.current) {
-      meshRef.current.rotation.z = clock.getElapsedTime() * 0.02;
+      meshRef.current.rotation.z = clock.getElapsedTime() * 0.01;
     }
   });
 
   return (
-    <Plane ref={meshRef} args={[20, 20, 64, 64]} rotation={[-Math.PI / 3, 0, 0]}>
+    <Plane ref={meshRef} args={[25, 25, 128, 128]} rotation={[-Math.PI / 4, 0, 0]}>
       <shaderMaterial
         transparent
         vertexShader={vertexShader}
         fragmentShader={fragmentShader}
         uniforms={uniforms}
         side={THREE.DoubleSide}
+        blending={THREE.AdditiveBlending}
       />
     </Plane>
   );
 }
 
-import { View } from '@react-three/drei';
-
 export default function AnimatedBackgroundMesh() {
   const container = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return <div className="fixed inset-0 -z-10 bg-black" />;
 
   return (
     <div ref={container} className="fixed inset-0 -z-10 bg-black overflow-hidden pointer-events-none">
       <View track={container as any}>
-        <MeshBackground />
+        <NebulaBackground />
       </View>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black pointer-events-none" />
+      
+      {/* Drifting Macro-Orbs */}
+      <div className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[120px] animate-orb-float" />
+      <div className="absolute bottom-[20%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-blue-400/5 blur-[150px] animate-orb-float [animation-delay:-5s]" />
+      <div className="absolute top-[60%] left-[-10%] w-[30vw] h-[30vw] rounded-full bg-purple-500/5 blur-[100px] animate-orb-float [animation-delay:-12s]" />
+
+      {/* Atmospheric Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none opacity-60" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] pointer-events-none opacity-40" />
     </div>
   );
 }

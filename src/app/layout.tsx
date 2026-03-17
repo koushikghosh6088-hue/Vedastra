@@ -40,6 +40,8 @@ export default function RootLayout({
       <body className="bg-black text-white font-body antialiased min-h-screen">
         <Preloader />
         <CustomCursor />
+        {/* Global Cinematic Grain Overlay */}
+        <div className="grain-overlay" />
         {/* Floating Shell Container */}
         <div className="max-w-[1600px] mx-auto min-h-screen bg-obsidian/40 backdrop-blur-sm rounded-[2.5rem] ring-1 ring-white/10 shadow-2xl relative overflow-hidden flex flex-col my-4">
           <AnimatedBackgroundMesh />
