@@ -29,12 +29,16 @@ export default function RadialOrbitalTimeline({
   const [activeNodeId, setActiveNodeId] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [radius, setRadius] = useState(200);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 640) {
-        setRadius(Math.min((window.innerWidth / 2) - 40, 160));
-      } else if (window.innerWidth < 1024) {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      
+      if (width < 640) {
+        setRadius(Math.min((width / 2) - 40, 160));
+      } else if (width < 1024) {
         setRadius(170);
       } else {
         setRadius(200);
@@ -48,7 +52,9 @@ export default function RadialOrbitalTimeline({
 
   const toggleItem = (id: number) => {
     setExpandedItems((prev) => {
-      const newState = { [id]: !prev[id] };
+      const isCurrentlyExpanded = prev[id];
+      const newState = { [id]: !isCurrentlyExpanded };
+      
       if (newState[id]) {
         setActiveNodeId(id);
         setAutoRotate(false);
@@ -252,7 +258,20 @@ export default function RadialOrbitalTimeline({
                     initial={{ opacity: 0, scale: 0.9, y: 40 }}
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 0.9, y: 30 }}
-                    className="absolute top-24 left-1/2 -translate-x-1/2 w-[290px] sm:w-[340px] z-[600]"
+                    className={`
+                      absolute z-[600] 
+                      ${isMobile 
+                        ? "fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[calc(100vw-48px)] max-w-[340px]" 
+                        : "top-24 left-1/2 -translate-x-1/2 w-[340px]"
+                      }
+                    `}
+                    style={{
+                      // Reset parent transform on mobile if using fixed
+                      transform: isMobile ? 'translate(-50%, -50%)' : undefined,
+                      left: isMobile ? '50%' : '50%',
+                      top: isMobile ? '50%' : '100px',
+                      position: isMobile ? 'fixed' : 'absolute',
+                    }}
                   >
                     <div className="relative glass-premium p-7 rounded-[2.5rem] border-white/20 shadow-2xl overflow-hidden group/card bg-black/95">
                       {/* Border Beam Logic - Intensified Glow */}
@@ -311,6 +330,16 @@ export default function RadialOrbitalTimeline({
                             </div>
                           )}
                         </div>
+                        
+                        {/* Close button for mobile accessibility */}
+                        {isMobile && (
+                          <button 
+                            className="mt-6 w-full py-3 rounded-2xl bg-white/5 border border-white/10 font-mono text-[10px] uppercase tracking-widest text-white/40 active:bg-blue-400/10 active:text-blue-400 transition-colors"
+                            onClick={(e) => { e.stopPropagation(); setExpandedItems({}); setActiveNodeId(null); setAutoRotate(true); }}
+                          >
+                            Close Protocol
+                          </button>
+                        )}
                       </div>
                     </div>
                   </motion.div>
