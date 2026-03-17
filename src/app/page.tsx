@@ -304,7 +304,7 @@ export default function HomePage() {
         />
 
         {/* Spline 3D Robot — Positioned right, on top of gradients for clarity */}
-        <div className="absolute right-0 top-[-5%] sm:top-0 w-full h-full sm:w-[75%] lg:w-[65%] 2xl:w-[55%] z-[10] scale-110 md:scale-100">
+        <div className="absolute right-0 top-[2%] sm:top-0 w-full h-[110%] sm:h-full sm:w-[75%] lg:w-[65%] 2xl:w-[55%] z-[10] scale-[1.15] xs:scale-110 sm:scale-110 md:scale-100 origin-top">
           <SplineScene 
             scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
             className="w-full h-full"
