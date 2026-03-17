@@ -8,45 +8,56 @@ import Link from 'next/link';
 const services = [
   {
     title: "Website Development",
-    subtitle: "HIGH-FIDELITY WEB SYSTEMS",
-    description: "We architect sub-400ms neural ecosystems that aren't just websites—they're high-performance conversion engines designed for global dominance.",
-    bullets: ["Next.js App Router Architecture", "Sub-400ms Interaction Latency", "Global CDN Deployment", "SEO Dominance Framework"],
-    stats: { label: "Performance Lift", val: "+320%" },
+    subtitle: "Website Development",
+    description: "Every second your website takes to load, you lose a potential customer. We build fast, stunning websites that look world-class and convert visitors into paying clients.",
+    bullets: ["Fast-loading architectures", "Custom designs", "Conversion-focused logic", "SEO optimized"],
+    stats: { label: "Conversion Increase", val: "45%+" },
     icon: Server,
     color: "from-blue-600 to-cyan-400",
     image: "/3d-icons/web_dev.png"
   },
   {
     title: "Mobile App Development",
-    subtitle: "OMNICHANNEL DOMINANCE",
-    description: "Your clients are everywhere; your digital presence should be too. We create seamless, platform-agnostic native experiences.",
-    bullets: ["iOS & Android Native Performance", "Liquid UI/UX Design", "Offline-First Synchronization", "Biometric Authentication"],
-    stats: { label: "Mobile Retention", val: "+185%" },
+    subtitle: "Mobile Apps",
+    description: "Your customers live on their phones. We build iOS and Android apps that work flawlessly on every device — keeping your brand accessible and front-of-mind 24/7.",
+    bullets: ["iOS & Android development", "React Native efficiency", "Native-like performance", "In-app engagement"],
+    stats: { label: "User Retention", val: "+185%" },
     icon: Smartphone,
     color: "from-purple-600 to-fuchsia-400",
     image: "/3d-icons/mobile_app.png"
   },
   {
-    title: "AI Solutions",
-    subtitle: "CONVERSATIONAL SUPREMACY",
-    description: "Scale without overhead. Our intelligent algorithms intercept, engage, and convert leads 24/7 across all channels.",
-    bullets: ["Autonomous AI Calling Agents", "RAG-Based AI Messaging Chatbots", "Custom Neural Workflow Automation", "Lead Selection Algorithms"],
-    stats: { label: "Operating Cost", val: "-60%" },
+    title: "AI Calling & Chat Agents",
+    subtitle: "AI Agents",
+    description: "Imagine a salesperson who works 24/7, never takes a day off, and responds to every lead in under a second. Our AI agents handle calls, chats, and lead qualification automatically — so you close more deals without adding headcount.",
+    bullets: ["AI Phone Support", "Lead Qualification", "24/7 Chat Agents", "CRM Integration"],
+    stats: { label: "More Leads Converted", val: "3x–5x" },
     icon: Cpu,
     color: "from-emerald-600 to-lime-400",
     image: "/3d-icons/ai_calling.png"
   },
   {
+    title: "AI Workflow Automation",
+    subtitle: "Business Automation",
+    description: "Stop wasting hours on repetitive tasks. We automate follow-up emails, data entry, reporting, invoicing, and more — so your team can focus on what actually grows your business.",
+    bullets: ["Workflow automation", "Data handling", "Error elimination", "Time saving"],
+    stats: { label: "Repetitive Tasks Eliminated", val: "-90%" },
+    icon: Server,
+    color: "from-fuchsia-600 to-pink-400",
+    image: "/3d-icons/automation.png"
+  },
+  {
     title: "Digital Marketing",
-    subtitle: "ALGORITHMIC GROWTH",
-    description: "Ditch the guesswork. We deploy data-driven targeting protocols and viral content loops that put your brand where your audience lives.",
-    bullets: ["AI-Driven Ad Targeting", "Viral ROI Content Loops", "Conversion Funnel Engineering", "Real-time Multi-Channel Analytics"],
-    stats: { label: "ROAS Average", val: "8.4x" },
+    subtitle: "Digital Marketing",
+    description: "Stop guessing and start growing. We run targeted ad campaigns, SEO, and content strategies that put your business in front of people actively searching for what you offer.",
+    bullets: ["Ad targeting", "SEO strategy", "Viral content", "Data analytics"],
+    stats: { label: "Avg Return on Ad Spend", val: "8.4x" },
     icon: BarChart3,
     color: "from-amber-600 to-orange-400",
     image: "/3d-icons/digital_marketing.png"
   }
 ];
+
 
 export default function ServicesDeepDive() {
   return (
@@ -65,9 +76,10 @@ export default function ServicesDeepDive() {
                       <span className="font-mono text-[10px] uppercase tracking-widest text-blue-400">{service.subtitle}</span>
                     </div>
                     <h2 className="text-[3rem] md:text-[5rem] font-heading font-black leading-[0.9] tracking-tighter uppercase mb-8">
-                      {service.title.split(' ')[0]} <br/>
-                      <span className="gradient-text italic opacity-90">{service.title.split(' ').slice(1).join(' ')}</span>
+                      {service.title.split(' & ')[0]} <br/>
+                      <span className="gradient-text italic opacity-90">{service.title.split(' & ').slice(1).join(' & ')}</span>
                     </h2>
+
                     <p className="text-white/60 font-mono text-sm md:text-base leading-relaxed mb-10 max-w-xl">
                       {service.description}
                     </p>

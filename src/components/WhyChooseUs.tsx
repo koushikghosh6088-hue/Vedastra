@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { Rocket, Smartphone, Bot, Workflow, Globe, Zap, ArrowRight } from 'lucide-react';
+import { Rocket, Smartphone, Bot, Workflow, Globe, Zap, ArrowRight, Target, Users } from 'lucide-react';
 import { useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,13 +9,13 @@ import Link from 'next/link';
 const cards = [
   {
     id: 1,
-    title: "Website Development",
-    subtitle: "High-Fidelity Web Systems",
-    description: "In the digital frontier, milliseconds are the difference between a lead and a lost opportunity. We architect sub-400ms neural ecosystems that aren't just websites—they're high-performance conversion engines designed for global dominance.",
-    icon: Globe,
+    title: "We're Faster",
+    subtitle: "Why Us",
+    description: "Most agencies take 3–6 months to deliver. We deliver most projects in 3–6 weeks without cutting a single corner.",
+    icon: Zap,
     stats: [
-      { label: 'Avg Speed Increase', val: '320%' },
-      { label: 'Conversion Lift', val: '45%+' },
+      { label: 'Delivery Time', val: '3–6 Weeks' },
+      { label: 'Efficiency', val: '100%' },
     ],
     color: "from-blue-600 to-cyan-400",
     textAccent: "text-blue-400",
@@ -30,13 +30,13 @@ const cards = [
   },
   {
     id: 2,
-    title: "Mobile App Development",
-    subtitle: "Omnichannel Dominance",
-    description: "Your clients are everywhere; your digital presence should be too. We create seamless, platform-agnostic native experiences that adapt liquidly from a 4K desktop display to the smartphone in their pocket.",
-    icon: Smartphone,
+    title: "We Focus on Results",
+    subtitle: "Why Us",
+    description: "A pretty website that doesn't convert is worthless. Everything we build is designed to bring you more customers and more revenue.",
+    icon: Target,
     stats: [
-      { label: 'Mobile Retention', val: '+185%' },
-      { label: 'Cross-platform UX', val: '100%' },
+      { label: 'Core Focus', val: 'Revenue' },
+      { label: 'Goal', val: 'Conversion' },
     ],
     color: "from-purple-600 to-fuchsia-400",
     textAccent: "text-purple-400",
@@ -51,13 +51,13 @@ const cards = [
   },
   {
     id: 3,
-    title: "AI Autonomous Agents",
-    subtitle: "Conversational Supremacy",
-    description: "Scale without overhead. Our intelligent voice & messaging algorithms intercept, engage, and convert leads 24/7 across Phone, SMS, and Web. It’s an elite digital workforce that never sleeps and always sounds human.",
+    title: "We Use AI To Work Smarter",
+    subtitle: "Why Us",
+    description: "We combine human creativity with AI tools to build better products, faster and at a fraction of the cost of traditional agencies.",
     icon: Bot,
     stats: [
-      { label: 'Operating Cost', val: '-60%' },
-      { label: 'Lead Volume', val: '3x-5x' },
+      { label: 'Tech Stack', val: 'AI-Enhanced' },
+      { label: 'Cost Savings', val: 'Significant' },
     ],
     color: "from-emerald-600 to-lime-400",
     textAccent: "text-emerald-400",
@@ -72,13 +72,13 @@ const cards = [
   },
   {
     id: 4,
-    title: "AI Workflow Automation",
-    subtitle: "Operational Velocity",
-    description: "Eliminate bottlenecks and human error. We build custom neural automation pipelines that instantly sync your CRM, data handling, and internal communications into one seamless, lightning-fast digital factory.",
-    icon: Workflow,
+    title: "We're Partners, Not Vendors",
+    subtitle: "Why Us",
+    description: "We don't disappear after launch. We stay with you, support you, and grow with you long-term.",
+    icon: Users,
     stats: [
-      { label: 'Manual Tasks', val: '-90%' },
-      { label: 'System Uptime', val: '99.9%' },
+      { label: 'Relationship', val: 'Long-term' },
+      { label: 'Support', val: 'Ongoing' },
     ],
     color: "from-fuchsia-600 to-pink-400",
     textAccent: "text-fuchsia-400",
@@ -89,30 +89,10 @@ const cards = [
     shadow: "shadow-[0_0_20px_2px_rgba(192,38,211,0.2)]",
     solidColor: "bg-fuchsia-500",
     imageSrc: "/3d-icons/ai_automation.png",
-    link: "/ai-solutions"
-  },
-  {
-    id: 5,
-    title: "Digital Marketing",
-    subtitle: "Algorithmic Growth",
-    description: "Ditch the guesswork. We deploy data-driven targeting protocols and viral content loops that put your brand exactly where your audience lives. Stop chasing leads; start being the destination they can't ignore.",
-    icon: Rocket,
-    stats: [
-      { label: 'Ad Performance', val: '+210%' },
-      { label: 'ROAS Average', val: '8.4x' },
-    ],
-    color: "from-amber-600 to-orange-400",
-    textAccent: "text-amber-400",
-    bgAccent: "bg-amber-400/10",
-    borderAccent: "border-amber-400/20",
-    glowAccent: "bg-amber-400/20",
-    nodeBorder: "border-amber-400",
-    shadow: "shadow-[0_0_20px_2px_rgba(245,158,11,0.2)]",
-    solidColor: "bg-amber-500",
-    imageSrc: "/3d-icons/digital_marketing.png",
-    link: "/services"
+    link: "/about"
   }
 ];
+
 
 // Interactive 3D Image Component
 function Floating3DImage({ imageSrc, solidColor, index }: { imageSrc: string, solidColor: string, index: number }) {
@@ -193,11 +173,12 @@ export default function WhyChooseUs() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 mb-6 backdrop-blur-md">
             <Zap className="w-3.5 h-3.5 text-[#0ea5e9] animate-pulse" />
-            <span className="font-mono text-xs uppercase tracking-widest text-[#0ea5e9]">Why Partner With Us</span>
+            <span className="font-mono text-xs uppercase tracking-widest text-[#0ea5e9]">Why Us</span>
           </div>
           <h2 className="text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-heading font-black leading-none tracking-tighter uppercase mb-6">
-            THE <span className="gradient-text italic text-[#0ea5e9]">NEW STANDARD</span><br/>OF GROWTH
+            WHY BUSINESSES CHOOSE <span className="gradient-text italic text-[#0ea5e9]">JOINT</span> OVER OTHER AGENCIES
           </h2>
+
           <p className="font-mono text-sm md:text-base text-white/40 uppercase tracking-[0.2em] max-w-2xl mx-auto">
             Every system below represents a non-negotiable pillar of your digital dominance.
           </p>

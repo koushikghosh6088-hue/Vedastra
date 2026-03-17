@@ -83,7 +83,7 @@ export default function Navbar() {
                   href="/contact"
                   className="bg-blue-400 text-black px-6 py-2.5 rounded-full text-sm font-bold shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:scale-105 transition-all flex items-center gap-2"
                 >
-                  <PhoneCall className="w-4 h-4" /> Book a call
+                  <PhoneCall className="w-4 h-4" /> Start Your Project
                 </Link>
               </motion.div>
             )}
@@ -99,7 +99,7 @@ export default function Navbar() {
                 href="/contact"
                 className="bg-white text-black hover:bg-blue-400 hover:shadow-[0_0_30px_rgba(14,165,233,0.3)] transition-all duration-300 px-6 py-2.5 rounded-full text-sm font-bold"
               >
-                Start Project
+                Start Your Project
               </Link>
             )}
           </div>
@@ -167,7 +167,7 @@ export default function Navbar() {
                   onClick={() => setIsOpen(false)}
                   className="bg-blue-400 block text-center text-black font-bold px-6 py-4 rounded-xl text-sm"
                 >
-                  Start Project
+                  Start Your Project
                 </Link>
               </motion.div>
             </div>

@@ -7,42 +7,34 @@ import AnimatedSection from './AnimatedSection';
 
 const painPoints = [
   {
-    id: "SYS-01: WEB",
-    problem: "Invisible or Outdated Web Presence",
-    details: "You either don't have a website, or your current one is slow, outdated, and actively bleeding potential customers.",
-    solution: "We build sub-400ms High-Fidelity Conversion Engines. Dominate your niche with a modern, ultra-fast web architecture.",
+    id: "Problem #1",
+    problem: "You Don't Have a Website — Or It's Embarrassingly Outdated",
+    details: "If your website loads slowly, looks old, or doesn't exist — you're handing customers to your competitors every single day without realizing it.",
+    solution: "We build fast, modern websites designed to turn visitors into paying customers — not just look pretty.",
     icon: Globe,
-    metrics: "40% Visitor Bounce Rate",
+    metrics: "40% of visitors leave in under 3 seconds",
     color: "blue"
   },
   {
-    id: "SYS-02: MOBILE",
-    problem: "Zero Mobile Strategy",
-    details: "In a mobile-first world, lacking a native app means you are losing daily engagement and retention to competitors.",
-    solution: "Deploy Seamless Omnichannel Native Apps. Keep your brand in your customers' pockets 24/7.",
+    id: "Problem #2",
+    problem: "Your Business Isn't In Your Customer's Pocket",
+    details: "80% of people browse on their phones. If you don't have a mobile app or a mobile-friendly experience, you're invisible to most of your potential customers.",
+    solution: "We build iOS & Android apps that keep your brand accessible and keep customers coming back.",
     icon: Smartphone,
-    metrics: "Lost Daily Active Users",
+    metrics: "Customers choose competitors with better mobile experiences",
     color: "purple"
   },
   {
-    id: "SYS-03: AI",
-    problem: "Leads Going Cold",
-    details: "Human support is too slow. Leads inquire after hours and go cold before your team can ever respond.",
-    solution: "Initialize 24/7 Autonomous Neural Agents. Intercept, qualify, and book leads instantly, at any hour.",
-    icon: Bot,
-    metrics: "72h Avg. Response Delay",
-    color: "emerald"
-  },
-  {
-    id: "SYS-04: GROWTH",
-    problem: "Burning Ad Spend",
-    details: "Pouring money into generic marketing campaigns that generate clicks but fail to deliver actual ROI.",
-    solution: "Implement Algorithmic Growth Loops. Data-driven targeting that puts your brand exactly where it needs to be.",
+    id: "Problem #3",
+    problem: "You're Spending on Ads But Not Seeing Results",
+    details: "Running ads without the right strategy is like pouring water into a leaky bucket. Most businesses waste over 60% of their ad budget on people who will never buy.",
+    solution: "We run data-driven campaigns with proven targeting so every dollar you spend brings in real customers.",
     icon: BarChart3,
-    metrics: "Declining ROAS",
-    color: "amber"
+    metrics: "Most businesses waste 60%+ of their ad budget",
+    color: "emerald"
   }
 ];
+
 
 export default function ProblemSolution() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -109,18 +101,19 @@ export default function ProblemSolution() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500"></span>
               </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.5em] text-red-500 font-black">Scanning_Protocol_Active</span>
+              <span className="font-mono text-[11px] uppercase tracking-[0.5em] text-red-500 font-black">Common Problems We Solve</span>
             </div>
             
             <h2 className="text-[4rem] md:text-[6.5rem] lg:text-[8.5rem] font-heading font-black leading-[0.75] tracking-tighter uppercase mb-2">
-              <span className="text-white block">REVEALING</span>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-red-500 to-orange-400 italic">SYSTEM_FLOOD</span>
+              <span className="text-white block">IS YOUR BUSINESS</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-red-500 to-orange-400 italic">LOSING CUSTOMERS ONLINE?</span>
             </h2>
             <div className="flex items-center justify-center gap-4 font-mono text-red-500/40 text-[10px] tracking-[0.4em] uppercase font-bold">
                <div className="w-12 h-px bg-red-500/20" />
-               Critical Breach Analysis Stage 04
+               These are the 3 biggest reasons businesses fail to grow digitally — and exactly how we fix them.
                <div className="w-12 h-px bg-red-500/20" />
             </div>
+
           </AnimatedSection>
         </div>
 

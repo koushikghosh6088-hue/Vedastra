@@ -8,27 +8,48 @@ import Link from 'next/link';
 const tiers = [
   {
     name: "Starter",
-    description: "Ideal for startups and small-scale digital presence.",
-    features: ["Custom Web Architecture", "Basic AI Integration", "Mobile Optimization", "Standard Support"],
+    description: "Perfect for small businesses and startups getting online for the first time.",
+    features: [
+      "Custom Website Design & Development",
+      "Mobile-Responsive Design",
+      "Basic AI Chatbot",
+      "3 Months Free Support",
+      "Fast Hosting Setup"
+    ],
     icon: Zap,
     highlight: false
   },
   {
     name: "Growth",
-    description: "Most popular for scaling enterprises needing full automation.",
-    features: ["Website + Mobile App", "Autonomous AI Agents", "Full Marketing Protocol", "Priority Neural Support", "Scalable Infrastructure"],
+    description: "For growing businesses that want a full digital presence and automation.",
+    features: [
+      "Website + Mobile App",
+      "AI Calling & Chat Agents",
+      "Digital Marketing Setup",
+      "Business Automation Workflows",
+      "Priority Support",
+      "Scalable Hosting"
+    ],
     icon: Rocket,
     highlight: true,
     badge: "MOST POPULAR"
   },
   {
     name: "Enterprise",
-    description: "Bespoke digital ecosystems for global dominance.",
-    features: ["Full Stack Ecosystem", "Unlimited AI Workflows", "Dedicated Dev Syndicate", "Zero-Latency Hosting", "24/7 Mission Control"],
+    description: "For established businesses that need a complete custom digital ecosystem.",
+    features: [
+      "Full Website + App + AI Stack",
+      "Custom AI Workflows & Automations",
+      "Dedicated Development Team",
+      "Advanced Analytics Dashboard",
+      "Premium Hosting & Security",
+      "24/7 Support & Monitoring"
+    ],
     icon: Crown,
     highlight: false
   }
 ];
+
 
 export default function PricingSection() {
   return (
@@ -38,14 +59,15 @@ export default function PricingSection() {
           <AnimatedSection>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              <span className="font-mono text-xs uppercase tracking-widest text-blue-400">Project Tiers</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-blue-400">Pricing</span>
             </div>
             <h2 className="text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-heading font-black leading-none tracking-tighter uppercase mb-6">
-              INVEST IN <br/><span className="gradient-text italic text-blue-400">DOMINANCE.</span>
+              SIMPLE, HONEST <br/><span className="gradient-text italic text-blue-400">PRICING.</span>
             </h2>
             <p className="font-mono text-sm md:text-base text-white/40 uppercase tracking-[0.2em] max-w-2xl mx-auto">
-              Choose your level of operational velocity.
+              No hidden fees. No surprise bills. Every project gets a custom quote based on exactly what you need.
             </p>
+
           </AnimatedSection>
         </div>
 
@@ -87,7 +109,8 @@ export default function PricingSection() {
                   href="/contact" 
                   className={`w-full py-5 rounded-2xl font-black font-mono tracking-widest uppercase transition-all flex items-center justify-center gap-3 ${tier.highlight ? 'bg-blue-400 text-black shadow-[0_0_30px_rgba(14,165,233,0.3)] hover:bg-white' : 'bg-white/5 text-white border border-white/10 hover:bg-white/10'}`}
                 >
-                  Get Custom Quote <ArrowRight className="w-4 h-4" />
+                  Get a Free Quote <ArrowRight className="w-4 h-4" />
+
                 </Link>
 
                 {/* Background Decor */}

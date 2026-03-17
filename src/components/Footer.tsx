@@ -42,7 +42,7 @@ export default function Footer() {
               <span className="font-heading font-bold text-xl tracking-tight uppercase">Joint WebSolutions</span>
             </Link>
             <p className="text-white/50 text-sm leading-relaxed max-w-sm mb-8 font-mono">
-              ENGINEERING NEXT-GEN DIGITAL EXPERIENCES THROUGH AI AND HIGH-PERFORMANCE WEB ARCHITECTURES.
+              We build websites, apps, and AI tools that help businesses grow faster and work smarter.
             </p>
             <div className="flex gap-4">
               {[Twitter, Github, Linkedin].map((Icon, i) => (

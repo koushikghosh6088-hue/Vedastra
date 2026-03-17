@@ -25,7 +25,7 @@ export default function WhatsAppButton() {
         
         {/* Tooltip */}
         <div className="absolute right-full mr-4 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/10 rounded-xl text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0 pointer-events-none">
-          CHAT WITH US ON WHATSAPP
+          💬 Chat With Us on WhatsApp
         </div>
       </a>
     </motion.div>

@@ -17,18 +17,20 @@ const PresentationControls = dynamic(() => import('@react-three/drei').then(mod 
 const Environment = dynamic(() => import('@react-three/drei').then(mod => mod.Environment), { ssr: false });
 
 const stats = [
-  { value: '150+', label: 'Systems Deployed', icon: Zap },
-  { value: '50+', label: 'Global Contracts', icon: Globe },
-  { value: '15+', label: 'AI Engineers', icon: Users },
-  { value: '5+', label: 'Years Dev', icon: Award },
+  { value: '150+', label: 'Projects Delivered', icon: Zap },
+  { value: '50+', label: 'Happy Clients', icon: Globe },
+  { value: '20+', label: 'Tech Awards', icon: Award },
+  { value: '5+', label: 'Years Experience', icon: Users },
 ];
 
+
 const values = [
-  { icon: Zap, title: 'Constant Innovation', desc: 'Deploying cutting-edge AI architectures ahead of market saturation.' },
-  { icon: Target, title: 'Absolute Precision', desc: 'Surgical focus on delivering measurable ROI and operational efficiency.' },
-  { icon: Eye, title: 'Radical Transparency', desc: 'Open-book engineering, honest timelines, zero hidden technical debt.' },
-  { icon: Heart, title: 'Partnership First', desc: 'Building enterprise infrastructure meant to generate long-term value.' },
+  { icon: Zap, title: 'Speed', desc: 'Seconds matter. We build everything for maximum performance.' },
+  { icon: Target, title: 'Results', desc: 'We don\'t care about "pretty" unless it actually grows your business.' },
+  { icon: Heart, title: 'Partnership', desc: 'We work with you, not just for you. Your success is our success.' },
+  { icon: Award, title: 'Innovation', desc: 'We use the latest AI and tech tools to give you an edge.' },
 ];
+
 
 const team = [
   { name: 'Alex Johnson', role: 'Chief Executive Officer' },
@@ -59,22 +61,16 @@ export default function AboutPage() {
               <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-premium border-blue-400/20 mb-8 magnetic-wrap">
                 <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
                 <span className="font-mono text-[10px] uppercase tracking-widest text-blue-400/80">
-                  Mission Protocol // Active
+                  Who We Are // Active
                 </span>
               </div>
               <h1 className="text-[4.5rem] md:text-[6.5rem] lg:text-[8rem] font-heading font-extrabold leading-[0.8] tracking-tighter mb-8 text-white">
-                THE JOINT<br />
-                <span className="gradient-text italic">PHILOSOPHY</span>
+                WE BUILD THE <br />
+                <span className="gradient-text italic">DIGITAL FUTURE.</span>
               </h1>
-              <TypewriterSubline 
-                phrases={[
-                  "Engineering Enterprise Architecture",
-                  "Logic-Driven Performance Labs",
-                  "Next-Generation AI Processing",
-                  "Immersive Interface Engineering"
-                ]}
-                className="mb-10 text-xl md:text-2xl justify-center lg:justify-start"
-              />
+              <p className="mb-10 text-xl md:text-2xl text-white/40 font-mono uppercase tracking-[0.2em] max-w-2xl">
+                We build fast, secure, and beautiful digital products that help your business grow.
+              </p>
             </motion.div>
 
             {/* Interactive Hero Visual Piece */}
@@ -124,7 +120,7 @@ export default function AboutPage() {
             <AnimatedSection className="lg:col-span-5 sticky top-32">
               <span className="font-mono text-xs tracking-widest uppercase block mb-6 text-white/40">Our Story</span>
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-8 text-white">
-                From Startup to <span className="text-blue-400">Global Agency</span>
+                HOW WE <span className="text-blue-400">STARTED</span>
               </h2>
               <div className="space-y-6 text-white/50 text-xl font-mono font-light leading-relaxed">
                 <p>Joint WebSolutions was forged with a singular mandate: to engineer cutting-edge AI and web architecture accessible to agile enterprises.</p>
@@ -138,12 +134,10 @@ export default function AboutPage() {
                 <div className="space-y-0 relative before:absolute before:inset-y-0 before:left-[17px] md:before:left-[21px] before:w-px before:bg-gradient-to-b before:from-blue-400 before:via-white/10 before:to-transparent">
                 <div className="space-y-0 relative before:absolute before:inset-y-0 before:left-[17px] md:before:left-[21px] before:w-px before:bg-gradient-to-b before:from-[#0ea5e9] before:via-white/10 before:to-transparent">
                   {[
-                    { year: '2019', event: 'Founded Joint WebSolutions', detail: 'Initialized with a focus on enterprise-grade web architecture.' },
-                    { year: '2020', event: 'Launched AI Engineering unit', detail: 'Integration of neural processing for automated decision logic.' },
-                    { year: '2021', event: 'Global infrastructure expansion', detail: 'Edge deployment across 12 primary clusters worldwide.' },
-                    { year: '2022', event: 'Deployed v1 AI Voice Agents', detail: 'Sub-500ms conversational agents for enterprise client management.' },
-                    { year: '2023', event: '100+ active enterprise clusters', detail: 'Scale achieved through autonomous optimization protocols.' },
-                    { year: '2024', event: 'Omnichannel Automation Engine', detail: 'Self-healing workflows deployed for mission-critical operations.' },
+                    { year: '2019', event: 'The Start', detail: 'Joint WebSolutions was founded with a mission to simplify web development.' },
+                    { year: '2021', event: 'Growing Fast', detail: 'We reached our 50th project and expanded into mobile app development.' },
+                    { year: '2023', event: 'AI Integration', detail: 'We launched our first AI calling and chat agents for lead qualification.' },
+                    { year: '2024', event: 'Global Growth', detail: 'Now supporting over 50+ happy clients worldwide with a full tech stack.' },
                   ].map((item, i) => (
                     <motion.div 
                       key={item.year} 
@@ -213,8 +207,9 @@ export default function AboutPage() {
               <span className="gradient-text italic">THE SYNDICATE</span>
             </h2>
             <p className="font-mono text-white/40 uppercase tracking-widest text-sm max-w-xl mx-auto">
-              Elite developers, designers, and AI architects
+              The designers, developers, and AI specialists behind your project.
             </p>
+
           </AnimatedSection>
           
           <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
@@ -261,14 +256,15 @@ export default function AboutPage() {
         <div className="max-w-[1550px] mx-auto px-6 text-center relative z-10">
           <AnimatedSection>
             <h2 className="text-[4rem] md:text-[5rem] font-heading font-black tracking-tighter mb-6">
-              ENGAGE <span className="text-blue-400 italic">SYSTEMS</span>
+              WANT TO <span className="text-blue-400 italic">JOIN US?</span>
             </h2>
             <p className="font-mono text-sm text-white/40 uppercase tracking-widest max-w-xl mx-auto mb-10">
-              Ready to construct the next era of your enterprise?
+              Let's build something world-class together.
             </p>
             <Link href="/contact" className="btn-primary group">
-              Establish Contact <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              Start Your Project <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
+
           </AnimatedSection>
         </div>
       </section>

@@ -44,7 +44,7 @@ export default function Preloader() {
             onClick={handleSkip}
             className="absolute top-10 right-10 z-50 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full font-mono text-[10px] uppercase tracking-widest text-white/50 hover:text-white transition-all group"
           >
-            SKIP_PROTOCOL <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
+            SKIP INTRO <span className="inline-block group-hover:translate-x-1 transition-transform">→</span>
           </motion.button>
 
           <div className="relative w-80">
@@ -52,7 +52,7 @@ export default function Preloader() {
             <div className="flex justify-between items-end mb-4">
               <div className="space-y-1">
                 <p className="text-[10px] font-mono text-blue-400 uppercase tracking-[0.3em]">System Initialization</p>
-                <h2 className="text-xl font-heading font-black text-white uppercase tracking-tighter">Joint Protocol 8.0</h2>
+                <h2 className="text-xl font-heading font-black text-white uppercase tracking-tighter">Joint WebSolutions / Loading...</h2>
               </div>
               <p className="text-xl font-mono text-blue-400 font-bold">{Math.floor(progress)}%</p>
             </div>

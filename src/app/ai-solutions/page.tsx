@@ -30,10 +30,10 @@ export default function AISolutionsPage() {
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
             <span className="font-mono text-[10px] tracking-widest uppercase block mb-6 text-blue-400">
               <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse inline-block mr-2" />
-              Autonomous Agents
+              AI & Automation
             </span>
             <h1 className="text-[4rem] md:text-[6rem] lg:text-[7.5rem] font-heading font-extrabold leading-[0.85] tracking-tighter mb-8 max-w-5xl">
-              SYSTEMS THAT <span className="gradient-text italic">THINK</span>
+              WORK SMARTER WITH <span className="gradient-text italic">CUSTOM AI.</span>
             </h1>
             <TypewriterSubline 
               phrases={[
@@ -59,13 +59,13 @@ export default function AISolutionsPage() {
             <AnimatedSection className="lg:col-span-6 lg:order-2">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8">
                 <Radio className="w-3 h-3 text-blue-400 animate-pulse" />
-                <span className="text-xs font-mono uppercase tracking-widest text-white/60">Voice Protocol</span>
+                <span className="text-xs font-mono uppercase tracking-widest text-blue-400">AI Voice Agents</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-white">
-                Conversational <span className="text-blue-400">Voice AI</span>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-white text-blue-400 text-none uppercase">
+                AI VOICE <span className="gradient-text italic">AGENTS</span>
               </h2>
               <p className="text-white/50 text-xl leading-relaxed mb-10 font-mono font-light">
-                Neural-voice agents indistinguishable from humans capable of outbound lead qualification, appointment booking, and persistent 24/7 support routing.
+                Imagine a salesperson who never sleeps. Our AI voice agents handle inbound calls, qualify leads, and book appointments automatically — sounding just like a human.
               </p>
               
               <div className="grid grid-cols-2 gap-4 mb-10">
@@ -211,20 +211,14 @@ export default function AISolutionsPage() {
             <AnimatedSection delay={0.2} direction="right" className="lg:col-span-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8">
                 <MessageSquare className="w-3 h-3 text-white" />
-                <span className="text-xs font-mono uppercase tracking-widest text-white/60">Text Protocol</span>
+                <span className="text-xs font-mono uppercase tracking-widest text-blue-400">AI Messaging Agents</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-white">
-                Omnichannel <span className="text-white/60">Messaging</span>
+              <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 text-white text-none uppercase">
+                24/7 CHAT <span className="gradient-text italic">AGENTS</span>
               </h2>
-              <TypewriterSubline 
-              phrases={[
-                "Autonomous Interaction Hubs",
-                "Deep Workflow Orchestration",
-                "24/7 Operational Autonomy",
-                "Neural Processing Architectures"
-              ]}
-              className="text-lg md:text-xl"
-            />
+              <p className="text-white/50 text-xl leading-relaxed mb-10 font-mono font-light">
+                Answer customer questions instantly on your website, WhatsApp, or SMS. Our AI agents learn your business and close more deals 24/7.
+              </p>
               
               <div className="space-y-4 mb-10">
                 {['Omnichannel Architecture', 'Semantic Search Native', 'Seamless Human Handoff', 'Token-Efficient RAG'].map((item) => (
@@ -265,10 +259,10 @@ export default function AISolutionsPage() {
               <Cog className="w-7 h-7 text-white" />
             </div>
             <h2 className="text-[3.5rem] md:text-[5rem] font-heading font-black tracking-tighter mb-6 text-white leading-none">
-              WORKFLOW <br/><span className="text-white/30 italic">AUTOMATION</span>
+              AUTO-PILOT FOR <br/><span className="text-white/30 italic">YOUR BUSINESS</span>
             </h2>
             <p className="font-mono text-sm text-white/50 uppercase tracking-widest max-w-xl mx-auto">
-              Abstract away the mundane. Connect disparate APIs into a singular, self-healing nervous system.
+              Stop wasting hours on repetitive tasks. We automate your emails, CRM, reporting, and data entry — so everything runs on auto-pilot.
             </p>
           </AnimatedSection>
 
@@ -321,14 +315,15 @@ export default function AISolutionsPage() {
         <div className="max-w-[1550px] mx-auto px-6 text-center relative z-10">
           <AnimatedSection>
             <h2 className="text-[4rem] md:text-[5rem] font-heading font-black tracking-tighter mb-6">
-              INITIALIZE <span className="text-blue-400 italic">AUTOMATION</span>
+              READY TO <span className="text-blue-400 italic">AUTOMATE?</span>
             </h2>
             <p className="font-mono text-sm text-white/40 uppercase tracking-widest max-w-xl mx-auto mb-10">
-              Request a technical demonstration of our autonomous architectures.
+              Let's see how much time and money we can save you with AI.
             </p>
             <Link href="/contact" className="btn-primary group">
-              Schedule Technical Demo <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              Start Your Project <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
+
           </AnimatedSection>
         </div>
       </section>

@@ -327,7 +327,7 @@ export default function HomePage() {
               <div className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full glass-premium border-blue-400/20">
                 <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
                 <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-shimmer">
-                  Neural Hub // Protocol 8.42
+                  AI-Powered Digital Agency
                 </span>
               </div>
 
@@ -335,16 +335,16 @@ export default function HomePage() {
                 ref={headlineRef}
                 className="text-[2.8rem] sm:text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] xl:text-[8rem] 2xl:text-[9.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase"
               >
-                ARCHITECTING<br />
-                <span className="gradient-text italic opacity-90">DIGITAL</span>{' '}
-                FRONTIERS.
+                WE BUILD DIGITAL<br />
+                <span className="gradient-text italic opacity-90">PRODUCTS</span>{' '}
+                THAT GROW YOUR BUSINESS.
               </h1>
 
               <p 
                 ref={subheadlineRef}
                 className="text-sm sm:text-base md:text-lg text-white/60 max-w-md mx-auto lg:mx-0 font-mono font-light leading-relaxed tracking-wide"
               >
-                Engineering mission-critical digital infrastructure for the next generation of autonomous AI and high-performance enterprises.<br/>
+                Websites. Mobile Apps. AI Agents. Automation. Built for businesses that are serious about growth.<br/>
                 <TypewriterSubline />
               </p>
               
@@ -353,12 +353,12 @@ export default function HomePage() {
                 <div className="magnetic-wrap relative">
                   <div className="absolute -inset-1 bg-blue-400/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
                   <Link href="/contact" className="btn-primary px-7 sm:px-10 py-4 sm:py-5 text-xs sm:text-base relative">
-                    INITIALIZE PROJECT <ArrowUpRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+                    START YOUR PROJECT <ArrowUpRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                   </Link>
                 </div>
                 <div className="magnetic-wrap">
                   <Link href="/portfolio" className="text-blue-400/60 hover:text-blue-400 font-mono text-[10px] sm:text-sm uppercase tracking-widest underline underline-offset-8 transition-all whitespace-nowrap">
-                    Access Archive
+                    See Our Work
                   </Link>
                 </div>
               </div>
@@ -366,9 +366,10 @@ export default function HomePage() {
               {/* Mini stats */}
               <div className="flex items-center gap-6 sm:gap-8 pt-4 lg:pt-6 justify-center lg:justify-start">
                 {[
-                  { val: '150+', label: 'Projects' },
+                  { val: '150+', label: 'Projects Delivered' },
+                  { val: '50+', label: 'Happy Clients' },
                   { val: '99.9%', label: 'Uptime' },
-                  { val: '<400ms', label: 'Load Time' },
+                  { val: '4.9★', label: 'Rating' },
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-base sm:text-lg font-heading font-bold text-white">{s.val}</div>
@@ -397,10 +398,10 @@ export default function HomePage() {
         <div className="max-w-[1550px] mx-auto px-6">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { value: '150', label: 'Projects Deployed', suffix: '+' },
-              { value: '50', label: 'Global Clients', suffix: '+' },
-              { value: '99.9', label: 'Uptime SLA', suffix: '%' },
-              { value: '4.9', label: 'Client Rating', suffix: '/5' },
+              { value: '150', label: 'Projects Delivered', suffix: '+' },
+              { value: '50', label: 'Happy Clients', suffix: '+' },
+              { value: '99.9', label: 'Uptime', suffix: '%' },
+              { value: '4.9', label: 'Rating', suffix: '★' },
             ].map((stat, i) => (
               <AnimatedSection key={stat.label} delay={i * 0.15}>
                 <StatCounter {...stat} />
@@ -420,19 +421,19 @@ export default function HomePage() {
                 <div className="space-y-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 w-max">
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-blue-400">Our Identity</span>
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-blue-400">Who We Are</span>
                   </div>
                   <h2 className="text-[3.5rem] md:text-[5.5rem] lg:text-[6.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase">
-                    ABOUT<br/><span className="gradient-text italic text-blue-400">US_</span>
+                    ABOUT<br/><span className="gradient-text italic text-blue-400">US</span>
                   </h2>
                 </div>
                 <div className="max-w-xl space-y-6">
                    <p className="font-mono text-sm md:text-base text-white/60 uppercase tracking-[0.1em] leading-relaxed">
-                     We are a team of visionary architects, engineers, and designers dedicated to pushing the boundaries of digital possibility. We don&apos;t just build products; we engineer ecosystems that empower brands to dominate the neural frontier.
+                     We are a team of designers, developers, and AI specialists who build digital products that genuinely move the needle. We don't just deliver code — we build tools that bring you more customers, save your team hours every week, and make your business look world-class online.
                    </p>
                    <div className="h-px w-full bg-gradient-to-r from-blue-400/30 to-transparent" />
                    <p className="font-mono text-[10px] md:text-xs text-white/30 uppercase tracking-[0.3em]">
-                     Mission Protocol: Accelerate human potential through autonomous intelligence and high-fidelity design.
+                     Our Mission: Help every business compete and win in the digital world.
                    </p>
                 </div>
               </div>
@@ -457,6 +458,37 @@ export default function HomePage() {
 
       <PricingSection />
 
+      {/* ═══════════ RESULTS SECTION ═══════════ */}
+      <section className="relative py-24 bg-black overflow-hidden z-20 border-t border-white/5">
+        <div className="max-w-[1550px] mx-auto px-6">
+          <AnimatedSection className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+              <span className="font-mono text-xs uppercase tracking-widest text-blue-400">Real Numbers</span>
+            </div>
+            <h2 className="text-[3rem] md:text-[5rem] lg:text-[6.5rem] font-heading font-black leading-none tracking-tighter uppercase mb-6">
+              RESULTS WE'VE <span className="gradient-text italic text-blue-400">DELIVERED</span> FOR REAL BUSINESSES
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { num: "34%", desc: "Revenue increase for an ecommerce client after we rebuilt their website" },
+              { num: "40%", desc: "Of cold leads converted to demo calls using our AI calling agent" },
+              { num: "82%", desc: "Customer support tickets automatically resolved by our AI chatbot" },
+              { num: "3 sec → 300ms", desc: "Website load time improvement for a SaaS platform — traffic doubled in 60 days" },
+            ].map((card, i) => (
+              <AnimatedSection key={i} delay={i * 0.1}>
+                <div className="glass-panel p-8 rounded-3xl border-white/10 text-center hover:border-blue-400/30 transition-all">
+                  <div className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tighter italic">{card.num}</div>
+                  <p className="font-mono text-xs uppercase text-white/50 leading-relaxed tracking-wider">{card.desc}</p>
+                </div>
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════ CLIENT TRANSMISSIONS ═══════════ */}
       <section ref={marqueeRef} className="relative py-20 md:py-32 bg-black z-10 overflow-hidden">
         {/* Ambient glows */}
@@ -469,13 +501,13 @@ export default function HomePage() {
           <AnimatedSection className="text-center mb-16 md:mb-24">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 mb-6 backdrop-blur-md">
               <Star className="w-3.5 h-3.5 text-[#0ea5e9] fill-[#0ea5e9]" />
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0ea5e9]">Client Transmissions</span>
+              <span className="font-mono text-xs uppercase tracking-widest text-[#0ea5e9]">Client Results</span>
             </div>
             <h2 className="text-[2.5rem] md:text-[5rem] lg:text-[6rem] font-heading font-black leading-none tracking-tighter uppercase mb-4">
-              TRUSTED BY <span className="gradient-text italic text-[#0ea5e9]">LEADERS</span>
+              REAL RESULTS FROM <span className="gradient-text italic text-[#0ea5e9]">REAL CLIENTS</span>
             </h2>
             <p className="font-mono text-sm text-white/30 uppercase tracking-[0.2em] max-w-lg mx-auto">
-              Real signals from enterprise partners across 4 continents.
+              Here's what business owners say after working with us.
             </p>
           </AnimatedSection>
         </div>
@@ -606,16 +638,16 @@ export default function HomePage() {
             <AnimatedSection>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-400/10 bg-blue-400/5 mb-8">
                 <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                <span className="text-xs font-mono uppercase tracking-widest text-[#0ea5e9]">Core Protocol Framework</span>
+                <span className="text-xs font-mono uppercase tracking-widest text-[#0ea5e9]">How It Works</span>
               </div>
               <h2 className="text-[3rem] md:text-[5rem] font-heading font-black tracking-tighter leading-[0.9] mb-12 uppercase">
-                ENGINEERING <br/><span className="gradient-text italic text-[#0ea5e9]">SOLID</span> LOGIC.
+                YOUR PROJECT <br/><span className="gradient-text italic text-[#0ea5e9]">IN 3 SIMPLE STEPS</span>
               </h2>
               <div className="space-y-12 mt-16">
                 {[
-                  { num: '01', title: 'AI-Powered Strategy', desc: 'We use advanced AI to analyze your vision and instantly generate perfect blueprints, cutting weeks of planning into minutes.', icon: Cpu },
-                  { num: '02', title: 'Autonomous Building', desc: 'Our AI engines handle 80% of the foundational code with zero errors, letting our experts focus on your unique business features.', icon: Shield },
-                  { num: '03', title: 'Self-Healing Launch', desc: 'Your product is deployed on AI-monitored clusters that scale and fix themselves, ensuring you’re always fast and always online.', icon: Server },
+                  { num: '01', title: '1. We Understand Your Business', desc: 'We start with a free consultation to learn about your goals, your customers, and what success looks like for you. No jargon, just a real conversation.', icon: Cpu },
+                  { num: '02', title: '2. We Build Fast & Transparently', desc: 'You get regular updates, live previews, and full visibility throughout. Our AI-assisted build process means faster delivery without sacrificing quality.', icon: Shield },
+                  { num: '03', title: '3. We Launch & Keep Supporting You', desc: 'We go live on fast, reliable infrastructure and monitor everything. You get ongoing support so your digital product keeps growing with your business.', icon: Server },
                 ].map((step) => (
                   <div key={step.num} className="flex gap-6 group cursor-default items-start">
                     <div className="w-14 h-14 rounded-2xl bg-[#0ea5e9]/5 border border-[#0ea5e9]/10 flex items-center justify-center shrink-0 group-hover:bg-[#0ea5e9] group-hover:border-[#0ea5e9] group-hover:shadow-[0_0_30px_rgba(14,165,233,0.3)] transition-all duration-500">
@@ -724,24 +756,24 @@ export default function HomePage() {
               <AnimatedSection>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-blue-400/20 bg-blue-400/5 mb-8">
                   <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
-                  <span className="text-xs font-mono uppercase tracking-widest text-[#0ea5e9]">Secure Channel Active</span>
+                  <span className="text-xs font-mono uppercase tracking-widest text-[#0ea5e9]">Get In Touch</span>
                 </div>
                 <h2 className="text-[3.5rem] md:text-[6rem] font-heading font-black tracking-tighter leading-[0.8] mb-10 uppercase">
-                  INITIATE <br/><span className="gradient-text italic text-[#0ea5e9]">CONNECTION</span>
+                  LET'S GROW YOUR <br/><span className="gradient-text italic text-[#0ea5e9]">BUSINESS TOGETHER</span>
                 </h2>
                 <p className="text-white/50 text-lg font-mono font-light max-w-xl mb-12 leading-relaxed">
-                  Open a direct line to our engineering syndicate. Propose architectures, request deployments, or inquire about enterprise scaling.
+                  Book a free 30-minute consultation. We'll look at your current digital presence, tell you exactly what needs fixing, and show you what we'd build for you — no commitment required.
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                    <div className="glass-panel p-6 rounded-3xl border-white/5 hover:border-[#0ea5e9]/30 transition-all group">
                       <Mail className="w-6 h-6 text-[#0ea5e9] mb-4" />
-                      <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">Email Protocol</div>
+                      <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">Email Us</div>
                       <div className="text-sm font-bold text-white">hello@jointwebsolutions.com</div>
                    </div>
                    <div className="glass-panel p-6 rounded-3xl border-white/5 hover:border-[#0ea5e9]/30 transition-all group">
                       <Phone className="w-6 h-6 text-[#0ea5e9] mb-4" />
-                      <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">Voice Link</div>
+                      <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest mb-1">Call Us</div>
                       <div className="text-sm font-bold text-white">+1 (555) 123-4567</div>
                    </div>
                 </div>
@@ -785,9 +817,13 @@ export default function HomePage() {
                         className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white font-mono text-xs focus:outline-none focus:border-[#0ea5e9] transition-all resize-none placeholder:text-white/20"
                       />
 
+                      <p className="text-center font-mono text-[10px] uppercase tracking-widest text-blue-400 mb-4 animate-pulse">
+                        ⚡ We respond to every inquiry within 24 hours.
+                      </p>
                       <button className="w-full py-5 rounded-2xl bg-[#0ea5e9] text-black font-black font-mono tracking-[0.2em] uppercase hover:scale-[1.02] active:scale-[0.98] transition-all shadow-[0_0_30px_rgba(14,165,233,0.3)] flex items-center justify-center gap-3">
-                        Transmit Data <Send className="w-4 h-4" />
+                        Send Message <Send className="w-4 h-4" />
                       </button>
+
                    </form>
                 </div>
               </AnimatedSection>
