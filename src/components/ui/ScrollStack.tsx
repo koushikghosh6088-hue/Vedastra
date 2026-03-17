@@ -1,6 +1,7 @@
 'use client';
 
 import { useLayoutEffect, useRef, useCallback, useEffect } from 'react';
+import { useLenis } from '@studio-freight/react-lenis';
 import './ScrollStack.css';
 
 export const ScrollStackItem = ({ children, itemClassName = '' }: { children: React.ReactNode, itemClassName?: string }) => (
@@ -215,7 +216,12 @@ const ScrollStack = ({
     });
   }, [updateCardTransforms]);
 
-  // Removed local setupLenis as we use global SmoothScrollProvider
+  // Use Lenis for synchronized root scroll updates
+  useLenis(() => {
+    if (useWindowScroll) {
+      updateCardTransforms();
+    }
+  });
 
   useLayoutEffect(() => {
     const scroller = scrollerRef.current;
@@ -233,7 +239,7 @@ const ScrollStack = ({
       cardOffsetsRef.current = cards.map(card => getElementOffset(card));
       const endElement = (useWindowScroll
         ? document.querySelector('.scroll-stack-end')
-        : scrollerRef.current?.querySelector('.scroll-stack-end')) as HTMLElement;
+        : (scrollerRef.current?.querySelector('.scroll-stack-end') as HTMLElement));
       endElementOffsetRef.current = endElement ? getElementOffset(endElement) : 0;
     };
 
@@ -244,19 +250,24 @@ const ScrollStack = ({
       card.style.willChange = 'transform, filter, opacity';
       card.style.transformOrigin = 'top center';
       card.style.backfaceVisibility = 'hidden';
-      card.style.transform = 'translateZ(0)';
+      card.style.transform = 'translate3d(0,0,0)';
       card.style.perspective = '1000px';
+      card.style.transformStyle = 'preserve-3d';
     });
 
     measure();
     updateCardTransforms();
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    if (!useWindowScroll && scroller) {
+      scroller.addEventListener('scroll', handleScroll, { passive: true });
+    }
     window.addEventListener('resize', measure);
 
     return () => {
       window.removeEventListener('resize', measure);
-      window.removeEventListener('scroll', handleScroll);
+      if (!useWindowScroll && scroller) {
+        scroller.removeEventListener('scroll', handleScroll);
+      }
       if (animationFrameRef.current) {
         cancelAnimationFrame(animationFrameRef.current);
       }
@@ -274,7 +285,6 @@ const ScrollStack = ({
     baseScale,
     scaleDuration,
     rotationAmount,
-    blurAmount,
     blurAmount,
     useWindowScroll,
     onStackComplete,

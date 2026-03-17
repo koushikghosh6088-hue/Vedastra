@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useMotionValueEvent, useMotionValue, useSpring, useInView } from 'framer-motion';
+import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
@@ -246,10 +246,6 @@ export default function HomePage() {
   const [isTabActive, setIsTabActive] = useState(true);
   const isMarqueeInView = useInView(marqueeRef, { amount: 0.1 });
 
-  const { scrollYProgress } = useScroll();
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
-
   useEffect(() => {
     // Visibility API listener to pause animations
     const handleVisibilityChange = () => setIsTabActive(!document.hidden);
@@ -280,24 +276,10 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ═══════════ SCROLL PROGRESS BAR ═══════════ */}
-      <div className="fixed top-0 left-0 w-full h-[3px] z-[100]">
-        <motion.div
-          className="h-full bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 origin-left"
-          style={{ scaleX: scrollYProgress }}
-        />
-      </div>
-
       {/* ═══════════ CINEMATIC HERO ═══════════ */}
-      <motion.section
+      <section
         ref={heroRef}
-        style={{ 
-          opacity: heroOpacity, 
-          scale: heroScale,
-          willChange: "transform, opacity",
-          transform: "translateZ(0)"
-        }}
-        className="relative min-h-screen flex items-center overflow-hidden cursor-default"
+        className="relative min-h-screen flex items-center overflow-hidden cursor-default bg-obsidian"
       >
         {/* Background */}
         <div className="absolute inset-0 bg-obsidian z-0" />
@@ -403,7 +385,7 @@ export default function HomePage() {
           <div className="w-px h-16 bg-gradient-to-b from-blue-400/50 to-transparent" />
           <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20 rotate-90 origin-left ml-2">Scroll</span>
         </motion.div>
-      </motion.section>
+      </section>
 
       {/* ═══════════ STATS COUNTER BAR ═══════════ */}
       <section className="relative py-16 bg-black z-20 border-t border-b border-white/5">
