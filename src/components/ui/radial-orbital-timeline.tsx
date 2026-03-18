@@ -250,30 +250,27 @@ export default function RadialOrbitalTimeline({
         {/* Top-Level Expansion Card Modal */}
         <AnimatePresence>
           {activeItem && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 10 }}
-              className={`
-                z-[1000] pointer-events-auto
-                ${isMobile 
-                  ? "fixed inset-0 flex items-center justify-center p-6 bg-black/60 backdrop-blur-sm" 
-                  : "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[380px]"
-                }
-              `}
-              onClick={(e) => {
-                if (isMobile) {
-                  e.stopPropagation();
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => {
                   setActiveNodeId(null);
                   setAutoRotate(true);
-                }
-              }}
-            >
+                }}
+                className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm"
+              />
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, y: 20, x: "-50%" }}
+                animate={{ opacity: 1, scale: 1, y: "-50%", x: "-50%" }}
+                exit={{ opacity: 0, scale: 0.9, y: "-40%", x: "-50%" }}
+                className="fixed top-1/2 left-1/2 z-[1000] pointer-events-auto w-full max-w-[380px] px-6 md:px-0"
+              >
               <div 
-                className={`
-                  relative glass-premium p-7 rounded-[2.5rem] border-white/20 shadow-2xl overflow-hidden group/card bg-black/95
-                  ${isMobile ? "w-full max-w-[340px] max-h-[90vh] overflow-y-auto" : "w-full"}
-                `}
+                className="relative glass-premium p-7 rounded-[2.5rem] border-white/20 shadow-2xl overflow-hidden group/card bg-black/95 w-full max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Border Beam Logic - Intensified Glow */}
@@ -351,6 +348,7 @@ export default function RadialOrbitalTimeline({
                 </div>
               </div>
             </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

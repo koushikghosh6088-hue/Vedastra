@@ -1,6 +1,7 @@
 'use client';
 
-import { useLayoutEffect, useRef, useCallback, useEffect } from 'react';
+import { useLayoutEffect, useRef, useCallback, useEffect, useState } from 'react';
+import { useLenis } from '@studio-freight/react-lenis';
 import './ScrollStack.css';
 
 export const ScrollStackItem = ({ children, itemClassName = '' }: { children: React.ReactNode, itemClassName?: string }) => (
@@ -44,6 +45,11 @@ const ScrollStack = ({
   const cardsRef = useRef<HTMLElement[]>([]);
   const lastTransformsRef = useRef(new Map());
   const isUpdatingRef = useRef(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const calculateProgress = useCallback((scrollTop: number, start: number, end: number) => {
     if (scrollTop < start) return 0;
@@ -59,6 +65,8 @@ const ScrollStack = ({
   }, []);
 
   const getScrollData = useCallback(() => {
+    if (typeof window === 'undefined') return { scrollTop: 0, containerHeight: 0, scrollContainer: null };
+    
     if (useWindowScroll) {
       return {
         scrollTop: window.scrollY,
@@ -77,6 +85,8 @@ const ScrollStack = ({
 
   const getElementOffset = useCallback(
     (element: HTMLElement) => {
+      if (typeof window === 'undefined') return 0;
+      
       if (useWindowScroll) {
         const rect = element.getBoundingClientRect();
         return rect.top + window.scrollY;
@@ -91,7 +101,7 @@ const ScrollStack = ({
   const endElementOffsetRef = useRef<number>(0);
 
   const updateCardTransforms = useCallback(() => {
-    if (!cardsRef.current.length || isUpdatingRef.current) return;
+    if (!cardsRef.current.length || isUpdatingRef.current || typeof window === 'undefined') return;
 
     isUpdatingRef.current = true;
 
@@ -215,8 +225,16 @@ const ScrollStack = ({
     });
   }, [updateCardTransforms]);
 
+  // Use Lenis for synchronized root scroll updates
+  useLenis(() => {
+    if (useWindowScroll && mounted) {
+      updateCardTransforms();
+    }
+  });
 
   useLayoutEffect(() => {
+    if (!mounted) return;
+
     const scroller = scrollerRef.current;
     
     const cards = Array.from(
@@ -231,7 +249,7 @@ const ScrollStack = ({
     const measure = () => {
       cardOffsetsRef.current = cards.map(card => getElementOffset(card));
       const endElement = (useWindowScroll
-        ? document.querySelector('.scroll-stack-end') as HTMLElement
+        ? (document.querySelector('.scroll-stack-end') as HTMLElement)
         : (scrollerRef.current?.querySelector('.scroll-stack-end') as HTMLElement));
       endElementOffsetRef.current = endElement ? getElementOffset(endElement) : 0;
     };
@@ -251,18 +269,14 @@ const ScrollStack = ({
     measure();
     updateCardTransforms();
 
-    if (useWindowScroll) {
-      window.addEventListener('scroll', handleScroll, { passive: true });
-    } else if (scroller) {
+    if (!useWindowScroll && scroller) {
       scroller.addEventListener('scroll', handleScroll, { passive: true });
     }
     window.addEventListener('resize', measure);
 
     return () => {
       window.removeEventListener('resize', measure);
-      if (useWindowScroll) {
-        window.removeEventListener('scroll', handleScroll);
-      } else if (scroller) {
+      if (!useWindowScroll && scroller) {
         scroller.removeEventListener('scroll', handleScroll);
       }
       if (animationFrameRef.current) {
@@ -274,6 +288,7 @@ const ScrollStack = ({
       isUpdatingRef.current = false;
     };
   }, [
+    mounted,
     itemDistance,
     itemScale,
     itemStackDistance,
