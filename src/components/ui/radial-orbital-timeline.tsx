@@ -102,8 +102,8 @@ export default function RadialOrbitalTimeline({
     return () => cancelAnimationFrame(animationFrameId);
   }, [autoRotate]);
 
-  const calculateNodePosition = (index: number, total: number) => {
-    const angle = ((index / total) * 360 + rotationAngle) % 360;
+  const calculateNodePosition = (index: number, total: number, offset: number = 0) => {
+    const angle = ((index / total) * 360 + offset) % 360;
     const radian = (angle * Math.PI) / 180;
     const x = radius * Math.cos(radian);
     const y = radius * Math.sin(radian);
@@ -130,52 +130,141 @@ export default function RadialOrbitalTimeline({
 
       <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
         
-        {/* SVG Area for connectivity lines */}
-        <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible">
-          <defs>
-            <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0" />
-              <stop offset="50%" stopColor="#0ea5e9" stopOpacity="0.6" />
-              <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0" />
-            </linearGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feComposite in="SourceGraphic" in2="blur" operator="over" />
-            </filter>
-          </defs>
-          <AnimatePresence>
-            {activeNodeId && activeItem?.relatedIds.map(relId => {
-              const activeIndex = timelineData.findIndex(i => i.id === activeNodeId);
-              const relIndex = timelineData.findIndex(i => i.id === relId);
-              const p1 = calculateNodePosition(activeIndex, timelineData.length);
-              const p2 = calculateNodePosition(relIndex, timelineData.length);
-              
-              const viewportWidth = containerRef.current?.offsetWidth || 800;
-              const viewportHeight = containerRef.current?.offsetHeight || 600;
-              const cx = viewportWidth / 2;
-              const cy = viewportHeight / 2;
+        {/* Physical Rotating Orbital System */}
+        <motion.div 
+          className="absolute inset-0 flex items-center justify-center"
+          animate={{ rotate: rotationAngle }}
+          transition={{ type: "spring", stiffness: 300, damping: 30, mass: 0.5, restDelta: 0.001 }}
+          style={{ transformOrigin: 'center center' }}
+        >
+          {/* SVG Area for connectivity lines */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-visible">
+            <defs>
+              <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#0ea5e9" stopOpacity="0" />
+                <stop offset="50%" stopColor="#0ea5e9" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="#0ea5e9" stopOpacity="0" />
+              </linearGradient>
+              <filter id="glow">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            <AnimatePresence>
+              {activeNodeId && activeItem?.relatedIds.map(relId => {
+                const activeIndex = timelineData.findIndex(i => i.id === activeNodeId);
+                const relIndex = timelineData.findIndex(i => i.id === relId);
+                // Use 0 offset because the wrapper handles rotation
+                const p1 = calculateNodePosition(activeIndex, timelineData.length, 0);
+                const p2 = calculateNodePosition(relIndex, timelineData.length, 0);
+                
+                const viewportWidth = containerRef.current?.offsetWidth || 800;
+                const viewportHeight = containerRef.current?.offsetHeight || 600;
+                const cx = viewportWidth / 2;
+                const cy = viewportHeight / 2;
 
-              return (
-                <motion.path
-                  key={`line-${activeNodeId}-${relId}`}
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1, ease: "circOut" }}
-                  d={`M ${cx + p1.x} ${cy + p1.y} Q ${cx} ${cy} ${cx + p2.x} ${cy + p2.y}`}
-                  stroke="url(#lineGradient)"
-                  strokeWidth="2.5"
-                  fill="none"
-                  filter="url(#glow)"
-                  strokeDasharray="12 6"
-                  className="animate-[marquee_15s_linear_infinite]"
-                />
-              );
-            })}
-          </AnimatePresence>
-        </svg>
+                return (
+                  <motion.path
+                    key={`line-${activeNodeId}-${relId}`}
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1, ease: "circOut" }}
+                    d={`M ${cx + p1.x} ${cy + p1.y} Q ${cx} ${cy} ${cx + p2.x} ${cy + p2.y}`}
+                    stroke="url(#lineGradient)"
+                    strokeWidth="2.5"
+                    fill="none"
+                    filter="url(#glow)"
+                    strokeDasharray="12 6"
+                    className="animate-[marquee_15s_linear_infinite]"
+                  />
+                );
+              })}
+            </AnimatePresence>
+          </svg>
 
-        {/* Neural Core */}
+          {/* Global Orbit Line */}
+          <div 
+            className="absolute rounded-full border border-blue-400/15 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none shadow-[0_0_30px_rgba(14,165,233,0.05)]"
+            style={{ width: radius * 2, height: radius * 2 }}
+          >
+            {/* Energy packets traveling around the orbit - Brighter & Larger */}
+            {[1, 2, 3, 4].map((i) => (
+              <div 
+                key={`packet-${i}`}
+                className="absolute w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(14,165,233,0.8)] blur-[1px]"
+                style={{
+                  offsetPath: `circle(${radius}px at center)`,
+                  animation: `orbit-particle ${8 + i * 1.5}s linear infinite`,
+                  animationDelay: `${-i * 2}s`
+                }}
+              />
+            ))}
+          </div>
+
+          {/* Timeline Nodes */}
+          {timelineData.map((item, index) => {
+            // Static position relative to parent wrapper
+            const position = calculateNodePosition(index, timelineData.length, 0);
+            const isActive = activeNodeId === item.id;
+            const isRelated = activeNodeId && (item.relatedIds.includes(activeNodeId) || activeItem?.relatedIds.includes(item.id));
+            const Icon = item.icon;
+
+            return (
+              <div
+                key={item.id}
+                className="absolute cursor-pointer pointer-events-auto"
+                style={{
+                  transform: `translate(${position.x}px, ${position.y}px)`,
+                  zIndex: isActive ? 500 : position.zIndex,
+                  opacity: activeNodeId && !isActive && !isRelated ? 0.2 : (isActive ? 1 : position.opacity),
+                }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  toggleItem(item.id);
+                }}
+              >
+                {/* Counter-rotation wrapper to keep icons upright */}
+                <motion.div
+                  animate={{ rotate: -rotationAngle }}
+                  transition={{ type: "spring", stiffness: 300, damping: 30, mass: 0.5, restDelta: 0.001 }}
+                >
+                  {/* Glossy Node Icon with Specular Highlight */}
+                  <motion.div
+                    whileHover={{ scale: 1.25, rotate: 8, filter: 'brightness(1.2)' }}
+                    className={`
+                      relative w-14 h-14 rounded-[1.25rem] flex items-center justify-center
+                      glass-premium border-white/20
+                      ${isActive ? "border-blue-400 shadow-[0_0_40px_rgba(14,165,233,0.5)] scale-110" : "hover:border-blue-400/60"}
+                      transition-all duration-500 overflow-hidden
+                    `}
+                  >
+                    {/* Specular Highlight line */}
+                    <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+                    
+                    {isActive && (
+                      <div className="absolute inset-0 bg-blue-400/20 rounded-2xl animate-pulse" />
+                    )}
+                    <Icon className={`w-6 h-6 transition-colors duration-300 ${isActive ? "text-blue-400" : "text-white/70"}`} />
+                    
+                    {/* Status indicator mini-pip - Properly Highlighted */}
+                    <div className={`absolute top-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-black ${item.status === 'completed' ? 'bg-green-400' : 'bg-blue-400'} shadow-[0_0_10px_rgba(0,0,0,0.5)]`} />
+                  </motion.div>
+
+                  {/* Label - Higher contrast */}
+                  <div className={`absolute top-16 left-1/2 -translate-x-1/2 transition-all duration-500 whitespace-nowrap`}>
+                    <span className={`font-heading text-[11px] sm:text-[13px] font-black uppercase tracking-[0.15em] ${isActive ? "text-blue-400 drop-shadow-[0_0_10px_rgba(14,165,233,0.3)]" : "text-white/50"}`}>
+                      {item.title}
+                    </span>
+                    <div className={`h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent transition-all duration-700 mx-auto ${isActive ? "w-full mt-1.5 opacity-100" : "w-0 opacity-0"}`} />
+                  </div>
+                </motion.div>
+              </div>
+            );
+          })}
+        </motion.div>
+
+        {/* Neural Core - Fixed position outside the rotating wrapper */}
         <div 
           className="absolute flex items-center justify-center z-20 scale-75 md:scale-100 cursor-pointer group active:scale-95 transition-transform"
           onClick={spinIt}
@@ -197,79 +286,6 @@ export default function RadialOrbitalTimeline({
           <div className="absolute w-36 h-36 rounded-full border border-blue-500/30 animate-ping opacity-60" />
           <div className="absolute w-56 h-56 rounded-full border border-blue-400/20 animate-ping [animation-delay:0.5s] opacity-40" />
         </div>
-
-        {/* Global Orbit Line */}
-        <div 
-          className="absolute rounded-full border border-blue-400/15 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none shadow-[0_0_30px_rgba(14,165,233,0.05)]"
-          style={{ width: radius * 2, height: radius * 2 }}
-        >
-          {/* Energy packets traveling around the orbit - Brighter & Larger */}
-          {[1, 2, 3, 4].map((i) => (
-            <div 
-              key={`packet-${i}`}
-              className="absolute w-2 h-2 rounded-full bg-blue-400 shadow-[0_0_12px_rgba(14,165,233,0.8)] blur-[1px]"
-              style={{
-                offsetPath: `circle(${radius}px at center)`,
-                animation: `orbit-particle ${8 + i * 1.5}s linear infinite`,
-                animationDelay: `${-i * 2}s`
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Timeline Nodes */}
-        {timelineData.map((item, index) => {
-          const position = calculateNodePosition(index, timelineData.length);
-          const isActive = activeNodeId === item.id;
-          const isRelated = activeNodeId && (item.relatedIds.includes(activeNodeId) || activeItem?.relatedIds.includes(item.id));
-          const Icon = item.icon;
-
-          return (
-            <div
-              key={item.id}
-              className="absolute transition-all duration-700 cursor-pointer"
-              style={{
-                transform: `translate(${position.x}px, ${position.y}px)`,
-                zIndex: isActive ? 500 : position.zIndex,
-                opacity: activeNodeId && !isActive && !isRelated ? 0.2 : (isActive ? 1 : position.opacity),
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleItem(item.id);
-              }}
-            >
-              {/* Glossy Node Icon with Specular Highlight */}
-              <motion.div
-                whileHover={{ scale: 1.25, rotate: 8, filter: 'brightness(1.2)' }}
-                className={`
-                  relative w-14 h-14 rounded-[1.25rem] flex items-center justify-center
-                  glass-premium border-white/20
-                  ${isActive ? "border-blue-400 shadow-[0_0_40px_rgba(14,165,233,0.5)] scale-110" : "hover:border-blue-400/60"}
-                  transition-all duration-500 overflow-hidden
-                `}
-              >
-                {/* Specular Highlight line */}
-                <div className="absolute top-0 left-0 w-full h-[1.5px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-                
-                {isActive && (
-                  <div className="absolute inset-0 bg-blue-400/20 rounded-2xl animate-pulse" />
-                )}
-                <Icon className={`w-6 h-6 transition-colors duration-300 ${isActive ? "text-blue-400" : "text-white/70"}`} />
-                
-                {/* Status indicator mini-pip - Properly Highlighted */}
-                <div className={`absolute top-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-black ${item.status === 'completed' ? 'bg-green-400' : 'bg-blue-400'} shadow-[0_0_10px_rgba(0,0,0,0.5)]`} />
-              </motion.div>
-
-              {/* Label - Higher contrast */}
-              <div className={`absolute top-16 left-1/2 -translate-x-1/2 transition-all duration-500 whitespace-nowrap ptr-events-none`}>
-                 <span className={`font-heading text-[11px] sm:text-[13px] font-black uppercase tracking-[0.15em] ${isActive ? "text-blue-400 drop-shadow-[0_0_10px_rgba(14,165,233,0.3)]" : "text-white/50"}`}>
-                   {item.title}
-                 </span>
-                 <div className={`h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent transition-all duration-700 mx-auto ${isActive ? "w-full mt-1.5 opacity-100" : "w-0 opacity-0"}`} />
-              </div>
-            </div>
-          );
-        })}
 
         {/* Top-Level Expansion Card Modal */}
         <AnimatePresence>
