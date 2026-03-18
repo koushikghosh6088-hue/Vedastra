@@ -67,7 +67,10 @@ export default function RadialOrbitalTimeline({
 
   const spinIt = (e: React.MouseEvent) => {
     e.stopPropagation();
-    velocityRef.current = Math.min(velocityRef.current + 180, 800); // Cap max velocity
+    // Drastically increase boost for a "fidget spinner" feel
+    // Adding 1500 to current velocity, capped at 4000
+    velocityRef.current = Math.min(velocityRef.current + 1500, 4000); 
+    
     if (!autoRotate) {
       setAutoRotate(true);
       setActiveNodeId(null);
@@ -83,9 +86,8 @@ export default function RadialOrbitalTimeline({
       lastTime = time;
 
       if (autoRotate) {
-        // Decay velocity over time - physics based decay
-        // normalized to 60fps (16.6ms)
-        const decayFactor = Math.pow(0.993, deltaTime / 16.6);
+        // Higher decay factor (0.996) makes the spin last much longer
+        const decayFactor = Math.pow(0.996, deltaTime / 16.6);
         velocityRef.current = Math.max(4, velocityRef.current * decayFactor);
         
         // Apply rotation based on current velocity
