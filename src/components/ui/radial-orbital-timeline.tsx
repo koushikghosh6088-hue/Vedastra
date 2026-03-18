@@ -134,7 +134,7 @@ export default function RadialOrbitalTimeline({
         <motion.div 
           className="absolute inset-0 flex items-center justify-center"
           animate={{ rotate: rotationAngle }}
-          transition={{ type: "spring", stiffness: 300, damping: 30, mass: 0.5, restDelta: 0.001 }}
+          transition={{ duration: 0 }}
           style={{ transformOrigin: 'center center' }}
         >
           {/* SVG Area for connectivity lines */}
@@ -224,10 +224,10 @@ export default function RadialOrbitalTimeline({
                   toggleItem(item.id);
                 }}
               >
-                {/* Counter-rotation wrapper to keep icons upright */}
+                {/* Counter-rotation wrapper to keep icons upright - Zero transition for perfect sync */}
                 <motion.div
                   animate={{ rotate: -rotationAngle }}
-                  transition={{ type: "spring", stiffness: 300, damping: 30, mass: 0.5, restDelta: 0.001 }}
+                  transition={{ duration: 0 }}
                 >
                   {/* Glossy Node Icon with Specular Highlight */}
                   <motion.div
@@ -264,19 +264,30 @@ export default function RadialOrbitalTimeline({
           })}
         </motion.div>
 
-        {/* Neural Core - Fixed position outside the rotating wrapper */}
+        {/* Neural Core — Redesigned as an interactive "Click to Spin" button */}
         <div 
-          className="absolute flex items-center justify-center z-20 scale-75 md:scale-100 cursor-pointer group active:scale-95 transition-transform"
+          className="absolute flex items-center justify-center z-20 scale-75 md:scale-100 cursor-pointer group active:scale-95 transition-all"
           onClick={spinIt}
         >
+          {/* Outer Pulsing Decorative Ring */}
+          <div className="absolute w-44 h-44 rounded-full border border-blue-400/20 animate-ping opacity-20 group-hover:opacity-40 transition-opacity" />
+          
           <div className="absolute w-44 h-44 rounded-full bg-blue-400/[0.03] border border-blue-400/20 animate-glow-scan" 
                style={{ background: 'conic-gradient(from 0deg, transparent, rgba(14,165,233,0.3), transparent 30%)' }} />
           <div className="absolute w-36 h-36 rounded-full border border-white/10 animate-reverse-spin duration-[12s]" />
           
-          <div className="relative w-28 h-28 rounded-full flex items-center justify-center glass-premium border-blue-400/40 glow-blue-strong overflow-hidden">
+          <div className="relative w-28 h-28 rounded-full flex flex-col items-center justify-center glass-premium border-blue-400/40 glow-blue-strong overflow-hidden group-hover:border-blue-400 transition-colors">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-400/30 via-transparent to-purple-500/20 animate-pulse" />
+            
+            {/* Hover Label */}
+            <div className="absolute inset-0 flex items-center justify-center bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-[2px] z-20">
+              <span className="font-heading text-[10px] font-black text-blue-400 tracking-[0.2em] animate-pulse">
+                CLICK TO SPIN
+              </span>
+            </div>
+
             <div className="absolute top-0 left-0 w-full h-[2px] bg-white/20 blur-[1px]" />
-            <Cpu className="w-12 h-12 text-blue-400 animate-float group-hover:scale-110 transition-transform" />
+            <Cpu className="w-10 h-10 text-blue-400 animate-float group-hover:scale-90 transition-transform relative z-10" />
             
             {/* Spinning inner data ring */}
             <div className="absolute inset-1 border-2 border-dashed border-blue-400/30 rounded-full animate-[spin_8s_linear_infinite]" />
