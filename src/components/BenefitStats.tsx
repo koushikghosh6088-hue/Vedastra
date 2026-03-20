@@ -59,19 +59,19 @@ function StatCard({ icon, value, label, delay = 0 }: StatProps) {
       whileHover={{ y: -10, transition: { duration: 0.3 } }}
       className="group relative"
     >
-      {/* Animated Glowing Border - Intensified for Cyberpunk feel */}
-      <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-400 via-green-400 to-blue-400 rounded-[2rem] opacity-30 group-hover:opacity-100 blur-[3px] transition-all duration-500 animate-pulse" />
+      {/* Animated Glowing Border - Ultra-Intensified */}
+      <div className="absolute -inset-[2px] bg-gradient-to-r from-blue-400 via-green-400 to-blue-400 rounded-[2.5rem] opacity-40 group-hover:opacity-100 blur-[4px] transition-all duration-500 animate-pulse" />
       
       <div className="relative h-full bg-obsidian/80 backdrop-blur-xl border border-white/10 rounded-[2rem] p-8 flex flex-col items-center text-center overflow-hidden transition-all duration-500 group-hover:border-blue-400/40 group-hover:shadow-[0_0_40px_rgba(14,165,233,0.15)]">
         
         {/* Pulsing Icon Glow */}
         <div className="absolute top-12 left-1/2 -translate-x-1/2 w-20 h-20 bg-blue-400/10 rounded-full blur-[40px] group-hover:bg-blue-400/20 transition-all duration-700 animate-pulse" />
         
-        <div className="text-5xl mb-6 relative z-10 filter drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] group-hover:scale-110 transition-transform duration-500">
+        <div className="text-5xl mb-6 relative z-10 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.4)] group-hover:scale-110 group-hover:drop-shadow-[0_0_30px_rgba(14,165,233,0.6)] transition-all duration-500">
           {icon}
         </div>
         
-        <div className="text-[2.5rem] md:text-[3rem] font-heading font-black text-white leading-none tracking-tighter mb-3 z-10 group-hover:text-blue-400 transition-colors duration-500">
+        <div className="text-[2.5rem] md:text-[3rem] font-heading font-black text-white leading-none tracking-tighter mb-3 z-10 group-hover:text-blue-400 transition-colors duration-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
           {value.includes('%') ? (
             <CountUp end={value.replace('%', '')} suffix="%" />
           ) : value.includes('/') ? (
