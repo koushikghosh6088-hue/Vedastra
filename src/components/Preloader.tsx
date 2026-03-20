@@ -6,11 +6,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [robotLoaded, setRobotLoaded] = useState(false);
 
   useEffect(() => {
+    const onRobotLoad = () => setRobotLoaded(true);
+    window.addEventListener('spline-loaded', onRobotLoad);
+
     let animationFrameId: number;
     const startTime = Date.now();
-    const duration = 1500; // 1.5s total loading time
+    const duration = 1200; // Slightly faster base duration
 
     const updateProgress = () => {
       const elapsed = Date.now() - startTime;
@@ -21,14 +25,26 @@ export default function Preloader() {
       if (newProgress < 100) {
         animationFrameId = requestAnimationFrame(updateProgress);
       } else {
-        setTimeout(() => setLoading(false), 500);
+        // Wait for both timer AND robot if it's the hero robot
+        const checkReady = () => {
+          if (robotLoaded) {
+            setTimeout(() => setLoading(false), 300);
+          } else {
+            // Check again in 100ms
+            setTimeout(checkReady, 100);
+          }
+        };
+        checkReady();
       }
     };
 
     animationFrameId = requestAnimationFrame(updateProgress);
 
-    return () => cancelAnimationFrame(animationFrameId);
-  }, []);
+    return () => {
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener('spline-loaded', onRobotLoad);
+    };
+  }, [robotLoaded]);
 
   const handleSkip = () => {
     setLoading(false);
@@ -39,7 +55,7 @@ export default function Preloader() {
       {loading && (
         <motion.div
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, transition: { duration: 0.8, ease: 'easeInOut' } }}
+          exit={{ opacity: 0, transition: { duration: 0.5, ease: 'easeInOut' } }}
           className="fixed inset-0 z-[10000] bg-black flex flex-col items-center justify-center overflow-hidden"
         >
           {/* Skip Button */}

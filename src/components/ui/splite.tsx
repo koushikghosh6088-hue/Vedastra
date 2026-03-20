@@ -10,14 +10,10 @@ interface SplineSceneProps {
 }
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
-  const [shouldRender, setShouldRender] = useState(false)
   const [inView, setInView] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Delay initial mount
-    const timer = setTimeout(() => setShouldRender(true), 1200)
-    
     // Observer to cull rendering when off-screen
     const observer = new IntersectionObserver(
       ([entry]) => setInView(entry.isIntersecting),
@@ -27,14 +23,17 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
     if (containerRef.current) observer.observe(containerRef.current)
 
     return () => {
-      clearTimeout(timer)
       observer.disconnect()
     }
   }, [])
 
+  const handleOnLoad = () => {
+    window.dispatchEvent(new CustomEvent('spline-loaded'));
+  };
+
   return (
     <div ref={containerRef} className={className}>
-      {shouldRender && inView ? (
+      {inView ? (
         <Suspense
           fallback={
             <div className="w-full h-full flex items-center justify-center">
@@ -48,6 +47,7 @@ export function SplineScene({ scene, className }: SplineSceneProps) {
           <Spline
             scene={scene}
             className="w-full h-full"
+            onLoad={handleOnLoad}
           />
         </Suspense>
       ) : (

@@ -17,7 +17,7 @@ export default function AnimatedSection({
   direction = 'up',
 }: AnimatedSectionProps) {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-80px' });
+  const isInView = useInView(ref, { once: true, margin: '-40px' });
 
   const directionMap = {
     up: { y: 40, x: 0 },
@@ -42,7 +42,7 @@ export default function AnimatedSection({
         scale: 1,
       } : {}}
       transition={{
-        duration: 1.2,
+        duration: 0.8,
         delay,
         ease: [0.16, 1, 0.3, 1], // Cinematic quintic ease
       }}
