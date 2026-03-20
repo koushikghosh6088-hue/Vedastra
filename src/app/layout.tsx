@@ -9,7 +9,6 @@ import CustomCursor from "@/components/CustomCursor";
 import Preloader from "@/components/Preloader";
 import PerformanceManager from "@/components/PerformanceManager";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import ExitIntentPopup from "@/components/ExitIntentPopup";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import Head from "next/head";
 
@@ -56,7 +55,6 @@ export default function RootLayout({
           <Footer />
         </div>
         <WhatsAppButton />
-        <ExitIntentPopup />
       </body>
     </html>
   );

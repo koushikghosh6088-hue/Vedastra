@@ -26,6 +26,7 @@ function AnimatedPrice({ value }: PriceProps) {
 
 export default function PricingSection() {
   const [isMaintenance, setIsMaintenance] = useState(false);
+  const [activeTab, setActiveTab] = useState<'Starter' | 'Growth' | 'Enterprise'>('Growth');
 
   const packages = [
     {
@@ -136,7 +137,7 @@ export default function PricingSection() {
     { feature: "Website", s: "✅", g: "✅", e: "✅" },
     { feature: "Mobile App", s: "❌", g: "✅", e: "✅" },
     { feature: "Web App / Dashboard", s: "❌", g: "❌", e: "✅" },
-    { feature: "Basic AI Chatbot", s: "✅", g: "❌", e: "❌" },
+    { feature: "Basic AI Chatbot", s: "✅", g: "✅", e: "✅" },
     { feature: "Advanced AI Agent", s: "❌", g: "✅", e: "✅" },
     { feature: "AI Calling Agent", s: "❌", g: "❌", e: "✅" },
     { feature: "WhatsApp Integration", s: "✅", g: "✅", e: "✅" },
@@ -145,15 +146,15 @@ export default function PricingSection() {
     { feature: "CRM Integration", s: "❌", g: "❌", e: "✅" },
     { feature: "SEO Setup", s: "Basic", g: "Basic", e: "Advanced" },
     { feature: "Support Period", s: "3 months", g: "6 months", e: "12 months" },
-    { feature: "Monthly Maintenance", s: "$79/mo", g: "$149/mo", e: "$299/mo" },
+    { feature: "Maintenance", s: "$79/mo", g: "$149/mo", e: "$299/mo" },
     { feature: "Starting Price", s: "$799", g: "$2,500", e: "$6,000" },
   ];
 
   return (
     <section className="py-24 md:py-40 bg-black relative overflow-hidden" id="pricing">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[150px] pointer-events-none" />
+      {/* Background Decor - Optimized for Mobile */}
+      <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[150px] pointer-events-none hidden md:block" />
+      <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-green-500/5 rounded-full blur-[150px] pointer-events-none hidden md:block" />
 
       <div className="max-w-[1550px] mx-auto px-6">
         {/* Header */}
@@ -182,7 +183,7 @@ export default function PricingSection() {
                   className={`w-6 h-6 rounded-full ${isMaintenance ? 'bg-green-500 shadow-[0_0_15px_rgba(34,197,94,0.5)]' : 'bg-blue-400 shadow-[0_0_15px_rgba(14,165,233,0.5)]'}`}
                 />
               </button>
-              <div className="flex flex-col items-start">
+              <div className="flex flex-col items-start text-left">
                 <span className={`font-mono text-[10px] uppercase tracking-widest transition-colors ${isMaintenance ? 'text-green-500' : 'text-white/30'}`}>Monthly Maintenance</span>
                 {isMaintenance && <span className="text-[8px] font-mono text-green-500/50 uppercase tracking-tighter -mt-1">Active</span>}
               </div>
@@ -194,11 +195,11 @@ export default function PricingSection() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-32">
           {packages.map((pkg, i) => (
             <AnimatedSection key={pkg.name} delay={i * 0.1} className="h-full">
-              <div className={`relative h-full flex flex-col p-8 md:p-12 rounded-[3.5rem] border ${pkg.borderColor} bg-white/[0.02] backdrop-blur-3xl transition-all duration-700 hover:-translate-y-4 group overflow-hidden ${pkg.highlight ? 'scale-105 z-10' : 'z-0'}`}>
+              <div className={`relative h-full flex flex-col p-8 md:p-12 rounded-[3.5rem] border ${pkg.borderColor} bg-white/[0.02] backdrop-blur-3xl transition-all duration-700 hover:-translate-y-4 group overflow-hidden ${pkg.highlight ? 'scale-105 z-10' : 'z-0'}`} style={{ contain: 'content' }}>
                 
                 {/* Glow Effect */}
                 <div 
-                  className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-[100px] transition-opacity duration-700" 
+                  className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-[100px] transition-opacity duration-700 pointer-events-none" 
                   style={{ backgroundColor: pkg.glowColor, opacity: pkg.highlight ? 0.2 : 0.1 }}
                 />
                 
@@ -207,18 +208,18 @@ export default function PricingSection() {
                    <motion.div 
                     animate={{ rotate: 360 }}
                     transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    className="absolute -inset-[2px] opacity-20 bg-[conic-gradient(from_0deg,transparent_0%,#22c55e_50%,transparent_100%)] rounded-[3.5rem] pointer-events-none"
+                    className="absolute -inset-[2px] opacity-20 bg-[conic-gradient(from_0deg,transparent_0%,#22c55e_50%,transparent_100%)] rounded-[3.5rem] pointer-events-none will-change-transform"
                    />
                 )}
 
-                <div className="mb-10 relative z-10">
-                  <span className={`font-mono text-[9px] font-bold px-4 py-1.5 rounded-full tracking-widest uppercase mb-6 inline-block ${pkg.highlight ? 'bg-green-500 text-black animate-pulse' : 'bg-white/5 text-white/40'}`}>
+                <div className="mb-10 relative z-10 text-left">
+                  <span className={`font-mono text-[9px] font-bold px-4 py-1.5 rounded-full tracking-widest uppercase mb-6 inline-block ${pkg.highlight ? 'bg-green-500 text-black' : 'bg-white/5 text-white/40'}`}>
                     {pkg.badge}
                   </span>
                   <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-white/5 border border-white/10 ${pkg.accentColor}`}>
                     {pkg.icon}
                   </div>
-                  <h3 className="text-[2.2rem] font-heading font-black text-white uppercase tracking-tighter mb-4 leading-none">
+                  <h3 className="text-[2.2rem] font-heading font-black text-white uppercase tracking-tighter mb-4 leading-none text-left">
                     {pkg.name}
                   </h3>
                   <div className="flex items-end gap-2 mb-2">
@@ -240,7 +241,7 @@ export default function PricingSection() {
                 <div className="space-y-4 mb-12 flex-1 relative z-10">
                   {pkg.included.map((feat, idx) => (
                     <div key={idx} className="flex items-start gap-3 text-white/60 font-mono text-[11px] uppercase tracking-wide leading-snug">
-                      <div className="w-5 h-5 rounded-full bg-green-500/10 flex items-center justify-center shrink-0 border border-green-500/20 shadow-[0_0_10px_rgba(34,197,94,0.1)]">
+                      <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 border border-green-500/40 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
                         <Check className="w-3 h-3 text-green-500" />
                       </div>
                       <span className={idx === 0 && (pkg.name === "Growth" || pkg.name === "Enterprise") ? "text-white font-bold" : ""}>{feat}</span>
@@ -248,8 +249,8 @@ export default function PricingSection() {
                   ))}
                   {pkg.notIncluded.map((feat, idx) => (
                     <div key={idx} className="flex items-start gap-3 text-white/20 font-mono text-[11px] uppercase tracking-wide leading-snug">
-                      <div className="w-5 h-5 rounded-full bg-red-500/5 flex items-center justify-center shrink-0 border border-red-500/10">
-                        <X className="w-3 h-3 text-red-500/30" />
+                      <div className="w-5 h-5 rounded-full bg-red-500/5 flex items-center justify-center shrink-0 border border-red-500/20">
+                        <X className="w-3 h-3 text-red-500/40" />
                       </div>
                       <span>{feat}</span>
                     </div>
@@ -277,40 +278,89 @@ export default function PricingSection() {
 
         {/* Comparison Table */}
         <AnimatedSection className="mb-32">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 px-4">
             <h3 className="text-4xl md:text-5xl font-heading font-black tracking-tighter text-white uppercase mb-4">DEEP DIVE <span className="text-blue-400 italic">COMPARISON</span></h3>
-            <p className="font-mono text-xs text-white/30 uppercase tracking-[0.3em]">Every feature, laid out transparently.</p>
+            <p className="font-mono text-[10px] md:text-xs text-white/30 uppercase tracking-[0.3em] mb-8">Every feature, laid out transparently.</p>
+            
+            {/* Mobile Tab Switcher */}
+            <div className="lg:hidden flex flex-wrap justify-center gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
+              {(['Starter', 'Growth', 'Enterprise'] as const).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`flex-1 min-w-[90px] py-3 px-4 rounded-xl font-mono text-[10px] font-black uppercase tracking-widest transition-all ${
+                    activeTab === tab 
+                    ? tab === 'Starter' ? 'bg-blue-400 text-black' : tab === 'Growth' ? 'bg-green-500 text-black' : 'bg-amber-500 text-black'
+                    : 'text-white/40 hover:text-white hover:bg-white/5'
+                  }`}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
           </div>
           
-          <div className="glass-premium rounded-[3rem] border-white/5 overflow-hidden backdrop-blur-2xl">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left border-collapse min-w-[800px]">
+          <div className="glass-premium rounded-[2.5rem] md:rounded-[3rem] border-white/5 overflow-hidden backdrop-blur-2xl">
+            <div className="overflow-x-auto lg:overflow-visible">
+              <table className="w-full text-left border-collapse">
                 <thead>
-                  <tr className="border-b border-white/10 bg-white/[0.02]">
-                    <th className="p-8 font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">Feature</th>
+                  {/* Desktop Header */}
+                  <tr className="border-b border-white/10 bg-white/[0.02] hidden lg:table-row">
+                    <th className="p-8 font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 w-1/3">Feature</th>
                     <th className="p-8 font-heading font-black text-lg text-white text-center">STARTER</th>
                     <th className="p-8 font-heading font-black text-lg text-green-500 text-center">GROWTH</th>
                     <th className="p-8 font-heading font-black text-lg text-amber-500 text-center">ENTERPRISE</th>
                   </tr>
+                  {/* Mobile Header */}
+                  <tr className="border-b border-white/10 bg-white/[0.04] lg:hidden">
+                    <th className="p-5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/40 w-[45%]">Feature</th>
+                    <th className={`p-5 font-heading font-black text-sm text-center tracking-tighter ${
+                      activeTab === 'Starter' ? 'text-blue-400' : activeTab === 'Growth' ? 'text-green-500' : 'text-amber-500'
+                    }`}>
+                      {activeTab.toUpperCase()} PLAN
+                    </th>
+                  </tr>
                 </thead>
                 <tbody>
-                  {comparison.map((row, i) => (
-                    <tr key={i} className="border-b border-white/5 hover:bg-white/[0.03] transition-colors group">
-                      <td className="p-6 md:p-8 font-mono text-xs text-white/60 uppercase tracking-widest group-hover:text-white transition-colors">{row.feature}</td>
-                      <td className="p-6 md:p-8 text-center font-mono text-xs text-white">
-                        {row.s === '✅' ? <Check className="w-5 h-5 text-green-500 mx-auto drop-shadow-[0_0_8px_rgba(34,197,94,0.5)]" /> : 
-                         row.s === '❌' ? <X className="w-5 h-5 text-red-500/30 mx-auto" /> : row.s}
-                      </td>
-                      <td className="p-6 md:p-8 text-center font-mono text-xs text-white bg-green-500/5">
-                        {row.g === '✅' ? <Check className="w-5 h-5 text-green-500 mx-auto drop-shadow-[0_0_8px_rgba(34,197,94,0.5)]" /> : 
-                         row.g === '❌' ? <X className="w-5 h-5 text-red-500/30 mx-auto" /> : row.g}
-                      </td>
-                      <td className="p-6 md:p-8 text-center font-mono text-xs text-white">
-                        {row.e === '✅' ? <Check className="w-5 h-5 text-green-500 mx-auto drop-shadow-[0_0_8px_rgba(34,197,94,0.5)]" /> : 
-                         row.e === '❌' ? <X className="w-5 h-5 text-red-500/30 mx-auto" /> : row.e}
-                      </td>
-                    </tr>
-                  ))}
+                  {comparison.map((row, i) => {
+                    const mobileValue = activeTab === 'Starter' ? row.s : activeTab === 'Growth' ? row.g : row.e;
+                    return (
+                      <tr key={i} className="border-b border-white/5 hover:bg-white/[0.03] transition-colors group">
+                        <td className="p-5 md:p-8 font-mono text-[10px] md:text-xs text-white/60 uppercase tracking-widest group-hover:text-white transition-colors">{row.feature}</td>
+                        
+                        {/* Desktop Values */}
+                        <td className="p-5 md:p-8 text-center font-mono text-xs text-white hidden lg:table-cell">
+                          {row.s === '✅' ? <Check className="w-5 h-5 text-green-500 mx-auto drop-shadow-[0_0_10px_rgba(34,197,94,0.6)]" /> : 
+                           row.s === '❌' ? <X className="w-5 h-5 text-red-500/40 mx-auto" /> : row.s}
+                        </td>
+                        <td className="p-5 md:p-8 text-center font-mono text-xs text-white bg-green-500/5 hidden lg:table-cell">
+                          {row.g === '✅' ? <Check className="w-5 h-5 text-green-500 mx-auto drop-shadow-[0_0_10px_rgba(34,197,94,0.6)]" /> : 
+                           row.g === '❌' ? <X className="w-5 h-5 text-red-500/40 mx-auto" /> : row.g}
+                        </td>
+                        <td className="p-5 md:p-8 text-center font-mono text-xs text-white hidden lg:table-cell">
+                          {row.e === '✅' ? <Check className="w-5 h-5 text-green-500 mx-auto drop-shadow-[0_0_10px_rgba(34,197,94,0.6)]" /> : 
+                           row.e === '❌' ? <X className="w-5 h-5 text-red-500/40 mx-auto" /> : row.e}
+                        </td>
+
+                        {/* Mobile Active Tab Value */}
+                        <td className="p-5 text-center font-mono text-[10px] text-white lg:hidden">
+                          <AnimatePresence mode="wait">
+                            <motion.div
+                              key={activeTab}
+                              initial={{ opacity: 0, scale: 0.9 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              exit={{ opacity: 0, scale: 0.9 }}
+                              transition={{ duration: 0.2 }}
+                              className="flex justify-center items-center h-5"
+                            >
+                              {mobileValue === '✅' ? <Check className="w-5 h-5 text-green-500 drop-shadow-[0_0_10px_rgba(34,197,94,0.7)]" /> : 
+                               mobileValue === '❌' ? <X className="w-5 h-5 text-red-500/50" /> : mobileValue}
+                            </motion.div>
+                          </AnimatePresence>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -348,7 +398,7 @@ export default function PricingSection() {
         </AnimatedSection>
 
         {/* Bottom CTA */}
-        <AnimatedSection>
+        <AnimatedSection className="pb-24">
           <div className="relative glass-premium rounded-[4rem] border-white/10 p-12 md:p-24 overflow-hidden text-center group">
             {/* Pulsing BG */}
             <div className="absolute inset-0 bg-blue-500/5 animate-pulse-slow" />
