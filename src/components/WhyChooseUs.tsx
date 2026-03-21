@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect, MouseEvent } from 'react';
-import { motion, AnimatePresence, useMotionValue, useTemplate } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from 'framer-motion';
 import { 
   ShieldCheck, Zap, Bot, Globe, Users, 
   Timer, ArrowUpRight, Fingerprint, Activity,
@@ -117,7 +117,7 @@ function PremiumCard({ item, i }: { item: any, i: number }) {
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         style={{
-          background: useTemplate`
+          background: useMotionTemplate`
             radial-gradient(
               600px circle at ${mouseX}px ${mouseY}px,
               rgba(0, 102, 255, 0.4),
@@ -131,7 +131,7 @@ function PremiumCard({ item, i }: { item: any, i: number }) {
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
         style={{
-          background: useTemplate`
+          background: useMotionTemplate`
             radial-gradient(
               400px circle at ${mouseX}px ${mouseY}px,
               rgba(0, 102, 255, 0.05),
