@@ -5,7 +5,8 @@ import { motion, AnimatePresence, useMotionValue, useMotionTemplate } from 'fram
 import { 
   ShieldCheck, Zap, Bot, Globe, Users, 
   Timer, ArrowUpRight, Fingerprint, Activity,
-  ChevronLeft, ChevronRight, Cpu
+  ChevronLeft, ChevronRight, Cpu, Target, 
+  Sparkles, Shield
 } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 
@@ -13,10 +14,11 @@ const whyVedastra = [
   {
     id: "01",
     title: "You Talk Directly To The Founders",
-    subtitle: "DIRECT_PIPELINE",
+    subtitle: "ELITE_ACCESS",
     desc: "No account managers. No middlemen. The people you speak to are the same people building your product — so nothing gets lost, delayed or miscommunicated.",
     icon: Users,
     color: "#0066ff",
+    highlight: "100% TRANSPARENCY",
     graphic: (
       <svg className="absolute top-0 right-0 w-64 h-64 text-[#0066ff]/10 pointer-events-none" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 4" />
@@ -28,10 +30,11 @@ const whyVedastra = [
   {
     id: "02",
     title: "We Deliver Fast — And We Mean It",
-    subtitle: "TURBO_DEPLOY",
+    subtitle: "VELOCITY_PROTOCOL",
     desc: "Most agencies take months. We deliver in weeks. You get a fixed timeline before we start and we stick to it — no excuses.",
     icon: Timer,
     color: "#0066ff",
+    highlight: "RAPID_DEPLOYMENT",
     graphic: (
       <svg className="absolute bottom-0 right-0 w-64 h-64 text-[#0066ff]/10 pointer-events-none" viewBox="0 0 100 100">
         <path d="M10 80 Q50 10 90 80" fill="none" stroke="currentColor" strokeWidth="0.5" />
@@ -43,10 +46,11 @@ const whyVedastra = [
   {
     id: "03",
     title: "AI Is Built Into Everything",
-    subtitle: "NEURAL_SYNC",
-    desc: "We don't just build websites and apps. We make them smarter. Every product we build comes with AI capabilities that save you time and cut costs.",
+    subtitle: "NEURAL_CORE",
+    desc: "We don't just build websites and apps. We make them smarter. Every product we build comes with AI architecture that saves you time and cuts costs.",
     icon: Bot,
     color: "#0066ff",
+    highlight: "INTELLIGENT_LOGIC",
     graphic: (
       <svg className="absolute top-1/2 -translate-y-1/2 right-0 w-64 h-64 text-[#0066ff]/10 pointer-events-none" viewBox="0 0 100 100">
         <rect x="20" y="20" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="0.5" rx="10" />
@@ -58,10 +62,11 @@ const whyVedastra = [
   {
     id: "04",
     title: "World-Class Quality, Local Prices",
-    subtitle: "GLOBAL_ARBITRAGE",
+    subtitle: "GLOBAL_ADVANTAGE",
     desc: "Based in India, working globally. You get the same quality as a $20,000 Western agency — without the $20,000 price tag.",
     icon: Globe,
     color: "#0066ff",
+    highlight: "PREMIUM_ARBITRAGE",
     graphic: (
       <svg className="absolute top-0 left-0 w-64 h-64 text-[#0066ff]/10 pointer-events-none rotate-180" viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" strokeWidth="0.5" />
@@ -73,10 +78,11 @@ const whyVedastra = [
   {
     id: "05",
     title: "We Don't Disappear After Launch",
-    subtitle: "ACTIVE_GUARDIAN",
+    subtitle: "ETERNAL_SUPPORT",
     desc: "Every project includes months of support after going live. We monitor, fix and improve — because we're in this for the long term.",
     icon: ShieldCheck,
     color: "#0066ff",
+    highlight: "ZERO_GHOSTING",
     graphic: (
       <svg className="absolute bottom-10 right-10 w-64 h-64 text-[#0066ff]/10 pointer-events-none" viewBox="0 0 100 100">
         <path d="M50 10 L85 25 V50 C85 70 50 90 50 90 C50 90 15 70 15 50 V25 L50 10 Z" fill="none" stroke="currentColor" strokeWidth="0.5" />
@@ -98,87 +104,97 @@ function PremiumCard({ item, i }: { item: any, i: number }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: i * 0.1, duration: 0.8 }}
+      transition={{ delay: i * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
       onMouseMove={handleMouseMove}
       className={`
-        group relative bg-[#0C0C12]/80 border border-white/5 p-10 lg:p-14 rounded-[3rem] overflow-hidden transition-all duration-700
-        hover:border-[#0066ff]/40 hover:shadow-[0_0_100px_rgba(0,102,255,0.1)]
-        min-w-full md:min-w-0 snap-center backdrop-blur-3xl
+        group relative bg-[#0A0A0E] border border-white/5 p-12 lg:p-16 rounded-[4rem] overflow-hidden transition-all duration-1000
+        hover:border-[#0066ff]/50 hover:shadow-[0_40px_120px_rgba(0,0,0,0.9)]
+        min-w-full md:min-w-0 snap-center
         ${i === 0 || i === 4 ? 'lg:col-span-2' : ''}
       `}
     >
-      {/* Background Noise Texture */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      {/* Background Micro-Grid */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
       
-      {/* Mouse Tracking Glow Border */}
+      {/* High-Fi Noise Overlay */}
+      <div className="absolute inset-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-overlay" />
+
+      {/* Dynamic Glow Border (Mouse Target) */}
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="pointer-events-none absolute -inset-px rounded-[4rem] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-10"
         style={{
           background: useMotionTemplate`
             radial-gradient(
-              600px circle at ${mouseX}px ${mouseY}px,
-              rgba(0, 102, 255, 0.4),
+              800px circle at ${mouseX}px ${mouseY}px,
+              rgba(0, 102, 255, 0.5),
               transparent 80%
             )
           `,
         }}
       />
 
-      {/* Surface Glow Overlay */}
+      {/* Surface Depth Glow */}
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"
+        className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 z-10"
         style={{
           background: useMotionTemplate`
             radial-gradient(
               400px circle at ${mouseX}px ${mouseY}px,
-              rgba(0, 102, 255, 0.05),
+              rgba(0, 102, 255, 0.08),
               transparent 60%
             )
           `,
         }}
       />
 
-      {/* Graphical Asset */}
-      <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-1000">
+      {/* Tactical SVG Graphic */}
+      <div className="absolute inset-0 opacity-10 group-hover:opacity-30 transition-all duration-1000 scale-110 group-hover:scale-100 group-hover:rotate-2">
         {item.graphic}
       </div>
       
       <div className="relative z-20 flex flex-col h-full">
-        <div className="flex items-center justify-between mb-16">
-           <div className="flex items-center gap-5">
-              <div className="w-16 h-16 rounded-[1.5rem] bg-[#0066ff]/10 border border-[#0066ff]/20 flex items-center justify-center text-[#8A8A9A] group-hover:text-white group-hover:border-[#0066ff]/50 group-hover:scale-110 transition-all duration-700 shadow-lg">
-                 <item.icon className="w-8 h-8" />
+        {/* Header Meta */}
+        <div className="flex items-center justify-between mb-12">
+           <div className="flex items-center gap-6">
+              <div className="w-20 h-20 rounded-[2rem] bg-[#0066ff]/5 border border-[#0066ff]/10 flex items-center justify-center text-[#0066ff] group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(0,102,255,0.3)] transition-all duration-700 backdrop-blur-md">
+                 <item.icon className="w-10 h-10" />
               </div>
               <div className="flex flex-col">
                 <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-[#0066ff] font-black">{item.subtitle}</span>
                 <div className="flex items-center gap-2">
-                   <div className="w-2 h-2 rounded-full bg-[#00ff88] animate-pulse shadow-[0_0_10px_#00ff88]" />
-                   <span className="font-mono text-[10px] text-white/40 font-bold tracking-widest uppercase">ENCRYPTED_DATA_SECURE</span>
+                   <div className="w-2 h-2 rounded-full bg-[#00ff88] animate-pulse" />
+                   <span className="font-mono text-[9px] text-white/40 font-bold tracking-widest uppercase">{item.highlight}</span>
                 </div>
               </div>
            </div>
-           <span className="font-heading text-4xl font-black text-white/5 group-hover:text-[#0066ff]/10 transition-colors duration-1000 italic">{item.id}</span>
+           <span className="font-heading text-5xl font-black text-white/5 group-hover:text-[#0066ff]/10 transition-colors duration-1000 italic">{item.id}</span>
         </div>
 
-        <h3 className="text-3xl lg:text-4xl font-heading font-black text-white uppercase tracking-tighter mb-8 leading-[1.1] max-w-[90%] transition-all duration-700 group-hover:translate-x-4 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-[#0066ff]">
+        {/* Text Content */}
+        <h3 className="text-3xl md:text-4xl lg:text-5xl font-heading font-black text-white uppercase tracking-tighter mb-8 leading-[1] max-w-[95%] transition-all duration-700 group-hover:translate-x-4">
+          {i % 2 === 0 ? <span className="text-[#0066ff] mr-2">/</span> : null}
           {item.title}
         </h3>
         
-        <p className="text-[#8A8A9A] text-lg leading-relaxed font-body font-light group-hover:text-white/80 transition-colors duration-500 max-w-2xl">
+        <p className="text-[#8A8A9A] text-lg lg:text-xl leading-relaxed font-body font-light group-hover:text-white/90 transition-colors duration-700 max-w-2xl border-l border-white/5 pl-8 group-hover:border-[#0066ff]/30">
           {item.desc}
         </p>
         
-        <div className="mt-auto pt-10 border-t border-white/5 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-700 translate-y-4 group-hover:translate-y-0">
+        {/* Action Reveal */}
+        <div className="mt-12 pt-10 border-t border-white/5 flex items-center justify-between opacity-0 group-hover:opacity-100 transition-all duration-1000 translate-y-6 group-hover:translate-y-0">
            <div className="flex gap-2">
-              {[1, 2, 3, 4].map(dot => <div key={dot} className="w-1.5 h-4 bg-[#0066ff]/50 rounded-full group-hover:animate-bounce" style={{ animationDelay: `${dot * 0.1}s` }} />)}
+              {[1, 2, 3, 4, 5].map(d => (
+                <div key={d} className="w-1.5 h-6 bg-[#0066ff]/30 rounded-full group-hover:animate-bounce" style={{ animationDelay: `${d * 0.15}s` }} />
+              ))}
            </div>
-           <div className="flex items-center gap-3 group/btn cursor-pointer">
-              <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#0066ff] font-black">VIEW_SPECIFICATIONS</span>
-              <div className="w-10 h-10 rounded-full border border-[#0066ff]/20 flex items-center justify-center group-hover/btn:bg-[#0066ff]/10 transition-all">
-                <ArrowUpRight className="w-5 h-5 text-[#0066ff] group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
+           
+           <div className="flex items-center gap-4 group/btn cursor-pointer">
+              <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#0066ff] font-black">ANALYZE_PARAMETER</span>
+              <div className="w-12 h-12 rounded-full border border-[#0066ff]/20 flex items-center justify-center bg-white/5 group-hover/btn:bg-[#0066ff] group-hover/btn:text-black transition-all">
+                <ArrowUpRight className="w-6 h-6" />
               </div>
            </div>
         </div>
@@ -203,53 +219,54 @@ export default function WhyChooseUs() {
   };
 
   return (
-    <section id="why" className="relative py-24 md:py-40 bg-[#060608] overflow-hidden">
+    <section id="why" className="relative py-24 md:py-48 bg-[#060608] overflow-hidden">
       
-      {/* Dynamic Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,102,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(0,102,255,0.02)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
+      {/* Heavy Cyber Background Ambience */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(0,102,255,0.03)_2px,transparent_2px),linear-gradient(90deg,rgba(0,102,255,0.03)_2px,transparent_2px)] bg-[size:120px_120px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
+      <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#0066ff]/50 to-transparent shadow-[0_0_20px_rgba(0,102,255,0.3)]" />
 
-      <div className="max-w-[1700px] mx-auto px-6 relative z-10">
+      <div className="max-w-[1750px] mx-auto px-6 relative z-10">
         
         {/* Header Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end mb-24 lg:mb-40">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-end mb-32 lg:mb-48">
           <AnimatedSection>
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#0066ff]/5 border border-[#0066ff]/20 mb-10 backdrop-blur-md">
-               <Fingerprint className="w-4 h-4 text-[#0066ff]" />
-               <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-[#0066ff]/80 font-black">ESTABLISHING_TRUST_PROTOCOL</span>
+            <div className="inline-flex items-center gap-4 px-5 py-2 rounded-full bg-[#0066ff]/5 border border-[#0066ff]/20 mb-12 backdrop-blur-xl">
+               <Fingerprint className="w-5 h-5 text-[#0066ff]" />
+               <h4 className="font-mono text-xs uppercase tracking-[0.5em] text-[#0066ff] font-black">ESTABLISHING_PREMIUM_CREDENTIALS</h4>
             </div>
-            <h2 className="text-[3rem] md:text-[6rem] lg:text-[8.5rem] font-heading font-black leading-[0.8] tracking-tighter uppercase text-white italic">
+            <h2 className="text-[3.5rem] md:text-[7rem] lg:text-[10rem] font-heading font-black leading-[0.75] tracking-tighter uppercase text-white italic">
               WHY <br/>
-              <span className="text-[#0066ff] drop-shadow-[0_0_60px_rgba(0,102,255,0.5)]">VEDASTRA?</span>
+              <span className="text-[#0066ff] drop-shadow-[0_0_80px_rgba(0,102,255,0.6)]">VEDASTRA?</span>
             </h2>
           </AnimatedSection>
           
-          <AnimatedSection delay={0.2} className="lg:max-w-xl lg:ml-auto">
-             <div className="relative p-10 rounded-[3rem] bg-white/[0.02] border border-white/5 backdrop-blur-xl">
-               <div className="absolute top-0 left-10 w-20 h-1 bg-[#0066ff] -translate-y-1/2" />
-               <p className="text-[#8A8A9A] text-xl lg:text-2xl font-body font-light leading-relaxed">
-                 "Our methodology is built on speed, precision, and direct accountability. We eliminate the agency bloat to deliver pure engineering excellence."
+          <AnimatedSection delay={0.2} className="lg:max-w-2xl lg:ml-auto">
+             <div className="relative p-12 rounded-[4rem] bg-white/[0.02] border border-white/5 backdrop-blur-3xl shadow-2xl">
+               <div className="absolute top-0 left-16 w-32 h-1.5 bg-[#0066ff] -translate-y-1/2 shadow-[0_0_20px_#0066ff]" />
+               <p className="text-[#8A8A9A] text-xl lg:text-3xl font-body font-light leading-relaxed border-l-4 border-[#0066ff]/20 pl-10 italic">
+                 &quot;Our methodology is built on speed, precision, and direct accountability. We eliminate the agency bloat to deliver pure engineering excellence.&quot;
                </p>
              </div>
           </AnimatedSection>
         </div>
 
-        {/* Mobile Navigation Controls */}
-        <div className="flex md:hidden items-center justify-between mb-12 px-2">
-            <div className="flex gap-3">
+        {/* Mobile Navigation Toolbar */}
+        <div className="flex md:hidden items-center justify-between mb-16 px-4">
+            <div className="flex gap-4">
               {whyVedastra.map((_, i) => (
                 <button 
                   key={i} 
                   onClick={() => scrollTo(i)}
-                  className={`h-1.5 transition-all duration-500 rounded-full ${activeIdx === i ? 'w-12 bg-[#0066ff] shadow-[0_0_10px_#0066ff]' : 'w-3 bg-white/10'}`} 
+                  className={`h-2 transition-all duration-700 rounded-full ${activeIdx === i ? 'w-16 bg-[#0066ff] shadow-[0_0_15px_#0066ff]' : 'w-4 bg-white/10'}`} 
                 />
               ))}
             </div>
-            <div className="flex gap-4">
-               <button onClick={() => scrollTo((activeIdx - 1 + whyVedastra.length) % whyVedastra.length)} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/40 active:bg-white/5 transition-colors backdrop-blur-md">
-                  <ChevronLeft className="w-6 h-6" />
+            <div className="flex gap-6">
+               <button onClick={() => scrollTo((activeIdx - 1 + whyVedastra.length) % whyVedastra.length)} className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white/40 active:bg-[#0066ff] active:text-black transition-all backdrop-blur-xl">
+                  <ChevronLeft className="w-8 h-8" />
                </button>
-               <button onClick={() => scrollTo((activeIdx + 1) % whyVedastra.length)} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center text-white/40 active:bg-white/5 transition-colors backdrop-blur-md">
-                  <ChevronRight className="w-6 h-6" />
+               <button onClick={() => scrollTo((activeIdx + 1) % whyVedastra.length)} className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white/40 active:bg-[#0066ff] active:text-black transition-all backdrop-blur-xl">
+                  <ChevronRight className="w-8 h-8" />
                </button>
             </div>
         </div>
@@ -257,7 +274,7 @@ export default function WhyChooseUs() {
         {/* Tactical Bento Grid / Mobile Carousel */}
         <div 
           ref={scrollRef}
-          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 overflow-x-auto md:overflow-visible no-scrollbar snap-x snap-mandatory pb-20 transition-all"
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-14 overflow-x-auto md:overflow-visible no-scrollbar snap-x snap-mandatory pb-24"
           onScroll={(e) => {
             if (window.innerWidth < 768) {
               const el = e.currentTarget;
@@ -270,22 +287,24 @@ export default function WhyChooseUs() {
             <PremiumCard key={item.id} item={item} i={i} />
           ))}
 
-          {/* Premium Visual Hub */}
+          {/* Luxury Visual Hub */}
           <motion.div 
-            className="hidden lg:flex glass-premium rounded-[4rem] p-16 flex-col items-center justify-center text-center border-[#0066ff]/20 hover:border-[#0066ff]/50 transition-all duration-1000 bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.08)_0%,transparent_70%)] group relative overflow-hidden"
+            className="hidden lg:flex glass-premium rounded-[5rem] p-20 flex-col items-center justify-center text-center border-[#0066ff]/30 hover:border-[#0066ff]/60 transition-all duration-1000 bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.1)_0%,transparent_70%)] group relative overflow-hidden"
           >
-             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05]" />
-             <div className="relative z-10">
-                <Cpu className="w-24 h-24 text-[#0066ff] mb-12 animate-[spin_15s_linear_infinite] drop-shadow-[0_0_40px_rgba(0,102,255,0.6)]" />
-                <h4 className="font-heading font-black text-white text-3xl uppercase tracking-[0.3em] mb-6 italic">THE_ENGINE</h4>
-                <div className="flex items-center gap-4 justify-center">
-                   <div className="w-3 h-3 rounded-full bg-[#00ff88] animate-ping" />
-                   <p className="font-mono text-xs text-[#0066ff] uppercase tracking-[0.4em] font-black">CORE_SYSTEM_ACTIVE</p>
+             <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.08]" />
+             <div className="relative z-10 scale-125">
+                <Cpu className="w-32 h-32 text-[#0066ff] mb-16 animate-[spin_20s_linear_infinite] drop-shadow-[0_0_60px_rgba(0,102,255,0.8)]" />
+                <h4 className="font-heading font-black text-white text-4xl uppercase tracking-[0.4em] mb-8 italic">THE_ENGINE_</h4>
+                <div className="flex items-center gap-6 justify-center">
+                   <div className="w-4 h-4 rounded-full bg-[#00ff88] animate-ping" />
+                   <p className="font-mono text-sm text-[#0066ff] uppercase tracking-[0.5em] font-black">CORE_SYSTEM_ACTIVE</p>
                 </div>
              </div>
              
-             {/* Animated Rings */}
-             <div className="absolute inset-0 rounded-full border border-[#0066ff]/10 scale-[1.2] animate-[ping_4s_cubic-bezier(0,0,0.2,1)_infinite]" />
+             {/* Pulsing Architecture Rings */}
+             {[1, 1.3, 1.6].map(s => (
+                <div key={s} className="absolute inset-0 rounded-full border border-[#0066ff]/10 animate-[ping_6s_cubic-bezier(0,0,0.2,1)_infinite]" style={{ transform: `scale(${s})`, animationDelay: `${s}s` }} />
+             ))}
           </motion.div>
         </div>
       </div>
