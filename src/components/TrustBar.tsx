@@ -1,32 +1,39 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Shield, Zap, Server, Bot, Code2, Database, Lock, Layers } from 'lucide-react';
+import { Star, Shield, Globe, Zap, Trophy, Lock } from 'lucide-react';
 
-const techLogos = [
-  { icon: Code2, label: 'Next.js' },
-  { icon: Layers, label: 'React' },
-  { icon: Database, label: 'Node.js' },
-  { icon: Bot, label: 'OpenAI' },
-  { icon: Shield, label: 'TypeScript' },
-  { icon: Server, label: 'AWS' },
-  { icon: Lock, label: 'Firebase' },
-  { icon: Zap, label: 'Vercel' },
+const trustItems = [
+  { icon: Star, text: 'Rated on Google (5.0)' },
+  { icon: Trophy, text: 'Clutch Verified Agency' },
+  { icon: Globe, text: 'Clients in India & Worldwide' },
+  { icon: Zap, text: '50+ Projects Delivered' },
+  { icon: Lock, text: '256-bit Secure Infrastructure' },
 ];
 
 export default function TrustBar() {
   return (
-    <section className="relative py-6 bg-black/80 border-t border-b border-white/5 overflow-hidden z-20 backdrop-blur-xl">
-      <div className="flex whitespace-nowrap overflow-hidden">
-        <div className="flex animate-[marquee_25s_linear_infinite] gap-12 md:gap-16 items-center pr-12 md:pr-16 gpu-accelerated">
-          {[...techLogos, ...techLogos].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
-              <item.icon className="w-4 h-4 text-[#00ff9d]" />
-              <span className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-[#00ff9d]">{item.label}</span>
+    <section className="relative py-4 bg-[#111118] border-t border-b border-[#00D4FF]/20 overflow-hidden z-20">
+      <div className="flex whitespace-nowrap">
+        <div className="flex animate-[marquee_40s_linear_infinite] items-center gap-12 sm:gap-16">
+          {[...trustItems, ...trustItems, ...trustItems].map((item, i) => (
+            <div key={i} className="flex items-center gap-3 shrink-0">
+              <item.icon className="w-4 h-4 text-[#00D4FF]" />
+              <span className="font-heading font-bold text-[10px] sm:text-xs uppercase tracking-widest text-white/80">
+                {item.text}
+              </span>
+              <div className="w-1 h-1 bg-[#00D4FF]/40 rounded-full mx-4" />
             </div>
           ))}
         </div>
       </div>
+
+      <style jsx global>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.33%); }
+        }
+      `}</style>
     </section>
   );
 }

@@ -1,34 +1,31 @@
-import type { Metadata } from "next";
-import { Outfit, Geist_Mono, Orbitron } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AnimatedBackgroundMesh from "@/components/AnimatedBackgroundMesh";
 
 import CustomCursor from "@/components/CustomCursor";
-import Preloader from "@/components/Preloader";
 import PerformanceManager from "@/components/PerformanceManager";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
-import Head from "next/head";
 
-const orbitron = Orbitron({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-orbitron",
-  weight: ["700", "900"],
+  variable: "--font-space-grotesk",
+  weight: ["700", "400"],
   display: 'swap',
 });
 
-const outfit = Outfit({
+const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-outfit",
-  weight: ["300", "400", "500", "700"],
+  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700"],
   display: 'swap',
 });
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-jetbrains-mono",
   weight: ["400", "700"],
   display: 'swap',
 });
@@ -44,14 +41,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${orbitron.variable} ${outfit.variable} ${geistMono.variable}`}>
-      <body className="bg-black text-white font-body antialiased min-h-screen">
-        <Preloader />
+    <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="bg-[#0A0A0F] text-white font-body antialiased min-h-screen">
         <CustomCursor />
         {/* Global Cinematic Grain Overlay */}
         <div className="grain-overlay" />
         {/* Floating Shell Container */}
-        <div className="max-w-[1600px] mx-auto min-h-screen bg-obsidian/40 backdrop-blur-sm rounded-[2.5rem] ring-1 ring-white/10 shadow-2xl relative overflow-hidden flex flex-col my-4">
+        <div className="max-w-[1600px] mx-auto min-h-screen bg-[#111118]/40 backdrop-blur-sm rounded-[2.5rem] ring-1 ring-white/10 shadow-2xl relative overflow-hidden flex flex-col my-4">
           <AnimatedBackgroundMesh />
           <Navbar />
           <main className="flex-grow z-10 w-full relative">

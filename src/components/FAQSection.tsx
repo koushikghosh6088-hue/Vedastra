@@ -57,13 +57,13 @@ export default function FAQSection() {
       <div className="max-w-3xl mx-auto px-6 relative z-10">
         <AnimatedSection className="text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
-            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-            <span className="font-mono text-xs uppercase tracking-widest text-blue-400">FAQ</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
+            <span className="font-mono text-xs uppercase tracking-widest text-[#00D4FF]">FAQ</span>
           </div>
-          <h2 className="text-[2rem] md:text-[3rem] lg:text-[3.8rem] font-heading font-black leading-none tracking-tighter uppercase mb-4">
-            QUESTIONS? <span className="gradient-text italic">WE&apos;VE GOT ANSWERS</span>
+          <h2 className="text-[2rem] md:text-[3rem] lg:text-[3.8rem] font-heading font-black leading-none tracking-tighter uppercase mb-4 text-white">
+            QUESTIONS? <span className="italic text-[#00D4FF]">WE&apos;VE GOT ANSWERS</span>
           </h2>
-          <p className="font-mono text-sm text-white/40 uppercase tracking-[0.15em] max-w-lg mx-auto">
+          <p className="font-mono text-sm text-[#8A8A9A] uppercase tracking-[0.15em] max-w-lg mx-auto">
             Everything you want to know before working with us
           </p>
         </AnimatedSection>

@@ -26,6 +26,8 @@ import FAQSection from '@/components/FAQSection';
 import FinalCTA from '@/components/FinalCTA';
 import TrustBar from '@/components/TrustBar';
 import TeamSection from '@/components/TeamSection';
+import Testimonials from '@/components/Testimonials';
+import HowItWorks from '@/components/HowItWorks';
 
 import { View, Preload } from '@react-three/drei';
 
@@ -256,10 +258,17 @@ export default function HomePage() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [isTabActive, setIsTabActive] = useState(true);
   const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const isMarqueeInView = useInView(marqueeRef, { amount: 0.1 });
 
   useEffect(() => {
     setMounted(true);
+    
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
     // Visibility API listener to pause animations
     const handleVisibilityChange = () => setIsTabActive(!document.hidden);
     document.addEventListener('visibilitychange', handleVisibilityChange);
@@ -280,6 +289,7 @@ export default function HomePage() {
     }
 
     return () => {
+      window.removeEventListener('scroll', handleScroll);
       document.removeEventListener('visibilitychange', handleVisibilityChange);
       ScrollTrigger.getAll().forEach(t => t.kill());
     };
@@ -289,116 +299,95 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ═══════════ CINEMATIC HERO ═══════════ */}
-      <section
-        ref={heroRef}
-        className="relative min-h-screen flex items-center overflow-hidden cursor-default bg-obsidian"
-      >
-        {/* Background */}
-        <div className="absolute inset-0 bg-obsidian z-0" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_50%,rgba(14,165,233,0.08)_0%,transparent_70%)] pointer-events-none z-0" />
-
-        {/* R3F Hero Scene — High-Impact UI */}
-        <div ref={trackRef} className="absolute inset-0 z-[2] opacity-40 pointer-events-none" id="hero-3d-container">
-          {mounted && (
-            <View track={trackRef as any}>
-              <HeroEnvironment />
-            </View>
-          )}
-        </div>
-
-        {/* Cinematic Spotlight focal point */}
-        <Spotlight 
-          className="-top-40 left-0 md:left-60 md:-top-20 z-[3]" 
-          fill="rgba(14,165,233,0.15)" 
+      {/* 01–03 — HERO SECTION (REDESIGNED) */}
+      <section className="relative min-h-[95vh] flex items-center pt-24 lg:pt-0 overflow-hidden bg-[#0A0A0F]">
+        {/* Animated Grid Background */}
+        <div className="absolute inset-0 z-0 opacity-[0.08]" 
+          style={{ 
+            backgroundImage: `linear-gradient(rgba(0, 212, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 212, 255, 0.2) 1px, transparent 1px)`,
+            backgroundSize: '40px 40px' 
+          }} 
         />
+        
+        {/* Decorative Glowing Orb (Top Right) */}
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#00D4FF]/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
 
-        {/* Spline 3D Robot — Positioned right, on top of gradients for clarity */}
-        <div className="absolute left-1/2 -translate-x-1/2 sm:left-auto sm:right-0 sm:translate-x-0 top-0 w-[160%] sm:w-[75%] lg:w-[65%] 2xl:w-[55%] h-full z-[10] scale-[0.58] sm:scale-110 md:scale-100 translate-y-[-20%] sm:translate-y-0">
-          <SplineScene 
-            scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-            className="w-full h-full"
-          />
-        </div>
-
-        {/* Dark gradient overlay for text readability — refined for robot clarity */}
-        <div className="absolute inset-0 z-[4] pointer-events-none bg-gradient-to-r from-obsidian via-obsidian/70 to-transparent sm:via-obsidian/40 lg:via-obsidian/30" />
-        <div className="absolute inset-0 z-[4] pointer-events-none bg-gradient-to-t from-obsidian/40 via-transparent to-obsidian/20 lg:from-transparent lg:to-transparent" />
-
-        {/* Text Content — pointer-events-none so mouse passes through to Spline */}
-        <div className="relative z-20 max-w-[1550px] mx-auto px-5 sm:px-6 lg:px-20 w-full pointer-events-none">
-          <div className="flex flex-col justify-center min-h-screen pt-[45vh] sm:pt-48 pb-20 lg:pt-20 lg:pb-0">
+        <div className="relative z-20 max-w-[1550px] mx-auto px-6 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            
+            {/* LEFT COLUMN: Content */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
-              className="max-w-lg sm:max-w-xl lg:max-w-4xl space-y-6 lg:space-y-8 mx-auto lg:mx-0 text-center lg:text-left"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              className="text-center lg:text-left space-y-8"
             >
-              <div className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full glass-premium border-[#0066ff]/20">
-                <span className="w-2 h-2 bg-[#ccff00] rounded-full animate-pulse-glow shadow-[0_0_15px_rgba(204,255,0,0.5)]" />
-                <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-[#ccff00] glow-green">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00D4FF]/30 bg-[#00D4FF]/5">
+                <Zap className="w-3.5 h-3.5 text-[#00D4FF]" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#00D4FF]">
                   AI-Powered Digital Agency
                 </span>
               </div>
 
-              <h1 
-                ref={headlineRef}
-                className="text-[2.2rem] sm:text-[3.2rem] md:text-[4.5rem] lg:text-[4.8rem] xl:text-[5rem] 2xl:text-[6rem] font-heading font-black leading-[0.95] tracking-tighter uppercase text-white"
-              >
+              <h1 className="text-[2.2rem] sm:text-[3.2rem] md:text-[3.2rem] font-heading font-black leading-[1] tracking-tighter uppercase text-white">
                 WE BUILD DIGITAL<br />
-                PRODUCTS THAT <span className="italic text-[#0066ff]">GROW</span> YOUR BUSINESS.
+                PRODUCTS THAT <span className="italic text-[#00D4FF]">GROW</span> YOUR BUSINESS.
               </h1>
 
-              <p 
-                ref={subheadlineRef}
-                className="text-sm sm:text-base md:text-lg text-[#888888] max-w-[520px] mx-auto lg:mx-0 font-body font-normal leading-relaxed tracking-wide"
-              >
-                Websites. Mobile Apps. AI Agents. Automation. Built for businesses that are serious about growth.<br/>
-                <TypewriterSubline />
+              <p className="text-base sm:text-lg text-[#8A8A9A] max-w-[540px] mx-auto lg:mx-0 font-body leading-relaxed">
+                Websites. Mobile Apps. AI Agents. Built for businesses serious about growth. 
+                Fast delivery. Real results. <span className="text-white font-medium">Zero confusion.</span>
               </p>
-              
-              {/* pointer-events-auto on interactive elements */}
-              <div className="flex flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 pt-2 lg:pt-4 pointer-events-auto">
-                <div className="magnetic-wrap relative">
-                  <div className="absolute -inset-1 bg-[#0066ff]/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
-                  <Link href="/contact" className="btn-primary px-7 sm:px-10 py-4 sm:py-5 text-[0.8rem] font-heading font-bold uppercase tracking-[0.1em] relative">
-                    START YOUR PROJECT <ArrowUpRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5" />
-                  </Link>
-                </div>
-                <div className="magnetic-wrap">
-                  <Link href="/portfolio" className="text-white/60 hover:text-[#0066ff] font-heading font-bold text-[0.8rem] uppercase tracking-widest underline underline-offset-8 transition-all whitespace-nowrap">
-                    See Our Work
-                  </Link>
-                </div>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                <Link href="#booking" className="btn-primary w-full sm:w-auto px-10 py-5 flex items-center justify-center gap-2 text-sm">
+                  🚀 START MY PROJECT <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link href="/portfolio" className="btn-outline w-full sm:w-auto px-10 py-5 flex items-center justify-center gap-2 text-sm border-white/10 text-white/60 hover:text-white">
+                  ▶ See Our Work
+                </Link>
               </div>
 
-              {/* Mini stats */}
-              <div className="flex items-center gap-6 sm:gap-8 pt-4 lg:pt-6 justify-center lg:justify-start">
+              {/* Trust Micro-Stats */}
+              <div className="grid grid-cols-2 sm:flex items-center gap-3 sm:gap-4 pt-8">
                 {[
-                  { val: '1–2 Wks', label: 'Delivery' },
-                  { val: 'AI-First', label: 'Tech' },
-                  { val: '24/7', label: 'Support' },
-                  { val: '100%', label: 'Satisfaction' },
+                  { icon: Zap, text: '1–2 Wk Delivery' },
+                  { icon: Bot, text: 'AI-First Tech' },
+                  { icon: CheckCircle, text: '100% Satisfaction' },
+                  { icon: Phone, text: '24/7 Support' },
                 ].map((s) => (
-                  <div key={s.label}>
-                    <div className="text-base sm:text-lg font-heading font-bold text-white">{s.val}</div>
-                    <div className="text-[0.7rem] font-mono text-[#888888] uppercase tracking-[0.1em]">{s.label}</div>
+                  <div key={s.text} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10">
+                    <s.icon className="w-3.5 h-3.5 text-[#00D4FF]" />
+                    <span className="font-heading font-bold text-[9px] uppercase tracking-wider text-white">
+                      {s.text}
+                    </span>
                   </div>
                 ))}
               </div>
             </motion.div>
+
+            {/* RIGHT COLUMN: Visual (Always Visible) */}
+            <div className="relative h-[400px] lg:h-[600px] w-full order-first lg:order-last">
+              <div className="absolute inset-0 z-10 scale-[1.1] lg:scale-[1.2] lg:translate-x-12">
+                <SplineScene 
+                  scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                  className="w-full h-full"
+                />
+              </div>
+              {/* Optional: Floating Mockup Overlay can be added here */}
+            </div>
+            
           </div>
         </div>
 
         {/* Scroll Indicator */}
         <motion.div 
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-8 lg:bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-4 z-20 hidden lg:flex"
+          animate={{ opacity: scrolled ? 0 : 1 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 z-20 hidden lg:flex"
         >
-          <div className="w-px h-16 bg-gradient-to-b from-blue-400/50 to-transparent" />
-          <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/20 rotate-90 origin-left ml-2">Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-[#00D4FF] to-transparent" />
+          <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#00D4FF]/40 rotate-90 origin-left ml-1">Scroll</span>
         </motion.div>
       </section>
 
@@ -406,14 +395,24 @@ export default function HomePage() {
       <TrustBar />
 
       {/* 05 — PROBLEMS SECTION */}
-      <section className="relative bg-black z-10">
-        <ProblemSolution />
-      </section>
+      <ProblemSolution />
 
       {/* 06 — SERVICES SECTION */}
       <ServicesSection />
 
-      {/* 07 — ABOUT US (REDESIGNED) */}
+      {/* 07 — WHY VEDASTRA (ADVANATGE MATRIX) */}
+      <WhyChooseUs />
+
+      {/* 08 — TESTIMONIALS (PROOF) */}
+      <Testimonials />
+
+      {/* 09 — PRICING SECTION */}
+      <PricingSection />
+
+      {/* 10 — HOW IT WORKS */}
+      <HowItWorks />
+
+      {/* 11 — ABOUT / TEAM SECTION */}
       <section id="about" className="relative pt-32 pb-24 lg:py-56 mesh-gradient z-10 overflow-hidden border-t border-white/5">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#0066ff]/[0.05] rounded-full blur-[150px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#ccff00]/[0.03] rounded-full blur-[150px] pointer-events-none" />
@@ -424,28 +423,28 @@ export default function HomePage() {
                <div className="lg:col-span-12 xl:col-span-10 mx-auto text-center lg:text-center">
                   <AnimatedSection>
                      <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full glass-premium border-white/10 mb-10 mx-auto">
-                        <span className="w-2 h-2 rounded-full bg-[#0066ff] animate-pulse shadow-[0_0_10px_#0066ff]" />
+                        <span className="w-2 h-2 rounded-full bg-[#00D4FF] animate-pulse shadow-[0_0_10px_#00D4FF]" />
                         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">Engineering the Future</span>
                      </div>
                      
-                     <h2 className="text-[2rem] md:text-[5rem] lg:text-[5.5rem] font-heading font-black leading-[0.85] tracking-[0.02em] uppercase text-white mb-16 max-w-6xl mx-auto">
-                        WHERE <span className="italic text-[#0066ff]">ELITE ARCHITECTURE</span> <br/>MEETS <span className="italic text-[#ccff00]">BUSINESS DOMINANCE</span>
+                     <h2 className="text-[2rem] md:text-[3.5rem] lg:text-[4rem] font-heading font-black leading-[1] tracking-[0.02em] uppercase text-white mb-16 max-w-6xl mx-auto">
+                        WHERE <span className="italic text-[#00D4FF]">ELITE ARCHITECTURE</span> <br/>MEETS <span className="italic text-[#00D4FF]">BUSINESS DOMINANCE</span>
                      </h2>
 
                      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start text-left">
                         <div className="space-y-8">
                            <p className="text-2xl md:text-3xl font-heading font-bold text-white leading-[1.1] tracking-tight">
-                              We aren&apos;t just another agency. We are a <span className="text-[#0066ff]">specialized lab</span> of full-stack engineers and data scientists.
+                              We aren&apos;t just another agency. We are a <span className="text-[#00D4FF]">specialized lab</span> of full-stack engineers and data scientists.
                            </p>
-                           <p className="text-white/40 font-body text-lg leading-relaxed">
+                           <p className="text-[#8A8A9A] font-body text-lg leading-relaxed">
                               At Vedastra AI Labs, we translate complex business logic into high-performance digital products. 
                               From server-less scalable architectures to autonomous AI workflows, we bridge the gap between technical complexity and pure operational success.
                            </p>
                         </div>
                         <div className="space-y-8 lg:pt-4">
-                           <div className="glass-premium p-8 rounded-[2.5rem] border-white/5 hover:border-[#0066ff]/30 transition-all duration-700">
+                           <div className="glass-premium p-8 rounded-[2.5rem] border-white/5 hover:border-[#00D4FF]/30 transition-all duration-700">
                               <h4 className="text-lg font-heading font-black text-white mb-4 uppercase tracking-[0.05em]">Our Core Protocol</h4>
-                              <p className="text-white/50 font-body text-sm leading-relaxed mb-6">
+                              <p className="text-[#8A8A9A] font-body text-sm leading-relaxed mb-6">
                                  We diagnose before we build. Every line of code is written with two goals in mind: 
                                  <span className="text-white font-bold"> Extreme Performance</span> and <span className="text-white font-bold">Absolute Scalability</span>.
                               </p>
@@ -457,7 +456,7 @@ export default function HomePage() {
                            </div>
                            <Link 
                              href="/about" 
-                             className="group flex items-center gap-4 px-10 py-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-[#0066ff] hover:text-white transition-all duration-500 w-fit mx-auto md:mx-0"
+                             className="group flex items-center gap-4 px-10 py-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-[#00D4FF] hover:text-white transition-all duration-500 w-fit mx-auto md:mx-0"
                            >
                               <span className="font-heading font-black uppercase text-sm tracking-widest">Learn Our Full Protocol</span>
                               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
@@ -470,8 +469,8 @@ export default function HomePage() {
 
             <div className="relative pt-16 border-t border-white/5">
                 <AnimatedSection className="text-center mb-16">
-                   <h3 className="text-2xl md:text-4xl font-heading font-black text-white uppercase tracking-tighter mb-4">
-                      THE <span className="italic text-[#0066ff]">ENGINEERS</span> BEHIND THE <span className="italic text-[#ccff00]">VISION</span>
+                   <h3 className="text-2xl md:text-[3.2rem] font-heading font-black leading-[1] tracking-tighter uppercase mb-6 text-white">
+            THE <span className="italic text-[#00D4FF]">ENGINEERS</span> BEHIND THE <span className="italic text-[#00D4FF]">VISION</span>
                    </h3>
                    <p className="text-white/30 font-mono text-xs uppercase tracking-[0.25em]">Direct Access to Technical Founders // Verified Architecture</p>
                 </AnimatedSection>
@@ -479,289 +478,17 @@ export default function HomePage() {
                    <TeamSection />
                 </div>
             </div>
-
-            {/* Elite Trust Strip (Re-integrated) */}
-            <AnimatedSection delay={0.6}>
-               <div className="py-12 border-t border-white/5 flex flex-wrap justify-center md:justify-around gap-12 items-center opacity-40 hover:opacity-100 transition-opacity duration-1000">
-                  {[
-                    { icon: Zap, text: "1–2 Week Velocity" },
-                    { icon: Sparkles, text: "Elite AI Toolstack" },
-                    { icon: Shield, text: "24/7 Strategic Support" },
-                    { icon: Target, text: "Result-First Diagnostic" }
-                  ].map((item, ii) => (
-                    <div key={ii} className="flex items-center gap-4 group">
-                       <item.icon className="w-5 h-5 text-white/40 group-hover:text-[#ccff00] transition-colors" />
-                       <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white font-bold">{item.text}</span>
-                    </div>
-                  ))}
-               </div>
-            </AnimatedSection>
           </div>
         </div>
       </section>
 
-      {/* 08 — PORTFOLIO PREVIEW */}
+      {/* 12 — PORTFOLIO PREVIEW */}
       <FeaturedArchive />
 
-      {/* 09 — HOW IT WORKS */}
-      <section id="process" className="relative py-24 md:py-40 bg-black overflow-hidden z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,rgba(193,255,0,0.02)_0%,transparent_50%)] pointer-events-none" />
-        
-        <div className="max-w-[1550px] mx-auto px-6 relative z-10">
-          <AnimatedSection className="text-center mb-20 md:mb-32">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6 backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.1)]">
-              <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
-              <span className="font-mono text-[10px] uppercase tracking-widest text-cyan-400 font-bold">The Process</span>
-            </div>
-            <h2 className="text-[2.2rem] md:text-[3.5rem] lg:text-[4.5rem] font-heading font-black leading-none tracking-tighter uppercase mb-6">
-              FROM IDEA TO LAUNCH IN <span className="italic text-[#0ea5e9]">3 SIMPLE STEPS</span>
-            </h2>
-            <p className="font-mono text-sm md:text-base text-white/40 uppercase tracking-[0.2em] max-w-2xl mx-auto">
-              No technical knowledge needed. No confusing jargon. Just results.
-            </p>
-          </AnimatedSection>
-
-          {/* Steps Timeline Container */}
-          <div className="relative">
-            {/* Desktop: Horizontal connecting line */}
-            <div className="hidden lg:block absolute top-[100px] left-[15%] right-[15%] h-1 bg-white/5 overflow-hidden">
-               <motion.div 
-                 initial={{ width: 0 }}
-                 whileInView={{ width: '100%' }}
-                 viewport={{ once: true }}
-                 transition={{ duration: 1.5, ease: "easeInOut" }}
-                 className="h-full bg-gradient-to-r from-cyan-500 via-green-500 to-purple-500 shadow-[0_0_15px_rgba(34,211,238,0.5)] relative"
-               >
-                 <div className="absolute top-0 bottom-0 flex gap-20 animate-marquee-left pointer-events-none opacity-50">
-                   {Array.from({ length: 20 }).map((_, i) => (
-                     <div key={i} className="w-1.5 h-1.5 rounded-full bg-white shrink-0" />
-                   ))}
-                 </div>
-               </motion.div>
-            </div>
-
-            {/* Mobile: Vertical connecting line */}
-            <div className="lg:hidden absolute left-[28px] top-10 bottom-10 w-1 bg-white/5 overflow-hidden">
-               <motion.div 
-                  initial={{ height: 0 }}
-                  whileInView={{ height: '100%' }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1.5, ease: "easeInOut" }}
-                  className="w-full bg-gradient-to-b from-cyan-500 via-green-500 to-purple-500 shadow-[0_0_15px_rgba(34,211,238,0.5)] relative"
-               />
-            </div>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 items-start">
-              {[
-                { 
-                  num: '01', 
-                  icon: Phone, 
-                  badge: "FREE — No commitment", 
-                  title: "We Have a Free Call", 
-                  desc: "Book a free 30-minute call with us. Tell us about your business, your goals and what success looks like for you. We will tell you exactly what we would build — no jargon, no pressure.", 
-                  duration: "⏱ 30 minutes", 
-                  color: "text-cyan-400", 
-                  border: "border-cyan-500/20", 
-                  bg: "bg-cyan-500/5", 
-                  bullet: "bg-cyan-400" 
-                },
-                { 
-                  num: '02', 
-                  icon: Cog, 
-                  badge: "FAST & TRANSPARENT", 
-                  title: "We Build Your Project", 
-                  desc: "Once you approve the plan, we get to work immediately. You receive weekly updates and live previews at every stage. You always know exactly what is happening — no surprises, no excuses.", 
-                  duration: "⏱ 1–6 weeks depending on project", 
-                  color: "text-green-400", 
-                  border: "border-green-500/20", 
-                  bg: "bg-green-500/5", 
-                  bullet: "bg-green-400" 
-                },
-                { 
-                  num: '03', 
-                  icon: Rocket, 
-                  badge: "ONGOING SUPPORT INCLUDED", 
-                  title: "We Launch and Stay With You", 
-                  desc: "Your project goes live on fast, reliable infrastructure. We monitor everything, fix any issues instantly and continue supporting you long after launch. You grow — we grow with you.", 
-                  duration: "⏱ Ongoing — we never disappear", 
-                  color: "text-purple-400", 
-                  border: "border-purple-500/20", 
-                  bg: "bg-purple-500/5", 
-                  bullet: "bg-purple-400" 
-                },
-              ].map((step, i) => (
-                <AnimatedSection key={i} delay={i * 0.2}>
-                  <div className="group relative glass-panel p-8 pt-12 rounded-[2.5rem] border-white/5 hover:border-white/10 transition-all duration-500 hover:-translate-y-2 lg:text-center flex flex-col items-center lg:items-center text-left md:text-center lg:min-h-[480px]">
-                    {/* Background decorative number */}
-                    <div className="absolute -top-6 lg:top-10 left-8 lg:left-1/2 lg:-translate-x-1/2 font-heading font-black text-8xl lg:text-9xl text-white/[0.03] select-none z-0">
-                      {step.num}
-                    </div>
-
-                    {/* Step Icon Container */}
-                    <div className={`relative z-10 w-20 h-20 rounded-full ${step.bg} border ${step.border} flex items-center justify-center mb-8 shadow-inner group-hover:scale-110 transition-transform duration-500`}>
-                      <step.icon className={`w-10 h-10 ${step.color} filter drop-shadow-[0_0_8px_currentColor]`} />
-                      <div className={`absolute -inset-4 ${step.bg.replace('5/', '20/')} blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity`} />
-                    </div>
-
-                    {/* Badge */}
-                    <div className={`relative z-10 inline-flex items-center gap-2 px-4 py-1.5 rounded-full ${step.bg} border ${step.border} mb-6`}>
-                       <div className={`w-1.5 h-1.5 rounded-full ${step.bullet} animate-pulse`} />
-                       <span className={`font-mono text-[10px] uppercase tracking-widest font-bold ${step.color}`}>{step.badge}</span>
-                    </div>
-
-                    <h4 className="relative z-10 text-2xl font-heading font-black text-white mb-4 uppercase tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/60 transition-all duration-500">
-                      {step.title}
-                    </h4>
-
-                    <p className="relative z-10 text-white/50 font-mono text-sm leading-relaxed mb-8 max-w-xs group-hover:text-white/70 transition-colors">
-                      {step.desc}
-                    </p>
-
-                    <div className="mt-auto relative z-10 pt-6 border-t border-white/5 w-full">
-                       <span className={`font-mono text-xs uppercase tracking-widest ${step.color} font-bold opacity-60`}>{step.duration}</span>
-                    </div>
-                  </div>
-                </AnimatedSection>
-              ))}
-            </div>
-          </div>
-
-          {/* Reassurance Strip */}
-          <AnimatedSection delay={0.8}>
-            <div className="mt-20 md:mt-32 glass-panel p-6 md:p-8 rounded-[2rem] border-white/5 flex flex-col md:flex-row items-center justify-around gap-8 md:gap-4 shadow-2xl relative overflow-hidden group">
-               <div className="absolute inset-0 bg-gradient-to-r from-green-500/[0.02] via-transparent to-green-500/[0.02]" />
-               {[
-                 "Free consultation — zero commitment",
-                 "Fixed timeline — no delays",
-                 "Unlimited revisions — until you love it"
-               ].map((text, i) => (
-                 <div key={i} className="flex items-center gap-3 relative z-10 group/item">
-                    <div className="w-8 h-8 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center group-hover/item:scale-110 transition-transform">
-                      <Check className="w-4 h-4 text-green-400 font-black" />
-                    </div>
-                    <span className="text-white/80 font-heading font-bold uppercase tracking-tight text-sm md:text-base">{text}</span>
-                 </div>
-               ))}
-            </div>
-          </AnimatedSection>
-
-          {/* Final Process CTA */}
-          <AnimatedSection delay={1} className="text-center mt-20">
-            <p className="font-mono text-sm text-white/40 uppercase tracking-[0.2em] mb-8">Ready to start? Book your free call today</p>
-            <Link 
-              href="/contact"
-              className="group relative inline-flex items-center gap-4 px-12 py-6 rounded-full bg-[#ccff00] text-black font-heading font-black text-xl uppercase tracking-tighter hover:scale-105 transition-all duration-300 shadow-[0_0_30px_rgba(204,255,0,0.3)] hover:shadow-[0_0_50px_rgba(204,255,0,0.5)] active:scale-95 overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <span>BOOK FREE CALL</span>
-              <ArrowRight className="w-6 h-6 transition-transform group-hover:translate-x-2" />
-            </Link>
-          </AnimatedSection>
-        </div>
-      </section>
-
-
-      {/* 11 — INDUSTRIES WE SERVE */}
-      <IndustriesSection />
-
-      {/* 12 — PRICING SECTION */}
-      <PricingSection />
-
-      {/* 13 — FAQ */}
+      {/* 13 — FAQ SECTION */}
       <FAQSection />
 
-      {/* 14 — TESTIMONIALS */}
-      <section ref={marqueeRef} className="relative py-20 md:py-32 bg-black z-10 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[600px] h-[400px] bg-[#0ea5e9]/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[400px] bg-purple-50/5 rounded-full blur-[120px] pointer-events-none" />
-
-        <div className="relative z-10 max-w-[1550px] mx-auto px-6">
-          <AnimatedSection className="text-center mb-16 md:mb-24">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 mb-6 backdrop-blur-md">
-              <Star className="w-3.5 h-3.5 text-[#0ea5e9] fill-[#0ea5e9]" />
-              <span className="font-mono text-xs uppercase tracking-widest text-[#0ea5e9]">Client Results</span>
-            </div>
-            <h2 className="text-[2rem] md:text-[3rem] lg:text-[3.8rem] font-heading font-black leading-none tracking-tighter uppercase mb-4">
-              WHAT OUR <span className="italic text-[#0ea5e9]">CLIENTS SAY</span>
-            </h2>
-            <p className="font-mono text-sm text-white/30 uppercase tracking-[0.2em] max-w-lg mx-auto">
-              We are just getting started — your testimonial could be here.
-            </p>
-          </AnimatedSection>
-        </div>
-
-        <div className="relative mb-6 group overflow-hidden">
-          <div className="flex gap-5 animate-marquee-left group-hover:pause-animation whitespace-nowrap w-max gpu-accelerated">
-            {[...[
-              { quote: "We are just getting started — your success story could be featured here. Be our next happy client and see real results.", name: "Your Name", role: "Your Business", rating: 5, accent: "text-blue-400", border: "border-blue-500/20" },
-              { quote: "Vedastra AI Labs is building a track record of excellence. We deliver results that speak for themselves — stay tuned.", name: "Vedastra", role: "AI Labs", rating: 5, accent: "text-purple-400", border: "border-purple-500/20" },
-            ], ...[
-              { quote: "We are just getting started — your success story could be featured here. Be our next happy client and see real results.", name: "Your Name", role: "Your Business", rating: 5, accent: "text-blue-400", border: "border-blue-500/20" },
-              { quote: "Vedastra AI Labs is building a track record of excellence. We deliver results that speak for themselves — stay tuned.", name: "Vedastra", role: "AI Labs", rating: 5, accent: "text-purple-400", border: "border-purple-500/20" },
-            ]].map((t, i) => (
-              <div
-                key={`r1-${i}`}
-                className={`inline-flex shrink-0 w-[340px] md:w-[420px] flex-col justify-between gap-5 glass-panel rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border ${t.border} group/card hover:scale-[1.02] transition-transform duration-300 cursor-default gpu-accelerated`}
-              >
-                <div className="flex gap-1 mb-2">
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <Star key={j} className={`w-3.5 h-3.5 ${t.accent} fill-current`} />
-                  ))}
-                </div>
-                <p className="text-white/70 text-sm md:text-base font-mono leading-relaxed whitespace-normal">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className={`flex items-center gap-4 pt-4 border-t border-white/5`}>
-                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br from-white/10 to-white/5 border ${t.border} flex items-center justify-center shrink-0`}>
-                    <span className={`font-heading font-black text-sm ${t.accent}`}>{t.name[0]}</span>
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-white">{t.name}</div>
-                    <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest">{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="relative group overflow-hidden">
-          <div className="flex gap-5 animate-marquee-right group-hover:pause-animation whitespace-nowrap w-max gpu-accelerated">
-            {[...[
-              { quote: "The future is AI, and Vedastra is the bridge. Their commitment to speed and quality is something we haven't seen elsewhere.", name: "Future Vision", role: "Partner", rating: 5, accent: "text-emerald-400", border: "border-emerald-500/20" },
-              { quote: "Highly recommend for any business looking to automate their workflows and scale up efficiently. A true 10/10 experience.", name: "ScaleUp", role: "SaaS Founder", rating: 5, accent: "text-blue-400", border: "border-blue-500/20" },
-            ], ...[
-              { quote: "The future is AI, and Vedastra is the bridge. Their commitment to speed and quality is something we haven't seen elsewhere.", name: "Future Vision", role: "Partner", rating: 5, accent: "text-emerald-400", border: "border-emerald-500/20" },
-              { quote: "Highly recommend for any business looking to automate their workflows and scale up efficiently. A true 10/10 experience.", name: "ScaleUp", role: "SaaS Founder", rating: 5, accent: "text-blue-400", border: "border-blue-500/20" },
-            ]].map((t, i) => (
-              <div
-                key={`r2-${i}`}
-                className={`inline-flex shrink-0 w-[340px] md:w-[420px] flex-col justify-between gap-5 glass-panel rounded-[1.5rem] md:rounded-[2rem] p-6 md:p-8 border ${t.border} group/card hover:scale-[1.02] transition-transform duration-300 cursor-default gpu-accelerated`}
-              >
-                <div className="flex gap-1 mb-2">
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <Star key={j} className={`w-3.5 h-3.5 ${t.accent} fill-current`} />
-                  ))}
-                </div>
-                <p className="text-white/70 text-sm md:text-base font-mono leading-relaxed whitespace-normal">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className={`flex items-center gap-4 pt-4 border-t border-white/5`}>
-                  <div className={`w-10 h-10 rounded-full bg-gradient-to-br from-white/10 to-white/5 border ${t.border} flex items-center justify-center shrink-0`}>
-                    <span className={`font-heading font-black text-sm ${t.accent}`}>{t.name[0]}</span>
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-white">{t.name}</div>
-                    <div className="text-[10px] font-mono text-white/30 uppercase tracking-widest">{t.role}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 16 — FINAL CTA */}
+      {/* 14 — FINAL CTA */}
       <FinalCTA />
     </>
   );

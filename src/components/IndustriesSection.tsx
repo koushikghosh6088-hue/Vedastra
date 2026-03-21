@@ -27,14 +27,14 @@ export default function IndustriesSection() {
 
       <div className="max-w-[1550px] mx-auto px-6 relative z-10">
         <AnimatedSection className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 mb-6">
-            <Globe className="w-3.5 h-3.5 text-blue-400" />
-            <span className="font-mono text-xs uppercase tracking-widest text-blue-400">Industries We Serve</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#00D4FF]/10 border border-[#00D4FF]/20 mb-6">
+            <Globe className="w-3.5 h-3.5 text-[#00D4FF]" />
+            <span className="font-mono text-xs uppercase tracking-widest text-[#00D4FF]">Industries We Serve</span>
           </div>
-          <h2 className="text-[2.2rem] md:text-[3.2rem] lg:text-[4rem] font-heading font-black leading-[0.85] tracking-tighter uppercase mb-6">
-            WE&apos;VE BUILT FOR <span className="gradient-text italic">EVERY INDUSTRY</span>
+          <h2 className="text-[2.2rem] md:text-[3.2rem] lg:text-[4rem] font-heading font-black leading-[0.85] tracking-tighter uppercase mb-6 text-white">
+            WE&apos;VE BUILT FOR <span className="italic text-[#00D4FF]">EVERY INDUSTRY</span>
           </h2>
-          <p className="font-mono text-sm text-white/40 uppercase tracking-[0.15em] max-w-lg mx-auto">
+          <p className="font-mono text-sm text-[#8A8A9A] uppercase tracking-[0.15em] max-w-lg mx-auto">
             Whatever your business — we know your world
           </p>
         </AnimatedSection>

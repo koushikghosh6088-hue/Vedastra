@@ -1,171 +1,93 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Target, Zap, Bot, Layers, Check, X, Shield, Cpu, Users, MessageSquare, Briefcase } from 'lucide-react';
+import { Check, X, Shield, Star, Zap, Users, MessageSquare, Clock, Globe, ShieldCheck } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 
-const advantagePoints = [
-  { 
-    label: "Design & Quality", 
-    vedastra: "High-Fidelity / Impact-Driven", 
-    others: "Generic Templates / AI Slops",
-    icon: Layers,
-    color: "text-cyan-400"
-  },
-  { 
-    label: "Consultation", 
-    vedastra: "Strategic Diagnostic First", 
-    others: "Blind Instruction Following",
-    icon: Target,
-    color: "text-[#C1FF00]"
-  },
-  { 
-    label: "Relationship", 
-    vedastra: "Dedicated Growth Partner", 
-    others: "Transactional Service",
-    icon: Users,
-    color: "text-purple-400"
-  }
-];
-
-const comparativeDetailed = [
-  {
-    category: "Philosophy",
-    vedastra: "We understand every business problem first, then suggest the perfect product.",
-    others: "They build what you ask, even if it won't help your business.",
-    icon: MessageSquare
-  },
-  {
-    category: "Support",
-    vedastra: "Continuous follow-ups and active business support. Your growth is our success.",
-    others: "Bad service with long wait times and zero post-launch support.",
-    icon: Shield
-  },
-  {
-    category: "Outcome",
-    vedastra: "We consider our clients as partners. We are deeply involved in helping your business win.",
-    others: "You are just another payout. Low quality, zero commitment to your goals.",
-    icon: Briefcase
-  }
+const comparisonData = [
+  { feature: "Price", freelancer: "Low / Unreliable", vedastra: "Fair / Value-Based", agency: "Extremely High" },
+  { feature: "Speed", freelancer: "Slow / 4-8 Weeks", vedastra: "Fast / 1-2 Weeks", agency: "Very Slow / 3-6 Months" },
+  { feature: "AI Expertise", freelancer: "Basic / Surface Level", vedastra: "Elite / Neural Architectures", agency: "Generic / Outsourced" },
+  { feature: "Communication", freelancer: "Ghosting Risks", vedastra: "Direct Founder Access", agency: "Slow Account Managers" },
+  { feature: "Support", freelancer: "None After Launch", vedastra: "24/7 Strategic Support", agency: "Expensive Retainers" },
+  { feature: "Reliability", freelancer: "High Risk", vedastra: "100% Guaranteed Delivery", agency: "Moderate / Bureaucratic" },
 ];
 
 export default function WhyChooseUs() {
   return (
-    <section id="why-choose-us" className="relative py-24 md:py-40 bg-black overflow-hidden z-10 border-t border-white/5">
-      {/* Background Graphic Element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
-      
+    <section id="why" className="relative py-24 bg-[#0A0A0F] overflow-hidden border-t border-white/5">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
-        {/* Compact Header */}
-        <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8 mb-16 md:mb-24">
-          <AnimatedSection className="max-w-xl text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C1FF00]/10 border border-[#C1FF00]/20 mb-6">
-              <Shield className="w-3 h-3 text-[#C1FF00]" />
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#C1FF00] font-bold">The Strategic Advantage</span>
-            </div>
-            <h2 className="text-[2.2rem] md:text-[3.5rem] lg:text-[4.5rem] font-heading font-black leading-none tracking-tighter uppercase font-outline-sm">
-              NOT JUST BETTER.<br/>
-              <span className="italic text-blue-400 opacity-90">GENUINELY DIFFERENT.</span>
-            </h2>
-          </AnimatedSection>
-        </div>
-
-        {/* Dynamic Comparison Matrix */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-20">
-           {/* Others Card */}
-           <AnimatedSection delay={0.1} className="h-full">
-              <div className="relative h-full p-8 md:p-12 rounded-[3rem] bg-white/[0.02] border border-white/5 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                 <div className="flex items-center gap-4 mb-10">
-                    <div className="w-12 h-12 rounded-full bg-red-500/10 flex items-center justify-center">
-                       <X className="w-6 h-6 text-red-500" />
-                    </div>
-                    <div>
-                       <div className="text-[10px] font-mono text-white/40 uppercase tracking-widest">Standard Quality</div>
-                       <h3 className="text-xl font-heading font-black text-white/60 uppercase">Other Agencies</h3>
-                    </div>
-                 </div>
-
-                 <div className="space-y-6">
-                    {advantagePoints.map((p, i) => (
-                      <div key={i} className="pb-6 border-b border-white/5 last:border-0">
-                         <div className="text-[9px] font-mono text-white/20 uppercase tracking-widest mb-1">{p.label}</div>
-                         <div className="text-white/40 font-medium line-through">{p.others}</div>
-                      </div>
-                    ))}
-                 </div>
-              </div>
-           </AnimatedSection>
-
-           {/* Vedastra Card */}
-           <AnimatedSection delay={0.2} className="h-full">
-              <div className="relative h-full p-8 md:p-12 rounded-[3rem] glass-blue-premium border-blue-500/20 shadow-[0_0_50px_rgba(0,0,0,0.5)] overflow-hidden group">
-                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent pointer-events-none" />
-                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-blue-500/20 blur-[80px] rounded-full group-hover:scale-150 transition-transform duration-1000" />
-                 
-                 <div className="flex items-center gap-4 mb-10 relative z-10">
-                    <div className="w-12 h-12 rounded-full bg-[#C1FF00] flex items-center justify-center shadow-[0_0_20px_rgba(193,255,0,0.4)]">
-                       <Check className="w-6 h-6 text-black" />
-                    </div>
-                    <div>
-                       <div className="text-[10px] font-mono text-[#C1FF00] uppercase tracking-widest font-bold">Elite Performance</div>
-                       <h3 className="text-2xl font-heading font-black text-white uppercase tracking-tighter">Vedastra AI Labs</h3>
-                    </div>
-                 </div>
-
-                 <div className="space-y-6 relative z-10">
-                    {advantagePoints.map((p, i) => (
-                      <div key={i} className="pb-6 border-b border-white/10 last:border-0 group-hover:translate-x-2 transition-transform duration-500">
-                         <div className="text-[9px] font-mono text-white/30 uppercase tracking-widest mb-1">{p.label} Excellence</div>
-                         <div className="text-white font-black text-lg md:text-xl uppercase tracking-tight">{p.vedastra}</div>
-                      </div>
-                    ))}
-                 </div>
-              </div>
-           </AnimatedSection>
-        </div>
-
-        {/* Detailed Strategic Partnership Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-           {comparativeDetailed.map((item, i) => (
-             <AnimatedSection key={i} delay={0.3 + i * 0.1}>
-                <div className="group h-full p-8 rounded-[2.5rem] bg-white/[0.03] border border-white/5 hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-2">
-                   <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-blue-500 group-hover:text-black transition-all duration-500">
-                      <item.icon className="w-6 h-6" />
-                   </div>
-                   <h3 className="text-lg font-heading font-black text-white uppercase mb-4 tracking-tight group-hover:text-blue-400 transition-colors">{item.category} Matrix</h3>
-                   <p className="text-white/60 font-mono text-xs leading-relaxed mb-6">
-                      {item.vedastra}
-                   </p>
-                   <div className="pt-6 border-t border-white/5 opacity-30 italic font-mono text-[10px] text-red-400">
-                      vs {item.others}
-                   </div>
-                </div>
-             </AnimatedSection>
-           ))}
-        </div>
-
-        {/* Partnership Declaration */}
-        <AnimatedSection className="mt-16 text-center">
-            <div className="inline-block glass-panel p-6 px-10 rounded-full border-blue-500/10 hover:border-blue-500/30 transition-all cursor-pointer group">
-               <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8">
-                  <div className="flex items-center gap-2">
-                     <Users className="w-4 h-4 text-[#C1FF00]" />
-                     <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-white/70">Client as Partner</span>
-                  </div>
-                  <div className="w-px h-4 bg-white/10 hidden md:block" />
-                  <div className="flex items-center gap-2">
-                     <Target className="w-4 h-4 text-cyan-400" />
-                     <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-white/70">Diagnostic Solutions</span>
-                  </div>
-                  <div className="w-px h-4 bg-white/10 hidden md:block" />
-                  <div className="flex items-center gap-2">
-                     <Briefcase className="w-4 h-4 text-purple-400" />
-                     <span className="font-mono text-[10px] md:text-xs uppercase tracking-widest text-white/70">Active Business Support</span>
-                  </div>
-               </div>
-            </div>
+        {/* Header */}
+        <AnimatedSection className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#00D4FF]/10 border border-[#00D4FF]/20 mb-6">
+            <ShieldCheck className="w-3.5 h-3.5 text-[#00D4FF]" />
+            <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#00D4FF] font-black">Strategic Advantage</span>
+          </div>
+          <h2 className="text-[2.2rem] md:text-[3.2rem] font-heading font-black leading-[1] tracking-tighter uppercase mb-6 text-white">
+            WHY VEDASTRA — <br />
+            NOT A <span className="italic text-[#8A8A9A]">FREELANCER</span> OR <span className="italic text-[#8A8A9A]">BIG AGENCY?</span>
+          </h2>
+          <p className="text-[#8A8A9A] text-lg max-w-2xl mx-auto font-body">
+            We sit in the sweet spot. Here's why that matters for your business.
+          </p>
         </AnimatedSection>
+
+        {/* Comparison Table */}
+        <div className="overflow-x-auto pb-8">
+          <div className="min-w-[800px]">
+            {/* Table Header */}
+            <div className="grid grid-cols-4 gap-4 mb-4 items-center">
+              <div className="px-6 py-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">Feature</div>
+              <div className="px-6 py-4 text-center font-heading font-black text-[#8A8A9A] uppercase tracking-wider">Freelancer</div>
+              <div className="px-6 py-6 text-center font-heading font-black text-[#00D4FF] uppercase tracking-widest bg-[#00D4FF]/10 border border-[#00D4FF]/30 rounded-t-3xl shadow-[0_0_20px_rgba(0,212,255,0.1)]">
+                ✅ Vedastra AI Labs
+              </div>
+              <div className="px-6 py-4 text-center font-heading font-black text-[#8A8A9A] uppercase tracking-wider">Big Agency</div>
+            </div>
+
+            {/* Table Body */}
+            <div className="space-y-2">
+              {comparisonData.map((row, i) => (
+                <motion.div 
+                  key={row.feature}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
+                  viewport={{ once: true }}
+                  className="grid grid-cols-4 gap-4 items-center"
+                >
+                  <div className="px-6 py-4 font-heading font-bold text-white uppercase text-sm">{row.feature}</div>
+                  <div className="px-6 py-4 text-center text-[#8A8A9A] font-body text-sm line-through opacity-50">{row.freelancer}</div>
+                  <div className="px-6 py-6 text-center text-white font-heading font-black text-base md:text-lg uppercase tracking-tight bg-[#00D4FF]/5 border-x border-[#00D4FF]/20 relative">
+                    {row.vedastra}
+                    {i === comparisonData.length - 1 && <div className="absolute bottom-0 left-0 right-0 h-4 bg-[#00D4FF]/5 border-b border-[#00D4FF]/20 rounded-b-3xl" />}
+                  </div>
+                  <div className="px-6 py-4 text-center text-[#8A8A9A] font-body text-sm opacity-50 italic">{row.agency}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Trust Points */}
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {[
+            { icon: Users, title: "Partner, Not Vendor", desc: "We sit on your side of the table. Your business metrics are our primary focus." },
+            { icon: Zap, title: "1-Week Velocity", desc: "We build at the speed of high-performance startups, not slow corporate timelines." },
+            { icon: Globe, title: "Global Standards", desc: "Based in India, serving the world with elite architectures and communication." },
+          ].map((item, i) => (
+            <AnimatedSection key={i} delay={0.5 + i * 0.1}>
+              <div className="p-8 bg-[#111118] border border-white/5 rounded-3xl group hover:border-[#00D4FF]/30 transition-all duration-500">
+                <div className="w-12 h-12 rounded-xl bg-[#00D4FF]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <item.icon className="w-6 h-6 text-[#00D4FF]" />
+                </div>
+                <h4 className="text-lg font-heading font-black text-white uppercase mb-3 tracking-tight">{item.title}</h4>
+                <p className="text-[#8A8A9A] font-body text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            </AnimatedSection>
+          ))}
+        </div>
       </div>
     </section>
   );
