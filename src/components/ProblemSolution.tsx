@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Globe, Target, MessageSquare, Cpu, Timer, 
@@ -9,6 +9,9 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedSection from './AnimatedSection';
+
+// Optimized Grain Texture (Local)
+const GRAIN_DATA_URL = `data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E`;
 
 const threatPoints = [
   {
@@ -62,70 +65,88 @@ const threatPoints = [
     title: "FALLING BEHIND",
     problem: "Right now your competitors are using AI to respond faster, generate more leads, cut their costs and run leaner. Every month you wait the gap gets bigger. AI is not the future anymore — it's already happening.",
     solution: "We build AI into your business the right way — chatbots, voice agents, automation — so you stop playing catch up and start pulling ahead.",
-    icon: Bot,
+    icon: Cpu,
     stat: "TECH_DECAY"
   }
 ];
 
-function Bot({ className }: { className?: string }) {
-  return <Cpu className={className} />;
+function SeverityBadge({ isHovered, stat }: { isHovered: boolean, stat: string }) {
+  return (
+    <div className={`font-mono text-[10px] font-black p-2 rounded bg-black/40 border transition-all duration-300 ${isHovered ? 'text-[#00ff88] border-[#00ff88]/20 shadow-[0_0_10px_rgba(0,255,136,0.1)]' : 'text-[#8A8A9A] border-white/5'}`}>
+      {stat}
+    </div>
+  );
 }
 
-function ThreatCard({ item, index }: { item: any, index: number }) {
+function ThreatCard({ item }: { item: any }) {
   const [isHovered, setIsHovered] = useState(false);
   
+  // Memoized SVG to prevent re-calculation on every render
+  const CircuitLines = useMemo(() => (
+    <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
+      <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M0 20 H100 M0 80 H100 M20 0 V100 M80 0 V100" stroke="currentColor" strokeWidth="0.05" fill="none" />
+        <path d="M10 10 L30 10 L30 30" stroke="currentColor" strokeWidth="0.3" fill="none" opacity="0.4" />
+        <circle cx="20" cy="20" r="0.5" fill="currentColor" />
+        <circle cx="80" cy="80" r="0.5" fill="currentColor" />
+      </svg>
+    </div>
+  ), []);
+
   return (
     <motion.div 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => setIsHovered(!isHovered)}
+      initial={false}
+      style={{ willChange: 'transform, border-color, box-shadow' }}
       className={`
-        group relative flex flex-col min-w-full md:min-w-0 snap-center min-h-[500px] md:min-h-[550px] bg-[#0A0A0E] border transition-all duration-700 rounded-[3rem] overflow-hidden cursor-pointer
-        ${isHovered ? 'border-[#00ff88]/50 shadow-[0_40px_100px_rgba(0,255,136,0.1)]' : 'border-white/5 hover:border-[#FF2D55]/30'}
+        group relative flex flex-col min-w-full md:min-w-0 snap-center min-h-[500px] md:min-h-[550px] bg-[#0A0A0E] border rounded-[3rem] overflow-hidden cursor-pointer
+        transition-[border-color,box-shadow,transform] duration-500 transform-gpu
+        ${isHovered 
+          ? 'border-[#00ff88]/40 shadow-[0_30px_80px_-20px_rgba(0,255,136,0.15)] scale-[1.01]' 
+          : 'border-white/5 hover:border-[#FF2D55]/30'}
       `}
     >
-      {/* Background Noise & Grain */}
-      <div className="absolute inset-0 opacity-[0.02] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
+      {/* Optimized Background Noise */}
+      <div 
+        className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay" 
+        style={{ backgroundImage: `url("${GRAIN_DATA_URL}")` }}
+      />
       
       {/* Graphical Circuit Lines */}
-      <div className="absolute inset-0 opacity-20 pointer-events-none overflow-hidden">
-        <svg className="w-full h-full" viewBox="0 0 100 100">
-          <path d="M0 20 H100 M0 80 H100 M20 0 V100 M80 0 V100" stroke={isHovered ? "#00ff88" : "#FF2D55"} strokeWidth="0.1" fill="none" />
-          <path d="M10 10 L30 10 L30 30" stroke={isHovered ? "#00ff88" : "#FF2D55"} strokeWidth="0.5" fill="none" opacity="0.4" />
-          <circle cx="20" cy="20" r="1" fill={isHovered ? "#00ff88" : "#FF2D55"} />
-          <circle cx="80" cy="80" r="1" fill={isHovered ? "#00ff88" : "#FF2D55"} />
-        </svg>
+      <div className={`transition-colors duration-500 h-full w-full absolute inset-0 ${isHovered ? 'text-[#00ff88]' : 'text-[#FF2D55]'}`}>
+        {CircuitLines}
       </div>
 
-      <div className="relative z-10 p-10 flex flex-col h-full">
+      <div className="relative z-10 p-10 flex flex-col h-full pointer-events-none">
         {/* Card Header Meta */}
         <div className="flex items-center justify-between mb-10">
           <div className="flex items-center gap-4">
-             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-700 ${isHovered ? 'bg-[#00ff88]/10 border-[#00ff88]/40 shadow-[0_0_20px_rgba(0,255,136,0.2)]' : 'bg-white/5 border-white/10'}`}>
-                <item.icon className={`w-7 h-7 transition-colors ${isHovered ? 'text-[#00ff88]' : 'text-white/40'}`} />
+             <div className={`w-14 h-14 rounded-2xl flex items-center justify-center border transition-all duration-500 ${isHovered ? 'bg-[#00ff88]/10 border-[#00ff88]/40' : 'bg-white/5 border-white/10'}`}>
+                <item.icon className={`w-7 h-7 transition-colors duration-500 ${isHovered ? 'text-[#00ff88]' : 'text-white/40'}`} />
              </div>
              <div className="flex flex-col">
-                <span className={`font-mono text-[10px] uppercase tracking-[0.4em] transition-colors ${isHovered ? 'text-[#00ff88]' : 'text-white/20'}`}>{item.id}</span>
-                <div className={`flex items-center gap-1.5 font-mono text-[9px] font-black uppercase tracking-widest ${isHovered ? 'text-[#00ff88]' : 'text-[#FF2D55]'}`}>
+                <span className={`font-mono text-[10px] uppercase tracking-[0.4em] transition-colors duration-500 ${isHovered ? 'text-[#00ff88]' : 'text-white/20'}`}>{item.id}</span>
+                <div className={`flex items-center gap-1.5 font-mono text-[9px] font-black uppercase tracking-widest transition-colors duration-500 ${isHovered ? 'text-[#00ff88]' : 'text-[#FF2D55]'}`}>
                    <Activity className="w-2.5 h-2.5 animate-pulse" />
                    {isHovered ? 'SYSTEM_OPTIMIZED' : 'FAULT_DETECTED'}
                 </div>
              </div>
           </div>
-          <div className={`font-mono text-xs font-black p-2 rounded bg-black/40 border border-white/5 transition-colors ${isHovered ? 'text-[#00ff88] border-[#00ff88]/20' : 'text-[#8A8A9A]'}`}>
-            {item.stat}
-          </div>
+          <SeverityBadge isHovered={isHovered} stat={item.stat} />
         </div>
 
-        {/* Content Reveal Logic */}
+        {/* Content Reveal Logic - SNAPPY TRANSITION */}
         <div className="flex-grow flex flex-col justify-center">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="sync"> {/* Synchronous transition for zero lag */}
             {!isHovered ? (
               <motion.div
                 key="problem"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 10 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="space-y-6"
               >
                 <h4 className="font-mono text-[11px] text-[#FF2D55] uppercase tracking-[0.3em] font-black opacity-60">ANALYSIS_REPORT_</h4>
@@ -139,24 +160,25 @@ function ThreatCard({ item, index }: { item: any, index: number }) {
             ) : (
               <motion.div
                 key="solution"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.05 }}
+                initial={{ opacity: 0, x: 10 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -10 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
                 className="space-y-6"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="h-0.5 flex-grow bg-gradient-to-r from-transparent via-[#00ff88]/40 to-transparent" />
+                  <div className="h-px flex-grow bg-gradient-to-r from-transparent via-[#00ff88]/40 to-transparent" />
                   <span className="font-mono text-[10px] text-[#00ff88] uppercase tracking-[0.5em] font-black">STRIKE_DEPLOYED</span>
-                  <div className="h-0.5 flex-grow bg-gradient-to-r from-transparent via-[#00ff88]/40 to-transparent" />
+                  <div className="h-px flex-grow bg-gradient-to-r from-transparent via-[#00ff88]/40 to-transparent" />
                 </div>
-                <h3 className="text-3xl font-heading font-black text-[#00ff88] uppercase tracking-tighter leading-tight drop-shadow-[0_0_20px_rgba(0,255,136,0.3)]">
+                <h3 className="text-3xl font-heading font-black text-[#00ff88] uppercase tracking-tighter leading-tight drop-shadow-[0_0_15px_rgba(0,255,136,0.3)]">
                   THE VEDASTRA EDGE
                 </h3>
                 <p className="text-white text-xl leading-relaxed font-body font-bold italic">
                   {item.solution}
                 </p>
                 <div className="pt-6">
-                   <div className="inline-flex items-center gap-2 group/cta py-3 px-6 rounded-xl bg-[#00ff88]/5 border border-[#00ff88]/20 text-[#00ff88] hover:bg-[#00ff88] hover:text-black transition-all">
+                   <div className="inline-flex items-center gap-2 py-3 px-6 rounded-xl bg-[#00ff88]/5 border border-[#00ff88]/20 text-[#00ff88]">
                       <span className="font-mono text-[10px] font-black uppercase tracking-widest">Execute_Recovery</span>
                       <Zap className="w-4 h-4 fill-current" />
                    </div>
@@ -168,22 +190,16 @@ function ThreatCard({ item, index }: { item: any, index: number }) {
 
         {/* Action Footer */}
         <div className="mt-10 pt-8 border-t border-white/5 flex items-center justify-between">
-           <div className={`flex gap-1.5 transition-opacity ${isHovered ? 'opacity-100' : 'opacity-30'}`}>
-              {[1, 2, 3, 4].map(dot => <div key={dot} className={`w-1 h-4 rounded-full ${isHovered ? 'bg-[#00ff88]' : 'bg-[#FF2D55]'}`} />)}
+           <div className={`flex gap-1.5 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-30'}`}>
+              {[1, 2, 3, 4].map(dot => <div key={dot} className={`w-1 h-3 rounded-full transition-colors duration-500 ${isHovered ? 'bg-[#00ff88]' : 'bg-[#FF2D55]'}`} />)}
            </div>
            
-           {!isHovered && (
-             <motion.div 
-               animate={{ opacity: [0.4, 1, 0.4] }}
-               transition={{ duration: 1.5, repeat: Infinity }}
-               className="flex items-center gap-3"
-             >
+           {!isHovered ? (
+             <div className="flex items-center gap-3 opacity-60">
                 <span className="font-mono text-[10px] text-[#FF2D55] uppercase tracking-widest font-black">Click To Solve</span>
                 <ArrowUpRight className="w-4 h-4 text-[#FF2D55]" />
-             </motion.div>
-           )}
-           
-           {isHovered && (
+             </div>
+           ) : (
              <div className="flex items-center gap-3">
                 <span className="font-mono text-[10px] text-[#00ff88] uppercase tracking-widest font-black italic underline decoration-[#00ff88]/30 underline-offset-4">THREAT_NEUTRALIZED</span>
                 <Scan className="w-4 h-4 text-[#00ff88]" />
@@ -192,13 +208,14 @@ function ThreatCard({ item, index }: { item: any, index: number }) {
         </div>
       </div>
 
-      {/* Interactive Scan Line Overlay */}
+      {/* Interactive Scan Line Overlay - Optimised performance */}
       {isHovered && (
         <motion.div 
-          initial={{ top: '-10%' }}
-          animate={{ top: '110%' }}
-          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-          className="absolute left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#00ff88] to-transparent z-20 opacity-60 shadow-[0_0_30px_#00ff88]"
+          initial={{ y: '-10%' }}
+          animate={{ y: '1100%' }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+          style={{ willChange: 'transform' }}
+          className="absolute left-0 right-0 h-[2px] bg-[#00ff88] z-20 opacity-40 shadow-[0_0_15px_#00ff88] transform-gpu"
         />
       )}
     </motion.div>
@@ -212,11 +229,12 @@ export default function ProblemSolution() {
 
   const scrollTo = (idx: number) => {
     if (scrollRef.current) {
-      const cardWidth = scrollRef.current.offsetWidth / 3;
-      const mobileCardWidth = scrollRef.current.offsetWidth;
+      const el = scrollRef.current;
+      const cardWidth = el.offsetWidth / 3;
+      const mobileCardWidth = el.offsetWidth;
       const scrollAmount = window.innerWidth < 1024 ? mobileCardWidth : cardWidth;
       
-      scrollRef.current.scrollTo({
+      el.scrollTo({
         left: idx * scrollAmount,
         behavior: 'smooth'
       });
@@ -242,9 +260,7 @@ export default function ProblemSolution() {
       onMouseEnter={() => setIsHoveringParent(true)} 
       onMouseLeave={() => setIsHoveringParent(false)}
     >
-      {/* Background Ambience */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,45,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,45,85,0.02)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-[#FF2D55]/[0.02] rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,45,85,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,45,85,0.02)_1px,transparent_1px)] bg-[size:60px_60px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)] pointer-events-none" />
       
       <div className="max-w-[1700px] mx-auto px-6 relative z-10">
         
@@ -253,7 +269,7 @@ export default function ProblemSolution() {
           <AnimatedSection>
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-px bg-[#FF2D55]" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-[#FF2D55] font-black underline decoration-[#FF2D55]/30">GLOBAL_DIAGNOSTIC_ACTIVE</span>
+              <span className="font-mono text-[10px] uppercase tracking-[0.5em] text-[#FF2D55] font-black">GLOBAL_DIAGNOSTIC_ACTIVE</span>
             </div>
             
             <h2 className="text-[2.2rem] md:text-[5rem] lg:text-[7.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase mb-6 text-white italic">
@@ -266,7 +282,7 @@ export default function ProblemSolution() {
              <div className="relative p-10 rounded-[3rem] bg-white/[0.02] border border-white/5 backdrop-blur-xl group">
                <div className="absolute top-0 left-10 w-20 h-1 bg-[#FF2D55] -translate-y-1/2 group-hover:w-32 transition-all duration-700" />
                <p className="text-[#8A8A9A] text-xl font-body font-light leading-relaxed">
-                 Our diagnostic AI detected <span className="text-white font-black italic">MAJOR SYSTEM FAULTS</span> in your business architecture. Hover or tap a tile to deploy the recovery protocol.
+                 Our diagnostic AI detected <span className="text-white font-black italic">MAJOR SYSTEM FAULTS</span> in your business architecture. Click a tile to deploy the recovery protocol instantly.
                </p>
              </div>
           </AnimatedSection>
@@ -303,6 +319,7 @@ export default function ProblemSolution() {
         {/* Tactical Carousel */}
         <div 
           ref={scrollRef}
+          style={{ willChange: 'scroll-position' }}
           className="flex lg:grid lg:grid-cols-3 gap-8 lg:gap-10 overflow-x-auto lg:overflow-visible no-scrollbar snap-x snap-mandatory pb-24 transition-all"
           onScroll={(e) => {
             if (window.innerWidth < 1024) {
@@ -313,7 +330,7 @@ export default function ProblemSolution() {
           }}
         >
           {threatPoints.map((item, i) => (
-            <ThreatCard key={item.id} item={item} index={i} />
+            <ThreatCard key={item.id} item={item} />
           ))}
         </div>
 
