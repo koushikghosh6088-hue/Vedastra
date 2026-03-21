@@ -66,7 +66,7 @@ export default function PricingSection() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6 font-mono text-[10px] uppercase tracking-widest text-white/40">
             <Star className="w-3 h-3 text-[#ccff00]" /> High Precision Pricing
           </div>
-          <h2 className="text-[2.2rem] md:text-[4.5rem] font-heading font-black uppercase tracking-tighter text-white mb-6">
+          <h2 className="text-[2.2rem] md:text-[4.5rem] lg:text-[5rem] font-heading font-black uppercase tracking-tighter text-white mb-6">
             CHOOSE YOUR <span className="italic text-[#0066ff]">PROTOCOL</span>
           </h2>
         </AnimatedSection>

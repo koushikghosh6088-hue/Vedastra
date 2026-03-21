@@ -343,7 +343,7 @@ export default function HomePage() {
 
               <h1 
                 ref={headlineRef}
-                className="text-[2.2rem] sm:text-[3.2rem] md:text-[4.5rem] lg:text-[4.8rem] xl:text-[5.8rem] 2xl:text-[7.2rem] font-heading font-black leading-[0.95] tracking-tighter uppercase text-white"
+                className="text-[2.2rem] sm:text-[3.2rem] md:text-[4.5rem] lg:text-[4.8rem] xl:text-[5rem] 2xl:text-[6rem] font-heading font-black leading-[0.95] tracking-tighter uppercase text-white"
               >
                 WE BUILD DIGITAL<br />
                 PRODUCTS THAT <span className="italic text-[#ccff00]">GROW</span> YOUR BUSINESS.
@@ -428,7 +428,7 @@ export default function HomePage() {
                         <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">Engineering the Future</span>
                      </div>
                      
-                     <h2 className="text-[2rem] md:text-[5rem] lg:text-[7rem] font-heading font-black leading-[0.85] tracking-[0.02em] uppercase text-white mb-16 max-w-6xl mx-auto">
+                     <h2 className="text-[2rem] md:text-[5rem] lg:text-[5.5rem] font-heading font-black leading-[0.85] tracking-[0.02em] uppercase text-white mb-16 max-w-6xl mx-auto">
                         WHERE <span className="italic text-[#0066ff]">ELITE ARCHITECTURE</span> <br/>MEETS <span className="italic text-[#ccff00]">BUSINESS DOMINANCE</span>
                      </h2>
 

@@ -129,14 +129,14 @@ export default function ProblemSolution() {
             <AlertCircle className="w-3 h-3 text-red-500" />
             <span className="font-mono text-[9px] text-red-500 font-bold uppercase tracking-[0.2em]">Risk Analysis Initiated</span>
           </div>
-          <h2 className="text-[2rem] md:text-[4rem] font-heading font-black leading-none tracking-tighter uppercase mb-6 flex flex-col items-center">
+          <h2 className="text-[2rem] md:text-[3.5rem] lg:text-[4.5rem] font-heading font-black leading-none tracking-tighter uppercase mb-6 flex flex-col items-center text-center">
             <span>IS YOUR BUSINESS</span>
             <span className="italic text-red-500">BLEEDING MONEY?</span>
           </h2>
         </AnimatedSection>
 
         {/* 3D Carousel Concept - Optimized for Mobile (Single Card + Proper Arrows) */}
-        <div className="relative max-w-4xl mx-auto mb-32 h-[550px] md:h-[600px] px-2">
+        <div className="relative max-w-2xl lg:max-w-4xl mx-auto mb-32 h-[550px] md:h-[600px] px-2">
           <div className="absolute inset-0 flex items-center justify-between z-30 pointer-events-none">
             <button 
               onClick={prevProblem}

@@ -84,7 +84,7 @@ export default function ServicesSection() {
               <Zap className="w-3.5 h-3.5 text-[#C1FF00] fill-[#C1FF00]" />
               <span className="font-mono text-[10px] uppercase tracking-widest text-[#C1FF00] font-bold">Tactical Deployment</span>
             </div>
-            <h2 className="text-[2.2rem] md:text-[4.5rem] lg:text-[6rem] font-heading font-black leading-[0.85] tracking-tighter uppercase mb-6">
+            <h2 className="text-[2.2rem] md:text-[4.5rem] lg:text-[5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase mb-6">
               STRATEGIC <span className="text-[#0066ff] italic opacity-90">SOLUTIONS</span> FOR DIGITAL DOMINANCE.
             </h2>
             <p className="text-white/40 font-mono text-sm md:text-base uppercase tracking-[0.2em]">
