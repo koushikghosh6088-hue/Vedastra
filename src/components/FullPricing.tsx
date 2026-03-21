@@ -96,22 +96,22 @@ export default function PricingSection() {
           </p>
         </AnimatedSection>
 
-        {/* Pricing Slider */}
-        <div className="relative">
-          {/* Navigation Controls (Only visible/active when needed) */}
-          <div className="flex justify-center gap-4 mb-12">
-             <button onClick={prev} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#0066ff] hover:text-white transition-all group">
-                <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
-             </button>
-             <div className="flex items-center gap-2 group cursor-pointer" onClick={() => setCurrentIndex(0)}>
-                <div className={`h-1.5 transition-all duration-300 rounded-full ${currentIndex === 0 ? 'w-8 bg-[#0066ff]' : 'w-2 bg-white/10'}`} />
-                <div className={`h-1.5 transition-all duration-300 rounded-full ${currentIndex === 1 ? 'w-8 bg-[#ccff00]' : 'w-2 bg-white/10'}`} onClick={(e) => {e.stopPropagation(); setCurrentIndex(1)}} />
-                <div className={`h-1.5 transition-all duration-300 rounded-full ${currentIndex === 2 ? 'w-8 bg-white' : 'w-2 bg-white/10'}`} onClick={(e) => {e.stopPropagation(); setCurrentIndex(2)}} />
-             </div>
-             <button onClick={next} className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#0066ff] hover:text-white transition-all group">
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-             </button>
-          </div>
+        {/* Pricing Category Buttons */}
+        <div className="flex flex-wrap justify-center gap-4 mb-20 lg:mb-24">
+          {packages.map((pkg, idx) => (
+            <button
+              key={pkg.name}
+              onClick={() => setCurrentIndex(idx)}
+              className={`px-8 py-4 rounded-2xl font-heading font-black text-xs uppercase tracking-[0.2em] transition-all duration-500 border-2 ${
+                currentIndex === idx 
+                ? `${pkg.border} ${pkg.text} bg-white/5` 
+                : 'border-white/5 text-white/30 hover:border-white/20 hover:text-white'
+              }`}
+            >
+              {pkg.name}
+            </button>
+          ))}
+        </div>
 
           <div className="relative overflow-visible px-4">
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 items-stretch justify-center">
@@ -175,7 +175,6 @@ export default function PricingSection() {
               </AnimatePresence>
             </div>
           </div>
-        </div>
 
         {/* Small Footer Note */}
         <AnimatedSection className="mt-20 text-center">

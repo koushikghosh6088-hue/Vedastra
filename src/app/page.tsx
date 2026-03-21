@@ -29,6 +29,7 @@ import TeamSection from '@/components/TeamSection';
 import Testimonials from '@/components/Testimonials';
 import HowItWorks from '@/components/HowItWorks';
 import StatsSection from '@/components/StatsSection';
+import AboutSection from '@/components/AboutSection';
 
 import { View, Preload } from '@react-three/drei';
 
@@ -433,72 +434,9 @@ export default function HomePage() {
       {/* 06 — SERVICES */}
       <ServicesSection />
 
-      {/* 07 — ABOUT US (Team & Vision) */}
-      <section id="about" className="relative pt-32 pb-24 lg:py-56 z-10 overflow-hidden border-t border-white/5 bg-black">
-        <div className="max-w-[1550px] mx-auto px-6 relative z-10">
-          <div className="flex flex-col gap-24">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-               <div className="lg:col-span-12 xl:col-span-10 mx-auto text-center lg:text-center">
-                  <AnimatedSection>
-                     <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full glass-premium border-white/10 mb-10 mx-auto">
-                        <span className="w-2 h-2 rounded-full bg-[#0066ff] animate-pulse shadow-[0_0_10px_#0066ff]" />
-                        <span className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/60 font-black">Engineering the Future</span>
-                     </div>
-                     
-                     <h2 className="text-[2rem] md:text-[3.5rem] lg:text-[4rem] font-heading font-black leading-[1] tracking-[0.02em] uppercase text-white mb-16 max-w-6xl mx-auto">
-                        WHERE <span className="italic text-[#0066ff]">ELITE ARCHITECTURE</span> <br/>MEETS <span className="italic text-[#0066ff]">BUSINESS DOMINANCE</span>
-                     </h2>
+      {/* 07 — ABOUT US */}
+      <AboutSection />
 
-                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-start text-left">
-                        <div className="space-y-8">
-                           <p className="text-2xl md:text-3xl font-heading font-bold text-white leading-[1.1] tracking-tight">
-                              We aren&apos;t just another agency. We are a <span className="text-[#0066ff]">specialized lab</span> of full-stack engineers and data scientists.
-                           </p>
-                           <p className="text-[#8A8A9A] font-body text-lg leading-relaxed">
-                              At Vedastra AI Labs, we translate complex business logic into high-performance digital products. 
-                              From server-less scalable architectures to autonomous AI workflows, we bridge the gap between technical complexity and pure operational success.
-                           </p>
-                        </div>
-                        <div className="space-y-8 lg:pt-4">
-                           <div className="glass-premium p-8 rounded-[2.5rem] border-white/5 hover:border-[#0066ff]/30 transition-all duration-700">
-                              <h4 className="text-lg font-heading font-black text-white mb-4 uppercase tracking-[0.05em]">Our Core Protocol</h4>
-                              <p className="text-[#8A8A9A] font-body text-sm leading-relaxed mb-6">
-                                 We diagnose before we build. Every line of code is written with two goals in mind: 
-                                 <span className="text-white font-bold"> Extreme Performance</span> and <span className="text-white font-bold">Absolute Scalability</span>.
-                              </p>
-                              <div className="flex flex-wrap gap-3">
-                                 {['Next.js 15', 'RTK Query', 'AI RAG', 'Edge Computing'].map((tech) => (
-                                    <span key={tech} className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-white/40 uppercase tracking-widest">{tech}</span>
-                                 ))}
-                              </div>
-                           </div>
-                           <Link 
-                             href="/about" 
-                             className="group flex items-center gap-4 px-10 py-6 rounded-3xl bg-white/5 border border-white/10 hover:bg-[#0066ff] hover:text-white transition-all duration-500 w-fit mx-auto md:mx-0"
-                           >
-                              <span className="font-heading font-black uppercase text-sm tracking-widest">Learn Our Full Protocol</span>
-                              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
-                           </Link>
-                        </div>
-                     </div>
-                  </AnimatedSection>
-               </div>
-            </div>
-
-            <div className="relative pt-16 border-t border-white/5">
-                <AnimatedSection className="text-center mb-16">
-                   <h3 className="text-2xl md:text-[3.2rem] font-heading font-black leading-[1] tracking-tighter uppercase mb-6 text-white">
-            THE <span className="italic text-[#0066ff]">ENGINEERS</span> BEHIND THE <span className="italic text-[#0066ff]">VISION</span>
-                   </h3>
-                   <p className="text-white/30 font-mono text-xs uppercase tracking-[0.25em]">Direct Access to Technical Founders // Verified Architecture</p>
-                </AnimatedSection>
-                <div className="max-w-6xl mx-auto">
-                   <TeamSection />
-                </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* 08 — WHY CHOOSE US */}
       <WhyChooseUs />
