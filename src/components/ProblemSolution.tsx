@@ -150,9 +150,9 @@ export default function ProblemSolution() {
             <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">THREAT_SCANNER_v4.5</span>
           </div>
           
-          <h2 className="text-[2.2rem] md:text-[5.5rem] lg:text-[7.5rem] font-heading font-black leading-[0.8] tracking-tighter uppercase mb-6 text-white italic">
-            YOUR REVENUE IS <br/>
-            <span className="text-[#FF2D55] drop-shadow-[0_0_50px_rgba(255,45,85,0.6)]">UNDER ATTACK</span>
+          <h2 className="text-[2.2rem] md:text-[5rem] lg:text-[7.5rem] font-heading font-black leading-[0.85] tracking-tighter uppercase mb-6 text-white italic">
+            IS YOUR BUSINESS <br/>
+            <span className="text-[#FF2D55] drop-shadow-[0_0_40px_rgba(255,45,85,0.5)]">BLEEDING MONEY?</span>
           </h2>
           <p className="text-[#8A8A9A] text-xl font-body font-light max-w-2xl mx-auto border-l-2 border-[#FF2D55]/30 pl-8 bg-white/5 py-4 rounded-r-3xl">
             Our diagnostic AI detected <span className="text-white font-black italic">6 SYSTEM-CRITICAL FAULTS</span> in your business architecture. Failure to act results in exponential lead decay.
