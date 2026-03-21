@@ -346,7 +346,7 @@ export default function HomePage() {
                 className="text-[2.2rem] sm:text-[3.2rem] md:text-[4.5rem] lg:text-[4.8rem] xl:text-[5rem] 2xl:text-[6rem] font-heading font-black leading-[0.95] tracking-tighter uppercase text-white"
               >
                 WE BUILD DIGITAL<br />
-                PRODUCTS THAT <span className="italic text-[#ccff00]">GROW</span> YOUR BUSINESS.
+                PRODUCTS THAT <span className="italic text-[#0066ff]">GROW</span> YOUR BUSINESS.
               </h1>
 
               <p 
