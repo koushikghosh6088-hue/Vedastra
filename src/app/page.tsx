@@ -18,7 +18,7 @@ import WhyChooseUs from '@/components/WhyChooseUs';
 import FeaturedArchive from '@/components/FeaturedArchive';
 import HeroEnvironment from '@/components/HeroEnvironment';
 import ProblemSolution from '@/components/ProblemSolution';
-import PricingSection from '@/components/PricingSection';
+import FullPricing from '@/components/FullPricing';
 import BenefitStats from '@/components/BenefitStats';
 import ServicesSection from '@/components/ServicesSection';
 import IndustriesSection from '@/components/IndustriesSection';
@@ -389,29 +389,29 @@ export default function HomePage() {
       {/* 04 — TRUST BAR */}
       <TrustBar />
 
-      {/* 05 — PROBLEMS SECTION */}
+      {/* 05 — THE PROBLEM (Why You Need Us) */}
       <ProblemSolution />
 
-      {/* 06 — SERVICES SECTION */}
+      {/* 06 — SERVICES (What We Do) */}
       <ServicesSection />
 
-      {/* 07 — WHY VEDASTRA (ADVANATGE MATRIX) */}
+      {/* 07 — WHY CHOOSE US (What We Provide / Differentiation) */}
       <WhyChooseUs />
 
-      {/* 08 — TESTIMONIALS (PROOF) */}
-      <Testimonials />
-
-      {/* 09 — PRICING SECTION */}
-      <PricingSection />
-
-      {/* 10 — HOW IT WORKS */}
+      {/* 08 — HOW IT WORKS (Our Process) */}
       <HowItWorks />
 
-      {/* 11 — ABOUT / TEAM SECTION */}
-      <section id="about" className="relative pt-32 pb-24 lg:py-56 mesh-gradient z-10 overflow-hidden border-t border-white/5">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#0066ff]/[0.05] rounded-full blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#ccff00]/[0.03] rounded-full blur-[150px] pointer-events-none" />
-        
+      {/* 09 — PORTFOLIO (Proof of Work) */}
+      <FeaturedArchive />
+
+      {/* 10 — PRICING (Full Investment Table) */}
+      <FullPricing />
+
+      {/* 11 — TESTIMONIALS (Client Validation) */}
+      <Testimonials />
+
+      {/* 12 — ABOUT / TEAM SECTION */}
+      <section id="about" className="relative pt-32 pb-24 lg:py-56 z-10 overflow-hidden border-t border-white/5 bg-black">
         <div className="max-w-[1550px] mx-auto px-6 relative z-10">
           <div className="flex flex-col gap-24">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
@@ -476,9 +476,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* 12 — PORTFOLIO PREVIEW */}
-      <FeaturedArchive />
 
       {/* 13 — FAQ SECTION */}
       <FAQSection />
