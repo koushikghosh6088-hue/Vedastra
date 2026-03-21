@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import {
   Globe, Smartphone, Phone, MessageSquare, Cog, TrendingUp,
-  CheckCircle2, ArrowRight, ArrowUpRight, BarChart3, Database, Shield, Bot
+  CheckCircle2, ArrowRight, ArrowUpRight, BarChart3, Database, Shield, Bot, Target
 } from 'lucide-react';
 import Image from 'next/image';
 import AnimatedSection from '@/components/AnimatedSection';
