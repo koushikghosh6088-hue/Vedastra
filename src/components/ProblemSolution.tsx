@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Globe, Target, MessageSquare, Cpu, Timer, 
   Phone, Zap, ArrowUpRight, ArrowLeft, ArrowRight,
-  ShieldAlert, Scan, ZapOff, Ghost
+  ShieldAlert, Scan, ZapOff, Ghost, Activity
 } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedSection from './AnimatedSection';
