@@ -140,13 +140,22 @@ export default function ProblemSolution() {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none overflow-hidden text-[#FF2D55]"
            style={{ backgroundImage: 'linear-gradient(#FF2D55 1px, transparent 1px), linear-gradient(90deg, #FF2D55 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
+  }, [activeIdx, isHoveringParent]);
+
+  return (
+    <section className="relative py-24 md:py-40 bg-black overflow-hidden" 
+             onMouseEnter={() => setIsHoveringParent(true)} 
+             onMouseLeave={() => setIsHoveringParent(false)}>
+      
+      {/* Background Grid Ambience */}
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,45,85,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,45,85,0.03)_1px,transparent_1px)] bg-[size:100px_100px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
+      
       <div className="max-w-[1550px] mx-auto px-6 relative z-10">
         
-        <AnimatedSection className="text-center mb-20 lg:mb-32">
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-10 backdrop-blur-xl">
-             <div className="flex gap-1">
-                {[1, 2, 3].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#FF2D55] animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />)}
-             </div>
+        {/* Header */}
+        <AnimatedSection className="mb-20">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="w-12 h-px bg-[#FF2D55]" />
             <span className="font-mono text-[10px] uppercase tracking-[0.4em] text-white/60 font-black">THREAT_SCANNER_v4.5</span>
           </div>
           
@@ -155,31 +164,40 @@ export default function ProblemSolution() {
             <span className="text-[#FF2D55] drop-shadow-[0_0_40px_rgba(255,45,85,0.5)]">BLEEDING MONEY?</span>
           </h2>
           <p className="text-[#8A8A9A] text-xl font-body font-light max-w-2xl mx-auto border-l-2 border-[#FF2D55]/30 pl-8 bg-white/5 py-4 rounded-r-3xl">
-            Our diagnostic AI detected <span className="text-white font-black italic">6 SYSTEM-CRITICAL FAULTS</span> in your business architecture. Failure to act results in exponential lead decay.
+            Our diagnostic AI detected <span className="text-white font-black italic">6 SYSTEM-CRITICAL FAULTS</span> in your business architecture. Hover to deploy solutions.
           </p>
         </AnimatedSection>
 
-        {/* Tactical Carousel UI */}
-        <div className="relative">
-          {/* Navigation Controls */}
-          <div className="flex items-center justify-between mb-12">
+        {/* Carousel Container */}
+        <div 
+          ref={scrollRef}
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 overflow-x-auto md:overflow-visible no-scrollbar snap-x snap-mandatory pb-12"
+          onScroll={(e) => {
+            if (window.innerWidth < 768) {
+              const el = e.currentTarget;
+              const idx = Math.round(el.scrollLeft / el.offsetWidth);
+              if (activeIdx !== idx) setActiveIdx(idx);
+            }
+          }}
+        >
+          {threatPoints.map((item, i) => (
+            <ThreatCard key={item.id} item={item} index={i} active={activeIdx === i} />
+          ))}
+        </div>
+
+        {/* Navigation Indicator */}
+        <div className="mt-12 flex items-center justify-between">
             <div className="flex gap-4">
-              {threats.map((_, i) => (
+              {threatPoints.map((_, i) => (
                 <button 
-                  key={i}
+                  key={i} 
                   onClick={() => {
-                     setActiveIdx(i);
-                     scrollRef.current?.scrollTo({ left: i * scrollRef.current.offsetWidth, behavior: 'smooth' });
+                    const scrollAmount = window.innerWidth < 768 ? scrollRef.current!.offsetWidth : scrollRef.current!.offsetWidth / 3;
+                    scrollRef.current?.scrollTo({ left: i * scrollAmount, behavior: 'smooth' });
+                    setActiveIdx(i);
                   }}
-                  className={`group relative h-2 transition-all duration-500 overflow-hidden rounded-full ${activeIdx === i ? 'w-16 bg-[#FF2D55]' : 'w-4 bg-white/10 hover:bg-white/20'}`}
-                >
-                  {activeIdx === i && (
-                    <motion.div 
-                      layoutId="nav-glow"
-                      className="absolute inset-0 bg-white/30 animate-shimmer"
-                    />
-                  )}
-                </button>
+                  className={`h-1 transition-all duration-500 rounded-full ${activeIdx === i ? 'w-16 bg-[#FF2D55]' : 'w-4 bg-white/10'}`} 
+                />
               ))}
             </div>
             <div className="font-mono text-[10px] text-white/40 uppercase tracking-[0.3em] flex items-center gap-4">
