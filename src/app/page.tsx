@@ -371,11 +371,11 @@ export default function HomePage() {
             </motion.div>
 
             {/* RIGHT COLUMN: Visual (Backdrop on Mobile) */}
-            <div className="absolute lg:relative inset-0 lg:inset-auto h-[550px] lg:h-[700px] w-full z-10 pointer-events-none lg:pointer-events-auto overflow-hidden">
+            <div className="absolute lg:relative inset-0 lg:inset-auto h-[550px] lg:h-[800px] w-full z-10 pointer-events-none lg:pointer-events-auto overflow-hidden">
               {/* Internal Robot Atmosphere Glow */}
               <div className="absolute top-[35%] lg:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#00D4FF]/20 rounded-full blur-[100px] opacity-30 animate-pulse" />
               
-              <div className="absolute inset-0 z-10 scale-[1.1] sm:scale-[1.2] lg:scale-[1.4] translate-y-[-5%] lg:translate-y-0 lg:translate-x-12">
+              <div className="absolute inset-0 z-10 scale-[1.1] sm:scale-[1.2] lg:scale-[1.3] translate-y-[-5%] lg:translate-y-[10%] lg:translate-x-12">
                 <SplineScene 
                   scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                   className="w-full h-full"
