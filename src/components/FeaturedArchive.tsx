@@ -163,7 +163,7 @@ export default function FeaturedArchive() {
               <span className="font-mono text-xs uppercase tracking-widest text-[#0ea5e9]">Featured Archive</span>
             </div>
             <h2 className="text-[2.5rem] md:text-[4.5rem] lg:text-[6rem] font-heading font-black leading-none tracking-tighter uppercase">
-              OUR <span className="gradient-text italic text-[#0ea5e9]">FINEST</span><br/>WORK
+              OUR <span className="italic text-[#0ea5e9]">FINEST</span><br/>WORK
             </h2>
           </div>
 

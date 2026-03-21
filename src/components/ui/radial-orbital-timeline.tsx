@@ -254,7 +254,7 @@ export default function RadialOrbitalTimeline({
 
                   {/* Label - Higher contrast */}
                   <div className={`absolute top-16 left-1/2 -translate-x-1/2 transition-all duration-500 whitespace-nowrap`}>
-                    <span className={`font-heading text-[11px] sm:text-[13px] font-black uppercase tracking-[0.15em] ${isActive ? "text-blue-400 drop-shadow-[0_0_10px_rgba(14,165,233,0.3)]" : "text-white/50"}`}>
+                    <span className={`font-heading text-[11px] sm:text-[13px] font-black uppercase tracking-[0.15em] ${isActive ? "text-blue-400" : "text-white/50"}`}>
                       {item.title}
                     </span>
                     <div className={`h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent transition-all duration-700 mx-auto ${isActive ? "w-full mt-1.5 opacity-100" : "w-0 opacity-0"}`} />
@@ -275,9 +275,9 @@ export default function RadialOrbitalTimeline({
           
           <div className="absolute w-44 h-44 rounded-full bg-blue-400/[0.03] border border-blue-400/20 animate-glow-scan" 
                style={{ background: 'conic-gradient(from 0deg, transparent, rgba(14,165,233,0.3), transparent 30%)' }} />
-          <div className="absolute w-36 h-36 rounded-full border border-white/10 animate-reverse-spin duration-[12s]" />
+           <div className="absolute w-36 h-36 rounded-full border border-white/10 animate-reverse-spin duration-[12s]" />
           
-          <div className="relative w-28 h-28 rounded-full flex flex-col items-center justify-center glass-premium border-blue-400/40 glow-blue-strong overflow-hidden group-hover:border-blue-400 transition-colors">
+          <div className="relative w-28 h-28 rounded-full flex flex-col items-center justify-center glass-premium border-blue-400/40 overflow-hidden group-hover:border-blue-400 transition-colors">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-400/30 via-transparent to-purple-500/20 animate-pulse" />
             
             {/* Hover Label */}
@@ -355,7 +355,7 @@ export default function RadialOrbitalTimeline({
                   </p>
 
                   <div className="space-y-5">
-                    <div className="p-5 bg-white/[0.03] border border-white/5 rounded-[1.5rem] glow-blue-strong">
+                    <div className="p-5 bg-white/[0.03] border border-white/5 rounded-[1.5rem]">
                        <div className="flex justify-between items-center mb-3">
                           <span className="flex items-center gap-2 text-[11px] text-white/50 uppercase tracking-[0.2em] font-bold">
                             <ZapIcon size={14} className="text-blue-400 animate-pulse" /> Neural Impact

@@ -71,7 +71,7 @@ function StatCard({ icon, value, label, delay = 0 }: StatProps) {
           {icon}
         </div>
         
-        <div className="text-[2.5rem] md:text-[3rem] font-heading font-black leading-none tracking-tighter mb-3 z-10 glow-cyan">
+        <div className="text-[2.5rem] md:text-[3rem] font-heading font-black leading-none tracking-tighter mb-3 z-10 text-[#00d4ff]">
           {value.includes('%') ? (
             <CountUp end={value.replace('%', '')} suffix="%" />
           ) : value.includes('/') ? (

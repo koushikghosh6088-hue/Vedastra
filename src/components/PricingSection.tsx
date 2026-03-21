@@ -161,11 +161,11 @@ export default function PricingSection() {
         <div className="text-center mb-16 md:mb-24">
           <AnimatedSection>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
-              <Star className="w-3.5 h-3.5 text-[#ccff00] fill-[#ccff00] glow-green" />
+              <Star className="w-3.5 h-3.5 text-[#ccff00] fill-[#ccff00]" />
               <span className="font-mono text-[0.65rem] uppercase tracking-widest text-[#ccff00]">Fair & Simple</span>
             </div>
-            <h2 className="text-[2.5rem] md:text-[4.5rem] lg:text-[6.5rem] font-heading font-black leading-none tracking-tighter uppercase mb-8 text-white glow-white">
-              SIMPLE, TRANSPARENT <span className="glow-blue italic text-[#0066ff]">PRICING.</span>
+            <h2 className="text-[2.5rem] md:text-[4.5rem] lg:text-[6.5rem] font-heading font-black leading-none tracking-tighter uppercase mb-8 text-white">
+              SIMPLE, TRANSPARENT <span className="italic text-[#0066ff]">PRICING.</span>
             </h2>
             <p className="font-body text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-12">
               No hidden fees. No surprise bills. Pick your package and let's build something great.
@@ -185,7 +185,7 @@ export default function PricingSection() {
               </button>
               <div className="flex flex-col items-start text-left">
                 <span className={`font-mono text-[9px] uppercase tracking-[0.2em] transition-colors ${isMaintenance ? 'text-[#ccff00]' : 'text-white/30'}`}>Monthly Maintenance</span>
-                {isMaintenance && <span className="text-[8px] font-mono text-[#ccff00]/50 uppercase tracking-tighter -mt-1 glow-green">Active</span>}
+                {isMaintenance && <span className="text-[8px] font-mono text-[#ccff00]/50 uppercase tracking-tighter -mt-1">Active</span>}
               </div>
             </div>
           </AnimatedSection>
@@ -219,17 +219,17 @@ export default function PricingSection() {
                   <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-white/5 border border-white/10 transition-all duration-500 group-hover:scale-110 ${pkg.accentColor}`}>
                     {pkg.icon}
                   </div>
-                  <h3 className="text-[2.2rem] font-heading font-black text-white uppercase tracking-tighter mb-4 leading-none text-left glow-white">
+                  <h3 className="text-[2.2rem] font-heading font-black text-white uppercase tracking-tighter mb-4 leading-none text-left">
                     {pkg.name}
                   </h3>
                   <div className="flex items-end gap-2 mb-2">
-                    <span className="text-4xl md:text-5xl font-heading font-black text-white leading-none tracking-tighter glow-white">
+                    <span className="text-4xl md:text-5xl font-heading font-black text-white leading-none tracking-tighter">
                       <AnimatedPrice value={isMaintenance ? pkg.price + pkg.maintenance : pkg.price} />
                     </span>
                     <span className="text-white/40 font-mono text-[0.6rem] uppercase mb-1 tracking-widest">Starting from</span>
                   </div>
                   {isMaintenance && (
-                    <div className="text-[#ccff00] font-mono text-[9px] uppercase tracking-widest mb-4 glow-green">
+                    <div className="text-[#ccff00] font-mono text-[9px] uppercase tracking-widest mb-4">
                       + ${pkg.maintenance}/mo Maintenance added
                     </div>
                   )}
@@ -266,7 +266,7 @@ export default function PricingSection() {
                   </Link>
                   <Link 
                     href="/contact" 
-                    className="w-full text-center font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 hover:text-white transition-colors py-2 block glow-white"
+                    className="w-full text-center font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 hover:text-white transition-colors py-2 block"
                   >
                     Book a Free Call First →
                   </Link>
@@ -279,7 +279,7 @@ export default function PricingSection() {
         {/* Comparison Table */}
         <AnimatedSection className="mb-32">
           <div className="text-center mb-16 px-4">
-            <h3 className="text-[3rem] md:text-[5rem] font-heading font-black tracking-tighter text-white uppercase mb-4 leading-none glow-white">DEEP DIVE <span className="glow-blue italic text-[#0066ff]">COMPARISON</span></h3>
+            <h3 className="text-[3rem] md:text-[5rem] font-heading font-black tracking-tighter text-white uppercase mb-4 leading-none">DEEP DIVE <span className="italic text-[#0066ff]">COMPARISON</span></h3>
             <p className="font-mono text-[0.65rem] text-white/30 uppercase tracking-[0.3em] mb-8">Every feature, laid out transparently.</p>
             
             {/* Mobile Tab Switcher */}
@@ -307,9 +307,9 @@ export default function PricingSection() {
                   {/* Desktop Header */}
                   <tr className="border-b border-white/10 bg-white/[0.02] hidden lg:table-row">
                     <th className="p-8 font-mono text-[0.65rem] uppercase tracking-[0.3em] text-white/40 w-1/3">Feature</th>
-                    <th className="p-8 font-heading font-black text-2xl text-white text-center glow-white uppercase">STARTER</th>
-                    <th className="p-8 font-heading font-black text-2xl text-[#ccff00] text-center glow-green uppercase">GROWTH</th>
-                    <th className="p-8 font-heading font-black text-2xl text-white text-center glow-white uppercase opacity-80">ENTERPRISE</th>
+                    <th className="p-8 font-heading font-black text-2xl text-white text-center uppercase">STARTER</th>
+                    <th className="p-8 font-heading font-black text-2xl text-[#ccff00] text-center uppercase">GROWTH</th>
+                    <th className="p-8 font-heading font-black text-2xl text-white text-center uppercase opacity-80">ENTERPRISE</th>
                   </tr>
                   {/* Mobile Header */}
                   <tr className="border-b border-white/10 bg-white/[0.04] lg:hidden">
@@ -370,7 +370,7 @@ export default function PricingSection() {
         {/* Add-ons */}
         <AnimatedSection className="mb-32">
           <div className="text-center mb-16">
-            <h3 className="text-[3rem] md:text-[5rem] font-heading font-black tracking-tighter text-white uppercase mb-4 leading-none glow-white">⚡ POWER-UPS <span className="glow-blue italic text-[#0066ff]"> — ADD TO ANY PACKAGE</span></h3>
+            <h3 className="text-[3rem] md:text-[5rem] font-heading font-black tracking-tighter text-white uppercase mb-4 leading-none">⚡ POWER-UPS <span className="italic text-[#0066ff]"> — ADD TO ANY PACKAGE</span></h3>
             <p className="font-mono text-[0.65rem] text-white/30 uppercase tracking-[0.3em]">Customize your package with these add-ons</p>
           </div>
           
@@ -382,8 +382,8 @@ export default function PricingSection() {
                     {addon.icon}
                   </div>
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-[0.75rem] font-heading font-black text-white uppercase tracking-tight glow-white">{addon.name}</h4>
-                    <span className="text-[#0066ff] font-mono text-[9px] font-black glow-blue">{addon.price}</span>
+                    <h4 className="text-[0.75rem] font-heading font-black text-white uppercase tracking-tight">{addon.name}</h4>
+                    <span className="text-[#0066ff] font-mono text-[9px] font-black">{addon.price}</span>
                   </div>
                   <p className="text-[9px] font-body text-white/40 uppercase tracking-widest leading-relaxed mb-6 font-medium">
                     {addon.desc}
@@ -405,11 +405,11 @@ export default function PricingSection() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_150%,rgba(14,165,233,0.1),transparent_70%)]" />
             
             <div className="relative z-10">
-              <h2 className="text-[2.5rem] md:text-[4.5rem] font-heading font-black uppercase text-white tracking-tighter mb-8 leading-[0.9] glow-white">
-                Not sure which package is <span className="glow-blue italic text-[#0066ff]">right for you?</span>
+              <h2 className="text-[2.5rem] md:text-[4.5rem] font-heading font-black uppercase text-white tracking-tighter mb-8 leading-[0.9]">
+                Not sure which package is <span className="italic text-[#0066ff]">right for you?</span>
               </h2>
               <p className="font-body text-xl md:text-2xl text-white/50 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-                Book a free 30-minute call. We'll tell you exactly what you need — <span className="text-[#ccff00] font-black glow-green">no pressure, no commitment.</span>
+                Book a free 30-minute call. We'll tell you exactly what you need — <span className="text-[#ccff00] font-black">no pressure, no commitment.</span>
               </p>
               
               <Link 

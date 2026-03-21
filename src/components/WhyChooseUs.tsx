@@ -66,7 +66,7 @@ export default function WhyChooseUs() {
             </div>
             <h2 className="text-[2.2rem] md:text-[3.5rem] lg:text-[4.5rem] font-heading font-black leading-none tracking-tighter uppercase font-outline-sm">
               NOT JUST BETTER.<br/>
-              <span className="gradient-text italic opacity-90">GENUINELY DIFFERENT.</span>
+              <span className="italic text-blue-400 opacity-90">GENUINELY DIFFERENT.</span>
             </h2>
           </AnimatedSection>
         </div>

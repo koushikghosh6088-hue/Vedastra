@@ -131,7 +131,7 @@ export default function ProblemSolution() {
           </div>
           <h2 className="text-[2rem] md:text-[4rem] font-heading font-black leading-none tracking-tighter uppercase mb-6 flex flex-col items-center">
             <span>IS YOUR BUSINESS</span>
-            <span className="gradient-text italic text-red-500 drop-shadow-[0_0_30px_rgba(239,68,68,0.3)]">BLEEDING MONEY?</span>
+            <span className="italic text-red-500">BLEEDING MONEY?</span>
           </h2>
         </AnimatedSection>
 
@@ -192,7 +192,7 @@ export default function ProblemSolution() {
                         {currentP.p_badge}
                       </div>
 
-                      <h3 className="text-2xl md:text-4xl lg:text-5xl font-heading font-bold text-white uppercase tracking-tighter leading-[0.95] mb-8 relative z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                      <h3 className="text-2xl md:text-4xl lg:text-5xl font-heading font-bold text-white uppercase tracking-tighter leading-[0.95] mb-8 relative z-10">
                         {currentP.p_title}
                       </h3>
 
@@ -202,7 +202,7 @@ export default function ProblemSolution() {
                       
                       <div className="mt-auto w-full pt-8 border-t border-white/10 flex flex-col items-center gap-3 relative z-10">
                         <span className="text-[0.65rem] font-mono text-[#888888] uppercase tracking-[0.1em]">Core_Leakage_Report:</span>
-                        <div className="text-white font-heading font-black text-xl md:text-2xl uppercase italic drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                        <div className="text-white font-heading font-black text-xl md:text-2xl uppercase italic">
                           {currentP.p_cost}
                         </div>
                       </div>
@@ -239,7 +239,7 @@ export default function ProblemSolution() {
                         {currentP.s_badge}
                       </div>
 
-                      <h3 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-green-400 uppercase tracking-tighter leading-[0.85] mb-8 relative z-10 drop-shadow-[0_0_15px_rgba(74,222,128,0.3)]">
+                      <h3 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-green-400 uppercase tracking-tighter leading-[0.85] mb-8 relative z-10">
                         {currentP.s_title}
                       </h3>
 
@@ -249,7 +249,7 @@ export default function ProblemSolution() {
                       
                       <div className="mt-auto w-full pt-8 border-t border-green-500/20 flex flex-col items-center gap-3 relative z-10">
                         <span className="text-[10px] font-mono text-green-500/60 uppercase tracking-[0.4em]">EXPECTED_GAIN:</span>
-                        <div className="text-green-500 font-heading font-black text-xl md:text-3xl uppercase italic drop-shadow-[0_0_20px_rgba(74,222,128,0.6)] animate-pulse">
+                        <div className="text-green-500 font-heading font-black text-xl md:text-3xl uppercase italic animate-pulse">
                           {currentP.s_result}
                         </div>
                       </div>

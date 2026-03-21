@@ -78,7 +78,7 @@ export default function ServicesDeepDive() {
                     </div>
                     <h2 className="text-[3rem] md:text-[5rem] font-heading font-black leading-[0.9] tracking-tighter uppercase mb-8">
                       {service.title.split(' & ')[0]} <br/>
-                      <span className="gradient-text italic opacity-90">{service.title.split(' & ').slice(1).join(' & ')}</span>
+                      <span className="italic text-blue-400 opacity-90">{service.title.split(' & ').slice(1).join(' & ')}</span>
                     </h2>
 
                     <p className="text-white/60 font-mono text-sm md:text-base leading-relaxed mb-10 max-w-xl">
