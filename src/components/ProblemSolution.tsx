@@ -12,18 +12,8 @@ const threats = [
     stat: "3s",
     statLabel: "to make a first impression",
     preview: "Someone is searching for exactly what you sell. They find your competitor instead.",
-    desc: "Right now, someone is searching for exactly what you sell. They find your competitor instead — because you either don\u2019t have a website, or yours looks like it was built in 2010. First impressions online happen in 3 seconds. If yours isn\u2019t making the cut, you\u2019re handing customers to your competition every single day.",
+    desc: "Right now, someone is searching for exactly what you sell. They find your competitor instead — because you either don’t have a website, or yours looks like it was built in 2010. First impressions online happen in 3 seconds. If yours isn’t making the cut, you’re handing customers to your competition every single day.",
     icon: Ban,
-    severity: "CRITICAL"
-  },
-  { 
-    title: "YOUR WEBSITE IS SLOW & LOSING CUSTOMERS", 
-    emoji: "🐌",
-    stat: "40%",
-    statLabel: "leave if site loads >3s",
-    preview: "You're spending money bringing people to your site — then watching them walk out.",
-    desc: "Did you know 40% of people leave a website if it takes more than 3 seconds to load? If your site is slow, broken on mobile, or hard to navigate — visitors leave before they even see what you offer. You\u2019re spending money to bring people to your site and then watching them walk straight out the door.",
-    icon: Gauge,
     severity: "CRITICAL"
   },
   { 
@@ -42,7 +32,7 @@ const threats = [
     stat: "10pm",
     statLabel: "leads you're missing",
     preview: "Every missed message outside business hours is money you'll never see.",
-    desc: "What happens when a potential customer messages you at 10pm? Nothing — until the next morning, when they\u2019ve already moved on to someone else. Every missed message, every unanswered enquiry outside business hours is money you\u2019ll never see. Your competitors who use AI never miss a lead. You do.",
+    desc: "What happens when a potential customer messages you at 10pm? Nothing — until the next morning, when they’ve already moved on to someone else. Every missed message, every unanswered enquiry outside business hours is money you’ll never see. Your competitors who use AI never miss a lead. You do.",
     icon: Moon,
     severity: "CRITICAL"
   },
@@ -52,18 +42,8 @@ const threats = [
     stat: "40+",
     statLabel: "hours wasted per month",
     preview: "Every hour on repetitive tasks is an hour not spent growing your business.",
-    desc: "Manually sending invoices. Copy-pasting data between apps. Following up leads one by one. Replying to the same questions over and over. Every hour your team spends on repetitive tasks is an hour not spent on growing your business. These are problems that can be fully automated — and most business owners don\u2019t even realise it.",
+    desc: "Manually sending invoices. Copy-pasting data between apps. Following up leads one by one. Replying to the same questions over and over. Every hour your team spends on repetitive tasks is an hour not spent on growing your business. These are problems that can be fully automated — and most business owners don’t even realise it.",
     icon: Cog,
-    severity: "HIGH"
-  },
-  { 
-    title: "COMPETITORS USE AI — AND PULLING AHEAD FAST", 
-    emoji: "🤖",
-    stat: "NOW",
-    statLabel: "AI isn't the future — it's",
-    preview: "The gap gets bigger every month you wait. You're not standing still — you're falling behind.",
-    desc: "AI isn\u2019t the future anymore — it\u2019s right now. Your competitors are already using AI to respond to customers faster, generate more leads, cut their costs, and run leaner operations. If you\u2019re not using AI in your business yet, you\u2019re not just standing still — you\u2019re falling behind. The gap gets bigger every month you wait.",
-    icon: Bot,
     severity: "HIGH"
   },
 ];

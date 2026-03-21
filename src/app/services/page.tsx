@@ -69,6 +69,18 @@ const services = [
     image: '/3d-icons/ai_agents.png',
     metric: '24/7',
     metricLabel: 'Uptime'
+  },
+  {
+    id: 'seo',
+    icon: Target,
+    title: 'SEO & Digital Marketing',
+    desc: 'Dominant Search Rankings and High-Intent Traffic. We ensure your business is the first thing customers see when they search for your solutions.',
+    accent: false,
+    features: ['Semantic SEO Framework', 'Competitor Keyword Conquest', 'High-DA Link Building', 'Conversion Rate Optimization'],
+    benefits: ['Top 3 Google Rankings', '200%+ Organic Growth', 'Predictable ROI'],
+    image: '/3d-icons/marketing.png',
+    metric: 'ROI-Driven',
+    metricLabel: 'Strategy'
   }
 ];
 

@@ -1,9 +1,11 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { ArrowRight, Zap, Target, Bot, Smartphone, Globe, Cog, CheckCircle, ArrowUpRight } from 'lucide-react';
+import { 
+  ArrowRight, Zap, Target, Bot, Smartphone, Globe, Cog, 
+  CheckCircle, ArrowUpRight, MessageSquare, Phone, TrendingUp 
+} from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 import RadialOrbitalTimeline, { TimelineItem } from "@/components/ui/radial-orbital-timeline";
 
@@ -11,46 +13,68 @@ const services = [
   {
     id: 'web',
     title: 'Website Development',
-    description: 'We build high-performance websites optimized for speed and conversion. Elite designs that load in under 1 second.',
-    icon: '/3d-icons/web_dev.png',
+    headline: '"A Website That Turns Visitors Into Paying Customers"',
+    description: 'Your website is your #1 salesperson. We build fast, stunning websites that load in under 2 seconds, look perfect on every device, and are designed to convert — not just look pretty.',
+    icon: Globe,
     link: '/services#web',
     accent: '#0066ff',
-    tech: 'Next.js / React',
-    metric: '< 1s',
+    metric: '< 2s',
     metricLabel: 'Load Speed',
   },
   {
     id: 'mobile',
     title: 'Mobile App Development',
-    description: 'Custom iOS and Android apps designed for zero friction and high user retention. Your business in their pocket.',
-    icon: '/3d-icons/mobile_app.png',
+    headline: '"Put Your Business Directly In Your Customers\' Pockets"',
+    description: 'Keep your customers one tap away. We build apps for both iPhone and Android that drive repeat business, enable easy booking or ordering, and make you look like the most professional option in your market.',
+    icon: Smartphone,
     link: '/services#mobile',
-    accent: '#7B2FFF',
-    tech: 'React Native / Flutter',
-    metric: '60 FPS',
-    metricLabel: 'Native Smoothness',
+    accent: '#0066ff',
+    metric: 'iOS/Android',
+    metricLabel: 'Native Core',
   },
   {
-    id: 'ai-agents',
-    title: 'AI Voice & Chat Agents',
-    description: 'Intelligent AI agents that answer calls, qualify leads, and book appointments 24/7 without a human in the loop.',
-    icon: '/3d-icons/ai_calling.png',
-    link: '/ai-solutions',
-    accent: '#FF2D55',
-    tech: 'LLM / RAG / Voice AI',
+    id: 'messaging',
+    title: 'AI Chat Agent',
+    headline: '"Never Miss A Lead — Even At 2am"',
+    description: 'Our AI replies to customer messages instantly on your website, WhatsApp and Instagram — 24/7. It answers questions, captures lead details and books appointments automatically. Like a salesperson who never sleeps.',
+    icon: MessageSquare,
+    link: '/ai-solutions#messaging',
+    accent: '#0066ff',
     metric: '24/7',
-    metricLabel: 'Active Support',
+    metricLabel: 'Active Engagement',
+  },
+  {
+    id: 'calling',
+    title: 'AI Voice Agent',
+    headline: '"An AI That Calls Your Leads And Books Appointments — Automatically"',
+    description: 'New lead comes in? Our AI calls them within 60 seconds, has a natural conversation, qualifies them and books them straight into your calendar. Your sales pipeline runs itself.',
+    icon: Phone,
+    link: '/ai-solutions#calling',
+    accent: '#0066ff',
+    metric: '60sec',
+    metricLabel: 'Lead Response',
   },
   {
     id: 'automation',
     title: 'Business Automation',
-    description: 'Connecting your tools to eliminate manual tasks. We build robots that handle your paperwork while you grow.',
-    icon: '/3d-icons/ai_automation.png',
-    link: '/services#automation',
-    accent: '#00FF88',
-    tech: 'Make.com / Python',
+    headline: '"Stop Doing The Same Tasks Over And Over"',
+    description: 'Invoices, follow-ups, reminders, data entry — all running on autopilot. We automate the repetitive work so your team can focus on what actually grows the business. Most clients save 15–20 hours every week.',
+    icon: Cog,
+    link: '/ai-solutions#automation',
+    accent: '#0066ff',
     metric: '20Hr+',
     metricLabel: 'Weekly Saved',
+  },
+  {
+    id: 'seo',
+    title: 'SEO & Digital Marketing',
+    headline: '"Get Found By Customers Already Searching For You"',
+    description: 'People are searching Google for exactly what you sell right now. We make sure they find you first — not your competitor. More visibility, more clicks, more paying customers.',
+    icon: Target,
+    link: '/services#seo',
+    accent: '#0066ff',
+    metric: 'Top 3',
+    metricLabel: 'Google Rank',
   },
 ];
 
@@ -103,72 +127,64 @@ const timelineData: TimelineItem[] = [
 
 export default function ServicesSection() {
   return (
-    <section className="relative py-24 bg-[#0A0A0F] overflow-hidden z-10">
-      {/* Background Decor */}
-      <div className="absolute top-0 left-0 w-full h-[500px] bg-gradient-to-b from-[#0066ff]/5 to-transparent pointer-events-none" />
+    <section className="relative py-24 md:py-32 bg-black overflow-hidden z-10">
+      {/* Background Radiance */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#0066ff]/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#0066ff]/5 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-[1550px] mx-auto px-6 relative z-10">
         {/* Header Section */}
-        <AnimatedSection className="text-center mb-20 max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#0066ff]/10 border border-[#0066ff]/20 mb-8 backdrop-blur-md">
+        <AnimatedSection className="text-center mb-24 max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0066ff]/10 border border-[#0066ff]/20 mb-8 backdrop-blur-md">
             <Zap className="w-4 h-4 text-[#0066ff]" />
-            <span className="font-mono text-[10px] uppercase tracking-widest text-[#0066ff] font-black">Our Capabilities</span>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#0066ff] font-black">Service Protocols</span>
           </div>
-          <h2 className="text-[2.2rem] md:text-[3.5rem] font-heading font-black leading-[1] tracking-tighter uppercase mb-6 text-white">
-            EVERYTHING YOUR BUSINESS <br className="hidden md:block" />
-            NEEDS TO <span className="text-[#0066ff] italic">WIN ONLINE</span>
+          <h2 className="text-[2.5rem] md:text-[4.5rem] font-heading font-black leading-[0.9] tracking-tighter uppercase mb-8 text-white">
+            WE ENGINEER <br className="hidden md:block" />
+            <span className="text-[#0066ff] italic">LIMITLESS GROWTH</span>
           </h2>
-          <p className="text-[#8A8A9A] text-lg font-body">
-            We build it. We launch it. We make it work.
+          <p className="text-[#8A8A9A] text-xl font-body font-light max-w-2xl mx-auto">
+            High-converting digital ecosystems, autonomous AI agents, and intelligent automation built for the modern market.
           </p>
         </AnimatedSection>
 
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24 relative z-10">
+        {/* Services Grid (Premium Lukritive Layout) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-32 relative z-10">
           {services.map((service, i) => (
             <AnimatedSection key={service.id} delay={i * 0.1}>
-              <div className="group relative h-full p-8 glass-premium rounded-[2.5rem] border-white/5 hover:border-white/20 transition-all duration-700 flex flex-col shimmer-border overflow-hidden">
-
+              <div className="group relative h-full glass-premium rounded-[3rem] border-white/5 hover:border-[#0066ff]/30 transition-all duration-700 flex flex-col p-10 hover-3d overflow-hidden shimmer-border">
                 
+                {/* Visual Icon Accent */}
                 <div className="mb-10 relative">
-                   <div 
-                    className="absolute inset-0 blur-3xl opacity-20 group-hover:opacity-60 transition-opacity"
-                    style={{ background: service.accent }}
-                  />
-                  <Image 
-                    src={service.icon} 
-                    alt={service.title} 
-                    width={150} 
-                    height={150} 
-                    className="relative z-10 w-24 h-24 object-contain group-hover:scale-110 group-hover:rotate-3 transition-all duration-700"
-                  />
+                  <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center relative z-10 group-hover:bg-[#0066ff] group-hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(255,255,255,0.02)] group-hover:shadow-[0_0_30px_rgba(0,102,255,0.4)]">
+                    <service.icon className="w-7 h-7" />
+                  </div>
+                  <div className="absolute -top-4 -left-4 w-24 h-24 bg-[#0066ff]/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
 
                 <div className="flex-grow">
-                  <div className="flex items-center gap-2 mb-3">
-                    <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-white/50 uppercase tracking-widest font-black group-hover:border-[#0066ff]/30 transition-colors">
-                      {service.tech}
-                    </span>
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-heading font-black text-white uppercase tracking-tight mb-4 group-hover:text-glow transition-all leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-heading font-black text-white uppercase tracking-tighter mb-2 leading-tight">
                     {service.title}
                   </h3>
-                  <p className="text-[#8A8A9A] font-body text-sm leading-relaxed mb-8 group-hover:text-white/60 transition-colors">
+                  <p className="text-[#0066ff] font-heading font-bold text-xs uppercase tracking-widest mb-6 italic opacity-80 group-hover:opacity-100 transition-opacity">
+                    {service.headline}
+                  </p>
+                  <p className="text-[#8A8A9A] font-body text-sm md:text-base leading-relaxed mb-10 group-hover:text-white/70 transition-colors">
                     {service.description}
                   </p>
                 </div>
 
-                <div className="pt-6 border-t border-white/5 flex items-end justify-between relative z-10">
+                <div className="pt-8 border-t border-white/5 flex items-center justify-between">
                   <div>
-                    <div className="text-2xl font-heading font-black text-glow" style={{ color: service.accent }}>
+                    <div className="text-2xl font-heading font-black text-white group-hover:text-[#0066ff] transition-colors leading-none mb-1">
                       {service.metric}
                     </div>
-                    <div className="text-[9px] font-mono text-[#8A8A9A] uppercase tracking-widest font-bold">
+                    <div className="text-[9px] font-mono text-[#8A8A9A] uppercase tracking-[0.2em] font-bold">
                       {service.metricLabel}
                     </div>
                   </div>
-                  <Link href={service.link} className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 group-hover:bg-[#0066ff] group-hover:text-black group-hover:shadow-[0_0_20px_rgba(0,102,255,0.4)] transition-all duration-500">
-                    <ArrowUpRight className="w-5 h-5" />
+                  <Link href={service.link} className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5 hover:bg-[#0066ff] hover:text-black hover:shadow-[0_0_30px_rgba(0,102,255,0.5)] transition-all duration-500 group-hover:scale-110">
+                    <ArrowUpRight className="w-5 h-5 pointer-events-none" />
                   </Link>
                 </div>
               </div>
@@ -176,24 +192,27 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* Diagonal Visual: Circular Animation Re-integration */}
-        <AnimatedSection className="mb-24">
-          <div className="glass-premium rounded-[4rem] border-white/5 overflow-hidden p-12 md:p-20 relative bg-black">
+        {/* Neural Ecosystem Visual */}
+        <AnimatedSection className="mb-32">
+          <div className="glass-premium rounded-[4rem] border-white/5 overflow-hidden p-12 md:p-24 relative bg-black/40 backdrop-blur-3xl">
              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div className="space-y-8">
-                   <h3 className="text-3xl md:text-5xl font-heading font-black text-white uppercase tracking-tighter leading-[0.9]">
+                <div className="space-y-10">
+                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-mono text-white/40 uppercase tracking-widest">
+                      Protocol: Ecosystem_Harmony
+                   </div>
+                   <h3 className="text-4xl md:text-6xl font-heading font-black text-white uppercase tracking-tighter leading-[0.85]">
                       OUR <span className="text-[#0066ff] italic">AI-DRIVEN</span> <br/>ECOSYSTEM
                    </h3>
-                   <p className="text-[#8A8A9A] text-lg leading-relaxed">
+                   <p className="text-[#8A8A9A] text-xl leading-relaxed font-light">
                       We don't just build separate tools. We build integrated digital ecosystems where every node communicates and optimizes your business in real-time.
                    </p>
-                   <ul className="space-y-4">
-                      {['Real-time Data Sync', 'Autonomous Decision Nodes', 'Cross-Platform Harmony'].map((item) => (
-                        <li key={item} className="flex items-center gap-3 text-white/80 font-heading font-bold uppercase text-sm tracking-wide">
-                           <CheckCircle className="w-5 h-5 text-[#0066ff]" /> {item}
-                        </li>
+                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {['Real-time Data Sync', 'Autonomous Decision Nodes', 'Cross-Platform Harmony', 'Neural Processing'].map((item) => (
+                        <div key={item} className="flex items-center gap-3 text-white/60 font-mono uppercase text-[10px] tracking-wider border border-white/5 bg-white/[0.02] p-4 rounded-2xl hover:border-[#0066ff]/30 transition-all cursor-default group/item">
+                           <div className="w-1.5 h-1.5 rounded-full bg-[#0066ff] shadow-[0_0_10px_rgba(0,102,255,0.5)] group-hover/item:scale-150 transition-transform" /> {item}
+                        </div>
                       ))}
-                   </ul>
+                   </div>
                 </div>
                 <div className="relative h-[500px] flex items-center justify-center">
                    <RadialOrbitalTimeline timelineData={timelineData} />
@@ -202,24 +221,31 @@ export default function ServicesSection() {
           </div>
         </AnimatedSection>
 
-        {/* Services Bottom CTA */}
+        {/* High-Impact Bottom CTA */}
         <AnimatedSection className="text-center">
-          <div className="max-w-4xl mx-auto p-12 bg-gradient-to-br from-[#0066ff]/10 to-transparent border border-[#0066ff]/10 rounded-[3rem] relative overflow-hidden">
-             <div className="absolute top-0 right-0 p-8 opacity-20 hidden md:block">
-                <Bot className="w-24 h-24 text-[#0066ff]" />
+          <div className="max-w-4xl mx-auto p-12 md:p-20 bg-gradient-to-br from-[#0066ff]/10 to-transparent border border-[#0066ff]/20 rounded-[4rem] relative overflow-hidden group">
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.05)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+             
+             <div className="relative z-10 space-y-8">
+               <h4 className="text-2xl md:text-4xl font-heading font-black text-white uppercase italic leading-[1] tracking-tighter">
+                  NOT SURE WHAT YOU NEED?<br/>
+                  <span className="text-[#0066ff]">BOOK A FREE 30-MIN CALL</span>
+               </h4>
+               <p className="text-[#8A8A9A] text-lg font-body max-w-xl mx-auto">
+                 We'll look at your business and tell you exactly what digital tools will make you the most money. No strings attached.
+               </p>
+               <div className="pt-4">
+                 <Link 
+                    href="#booking"
+                    className="inline-flex items-center gap-4 px-12 py-6 bg-[#0066ff] text-black font-heading font-black text-sm uppercase tracking-widest hover:bg-white transition-all rounded-[2rem] shadow-[0_15px_40px_rgba(0,102,255,0.4)] hover:shadow-[0_20px_60px_rgba(0,102,255,0.6)]"
+                 >
+                    BOOK STRATEGY CALL <ArrowRight className="w-5 h-5" />
+                 </Link>
+               </div>
+               <p className="text-[#8A8A9A] font-mono text-[10px] uppercase tracking-[0.4em]">
+                  ⚡ Protocol // Strategy_Audit_2026
+               </p>
              </div>
-             <h4 className="text-xl md:text-3xl font-heading font-black text-white mb-8 relative z-10 uppercase italic max-w-2xl mx-auto leading-tight">
-                NOT SURE WHAT YOU NEED? BOOK A FREE 30-MIN CALL — WE'LL TELL YOU EXACTLY WHAT TO BUILD.
-             </h4>
-             <Link 
-                href="#booking"
-                className="inline-flex items-center gap-3 px-12 py-6 bg-[#0066ff] text-black font-heading font-black text-sm uppercase tracking-widest hover:bg-white transition-all rounded-2xl shadow-[0_15px_40px_rgba(0,102,255,0.3)] relative z-10"
-             >
-                BOOK FREE STRATEGY CALL <ArrowRight className="w-5 h-5" />
-             </Link>
-             <p className="mt-6 text-[#8A8A9A] font-mono text-[9px] uppercase tracking-[0.3em] relative z-10">
-                ⚡ No hard selling. Just honest advice.
-             </p>
           </div>
         </AnimatedSection>
       </div>
