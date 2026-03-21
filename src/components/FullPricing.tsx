@@ -74,6 +74,9 @@ export default function PricingSection() {
   const next = () => setCurrentIndex((prev) => (prev + 1) % packages.length);
   const prev = () => setCurrentIndex((prev) => (prev - 1 + packages.length) % packages.length);
 
+  const pkg = packages[currentIndex];
+  const ActiveIcon = pkg.icon;
+
   return (
     <section className="py-24 md:py-32 bg-black relative overflow-hidden" id="pricing">
       {/* Ambience */}
@@ -112,10 +115,6 @@ export default function PricingSection() {
 
           <div className="relative overflow-visible px-4">
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-8 items-stretch justify-center">
-              {/* Show all on desktop, but highlight current index on mobile or use it as a true slider? 
-                  The user asked for "side scrolling slider where three option will be there". 
-                  I'll use Framer Motion for a smooth transition between cards.
-              */}
               <AnimatePresence mode="wait">
                 <motion.div 
                   key={currentIndex}
@@ -125,20 +124,17 @@ export default function PricingSection() {
                   transition={{ duration: 0.5, ease: 'circOut' }}
                   className="w-full max-w-2xl mx-auto flex flex-col"
                 >
-                  <div className={`relative h-full glass-premium rounded-[4rem] border-2 transition-all duration-700 p-12 overflow-hidden flex flex-col ${packages[currentIndex].border} shadow-[0_50px_100px_rgba(0,0,0,0.5)]`}>
+                  <div className={`relative h-full glass-premium rounded-[4rem] border-2 transition-all duration-700 p-12 overflow-hidden flex flex-col ${pkg.border} shadow-[0_50px_100px_rgba(0,0,0,0.5)]`}>
                     
                     {/* Background Glow */}
-                    <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full blur-[120px] pointer-events-none opacity-40 shadow-inner" style={{ backgroundColor: packages[currentIndex].glow }} />
+                    <div className="absolute -top-32 -right-32 w-80 h-80 rounded-full blur-[120px] pointer-events-none opacity-40 shadow-inner" style={{ backgroundColor: pkg.glow }} />
                     
                     <div className="relative z-10">
                       <div className="flex items-center justify-between mb-12">
-                        <span className={`font-mono text-[10px] font-black px-6 py-2 rounded-full tracking-[0.2em] border border-white/10 uppercase ${packages[currentIndex].highlight ? 'bg-[#ccff00] text-black shadow-[0_0_20px_rgba(204,255,0,0.3)]' : 'bg-white/5 text-white/50'}`}>
-                          {packages[currentIndex].badge}
+                        <span className={`font-mono text-[10px] font-black px-6 py-2 rounded-full tracking-[0.2em] border border-white/10 uppercase ${pkg.highlight ? 'bg-[#ccff00] text-black shadow-[0_0_20px_rgba(204,255,0,0.3)]' : 'bg-white/5 text-white/50'}`}>
+                          {pkg.badge}
                         </span>
-                        {(() => {
-                          const IconComp = packages[currentIndex].icon;
-                          return <IconComp className={`w-12 h-12 ${packages[currentIndex].text}`} />;
-                        })()}
+                        <ActiveIcon className={`w-12 h-12 ${pkg.text}`} />
                       </div>
 
                       <h3 className="text-5xl md:text-7xl font-heading font-black text-white uppercase tracking-tighter mb-4 leading-none italic">
