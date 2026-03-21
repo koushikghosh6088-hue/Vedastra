@@ -324,31 +324,31 @@ export default function HomePage() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative z-20 text-center lg:text-left space-y-8 pt-[350px] lg:pt-0"
+              className="relative z-20 text-center lg:text-left space-y-6 pt-[280px] sm:pt-[320px] lg:pt-0"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00D4FF]/30 bg-[#00D4FF]/5 backdrop-blur-md mx-auto lg:mx-0">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[#00D4FF]/30 bg-[#00D4FF]/5 backdrop-blur-md mx-auto lg:mx-0 scale-90 sm:scale-100">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#00D4FF] animate-pulse" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#00D4FF] font-bold">
+                <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-[#00D4FF] font-bold">
                   AI-Powered Digital Agency
                 </span>
               </div>
 
-              <h1 className="text-[2.2rem] sm:text-[3.2rem] md:text-[4rem] font-heading font-black leading-[1.1] tracking-tighter uppercase text-white">
+              <h1 className="text-[1.7rem] xs:text-[2rem] sm:text-[3.2rem] md:text-[4rem] font-heading font-black leading-[1.1] tracking-tighter uppercase text-white">
                 <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">WE BUILD DIGITAL</span><br />
                 <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">PRODUCTS THAT</span> <br className="lg:hidden" />
                 <span className="italic gradient-text-premium text-glow">GROW</span> YOUR BUSINESS.
               </h1>
 
-              <p className="text-base sm:text-lg text-[#8A8A9A] max-w-[540px] mx-auto lg:mx-0 font-body leading-relaxed">
+              <p className="text-sm sm:text-lg text-[#8A8A9A] max-w-[540px] mx-auto lg:mx-0 font-body leading-relaxed px-4 sm:px-0">
                 Websites. Mobile Apps. AI Agents. Automation. Built for businesses that are serious about growth. 
-                <span className="text-[#00D4FF] ml-2 font-black">We Build Websites. |</span>
+                <span className="text-[#00D4FF] ml-1 font-black">We Build Websites. |</span>
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                <Link href="#booking" className="btn-primary w-full sm:w-80 px-10 py-5 flex items-center justify-center gap-2 text-sm shadow-[0_0_40px_rgba(0,212,255,0.2)] hover:shadow-[0_0_60px_rgba(0,212,255,0.4)] transition-all">
+              <div className="flex flex-col xs:flex-row items-center justify-center lg:justify-start gap-4 pt-2 sm:pt-4">
+                <Link href="#booking" className="btn-primary w-full xs:w-auto sm:w-80 px-8 py-4 sm:py-5 flex items-center justify-center gap-2 text-xs sm:text-sm shadow-[0_0_40px_rgba(0,212,255,0.2)] hover:shadow-[0_0_60px_rgba(0,212,255,0.4)] transition-all">
                   START YOUR PROJECT <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href="/portfolio" className="text-white/40 hover:text-white transition-colors font-heading text-xs uppercase tracking-[0.2em] border-b border-white/10 pb-1">
+                <Link href="/portfolio" className="text-white/40 hover:text-white transition-colors font-heading text-[10px] sm:text-xs uppercase tracking-[0.2em] border-b border-white/10 pb-1">
                   SEE OUR WORK
                 </Link>
               </div>
@@ -360,8 +360,8 @@ export default function HomePage() {
                   { icon: Bot, text: 'Custom AI' },
                   { icon: ShieldCheck, text: 'Verified Output' },
                 ].map((s) => (
-                  <div key={s.text} className="flex items-center gap-2">
-                    <s.icon className="w-3.5 h-3.5 text-[#00D4FF]" />
+                  <div key={s.text} className="flex items-center gap-3">
+                    <s.icon className="w-3 h-3 text-[#00D4FF]" />
                     <span className="font-mono text-[9px] uppercase tracking-wider text-white">
                       {s.text}
                     </span>
@@ -371,11 +371,11 @@ export default function HomePage() {
             </motion.div>
 
             {/* RIGHT COLUMN: Visual (Backdrop on Mobile) */}
-            <div className="absolute lg:relative inset-0 lg:inset-auto h-[600px] lg:h-[700px] w-full z-10 pointer-events-none lg:pointer-events-auto overflow-hidden">
+            <div className="absolute lg:relative inset-0 lg:inset-auto h-[550px] lg:h-[700px] w-full z-10 pointer-events-none lg:pointer-events-auto overflow-hidden">
               {/* Internal Robot Atmosphere Glow */}
-              <div className="absolute top-[40%] lg:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#00D4FF]/20 rounded-full blur-[100px] opacity-40 animate-pulse" />
+              <div className="absolute top-[35%] lg:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#00D4FF]/20 rounded-full blur-[100px] opacity-30 animate-pulse" />
               
-              <div className="absolute inset-0 z-10 scale-[1.3] md:scale-[1.2] lg:scale-[1.4] translate-y-[-10%] lg:translate-y-0 lg:translate-x-12">
+              <div className="absolute inset-0 z-10 scale-[1.1] sm:scale-[1.2] lg:scale-[1.4] translate-y-[-5%] lg:translate-y-0 lg:translate-x-12">
                 <SplineScene 
                   scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                   className="w-full h-full"
