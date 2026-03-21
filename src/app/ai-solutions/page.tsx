@@ -33,15 +33,15 @@ export default function AISolutionsPage() {
     <>
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden min-h-[65vh] flex flex-col justify-center">
-        <div className="absolute top-0 left-[-10%] w-[800px] h-[800px] bg-blue-400/[0.04] rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute top-0 left-[-10%] w-[800px] h-[800px] bg-[#00d4ff]/[0.04] rounded-full blur-[150px] pointer-events-none" />
         <div className="max-w-[1550px] mx-auto px-6 relative z-10 w-full">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
-            <span className="font-mono text-[10px] tracking-widest uppercase block mb-6 text-blue-400">
-              <span className="w-1.5 h-1.5 bg-blue-400 rounded-full animate-pulse inline-block mr-2" />
-              AI & Automation
+            <span className="font-mono text-[10px] tracking-widest uppercase block mb-6 text-[#00ff9d] glow-green">
+              <span className="w-1.5 h-1.5 bg-[#00ff9d] rounded-full animate-pulse-glow inline-block mr-2" />
+              AI & Automation Protocol
             </span>
-            <h1 className="text-[3rem] md:text-[4.5rem] lg:text-[5.2rem] font-heading font-extrabold leading-[0.85] tracking-tighter mb-8 max-w-5xl">
-              WORK SMARTER WITH <span className="gradient-text italic">CUSTOM AI.</span>
+            <h1 className="text-[3.5rem] md:text-[5.5rem] lg:text-[7.5rem] font-heading font-black leading-[0.85] tracking-tighter mb-8 max-w-5xl text-white uppercase glow-white">
+              WORK SMARTER WITH <span className="glow-cyan italic">CUSTOM AI.</span>
             </h1>
             <TypewriterSubline 
               phrases={[
@@ -50,7 +50,7 @@ export default function AISolutionsPage() {
                 "24/7 Operational Autonomy",
                 "Neural Processing Architectures"
               ]}
-              className="text-lg md:text-xl"
+              className="text-lg md:text-xl font-body font-medium text-white/80"
             />
           </motion.div>
         </div>
@@ -66,26 +66,26 @@ export default function AISolutionsPage() {
             {/* Context/UI Panel */}
             <AnimatedSection className="lg:col-span-6 lg:order-2">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8">
-                <Radio className="w-3 h-3 text-blue-400 animate-pulse" />
-                <span className="text-xs font-mono uppercase tracking-widest text-blue-400">AI Voice Agents</span>
+                <Radio className="w-3 h-3 text-[#00ff9d] animate-pulse" />
+                <span className="text-[0.65rem] font-mono uppercase tracking-widest text-[#00ff9d] glow-green">AI Voice Agents</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 text-blue-400 uppercase">
-                AI VOICE <span className="gradient-text italic">AGENTS</span>
+              <h2 className="text-3xl md:text-5xl font-heading font-black mb-8 text-white uppercase tracking-tighter glow-white">
+                AI VOICE <span className="glow-cyan italic">AGENTS</span>
               </h2>
-              <p className="text-white/50 text-xl leading-relaxed mb-10 font-mono font-light">
+              <p className="text-white/60 text-xl leading-relaxed mb-10 font-body font-light max-w-xl">
                 Imagine a salesperson who never sleeps. Our AI voice agents handle inbound calls, qualify leads, and book appointments automatically — sounding just like a human.
               </p>
               
-              <div className="grid grid-cols-2 gap-4 mb-10">
+              <div className="grid grid-cols-2 gap-6 mb-12">
                 {['Sub-500ms Latency', 'Multi-Language', 'CRM Auto-Sync', 'Sentiment Analysis'].map((item) => (
                   <div key={item} className="flex items-center gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-blue-400 shrink-0" />
-                    <span className="text-white/70 font-mono text-xs uppercase">{item}</span>
+                    <CheckCircle2 className="w-4 h-4 text-[#00ff9d] shrink-0" />
+                    <span className="text-white/70 font-mono text-[0.7rem] uppercase tracking-wider">{item}</span>
                   </div>
                 ))}
               </div>
               
-              <Link href="/contact" className="group relative overflow-hidden px-8 py-4 rounded-full text-sm font-bold bg-blue-400 text-black shadow-[0_0_30px_rgba(14,165,233,0.15)] hover:scale-105 transition-all duration-300 inline-flex items-center gap-2">
+              <Link href="/contact" className="group relative overflow-hidden px-10 py-5 rounded-2xl text-[0.8rem] font-heading font-black uppercase tracking-[0.1em] bg-[#00ff9d] text-black shadow-[0_0_30px_rgba(0,255,157,0.2)] hover:scale-[1.02] transition-all duration-300 inline-flex items-center gap-3">
                 Deploy Voice Agent <ArrowUpRight className="w-4 h-4" />
               </Link>
             </AnimatedSection>
@@ -113,15 +113,15 @@ export default function AISolutionsPage() {
                 <div className="relative z-10 mt-48 bg-black/80 backdrop-blur-xl border border-white/10 rounded-3xl p-6 shadow-2xl">
                   <div className="flex items-center justify-between mb-8">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full bg-blue-400/20 flex items-center justify-center">
-                        <Phone className="w-4 h-4 text-blue-400" />
+                      <div className="w-10 h-10 rounded-full bg-[#00d4ff]/20 flex items-center justify-center border border-[#00d4ff]/30">
+                        <Phone className="w-4 h-4 text-[#00d4ff]" />
                       </div>
                       <div>
-                        <div className="text-xs font-mono uppercase text-white/40">Active Instance</div>
-                        <div className="text-sm font-semibold text-white">Lead Qualification</div>
+                        <div className="text-[0.6rem] font-mono uppercase text-white/40 tracking-wider">Active Instance</div>
+                        <div className="text-sm font-heading font-black text-white uppercase tracking-tight glow-white">Lead Qualification</div>
                       </div>
                     </div>
-                    <div className="px-3 py-1 rounded-full bg-blue-400/10 border border-blue-400/30 text-blue-400 text-xs font-mono animate-pulse">
+                    <div className="px-3 py-1 rounded-full bg-[#00d4ff]/10 border border-[#00d4ff]/30 text-[#00d4ff] text-[0.65rem] font-mono animate-pulse glow-cyan">
                       01:24
                     </div>
                   </div>
@@ -131,7 +131,7 @@ export default function AISolutionsPage() {
                     {WAVE_HEIGHTS.map((heights, i) => (
                       <motion.div
                         key={i}
-                        className="w-1 bg-blue-400 rounded-full shadow-[0_0_10px_rgba(14,165,233,0.5)]"
+                        className="w-1 bg-[#00d4ff] rounded-full shadow-[0_0_10px_rgba(0,212,255,0.5)]"
                         animate={{ height: heights }}
                         transition={{ duration: 1.2, repeat: Infinity, delay: i * 0.03, ease: 'easeInOut' }}
                       />
@@ -145,7 +145,7 @@ export default function AISolutionsPage() {
                       { label: 'Converted', value: '24' },
                     ].map((stat) => (
                       <div key={stat.label} className="bg-white/5 border border-white/5 rounded-xl p-3 text-center">
-                        <div className="text-lg font-bold text-white">{stat.value}</div>
+                        <div className="text-lg font-heading font-black text-white glow-white">{stat.value}</div>
                         <div className="text-[10px] uppercase tracking-wider font-mono text-white/40 mt-1">{stat.label}</div>
                       </div>
                     ))}
@@ -164,16 +164,16 @@ export default function AISolutionsPage() {
             
             {/* Chat UI Panel */}
             <AnimatedSection direction="left" className="lg:col-span-6">
-              <div className="glass-panel rounded-[2.5rem] p-6 lg:p-8 relative overflow-hidden group">
-                <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/5">
+              <div className="glass-panel rounded-[2.5rem] p-6 lg:p-8 relative overflow-hidden group border-white/5 hover:border-[#00d4ff]/30 transition-all duration-500">
+                <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/10">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/10">
                       <MessageSquare className="w-4 h-4 text-white" />
                     </div>
                     <div>
-                      <div className="text-sm font-semibold text-white">Omnichannel Bot</div>
-                      <div className="text-xs font-mono text-blue-400 flex items-center gap-1">
-                        <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" /> Online
+                      <div className="text-sm font-heading font-black text-white uppercase tracking-tight">Omnichannel Bot</div>
+                      <div className="text-[0.6rem] font-mono text-[#00d4ff] flex items-center gap-1 uppercase tracking-widest glow-cyan">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#00d4ff] animate-pulse-glow" /> System Online
                       </div>
                     </div>
                   </div>
@@ -196,9 +196,9 @@ export default function AISolutionsPage() {
                       transition={{ delay: msg.delay + 0.5 }}
                       className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
-                      <div className={`max-w-[85%] px-5 py-3 rounded-2xl text-sm font-mono leading-relaxed ${
+                      <div className={`max-w-[85%] px-5 py-3 rounded-2xl text-[0.75rem] font-mono leading-relaxed tracking-tight ${
                         msg.from === 'user'
-                          ? 'bg-blue-400/10 border border-blue-400/20 text-blue-100 rounded-br-sm'
+                          ? 'bg-[#00d4ff]/10 border border-[#00d4ff]/20 text-[#00d4ff] rounded-br-sm glow-cyan'
                           : 'bg-white/5 border border-white/10 text-white/70 rounded-bl-sm'
                       }`}>
                         {msg.text}
@@ -208,10 +208,10 @@ export default function AISolutionsPage() {
                 </div>
 
                 <div className="mt-auto flex gap-2">
-                  <div className="flex-1 px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-sm font-mono text-white/30 flex items-center">
+                  <div className="flex-1 px-4 py-3 rounded-xl bg-black/50 border border-white/10 text-[0.65rem] font-mono text-white/30 flex items-center uppercase tracking-wider">
                     Awaiting input stream...
                   </div>
-                  <button className="bg-white/10 border border-white/20 px-4 py-3 rounded-xl text-white hover:bg-white/20 transition-colors">
+                  <button className="bg-[#00d4ff] border border-[#00d4ff]/30 px-4 py-3 rounded-xl text-black hover:scale-105 transition-all shadow-[0_0_20px_rgba(0,212,255,0.3)]">
                     <ArrowRight className="w-4 h-4" />
                   </button>
                 </div>
@@ -220,28 +220,28 @@ export default function AISolutionsPage() {
 
             <AnimatedSection delay={0.2} direction="right" className="lg:col-span-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 mb-8">
-                <MessageSquare className="w-3 h-3 text-white" />
-                <span className="text-xs font-mono uppercase tracking-widest text-blue-400">AI Messaging Agents</span>
+                <MessageSquare className="w-3 h-3 text-[#00d4ff] glow-cyan" />
+                <span className="text-[0.65rem] font-mono uppercase tracking-widest text-[#00d4ff] glow-cyan">AI Messaging Agents</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-heading font-bold mb-6 text-blue-400 uppercase">
-                24/7 CHAT <span className="gradient-text italic">AGENTS</span>
+              <h2 className="text-3xl md:text-5xl font-heading font-black mb-8 text-white uppercase tracking-tighter glow-white">
+                24/7 CHAT <span className="glow-cyan italic">AGENTS</span>
               </h2>
-              <p className="text-white/50 text-xl leading-relaxed mb-10 font-mono font-light">
+              <p className="text-white/60 text-xl leading-relaxed mb-10 font-body font-light max-w-xl">
                 Answer customer questions instantly on your website, WhatsApp, or SMS. Our AI agents learn your business and close more deals 24/7.
               </p>
               
-              <div className="space-y-4 mb-10">
+              <div className="space-y-4 mb-12">
                 {['Omnichannel Architecture', 'Semantic Search Native', 'Seamless Human Handoff', 'Token-Efficient RAG'].map((item) => (
                   <div key={item} className="flex items-center gap-4">
-                    <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0">
-                      <CheckCircle2 className="w-3 h-3 text-white" />
+                    <div className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center shrink-0 border border-white/10">
+                      <CheckCircle2 className="w-3 h-3 text-[#00d4ff]" />
                     </div>
-                    <span className="text-white/70 font-mono text-sm uppercase tracking-wider">{item}</span>
+                    <span className="text-white/70 font-mono text-[0.7rem] uppercase tracking-[0.15em] glow-white">{item}</span>
                   </div>
                 ))}
               </div>
               
-              <Link href="/contact" className="group px-8 py-4 rounded-full text-sm font-bold bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all duration-300 inline-flex items-center gap-2">
+              <Link href="/contact" className="group px-10 py-5 rounded-2xl text-[0.8rem] font-heading font-black uppercase tracking-[0.1em] bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all duration-300 inline-flex items-center gap-3">
                 Deploy Chat Agent <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </AnimatedSection>
@@ -267,13 +267,13 @@ export default function AISolutionsPage() {
 
         <div className="max-w-[1200px] mx-auto px-6 relative z-10">
           <AnimatedSection className="text-center mb-20">
-            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 mx-auto backdrop-blur-xl">
+            <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 mx-auto backdrop-blur-xl group-hover:border-[#00ff9d]/30 transition-all">
               <Cog className="w-7 h-7 text-white" />
             </div>
-            <h2 className="text-[2.5rem] md:text-[3.8rem] font-heading font-black tracking-tighter mb-6 text-white leading-none">
-              AUTO-PILOT FOR <br/><span className="text-white/30 italic">YOUR BUSINESS</span>
+            <h2 className="text-[3rem] md:text-[5rem] font-heading font-black tracking-tighter mb-8 text-white leading-[0.9] uppercase glow-white">
+              AUTO-PILOT FOR <br/><span className="glow-cyan italic">YOUR BUSINESS</span>
             </h2>
-            <p className="font-mono text-sm text-white/50 uppercase tracking-widest max-w-xl mx-auto">
+            <p className="font-body text-xl text-white/60 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
               Stop wasting hours on repetitive tasks. We automate your emails, CRM, reporting, and data entry — so everything runs on auto-pilot.
             </p>
           </AnimatedSection>
@@ -295,10 +295,10 @@ export default function AISolutionsPage() {
                       transition={{ delay: i * 0.2 }}
                       className="flex flex-col items-center"
                     >
-                      <div className={`w-16 h-16 md:w-24 md:h-24 rounded-[2rem] flex items-center justify-center bg-white/5 border border-white/10 mb-4 backdrop-blur-md`}>
-                        <step.icon className={`w-8 h-8 md:w-10 md:h-10 ${step.color}`} />
+                      <div className={`w-16 h-16 md:w-24 md:h-24 rounded-[2rem] flex items-center justify-center bg-white/5 border border-white/10 mb-4 backdrop-blur-md group-hover:border-[#00ff9d]/30 group-hover:bg-[#00ff9d]/5 transition-all`}>
+                        <step.icon className={`w-8 h-8 md:w-10 md:h-10 ${step.color === 'text-blue-400' ? 'text-[#00ff9d] glow-green' : 'text-white'}`} />
                       </div>
-                      <span className="text-xs font-mono uppercase tracking-widest text-white/60">{step.label}</span>
+                      <span className="text-[0.65rem] font-mono uppercase tracking-[0.2em] text-white/40">{step.label}</span>
                     </motion.div>
                     {i < 3 && <div className="hidden md:block w-8 h-px bg-white/20" />}
                   </div>
@@ -311,9 +311,9 @@ export default function AISolutionsPage() {
                   { title: 'Algorithmic Arbitration', desc: 'Self-correcting AI loops that format and sanitize data streams instantly.' },
                   { title: 'Analytics Sync', desc: 'Push calculated insights directly to live dashboards without chron-job latency.' },
                 ].map((item) => (
-                  <div key={item.title} className="bg-black/50 rounded-3xl p-8 border border-white/5 hover:border-blue-400/30 transition-colors group">
-                    <h4 className="font-heading font-bold text-lg mb-3 text-white group-hover:text-blue-400 transition-colors">{item.title}</h4>
-                    <p className="text-sm font-mono text-white/50 leading-relaxed">{item.desc}</p>
+                  <div key={item.title} className="bg-black/50 rounded-[2rem] p-8 border border-white/5 hover:border-[#00d4ff]/30 transition-all duration-500 group-hover:translate-y-[-5px]">
+                    <h4 className="font-heading font-black text-xl mb-4 text-white uppercase tracking-tight group-hover:text-[#00d4ff] transition-colors">{item.title}</h4>
+                    <p className="text-[0.8rem] font-body text-white/50 leading-relaxed font-light">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -326,16 +326,15 @@ export default function AISolutionsPage() {
       <section className="py-32 relative bg-obsidian border-t border-white/5">
         <div className="max-w-[1550px] mx-auto px-6 text-center relative z-10">
           <AnimatedSection>
-            <h2 className="text-[2.5rem] md:text-[3.8rem] font-heading font-black tracking-tighter mb-6">
-              READY TO <span className="text-blue-400 italic">AUTOMATE?</span>
+            <h2 className="text-[3.5rem] md:text-[6rem] font-heading font-black tracking-tighter mb-8 text-white uppercase leading-[0.9] glow-white">
+              READY TO <span className="glow-cyan italic">AUTOMATE?</span>
             </h2>
-            <p className="font-mono text-sm text-white/40 uppercase tracking-widest max-w-xl mx-auto mb-10">
+            <p className="font-mono text-[0.7rem] text-white/40 uppercase tracking-[0.3em] max-w-xl mx-auto mb-12 glow-white">
               Let&apos;s see how much time and money we can save you with AI.
             </p>
-            <Link href="/contact" className="btn-primary group">
-              Start Your Project <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <Link href="/contact" className="group px-12 py-6 rounded-2xl text-[0.9rem] font-heading font-black uppercase tracking-[0.15em] bg-[#00ff9d] text-black shadow-[0_0_40px_rgba(0,255,157,0.3)] hover:scale-[1.05] transition-all duration-300 inline-flex items-center gap-4">
+              Start Your Project <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
-
           </AnimatedSection>
         </div>
       </section>

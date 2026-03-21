@@ -171,38 +171,38 @@ export default function ProblemSolution() {
                     <div className="h-full w-full bg-black border-2 border-red-600/50 rounded-[2.5rem] md:rounded-[4.5rem] p-8 md:p-16 flex flex-col items-center text-center shadow-[0_0_80px_rgba(220,38,38,0.25)] relative overflow-hidden group">
                       
                       {/* Cybernetic Decals */}
-                      <div className="absolute top-8 left-12 font-mono text-[8px] text-red-500/40 uppercase tracking-[0.3em] hidden md:block">
-                        NODE_ID // PROBLEM_{currentIndex + 1}
+                      <div className="absolute top-8 left-12 font-mono text-[0.65rem] text-[#00ff9d] uppercase tracking-[0.15em] hidden md:block">
+                        Diagnostic_Report // Node_ID_{currentIndex + 1}
                       </div>
-                      <div className="absolute top-8 right-12 px-2 py-0.5 border border-red-500/40 rounded font-mono text-[8px] text-red-500/60 uppercase tracking-widest hidden md:block animate-pulse">
-                        LEVEL_CRITICAL
+                      <div className="absolute top-8 right-12 px-2 py-0.5 border border-[#00ff9d]/40 rounded font-mono text-[0.65rem] text-[#00ff9d]/60 uppercase tracking-[0.15em] hidden md:block animate-pulse">
+                        Level_Critical
                       </div>
 
                       {/* Animated Scanline Overlay */}
-                      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(220,38,38,0.05)_51%,transparent_52%)] bg-[length:100%_4px] animate-scan pointer-events-none opacity-40" />
+                      <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_50%,rgba(0,255,157,0.05)_51%,transparent_52%)] bg-[length:100%_4px] animate-scan pointer-events-none opacity-40" />
                       
                       {/* Background Pulsing Glow */}
-                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-red-600/10 blur-[100px] group-hover:bg-red-600/20 transition-all duration-700" />
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-[#00ff9d]/10 blur-[100px] group-hover:bg-[#00ff9d]/20 transition-all duration-700" />
 
-                      <div className="text-5xl md:text-7xl mb-8 relative z-10 drop-shadow-[0_0_20px_rgba(239,68,68,0.5)]">
+                      <div className="text-5xl md:text-7xl mb-8 relative z-10 drop-shadow-[0_0_20px_rgba(0,255,157,0.5)]">
                         {currentP.icon}
                       </div>
 
-                      <div className="px-4 py-1 rounded-full bg-red-950/50 border border-red-500/50 text-red-500 font-mono text-[10px] font-black tracking-widest uppercase mb-8 relative z-10 shadow-[0_0_15px_rgba(239,68,68,0.2)]">
+                      <div className="px-4 py-1 rounded-full bg-black/50 border border-[#00ff9d]/50 text-[#00ff9d] font-mono text-[0.7rem] font-black tracking-[0.12em] uppercase mb-8 relative z-10 shadow-[0_0_15px_rgba(0,255,157,0.2)]">
                         {currentP.p_badge}
                       </div>
 
-                      <h3 className="text-3xl md:text-5xl lg:text-6xl font-heading font-black text-white uppercase tracking-tighter leading-[0.85] mb-8 relative z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+                      <h3 className="text-2xl md:text-4xl lg:text-5xl font-heading font-bold text-white uppercase tracking-tighter leading-[0.95] mb-8 relative z-10 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
                         {currentP.p_title}
                       </h3>
 
-                      <p className="text-white/60 font-mono text-xs md:text-sm leading-relaxed uppercase tracking-wider max-w-xl mx-auto mb-10 relative z-10">
+                      <p className="text-[#888888] font-body text-sm md:text-base leading-relaxed tracking-normal max-w-xl mx-auto mb-10 relative z-10">
                         {currentP.p_desc}
                       </p>
                       
-                      <div className="mt-auto w-full pt-8 border-t border-red-500/20 flex flex-col items-center gap-3 relative z-10">
-                        <span className="text-[10px] font-mono text-red-500/60 uppercase tracking-[0.4em]">SYSTEM_LEAKAGE:</span>
-                        <div className="text-red-500 font-heading font-black text-xl md:text-3xl uppercase italic drop-shadow-[0_0_20px_rgba(239,68,68,0.6)] animate-pulse">
+                      <div className="mt-auto w-full pt-8 border-t border-white/10 flex flex-col items-center gap-3 relative z-10">
+                        <span className="text-[0.65rem] font-mono text-[#888888] uppercase tracking-[0.1em]">Core_Leakage_Report:</span>
+                        <div className="text-white font-heading font-black text-xl md:text-2xl uppercase italic drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
                           {currentP.p_cost}
                         </div>
                       </div>

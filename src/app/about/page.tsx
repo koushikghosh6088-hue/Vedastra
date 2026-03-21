@@ -38,19 +38,19 @@ export default function AboutPage() {
               className="lg:col-span-7"
             >
               <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass-premium border-blue-400/20 mb-8 magnetic-wrap">
-                <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
-                <span className="font-mono text-[10px] uppercase tracking-widest text-blue-400/80">
+                <span className="w-2 h-2 bg-[#00ff9d] rounded-full animate-pulse-glow" />
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[#00ff9d]">
                   Who We Are // Active
                 </span>
               </div>
-              <h1 className="text-[3rem] md:text-[4.5rem] lg:text-[5.2rem] font-heading font-extrabold leading-[0.8] tracking-tighter mb-8 text-white">
+              <h1 className="text-[3rem] md:text-[4.5rem] lg:text-[5.2rem] font-heading font-black leading-[0.95] tracking-tighter mb-8 text-white uppercase glow-white">
                 WE ARE <br />
-                <span className="gradient-text italic">VEDASTRA AI LABS</span>
+                <span className="glow-green italic">VEDASTRA AI LABS</span>
               </h1>
-              <p className="mb-6 text-lg md:text-xl text-white/50 font-mono leading-relaxed max-w-2xl">
+              <p className="mb-6 text-lg md:text-xl text-white/80 font-body font-medium leading-relaxed max-w-2xl">
                 Built by builders. Obsessed with results.
               </p>
-              <p className="mb-10 text-sm md:text-base text-white/40 font-mono leading-relaxed max-w-2xl">
+              <p className="mb-10 text-sm md:text-base text-[#888888] font-body leading-relaxed max-w-2xl">
                 A lean AI-powered digital agency that builds websites, mobile apps and intelligent automation systems for businesses serious about growth.
               </p>
             </motion.div>
@@ -68,7 +68,7 @@ export default function AboutPage() {
                   fill
                   loading="lazy"
                   sizes="450px"
-                  className="object-contain drop-shadow-[0_20px_60px_rgba(14,165,233,0.4)]"
+                  className="object-contain drop-shadow-[0_20px_60px_rgba(0,212,255,0.4)]"
                 />
               </div>
             </motion.div>
@@ -82,9 +82,9 @@ export default function AboutPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
             {honestStats.map((stat, i) => (
               <AnimatedSection key={stat.label} delay={i * 0.1}>
-                <div className="glass-panel rounded-2xl p-6 md:p-8 text-center border-white/10 hover:border-blue-400/30 transition-all">
-                  <div className="text-2xl md:text-3xl font-heading font-black text-white mb-2 tracking-tighter">{stat.value}</div>
-                  <div className="font-mono text-[10px] md:text-xs text-white/40 uppercase tracking-widest">{stat.label}</div>
+                <div className="glass-panel rounded-2xl p-6 md:p-8 text-center border-white/10 hover:border-[#00d4ff]/30 transition-all">
+                  <div className="text-2xl md:text-3xl font-heading font-black text-white mb-2 tracking-tighter glow-white uppercase">{stat.value}</div>
+                  <div className="font-mono text-[0.7rem] text-[#888888] uppercase tracking-[0.1em]">{stat.label}</div>
                 </div>
               </AnimatedSection>
             ))}
@@ -97,25 +97,25 @@ export default function AboutPage() {
         <div className="max-w-[1400px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <AnimatedSection>
-              <span className="font-mono text-xs tracking-widest uppercase block mb-6 text-white/40">Our Story</span>
-              <h2 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold mb-8 text-white">
-                HOW WE <span className="text-blue-400">STARTED</span>
+              <span className="font-mono text-[0.7rem] tracking-[0.15em] uppercase block mb-6 text-[#888888]">Our Story // Origin</span>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-black mb-8 text-white uppercase tracking-tighter">
+                HOW WE <span className="glow-cyan italic">STARTED</span>
               </h2>
-              <div className="space-y-6 text-white/50 text-sm md:text-base font-mono leading-relaxed">
+              <div className="space-y-6 text-[#888888] text-base md:text-lg font-body leading-relaxed">
                 <p>Vedastra AI Labs was founded with one mission — to give every business access to the kind of digital systems that only big corporations could afford.</p>
                 <p>We are not a massive faceless agency. We are a focused team of developers, designers and AI specialists who genuinely care about your results.</p>
                 <p>We build fast, we build smart and we stay with you after launch. We don&apos;t disappear after delivery — we stay, support and grow with you.</p>
               </div>
-              <div className="mt-8 p-4 rounded-2xl bg-blue-400/5 border border-blue-400/10">
-                <p className="font-mono text-xs text-blue-400/80 uppercase tracking-widest">
-                  Our Mission: Help every business compete and win in the digital world — regardless of size.
+              <div className="mt-8 p-6 rounded-2xl bg-blue-400/5 border border-blue-400/10">
+                <p className="font-mono text-[0.7rem] text-[#00ff9d] uppercase tracking-[0.1em] leading-relaxed">
+                  Mission_Statement: Help every business compete and win in the digital world — regardless of size.
                 </p>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2} direction="right">
-              <div className="glass-panel border-blue-400/20 rounded-[2rem] p-8 md:p-10">
-                <h3 className="text-xl font-heading font-bold text-white mb-6 uppercase tracking-tight">What Makes Us Different</h3>
+              <div className="glass-panel border-white/10 rounded-[2rem] p-8 md:p-10">
+                <h3 className="text-xl font-heading font-black text-white mb-8 uppercase tracking-[0.05em] glow-white">What Makes Us Different</h3>
                 <div className="space-y-6">
                   {[
                     { title: 'AI-Assisted Building', detail: 'We use the latest AI tools to deliver faster without sacrificing quality. What takes other agencies months, we do in weeks.' },
@@ -131,8 +131,8 @@ export default function AboutPage() {
                       transition={{ delay: i * 0.1 }} 
                       className="border-b border-white/5 last:border-0 pb-6 last:pb-0 group"
                     >
-                      <h4 className="text-sm font-bold font-heading text-white uppercase tracking-tight mb-2 group-hover:text-blue-400 transition-colors">{item.title}</h4>
-                      <p className="text-[11px] font-mono text-white/40 leading-relaxed">{item.detail}</p>
+                      <h4 className="text-[0.8rem] font-heading font-bold text-white uppercase tracking-[0.05em] mb-2 group-hover:text-[#00d4ff] transition-colors">{item.title}</h4>
+                      <p className="text-[0.7rem] font-mono text-[#888888] leading-relaxed uppercase tracking-wide">{item.detail}</p>
                     </motion.div>
                   ))}
                 </div>
@@ -146,21 +146,21 @@ export default function AboutPage() {
       <section className="py-24 md:py-32 relative bg-black">
         <div className="max-w-[1400px] mx-auto px-6">
           <AnimatedSection className="mb-16">
-            <h2 className="text-[2.2rem] md:text-[3rem] font-heading font-black tracking-tighter text-white leading-none">
-              CORE <span className="text-white/30 italic">VALUES</span>
+            <h2 className="text-[2.2rem] md:text-[3.5rem] font-heading font-black tracking-tighter text-white leading-none uppercase glow-white">
+              CORE <span className="glow-cyan italic">VALUES</span>
             </h2>
           </AnimatedSection>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {values.map((value, i) => (
               <AnimatedSection key={value.title} delay={i * 0.1}>
-                <div className="glass-premium border-white/10 rounded-[2rem] p-8 h-full group hover-3d transition-all duration-700 hover:border-blue-400/30 relative overflow-hidden">
-                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-blue-400 group-hover:text-black group-hover:shadow-[0_0_30px_rgba(14,165,233,0.5)] transition-all">
+                <div className="glass-premium border-white/10 rounded-[2.5rem] p-10 h-full group hover-3d transition-all duration-700 hover:border-[#00d4ff]/30 relative overflow-hidden">
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[#00d4ff] group-hover:text-black group-hover:shadow-[0_0_30px_rgba(0,212,255,0.5)] transition-all">
                     <value.icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-lg font-heading font-bold mb-3 text-white group-hover:text-blue-400 transition-colors uppercase tracking-tight">{value.title}</h3>
-                  <p className="text-white/40 text-sm font-mono leading-relaxed">{value.desc}</p>
-                  <div className="absolute -inset-20 bg-blue-400/10 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  <h3 className="text-lg font-heading font-bold mb-3 text-white group-hover:glow-cyan transition-colors uppercase tracking-tight">{value.title}</h3>
+                  <p className="text-[#888888] text-sm font-body leading-relaxed">{value.desc}</p>
+                  <div className="absolute -inset-20 bg-[#00d4ff]/10 blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 </div>
               </AnimatedSection>
             ))}
@@ -172,17 +172,17 @@ export default function AboutPage() {
       <section className="py-24 md:py-32 bg-obsidian border-t border-white/5 relative overflow-hidden">
         <div className="max-w-[1000px] mx-auto px-6 relative z-10 text-center">
           <AnimatedSection>
-            <h2 className="text-[2.2rem] md:text-[3.2rem] font-heading font-black tracking-tighter mb-6 text-white leading-none">
-              <span className="gradient-text italic">OUR TEAM</span>
+            <h2 className="text-[2.2rem] md:text-[3.2rem] font-heading font-black tracking-tighter mb-10 text-white leading-none uppercase glow-white">
+              OUR <span className="glow-green italic">TEAM</span>
             </h2>
-            <div className="glass-panel rounded-[2rem] p-8 md:p-12 border-white/10 mx-auto max-w-2xl">
-              <Users className="w-16 h-16 text-blue-400/30 mx-auto mb-6" />
-              <p className="text-white/60 font-mono text-sm md:text-base leading-relaxed">
+            <div className="glass-panel rounded-[2.5rem] p-8 md:p-12 border-white/10 mx-auto max-w-2xl">
+              <Users className="w-16 h-16 text-[#00ff9d]/20 mx-auto mb-8" />
+              <p className="text-white/80 font-body text-base md:text-lg leading-relaxed mb-10">
                 Our team is small, focused and obsessed with building things that work. No bloated agency overhead — just skilled developers, designers and AI specialists who genuinely care about your results.
               </p>
-              <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <div className="flex flex-wrap justify-center gap-3">
                 {['Full-Stack Developers', 'UI/UX Designers', 'AI Engineers', 'Project Managers'].map((role) => (
-                  <span key={role} className="px-4 py-2 rounded-full bg-blue-400/5 border border-blue-400/10 text-blue-400/80 font-mono text-xs uppercase tracking-widest">
+                  <span key={role} className="px-5 py-2.5 rounded-full bg-blue-400/5 border border-white/10 text-[#00ff9d] font-mono text-[0.65rem] uppercase tracking-[0.15em]">
                     {role}
                   </span>
                 ))}
@@ -196,13 +196,13 @@ export default function AboutPage() {
       <section className="py-24 md:py-32 relative bg-black border-t border-white/10">
         <div className="max-w-[1550px] mx-auto px-6 text-center relative z-10">
           <AnimatedSection>
-            <h2 className="text-[2.5rem] md:text-[3.5rem] font-heading font-black tracking-tighter mb-6">
-              READY TO <span className="text-blue-400 italic">WORK WITH US?</span>
+            <h2 className="text-[2.5rem] md:text-[3.8rem] font-heading font-black tracking-tighter mb-6 uppercase glow-white">
+              READY TO <span className="glow-cyan italic">WORK WITH US?</span>
             </h2>
-            <p className="font-mono text-sm text-white/40 uppercase tracking-widest max-w-xl mx-auto mb-10">
+            <p className="font-mono text-[0.7rem] text-[#888888] uppercase tracking-[0.15em] max-w-xl mx-auto mb-10">
               Let&apos;s build something that actually grows your business.
             </p>
-            <Link href="/contact" className="btn-primary group">
+            <Link href="/contact" className="btn-primary group px-10 py-5 font-heading font-bold uppercase tracking-[0.1em] text-[0.8rem]">
               Start Your Project <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </AnimatedSection>

@@ -11,7 +11,7 @@ import {
   ArrowRight, Globe, Smartphone, Phone, MessageSquare, Cog, TrendingUp,
   ArrowUpRight, Bot, Workflow, Users, Target, Star, Shield, Zap, Server,
   Code2, Layers, Database, Cpu, Lock, BarChart3, Mail, MapPin, Send,
-  CheckCircle, Rocket, Check
+  CheckCircle, Rocket, Check, Sparkles
 } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 import WhyChooseUs from '@/components/WhyChooseUs';
@@ -25,6 +25,7 @@ import IndustriesSection from '@/components/IndustriesSection';
 import FAQSection from '@/components/FAQSection';
 import FinalCTA from '@/components/FinalCTA';
 import TrustBar from '@/components/TrustBar';
+import TeamSection from '@/components/TeamSection';
 
 import { View, Preload } from '@react-three/drei';
 
@@ -334,24 +335,23 @@ export default function HomePage() {
               className="max-w-lg sm:max-w-xl lg:max-w-4xl space-y-6 lg:space-y-8 mx-auto lg:mx-0 text-center lg:text-left"
             >
               <div className="inline-flex items-center gap-3 px-4 sm:px-6 py-2 rounded-full glass-premium border-blue-400/20">
-                <span className="w-2 h-2 bg-blue-400 rounded-full animate-pulse-glow" />
-                <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] text-shimmer">
+                <span className="w-2 h-2 bg-[#00ff9d] rounded-full animate-pulse-glow" />
+                <span className="font-mono text-[9px] sm:text-[10px] uppercase tracking-[0.3em] sm:tracking-[0.4em] glow-green">
                   AI-Powered Digital Agency
                 </span>
               </div>
 
               <h1 
                 ref={headlineRef}
-                className="text-[2.2rem] sm:text-[3.2rem] md:text-[4.5rem] lg:text-[4.8rem] xl:text-[5.8rem] 2xl:text-[7.2rem] font-heading font-black leading-[0.85] tracking-tighter uppercase"
+                className="text-[2.2rem] sm:text-[3.2rem] md:text-[4.5rem] lg:text-[4.8rem] xl:text-[5.8rem] 2xl:text-[7.2rem] font-heading font-black leading-[0.95] tracking-tighter uppercase glow-white"
               >
                 WE BUILD DIGITAL<br />
-                <span className="gradient-text italic opacity-90">PRODUCTS</span>{' '}
-                THAT GROW YOUR BUSINESS.
+                PRODUCTS THAT <span className="glow-green italic">GROW</span> YOUR BUSINESS.
               </h1>
 
               <p 
                 ref={subheadlineRef}
-                className="text-sm sm:text-base md:text-lg text-white/60 max-w-md mx-auto lg:mx-0 font-mono font-light leading-relaxed tracking-wide"
+                className="text-sm sm:text-base md:text-lg text-[#888888] max-w-[520px] mx-auto lg:mx-0 font-body font-normal leading-relaxed tracking-wide"
               >
                 Websites. Mobile Apps. AI Agents. Automation. Built for businesses that are serious about growth.<br/>
                 <TypewriterSubline />
@@ -361,12 +361,12 @@ export default function HomePage() {
               <div className="flex flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6 pt-2 lg:pt-4 pointer-events-auto">
                 <div className="magnetic-wrap relative">
                   <div className="absolute -inset-1 bg-blue-400/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
-                  <Link href="/contact" className="btn-primary px-7 sm:px-10 py-4 sm:py-5 text-xs sm:text-base relative">
+                  <Link href="/contact" className="btn-primary px-7 sm:px-10 py-4 sm:py-5 text-[0.8rem] font-heading font-bold uppercase tracking-[0.1em] relative">
                     START YOUR PROJECT <ArrowUpRight className="ml-1 sm:ml-2 w-4 h-4 sm:w-5 sm:h-5" />
                   </Link>
                 </div>
                 <div className="magnetic-wrap">
-                  <Link href="/portfolio" className="text-blue-400/60 hover:text-blue-400 font-mono text-[10px] sm:text-sm uppercase tracking-widest underline underline-offset-8 transition-all whitespace-nowrap">
+                  <Link href="/portfolio" className="text-white/60 hover:text-[#00d4ff] font-heading font-bold text-[0.8rem] uppercase tracking-widest underline underline-offset-8 transition-all whitespace-nowrap">
                     See Our Work
                   </Link>
                 </div>
@@ -382,7 +382,7 @@ export default function HomePage() {
                 ].map((s) => (
                   <div key={s.label}>
                     <div className="text-base sm:text-lg font-heading font-bold text-white">{s.val}</div>
-                    <div className="text-[8px] sm:text-[9px] font-mono text-white/30 uppercase tracking-widest">{s.label}</div>
+                    <div className="text-[0.7rem] font-mono text-[#888888] uppercase tracking-[0.1em]">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -414,120 +414,102 @@ export default function HomePage() {
       <ServicesSection />
 
       {/* 07 — ABOUT US */}
-      <section className="relative pt-24 pb-12 lg:py-32 bg-black z-10 rounded-t-[4rem] border-t border-white/10 shadow-[0_-20px_50px_rgba(0,0,0,0.8)] overflow-hidden">
-        {/* Subtle background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-500/5 via-transparent to-transparent pointer-events-none" />
+      <section id="about" className="relative pt-32 pb-12 lg:py-48 bg-black z-10 overflow-hidden">
+        {/* Elite Background Elements */}
+        <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(6,182,212,0.05)_0%,transparent_70%)] pointer-events-none" />
+        <div className="absolute -bottom-48 -left-24 w-[600px] h-[600px] bg-purple-500/5 blur-[150px] rounded-full pointer-events-none" />
         
         <div className="max-w-[1550px] mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+          <div className="flex flex-col gap-32">
             
-            {/* MOBILE ONLY: Animation on top */}
-            <div className="block lg:hidden w-full">
-              <AnimatedSection>
-                <div className="flex justify-center scale-90 sm:scale-100">
-                  <RadialOrbitalTimeline timelineData={aboutUsTimelineData} />
-                </div>
-              </AnimatedSection>
-            </div>
+            {/* Top Area: Mission & Vision */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+               <div className="lg:col-span-12 xl:col-span-10">
+                  <AnimatedSection>
+                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-8 backdrop-blur-md">
+                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_#22d3ee]" />
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-cyan-400 font-bold italic">Executive Mission</span>
+                     </div>
+                     
+                     <h2 className="text-[2.8rem] md:text-[4.5rem] lg:text-[6.5rem] font-heading font-black leading-[0.9] tracking-tighter uppercase text-white mb-12">
+                        WE ARE THE <span className="font-outline-sm text-transparent border-white/40">ARCHITECTS</span> OF YOUR <span className="gradient-text italic text-[#0ea5e9]">GROWTH</span>
+                     </h2>
 
-            <div className="flex flex-col gap-10">
-              <AnimatedSection>
-                <div className="space-y-6">
-                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#C1FF00]/10 border border-[#C1FF00]/20 w-max shadow-[0_0_15px_rgba(193,255,0,0.1)]">
-                    <span className="w-2 h-2 rounded-full bg-[#C1FF00] animate-pulse shadow-[0_0_8px_#C1FF00]" />
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-[#C1FF00] font-bold">Who We Are</span>
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <h2 className="text-[2.5rem] md:text-[3.5rem] lg:text-[4.5rem] font-heading font-black leading-none tracking-tighter uppercase text-white">
-                      WE ARE <span className="gradient-text italic text-[#0ea5e9]">VEDASTRA AI LABS</span>
-                    </h2>
-                    <p className="text-xl md:text-2xl font-bold text-white/90 leading-tight tracking-tight max-w-xl">
-                      A focused team of builders who create websites, apps and AI systems that bring your business more customers — every single day.
-                    </p>
-                  </div>
-
-                  <div className="max-w-xl space-y-6">
-                    <p className="text-white/60 font-medium leading-relaxed">
-                      We are not a massive agency with 200 employees where you become just another ticket number. 
-                      We are a lean, dedicated team that treats every project like it&apos;s our own business. 
-                      We don&apos;t just deliver code and disappear — we stay with you, support you and grow with you.
-                    </p>
-                    
-                    <div className="flex items-center gap-3 py-4 border-t border-white/5">
-                      <div className="w-10 h-10 rounded-full bg-[#0ea5e9]/10 border border-[#0ea5e9]/20 flex items-center justify-center shrink-0">
-                        <Target className="w-5 h-5 text-[#0ea5e9]" />
-                      </div>
-                      <p className="font-mono text-xs md:text-sm text-white/80 uppercase tracking-wider font-bold">
-                        🎯 Our Mission: Help every business — big or small — compete and win in the digital world.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </AnimatedSection>
-
-              {/* Trust Badges Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  { icon: Zap, color: 'text-yellow-400', glow: 'shadow-yellow-400/10', title: '1–2 Week Delivery', desc: 'Most projects done in under 2 weeks' },
-                  { icon: Bot, color: 'text-green-400', glow: 'shadow-green-400/10', title: 'AI-Powered Builds', desc: 'Every project uses cutting edge AI tools' },
-                  { icon: Shield, color: 'text-blue-400', glow: 'shadow-blue-400/10', title: '24/7 Support', desc: 'We are always available when you need us' },
-                  { icon: CheckCircle, color: 'text-purple-400', glow: 'shadow-purple-400/10', title: 'Satisfaction Guaranteed', desc: 'We revise until you are 100% happy' },
-                ].map((badge, i) => (
-                  <AnimatedSection key={i} delay={0.1 + i * 0.1}>
-                    <div className="group relative glass-panel p-5 rounded-2xl border-white/5 hover:border-white/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl gpu-accelerated">
-                      <div className={`absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity bg-gradient-to-br from-white to-transparent`} />
-                      <badge.icon className={`w-6 h-6 ${badge.color} mb-3 filter drop-shadow-[0_0_8px_rgba(255,255,255,0.2)]`} />
-                      <h4 className="text-white font-bold text-sm mb-1">{badge.title}</h4>
-                      <p className="text-white/40 text-xs leading-relaxed">{badge.desc}</p>
-                    </div>
+                     <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                        <p className="text-xl md:text-3xl font-bold text-white leading-tight tracking-tight max-w-xl group">
+                           A focused lab of engineers who spend every waking hour <span className="text-[#C1FF00] italic group-hover:not-italic transition-all duration-500 underline decoration-[#C1FF00]/30 underline-offset-8">building the future</span> of your business.
+                        </p>
+                        <div className="space-y-8">
+                           <p className="text-white/50 font-mono text-sm leading-relaxed max-w-lg">
+                              We are not a traditional agency. We are a dedicated growth partner. 
+                              We don&apos;t count hours, we count results. We don&apos;t follow instructions, we diagnose problems and architect solutions that scale.
+                           </p>
+                           <Link 
+                             href="/about" 
+                             className="group inline-flex items-center gap-4 px-8 py-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#0ea5e9]/50 transition-all duration-500"
+                           >
+                              <span className="text-white font-bold tracking-tight uppercase text-sm">Our Full Story</span>
+                              <div className="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-black transition-all">
+                                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                              </div>
+                           </Link>
+                        </div>
+                     </div>
                   </AnimatedSection>
-                ))}
-              </div>
+               </div>
+            </div>
 
-              <AnimatedSection delay={0.5}>
-                <Link 
-                  href="/about" 
-                  className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-[#0ea5e9]/50 transition-all duration-300"
-                >
-                  <span className="text-white font-bold tracking-tight">Meet the Team</span>
-                  <ArrowRight className="w-5 h-5 text-[#0ea5e9] group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </AnimatedSection>
-
-              {/* TEAM SECTION — LUXURY FACES */}
-              <div className="grid grid-cols-2 gap-4 md:gap-6 mt-8">
-                {[
-                  { name: "Koushik", role: "Visionary Architect", img: "/3d-icons/founder_1.png", accent: "text-blue-400" },
-                  { name: "Anirban", role: "Elite Neural Lead", img: "/3d-icons/founder_2.png", accent: "text-[#C1FF00]" },
-                ].map((member, i) => (
-                  <AnimatedSection key={i} delay={0.6 + i * 0.1}>
-                    <div className="group relative glass-panel-premium p-4 rounded-[2rem] border-white/5 hover:border-white/20 transition-all duration-500 overflow-hidden">
-                       <div className="relative aspect-square rounded-2xl overflow-hidden mb-4 bg-white/5">
-                          <Image 
-                            src={member.img} 
-                            alt={member.name}
-                            fill
-                            className="object-cover group-hover:scale-110 transition-transform duration-700"
-                          />
-                          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black to-transparent opacity-60" />
-                       </div>
-                       <h4 className="text-white font-black text-sm uppercase tracking-tight">{member.name}</h4>
-                       <p className={`font-mono text-[9px] uppercase tracking-widest ${member.accent} font-bold`}>{member.role}</p>
-                    </div>
+            {/* Bottom Area: Team & Orbital Synergy (High Class Composition) */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+               
+               {/* Team Portraits Section */}
+               <div className="lg:col-span-7 xl:col-span-6 relative">
+                  <AnimatedSection delay={0.2}>
+                     <TeamSection />
                   </AnimatedSection>
-                ))}
-              </div>
+               </div>
+
+               {/* Orbital Logic Section */}
+               <div className="lg:col-span-5 xl:col-span-6 flex flex-col items-center">
+                  <AnimatedSection delay={0.4}>
+                     <div className="relative p-10 lg:p-16 rounded-[4rem] bg-white/[0.01] border border-white/5 backdrop-blur-sm group hover:border-white/10 transition-colors duration-700">
+                        {/* Title for Orbital area */}
+                        <div className="absolute top-12 left-1/2 -translate-x-1/2 text-center w-full">
+                           <div className="font-mono text-[9px] uppercase tracking-[0.5em] text-white/20 mb-2">Neural Coordination</div>
+                           <h4 className="text-lg font-heading font-black text-white/40 uppercase tracking-widest italic leading-none">THE CORE ENGINE</h4>
+                        </div>
+                        
+                        <div className="scale-75 md:scale-95 lg:scale-100 xl:scale-110">
+                           <RadialOrbitalTimeline timelineData={aboutUsTimelineData} />
+                        </div>
+
+                        {/* Status Strip Bottom */}
+                        <div className="absolute bottom-10 left-0 right-0 flex justify-center gap-6 opacity-30">
+                           {['SYNC: 100%', 'FRAME: 60FPS', 'THREAT: NONE'].map((status, si) => (
+                             <span key={si} className="text-[8px] font-mono uppercase tracking-[0.3em] text-white">{status}</span>
+                           ))}
+                        </div>
+                     </div>
+                  </AnimatedSection>
+               </div>
             </div>
 
-            {/* DESKTOP ONLY: Animation on right */}
-            <div className="hidden lg:block w-full h-full relative z-20">
-              <AnimatedSection delay={0.3}>
-                <div className="flex justify-center">
-                  <RadialOrbitalTimeline timelineData={aboutUsTimelineData} />
-                </div>
-              </AnimatedSection>
-            </div>
+            {/* Elite Trust Strip */}
+            <AnimatedSection delay={0.6}>
+               <div className="py-12 border-t border-b border-white/5 flex flex-wrap justify-center md:justify-around gap-12 items-center opacity-40 hover:opacity-100 transition-opacity duration-1000">
+                  {[
+                    { icon: Zap, text: "1–2 Week Velocity" },
+                    { icon: Sparkles, text: "Elite AI Toolstack" },
+                    { icon: Shield, text: "24/7 Strategic Support" },
+                    { icon: Target, text: "Result-First Diagnostic" }
+                  ].map((item, ii) => (
+                    <div key={ii} className="flex items-center gap-4 group">
+                       <item.icon className="w-5 h-5 text-white/40 group-hover:text-[#C1FF00] transition-colors" />
+                       <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white font-bold">{item.text}</span>
+                    </div>
+                  ))}
+               </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>

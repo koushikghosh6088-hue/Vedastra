@@ -71,7 +71,7 @@ function StatCard({ icon, value, label, delay = 0 }: StatProps) {
           {icon}
         </div>
         
-        <div className="text-[2.5rem] md:text-[3rem] font-heading font-black text-white leading-none tracking-tighter mb-3 z-10 group-hover:text-blue-400 transition-colors duration-500 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+        <div className="text-[2.5rem] md:text-[3rem] font-heading font-black leading-none tracking-tighter mb-3 z-10 glow-cyan">
           {value.includes('%') ? (
             <CountUp end={value.replace('%', '')} suffix="%" />
           ) : value.includes('/') ? (
@@ -81,7 +81,7 @@ function StatCard({ icon, value, label, delay = 0 }: StatProps) {
           )}
         </div>
         
-        <div className="text-[10px] md:text-xs font-mono text-white/40 uppercase tracking-[0.3em] z-10 group-hover:text-white/60 transition-colors">
+        <div className="text-[0.7rem] font-mono text-[#888888] uppercase tracking-[0.1em] z-10 group-hover:text-white transition-colors">
           {label}
         </div>
 

@@ -20,9 +20,9 @@ export default function TrustBar() {
       <div className="flex whitespace-nowrap overflow-hidden">
         <div className="flex animate-[marquee_25s_linear_infinite] gap-12 md:gap-16 items-center pr-12 md:pr-16 gpu-accelerated">
           {[...techLogos, ...techLogos].map((item, i) => (
-            <div key={i} className="flex items-center gap-3 shrink-0 opacity-40 hover:opacity-80 transition-opacity">
-              <item.icon className="w-5 h-5 text-blue-400" />
-              <span className="font-mono text-xs uppercase tracking-widest text-white/60">{item.label}</span>
+            <div key={i} className="flex items-center gap-3 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+              <item.icon className="w-4 h-4 text-[#00ff9d]" />
+              <span className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-[#00ff9d]">{item.label}</span>
             </div>
           ))}
         </div>

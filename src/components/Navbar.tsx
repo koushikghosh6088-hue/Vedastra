@@ -51,7 +51,7 @@ export default function Navbar() {
               className="relative z-10 w-auto h-10 object-contain brightness-110"
             />
           </div>
-          <span className="hidden sm:block font-heading font-bold text-xl tracking-tight uppercase bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
+          <span className="hidden sm:block font-heading font-bold text-xl tracking-tight uppercase glow-cyan">
             Vedastra
           </span>
         </Link>
@@ -64,10 +64,10 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 relative z-10 ${
+                className={`px-5 py-2 rounded-full text-[0.75rem] font-medium font-body uppercase tracking-[0.1em] transition-all duration-300 relative z-10 ${
                   isActive
                     ? 'text-white'
-                    : 'text-white/70 hover:text-white'
+                    : 'text-white/70 hover:text-[#00d4ff]'
                 }`}
               >
                 {link.label}
@@ -94,7 +94,7 @@ export default function Navbar() {
               >
                 <Link
                   href="/contact"
-                  className="bg-blue-400 text-black px-6 py-2.5 rounded-full text-sm font-bold shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:scale-105 transition-all flex items-center gap-2"
+                  className="bg-blue-400 text-black px-6 py-2.5 rounded-full text-[0.7rem] font-heading font-bold uppercase tracking-[0.08em] shadow-[0_0_20px_rgba(14,165,233,0.3)] hover:scale-105 transition-all flex items-center gap-2"
                 >
                   <PhoneCall className="w-4 h-4" /> Start Your Project
                 </Link>
@@ -103,14 +103,14 @@ export default function Navbar() {
           </AnimatePresence>
           
           <div className="flex items-center gap-6 bg-white/[0.02] backdrop-blur-[12px] border border-white/5 rounded-full p-1.5 pr-2">
-            <div className="flex items-center gap-2 pl-4 pr-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
+            <div className="flex items-center gap-2 pl-4 pr-2 font-mono text-[9px] uppercase tracking-[0.2em] glow-green">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse-fast inline-block" />
               System Online
             </div>
             {!showSticky && (
               <Link
                 href="/contact"
-                className="bg-white text-black hover:bg-blue-400 hover:shadow-[0_0_30px_rgba(14,165,233,0.3)] transition-all duration-300 px-6 py-2.5 rounded-full text-sm font-bold"
+                className="bg-white text-black hover:bg-blue-400 hover:shadow-[0_0_30px_rgba(14,165,233,0.3)] transition-all duration-300 px-6 py-2.5 rounded-full text-[0.7rem] font-heading font-bold uppercase tracking-[0.08em]"
               >
                 Start Your Project
               </Link>

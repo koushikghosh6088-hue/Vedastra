@@ -36,10 +36,10 @@ export default function PricingSection() {
       price: 799,
       maintenance: 79,
       tagline: "Get your business online fast with a professional website and AI chatbot",
-      glowColor: "rgba(14, 165, 233, 0.4)", // Cyan
-      borderColor: "border-blue-400/20",
-      accentColor: "text-blue-400",
-      btnClass: "bg-blue-400 text-black hover:bg-white",
+      glowColor: "rgba(0, 212, 255, 0.4)", // Cyan
+      borderColor: "border-[#00d4ff]/20",
+      accentColor: "text-[#00d4ff]",
+      btnClass: "bg-[#00d4ff] text-black hover:scale-[1.02] shadow-[0_0_30px_rgba(0,212,255,0.2)]",
       included: [
         "Custom Website Design (5–7 Pages)",
         "Mobile Responsive Design",
@@ -67,10 +67,10 @@ export default function PricingSection() {
       price: 2500,
       maintenance: 149,
       tagline: "Full digital presence with mobile app, AI agents and automation",
-      glowColor: "rgba(34, 197, 94, 0.4)", // Neon Green
-      borderColor: "border-green-500/40",
-      accentColor: "text-green-500",
-      btnClass: "bg-green-500 text-black hover:bg-white shadow-[0_0_30px_rgba(34,197,94,0.3)]",
+      glowColor: "rgba(0, 255, 157, 0.4)", // Neon Green
+      borderColor: "border-[#00ff9d]/40",
+      accentColor: "text-[#00ff9d]",
+      btnClass: "bg-[#00ff9d] text-black hover:scale-[1.02] shadow-[0_0_30px_rgba(0,255,157,0.3)]",
       highlight: true,
       included: [
         "Everything in Starter PLUS:",
@@ -99,10 +99,10 @@ export default function PricingSection() {
       price: 6000,
       maintenance: 299,
       tagline: "Complete AI-powered digital ecosystem built for scale",
-      glowColor: "rgba(245, 158, 11, 0.4)", // Gold/Amber
-      borderColor: "border-amber-500/20",
-      accentColor: "text-amber-500",
-      btnClass: "bg-amber-500 text-black hover:bg-white",
+      glowColor: "rgba(255, 255, 255, 0.2)", // White/Silver
+      borderColor: "border-white/20",
+      accentColor: "text-white",
+      btnClass: "bg-white text-black hover:scale-[1.02] shadow-[0_0_30px_rgba(255,255,255,0.2)]",
       included: [
         "Everything in Growth PLUS:",
         "Full Custom Web App (Dashboard + Admin)",
@@ -161,31 +161,31 @@ export default function PricingSection() {
         <div className="text-center mb-16 md:mb-24">
           <AnimatedSection>
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-6 backdrop-blur-md">
-              <Star className="w-3.5 h-3.5 text-blue-400 fill-blue-400" />
-              <span className="font-mono text-xs uppercase tracking-widest text-white/70">Fair & Simple</span>
+              <Star className="w-3.5 h-3.5 text-[#00ff9d] fill-[#00ff9d] glow-green" />
+              <span className="font-mono text-[0.65rem] uppercase tracking-widest text-white/70">Fair & Simple</span>
             </div>
-            <h2 className="text-[2.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-heading font-black leading-none tracking-tighter uppercase mb-6">
-              SIMPLE, TRANSPARENT <span className="gradient-text italic text-blue-400">PRICING.</span>
+            <h2 className="text-[2.5rem] md:text-[4.5rem] lg:text-[6.5rem] font-heading font-black leading-none tracking-tighter uppercase mb-8 text-white glow-white">
+              SIMPLE, TRANSPARENT <span className="glow-cyan italic">PRICING.</span>
             </h2>
-            <p className="font-mono text-sm md:text-base text-white/40 uppercase tracking-[0.2em] max-w-2xl mx-auto mb-12">
+            <p className="font-body text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-12">
               No hidden fees. No surprise bills. Pick your package and let's build something great.
             </p>
 
             {/* Toggle Switch */}
             <div className="flex items-center justify-center gap-4 mb-8">
-              <span className={`font-mono text-[10px] uppercase tracking-widest transition-colors ${!isMaintenance ? 'text-white' : 'text-white/30'}`}>One-time Price</span>
+              <span className={`font-mono text-[9px] uppercase tracking-[0.2em] transition-colors ${!isMaintenance ? 'text-white' : 'text-white/30'}`}>One-time Price</span>
               <button 
                 onClick={() => setIsMaintenance(!isMaintenance)}
                 className="relative w-16 h-8 rounded-full bg-white/5 border border-white/10 p-1 flex items-center transition-all group"
               >
                 <motion.div 
                   animate={{ x: isMaintenance ? 32 : 0 }}
-                  className={`w-6 h-6 rounded-full ${isMaintenance ? 'bg-green-500 shadow-[0_0_15px_rgba(34,197,94,0.5)]' : 'bg-blue-400 shadow-[0_0_15px_rgba(14,165,233,0.5)]'}`}
+                  className={`w-6 h-6 rounded-full ${isMaintenance ? 'bg-[#00ff9d] shadow-[0_0_15px_rgba(0,255,157,0.5)]' : 'bg-[#00d4ff] shadow-[0_0_15px_rgba(0,212,255,0.5)]'}`}
                 />
               </button>
               <div className="flex flex-col items-start text-left">
-                <span className={`font-mono text-[10px] uppercase tracking-widest transition-colors ${isMaintenance ? 'text-green-500' : 'text-white/30'}`}>Monthly Maintenance</span>
-                {isMaintenance && <span className="text-[8px] font-mono text-green-500/50 uppercase tracking-tighter -mt-1">Active</span>}
+                <span className={`font-mono text-[9px] uppercase tracking-[0.2em] transition-colors ${isMaintenance ? 'text-[#00ff9d]' : 'text-white/30'}`}>Monthly Maintenance</span>
+                {isMaintenance && <span className="text-[8px] font-mono text-[#00ff9d]/50 uppercase tracking-tighter -mt-1 glow-green">Active</span>}
               </div>
             </div>
           </AnimatedSection>
@@ -213,44 +213,44 @@ export default function PricingSection() {
                 )}
 
                 <div className="mb-10 relative z-10 text-left">
-                  <span className={`font-mono text-[9px] font-bold px-4 py-1.5 rounded-full tracking-widest uppercase mb-6 inline-block ${pkg.highlight ? 'bg-green-500 text-black' : 'bg-white/5 text-white/40'}`}>
+                  <span className={`font-mono text-[9px] font-black px-4 py-1.5 rounded-full tracking-widest uppercase mb-6 inline-block ${pkg.highlight ? 'bg-[#00ff9d] text-black shadow-[0_0_15px_rgba(0,255,157,0.3)]' : 'bg-white/5 text-white/40 border border-white/10'}`}>
                     {pkg.badge}
                   </span>
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-white/5 border border-white/10 ${pkg.accentColor}`}>
+                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 bg-white/5 border border-white/10 transition-all duration-500 group-hover:scale-110 ${pkg.accentColor}`}>
                     {pkg.icon}
                   </div>
-                  <h3 className="text-[2.2rem] font-heading font-black text-white uppercase tracking-tighter mb-4 leading-none text-left">
+                  <h3 className="text-[2.2rem] font-heading font-black text-white uppercase tracking-tighter mb-4 leading-none text-left glow-white">
                     {pkg.name}
                   </h3>
                   <div className="flex items-end gap-2 mb-2">
-                    <span className="text-4xl md:text-5xl font-black text-white leading-none tracking-tighter">
+                    <span className="text-4xl md:text-5xl font-heading font-black text-white leading-none tracking-tighter glow-white">
                       <AnimatedPrice value={isMaintenance ? pkg.price + pkg.maintenance : pkg.price} />
                     </span>
-                    <span className="text-white/40 font-mono text-xs uppercase mb-1">Starting from</span>
+                    <span className="text-white/40 font-mono text-[0.6rem] uppercase mb-1 tracking-widest">Starting from</span>
                   </div>
                   {isMaintenance && (
-                    <div className="text-green-500 font-mono text-[10px] uppercase tracking-widest mb-4">
+                    <div className="text-[#00ff9d] font-mono text-[9px] uppercase tracking-widest mb-4 glow-green">
                       + ${pkg.maintenance}/mo Maintenance added
                     </div>
                   )}
-                  <p className="text-white/30 font-mono text-[11px] leading-relaxed uppercase tracking-wide h-12">
+                  <p className="text-white/30 font-body text-[0.75rem] leading-relaxed uppercase tracking-wide h-12 font-medium">
                     {pkg.tagline}
                   </p>
                 </div>
 
                 <div className="space-y-4 mb-12 flex-1 relative z-10">
                   {pkg.included.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-3 text-white/60 font-mono text-[11px] uppercase tracking-wide leading-snug">
-                      <div className="w-5 h-5 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 border border-green-500/40 shadow-[0_0_15px_rgba(34,197,94,0.3)]">
-                        <Check className="w-3 h-3 text-green-500" />
+                    <div key={idx} className="flex items-start gap-3 text-white/60 font-body text-[0.7rem] uppercase tracking-tight font-medium leading-[1.4]">
+                      <div className="w-4 h-4 rounded-full bg-[#00ff9d]/20 flex items-center justify-center shrink-0 border border-[#00ff9d]/40 shadow-[0_0_10px_rgba(0,255,157,0.3)]">
+                        <Check className="w-2.5 h-2.5 text-[#00ff9d]" />
                       </div>
-                      <span className={idx === 0 && (pkg.name === "Growth" || pkg.name === "Enterprise") ? "text-white font-bold" : ""}>{feat}</span>
+                      <span className={idx === 0 && (pkg.name === "Growth" || pkg.name === "Enterprise") ? "text-white font-black" : ""}>{feat}</span>
                     </div>
                   ))}
                   {pkg.notIncluded.map((feat, idx) => (
-                    <div key={idx} className="flex items-start gap-3 text-white/20 font-mono text-[11px] uppercase tracking-wide leading-snug">
-                      <div className="w-5 h-5 rounded-full bg-red-500/5 flex items-center justify-center shrink-0 border border-red-500/20">
-                        <X className="w-3 h-3 text-red-500/40" />
+                    <div key={idx} className="flex items-start gap-3 text-white/20 font-body text-[0.7rem] uppercase tracking-tight font-medium leading-[1.4]">
+                      <div className="w-4 h-4 rounded-full bg-red-500/5 flex items-center justify-center shrink-0 border border-red-500/20">
+                        <X className="w-2.5 h-2.5 text-red-500/40" />
                       </div>
                       <span>{feat}</span>
                     </div>
@@ -260,13 +260,13 @@ export default function PricingSection() {
                 <div className="space-y-4 relative z-10">
                   <Link 
                     href="/contact" 
-                    className={`w-full py-5 rounded-3xl font-black font-mono tracking-widest uppercase transition-all flex items-center justify-center gap-3 text-sm ${pkg.btnClass}`}
+                    className={`w-full py-5 rounded-2xl font-black font-heading tracking-widest uppercase transition-all flex items-center justify-center gap-3 text-[0.8rem] ${pkg.btnClass}`}
                   >
                     GET STARTED — FROM ${pkg.price} <ArrowRight className="w-4 h-4" />
                   </Link>
                   <Link 
                     href="/contact" 
-                    className="w-full text-center font-mono text-[10px] uppercase tracking-[0.2em] text-white/30 hover:text-white transition-colors py-2 block"
+                    className="w-full text-center font-mono text-[9px] uppercase tracking-[0.3em] text-white/30 hover:text-white transition-colors py-2 block glow-white"
                   >
                     Book a Free Call First →
                   </Link>
@@ -279,8 +279,8 @@ export default function PricingSection() {
         {/* Comparison Table */}
         <AnimatedSection className="mb-32">
           <div className="text-center mb-16 px-4">
-            <h3 className="text-4xl md:text-5xl font-heading font-black tracking-tighter text-white uppercase mb-4">DEEP DIVE <span className="text-blue-400 italic">COMPARISON</span></h3>
-            <p className="font-mono text-[10px] md:text-xs text-white/30 uppercase tracking-[0.3em] mb-8">Every feature, laid out transparently.</p>
+            <h3 className="text-[3rem] md:text-[5rem] font-heading font-black tracking-tighter text-white uppercase mb-4 leading-none glow-white">DEEP DIVE <span className="glow-cyan italic">COMPARISON</span></h3>
+            <p className="font-mono text-[0.65rem] text-white/30 uppercase tracking-[0.3em] mb-8">Every feature, laid out transparently.</p>
             
             {/* Mobile Tab Switcher */}
             <div className="lg:hidden flex flex-wrap justify-center gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
@@ -288,9 +288,9 @@ export default function PricingSection() {
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex-1 min-w-[90px] py-3 px-4 rounded-xl font-mono text-[10px] font-black uppercase tracking-widest transition-all ${
+                  className={`flex-1 min-w-[90px] py-3 px-4 rounded-xl font-mono text-[0.6rem] font-black uppercase tracking-widest transition-all ${
                     activeTab === tab 
-                    ? tab === 'Starter' ? 'bg-blue-400 text-black' : tab === 'Growth' ? 'bg-green-500 text-black' : 'bg-amber-500 text-black'
+                    ? tab === 'Starter' ? 'bg-[#00d4ff] text-black shadow-[0_0_15px_rgba(0,212,255,0.3)]' : tab === 'Growth' ? 'bg-[#00ff9d] text-black shadow-[0_0_15px_rgba(0,255,157,0.3)]' : 'bg-white text-black shadow-[0_0_15px_rgba(255,255,255,0.3)]'
                     : 'text-white/40 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -306,16 +306,16 @@ export default function PricingSection() {
                 <thead>
                   {/* Desktop Header */}
                   <tr className="border-b border-white/10 bg-white/[0.02] hidden lg:table-row">
-                    <th className="p-8 font-mono text-[10px] uppercase tracking-[0.3em] text-white/40 w-1/3">Feature</th>
-                    <th className="p-8 font-heading font-black text-lg text-white text-center">STARTER</th>
-                    <th className="p-8 font-heading font-black text-lg text-green-500 text-center">GROWTH</th>
-                    <th className="p-8 font-heading font-black text-lg text-amber-500 text-center">ENTERPRISE</th>
+                    <th className="p-8 font-mono text-[0.65rem] uppercase tracking-[0.3em] text-white/40 w-1/3">Feature</th>
+                    <th className="p-8 font-heading font-black text-2xl text-white text-center glow-white uppercase">STARTER</th>
+                    <th className="p-8 font-heading font-black text-2xl text-[#00ff9d] text-center glow-green uppercase">GROWTH</th>
+                    <th className="p-8 font-heading font-black text-2xl text-white text-center glow-white uppercase opacity-80">ENTERPRISE</th>
                   </tr>
                   {/* Mobile Header */}
                   <tr className="border-b border-white/10 bg-white/[0.04] lg:hidden">
                     <th className="p-5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/40 w-[45%]">Feature</th>
                     <th className={`p-5 font-heading font-black text-sm text-center tracking-tighter ${
-                      activeTab === 'Starter' ? 'text-blue-400' : activeTab === 'Growth' ? 'text-green-500' : 'text-amber-500'
+                      activeTab === 'Starter' ? 'text-[#00d4ff]' : activeTab === 'Growth' ? 'text-[#00ff9d]' : 'text-white'
                     }`}>
                       {activeTab.toUpperCase()} PLAN
                     </th>
@@ -326,24 +326,24 @@ export default function PricingSection() {
                     const mobileValue = activeTab === 'Starter' ? row.s : activeTab === 'Growth' ? row.g : row.e;
                     return (
                       <tr key={i} className="border-b border-white/5 hover:bg-white/[0.03] transition-colors group">
-                        <td className="p-5 md:p-8 font-mono text-[10px] md:text-xs text-white/60 uppercase tracking-widest group-hover:text-white transition-colors">{row.feature}</td>
+                        <td className="p-5 md:p-8 font-mono text-[0.7rem] text-white/60 uppercase tracking-widest group-hover:text-white transition-colors">{row.feature}</td>
                         
                         {/* Desktop Values */}
-                        <td className="p-5 md:p-8 text-center font-mono text-xs text-white hidden lg:table-cell">
-                          {row.s === '✅' ? <Check className="w-5 h-5 text-green-500 mx-auto drop-shadow-[0_0_10px_rgba(34,197,94,0.6)]" /> : 
+                        <td className="p-5 md:p-8 text-center font-mono text-[0.7rem] text-white hidden lg:table-cell">
+                          {row.s === '✅' ? <Check className="w-5 h-5 text-[#00ff9d] mx-auto drop-shadow-[0_0_10px_rgba(0,255,157,0.6)]" /> : 
                            row.s === '❌' ? <X className="w-5 h-5 text-red-500/40 mx-auto" /> : row.s}
                         </td>
-                        <td className="p-5 md:p-8 text-center font-mono text-xs text-white bg-green-500/5 hidden lg:table-cell">
-                          {row.g === '✅' ? <Check className="w-5 h-5 text-green-500 mx-auto drop-shadow-[0_0_10px_rgba(34,197,94,0.6)]" /> : 
+                        <td className="p-5 md:p-8 text-center font-mono text-[0.7rem] text-white bg-white/[0.02] hidden lg:table-cell">
+                          {row.g === '✅' ? <Check className="w-5 h-5 text-[#00ff9d] mx-auto drop-shadow-[0_0_10px_rgba(0,255,157,1)]" /> : 
                            row.g === '❌' ? <X className="w-5 h-5 text-red-500/40 mx-auto" /> : row.g}
                         </td>
-                        <td className="p-5 md:p-8 text-center font-mono text-xs text-white hidden lg:table-cell">
-                          {row.e === '✅' ? <Check className="w-5 h-5 text-green-500 mx-auto drop-shadow-[0_0_10px_rgba(34,197,94,0.6)]" /> : 
+                        <td className="p-5 md:p-8 text-center font-mono text-[0.7rem] text-white hidden lg:table-cell">
+                          {row.e === '✅' ? <Check className="w-5 h-5 text-[#00ff9d] mx-auto drop-shadow-[0_0_10px_rgba(0,255,157,0.6)]" /> : 
                            row.e === '❌' ? <X className="w-5 h-5 text-red-500/40 mx-auto" /> : row.e}
                         </td>
 
                         {/* Mobile Active Tab Value */}
-                        <td className="p-5 text-center font-mono text-[10px] text-white lg:hidden">
+                        <td className="p-5 text-center font-mono text-[0.65rem] text-white lg:hidden">
                           <AnimatePresence mode="wait">
                             <motion.div
                               key={activeTab}
@@ -353,7 +353,7 @@ export default function PricingSection() {
                               transition={{ duration: 0.2 }}
                               className="flex justify-center items-center h-5"
                             >
-                              {mobileValue === '✅' ? <Check className="w-5 h-5 text-green-500 drop-shadow-[0_0_10px_rgba(34,197,94,0.7)]" /> : 
+                              {mobileValue === '✅' ? <Check className="w-5 h-5 text-[#00ff9d] drop-shadow-[0_0_10px_rgba(0,255,157,0.7)]" /> : 
                                mobileValue === '❌' ? <X className="w-5 h-5 text-red-500/50" /> : mobileValue}
                             </motion.div>
                           </AnimatePresence>
@@ -370,27 +370,27 @@ export default function PricingSection() {
         {/* Add-ons */}
         <AnimatedSection className="mb-32">
           <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-heading font-black tracking-tighter text-white uppercase mb-4">⚡ POWER-UPS <span className="text-blue-400 italic">— ADD TO ANY PACKAGE</span></h3>
-            <p className="font-mono text-xs text-white/30 uppercase tracking-[0.3em]">Customize your package with these add-ons</p>
+            <h3 className="text-[3rem] md:text-[5rem] font-heading font-black tracking-tighter text-white uppercase mb-4 leading-none glow-white">⚡ POWER-UPS <span className="glow-cyan italic">— ADD TO ANY PACKAGE</span></h3>
+            <p className="font-mono text-[0.65rem] text-white/30 uppercase tracking-[0.3em]">Customize your package with these add-ons</p>
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {addons.map((addon, i) => (
-              <div key={i} className="glass-premium p-8 rounded-[2rem] border-white/5 hover:border-blue-400/30 transition-all duration-500 group flex flex-col justify-between h-full">
+              <div key={i} className="glass-premium p-8 rounded-[2.5rem] border-white/5 hover:border-[#00d4ff]/30 transition-all duration-500 group flex flex-col justify-between h-full bg-white/[0.01]">
                 <div>
-                  <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-blue-400 group-hover:text-black transition-all">
+                  <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:bg-[#00d4ff] group-hover:text-black transition-all shadow-[0_0_20px_rgba(0,212,255,0.2)]">
                     {addon.icon}
                   </div>
                   <div className="flex items-center justify-between mb-2">
-                    <h4 className="text-sm font-bold text-white uppercase tracking-tight">{addon.name}</h4>
-                    <span className="text-blue-400 font-mono text-[10px] font-bold">{addon.price}</span>
+                    <h4 className="text-[0.75rem] font-heading font-black text-white uppercase tracking-tight glow-white">{addon.name}</h4>
+                    <span className="text-[#00d4ff] font-mono text-[9px] font-black glow-cyan">{addon.price}</span>
                   </div>
-                  <p className="text-[10px] font-mono text-white/30 uppercase tracking-widest leading-relaxed mb-6">
+                  <p className="text-[9px] font-body text-white/40 uppercase tracking-widest leading-relaxed mb-6 font-medium">
                     {addon.desc}
                   </p>
                 </div>
-                <button className="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-[10px] font-black font-mono uppercase tracking-[0.2em] hover:bg-white/10 hover:text-white transition-all text-white/50">
-                  + Add
+                <button className="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-[9px] font-black font-mono uppercase tracking-[0.25em] hover:bg-white/10 hover:text-white transition-all text-white/50">
+                  + Add Option
                 </button>
               </div>
             ))}
@@ -405,16 +405,16 @@ export default function PricingSection() {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_150%,rgba(14,165,233,0.1),transparent_70%)]" />
             
             <div className="relative z-10">
-              <h2 className="text-[2rem] md:text-[3.5rem] font-heading font-black uppercase text-white tracking-tighter mb-6 leading-none">
-                Not sure which package is <span className="text-blue-400 italic">right for you?</span>
+              <h2 className="text-[2.5rem] md:text-[4.5rem] font-heading font-black uppercase text-white tracking-tighter mb-8 leading-[0.9] glow-white">
+                Not sure which package is <span className="glow-cyan italic">right for you?</span>
               </h2>
-              <p className="font-mono text-sm md:text-base text-white/40 uppercase tracking-[0.2em] max-w-2xl mx-auto mb-12 leading-relaxed">
-                Book a free 30-minute call. We'll tell you exactly what you need — <span className="text-white">no pressure, no commitment.</span>
+              <p className="font-body text-xl md:text-2xl text-white/50 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+                Book a free 30-minute call. We'll tell you exactly what you need — <span className="text-[#00ff9d] font-black glow-green">no pressure, no commitment.</span>
               </p>
               
               <Link 
                 href="/contact" 
-                className="inline-flex items-center gap-4 bg-blue-400 text-black px-10 py-6 rounded-3xl font-black font-mono tracking-widest uppercase hover:scale-105 transition-all shadow-[0_0_50px_rgba(14,165,233,0.3)] hover:bg-white"
+                className="inline-flex items-center gap-4 bg-[#00ff9d] text-black px-12 py-6 rounded-[2rem] font-black font-heading tracking-widest uppercase hover:scale-105 transition-all shadow-[0_0_50px_rgba(0,255,157,0.3)] hover:bg-white"
               >
                 <Phone className="w-5 h-5 fill-current" />
                 BOOK FREE CONSULTATION

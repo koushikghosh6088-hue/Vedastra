@@ -50,9 +50,9 @@ export default function Footer() {
                   className="relative z-10 w-auto h-8 object-contain brightness-110"
                 />
               </div>
-              <span className="font-heading font-bold text-xl tracking-tight uppercase">Vedastra AI Labs</span>
+              <span className="font-heading font-black text-2xl tracking-tight uppercase glow-green">VEDASTRA</span>
             </Link>
-            <p className="text-white/50 text-sm leading-relaxed max-w-sm mb-8 font-mono">
+            <p className="text-white/50 text-sm leading-relaxed max-w-sm mb-8 font-body">
               We build websites, apps, and AI tools that help businesses grow faster and work smarter.
             </p>
             <div className="flex gap-4">
@@ -65,11 +65,11 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-2 lg:col-start-7">
-            <h4 className="text-xs font-mono text-white/40 mb-6 uppercase tracking-[0.2em]">Services</h4>
+            <h4 className="text-[0.75rem] font-heading font-bold mb-6 uppercase tracking-[0.15em] glow-green">Services</h4>
             <ul className="space-y-4">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-white/70 text-sm hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                  <Link href={link.href} className="text-white/70 text-sm font-body hover:text-white transition-colors flex items-center gap-2 group">
                     {link.label}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
                   </Link>
@@ -79,11 +79,11 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-xs font-mono text-white/40 mb-6 uppercase tracking-[0.2em]">Company</h4>
+            <h4 className="text-[0.75rem] font-heading font-bold mb-6 uppercase tracking-[0.15em] glow-green">Company</h4>
             <ul className="space-y-4">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-white/70 text-sm hover:text-blue-400 transition-colors flex items-center gap-2 group">
+                  <Link href={link.href} className="text-white/70 text-sm font-body hover:text-white transition-colors flex items-center gap-2 group">
                     {link.label}
                     <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0" />
                   </Link>
@@ -93,15 +93,15 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-xs font-mono text-white/40 mb-6 uppercase tracking-[0.2em]">Contact</h4>
+            <h4 className="text-[0.75rem] font-heading font-bold mb-6 uppercase tracking-[0.15em] glow-green">Contact</h4>
             <ul className="space-y-4">
               <li>
-                <a href="mailto:hello@vedastraai.com" className="text-white/70 text-sm hover:text-blue-400 transition-colors flex items-center gap-2">
+                <a href="mailto:hello@vedastraai.com" className="text-white/70 text-sm font-body hover:text-white transition-colors flex items-center gap-2">
                   <Mail className="w-4 h-4" /> hello@vedastraai.com
                 </a>
               </li>
               <li>
-                <a href="tel:+917003383676" className="text-white/70 text-sm hover:text-blue-400 transition-colors flex items-center gap-2">
+                <a href="tel:+917003383676" className="text-white/70 text-sm font-body hover:text-white transition-colors flex items-center gap-2">
                   <Phone className="w-4 h-4" /> +91 70033 83676 / +91 80176 83428
                 </a>
               </li>
@@ -111,10 +111,10 @@ export default function Footer() {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/30 text-xs font-mono uppercase tracking-widest">
+          <p className="text-white/30 text-[0.65rem] font-mono uppercase tracking-[0.08em]">
             © 2026 VEDASTRA AI LABS. ALL RIGHTS RESERVED.
           </p>
-          <div className="flex gap-6 font-mono text-xs uppercase tracking-widest">
+          <div className="flex gap-6 font-mono text-[0.65rem] uppercase tracking-[0.08em]">
             <Link href="/privacy-policy" className="text-white/30 hover:text-blue-400 transition-colors">Privacy Policy</Link>
             <Link href="/terms-of-service" className="text-white/30 hover:text-blue-400 transition-colors">Terms of Service</Link>
             <Link href="/refund-policy" className="text-white/30 hover:text-blue-400 transition-colors">Refund Policy</Link>
