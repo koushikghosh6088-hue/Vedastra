@@ -52,39 +52,41 @@ export default function HowItWorks() {
         </AnimatedSection>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-          {/* Connecting Line (Desktop) */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-px bg-white/5 -translate-y-1/2 z-0" />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+          {/* Animated Background Atmosphere */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-64 bg-[#00D4FF]/5 blur-[120px] rounded-full pointer-events-none -z-10 animate-pulse" />
 
           {steps.map((step, i) => (
             <AnimatedSection key={i} delay={i * 0.1}>
-              <div className="relative group p-8 bg-[#111118] border border-white/5 rounded-[3rem] hover:border-[#00D4FF]/30 transition-all duration-500 z-10">
+              <div className="relative group p-8 lg:p-10 glass-premium rounded-[3rem] border-white/5 hover:border-white/20 transition-all duration-700 z-10 shimmer-border overflow-hidden flex flex-col items-center text-center">
+                <div className="grainy-overlay opacity-[0.03]" />
+                
                 {/* Number Background */}
-                <div className="absolute top-4 right-8 text-8xl font-heading font-black text-white/[0.03] pointer-events-none group-hover:text-[#00D4FF]/5 transition-colors">
+                <div className="absolute -top-4 -right-2 text-[120px] font-heading font-black text-white/[0.02] pointer-events-none group-hover:text-[#00D4FF]/5 transition-all duration-700 group-hover:-translate-x-4">
                   {step.num}
                 </div>
 
                 <div className="relative z-10">
                   <div 
-                    className="w-16 h-16 rounded-2xl flex items-center justify-center mb-8 border border-white/10 group-hover:scale-110 transition-transform duration-500"
-                    style={{ background: `${step.color}10`, color: step.color }}
+                    className="w-20 h-20 rounded-3xl flex items-center justify-center mb-10 border border-white/10 group-hover:scale-110 group-hover:rotate-6 transition-all duration-700 shadow-[0_0_30px_rgba(255,255,255,0.05)]"
+                    style={{ background: `${step.color}15`, color: step.color }}
                   >
-                    <step.icon className="w-8 h-8" />
+                    <step.icon className="w-10 h-10 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)]" />
                   </div>
 
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6">
-                    <span className="font-mono text-[9px] uppercase tracking-widest text-white/40">{step.badge}</span>
+                  <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-8 group-hover:border-[#00D4FF]/30 transition-colors">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50 font-black">{step.badge}</span>
                   </div>
 
-                  <h3 className="text-2xl font-heading font-black text-white uppercase tracking-tight mb-4 group-hover:text-[#00D4FF] transition-colors">
+                  <h3 className="text-2xl lg:text-3xl font-heading font-black text-white uppercase tracking-tight mb-6 group-hover:text-glow transition-all">
                     {step.title}
                   </h3>
-                  <p className="text-[#8A8A9A] font-body text-sm leading-relaxed mb-8">
+                  <p className="text-[#8A8A9A] font-body text-base leading-relaxed mb-10 group-hover:text-white/70 transition-colors">
                     {step.desc}
                   </p>
 
-                  <div className="flex items-center gap-2 text-[#00D4FF] font-heading font-black text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
-                    Step {step.num} Success <CheckCircle className="w-3.5 h-3.5" />
+                  <div className="flex items-center gap-2 text-[#00D4FF] font-heading font-black text-xs uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    <span className="text-glow">Protocol Optimized</span> <CheckCircle className="w-4 h-4 shadow-[0_0_10px_#00D4FF]" />
                   </div>
                 </div>
               </div>

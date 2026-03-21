@@ -91,60 +91,65 @@ export default function PricingSection() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.98, y: -10 }}
               transition={{ duration: 0.4 }}
-              className="bg-[#111118] border border-white/5 rounded-[3rem] p-8 md:p-16 relative overflow-hidden group"
+              className="glass-premium rounded-[3rem] p-8 md:p-16 relative overflow-hidden group hover:border-[#00D4FF]/20 transition-all duration-700 shimmer-border"
             >
+              <div className="grainy-overlay opacity-[0.03]" />
+              
               {/* Glow Accent */}
               <div 
-                className="absolute top-0 right-0 w-96 h-96 blur-[150px] opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none"
+                className="absolute top-0 right-0 w-96 h-96 blur-[150px] opacity-10 group-hover:opacity-30 transition-opacity pointer-events-none"
                 style={{ background: plans[activeTab].color }}
               />
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div className="space-y-8">
-                  <div className="space-y-4">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative z-10">
+                <div className="space-y-10">
+                  <div className="space-y-6">
                     <div className="flex items-center gap-3">
-                       <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-white/40 uppercase tracking-widest">
+                       <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[10px] font-mono text-white/50 uppercase tracking-widest font-black">
                          {plans[activeTab].focus}
                        </span>
                        {plans[activeTab].isPopular && (
-                        <span className="px-3 py-1 rounded-full bg-[#00D4FF] text-black font-mono text-[9px] font-black uppercase tracking-widest anim-pulse">
+                        <span className="px-4 py-1.5 rounded-full bg-[#00D4FF] text-black font-mono text-[10px] font-black uppercase tracking-widest shadow-[0_0_20px_rgba(0,212,255,0.4)]">
                           Recommended
                         </span>
                        )}
                     </div>
-                    <h3 className="text-5xl md:text-7xl font-heading font-black text-white uppercase tracking-tighter">
+                    <h3 className="text-6xl md:text-8xl font-heading font-black text-white uppercase tracking-tighter text-glow">
                       ${plans[activeTab].price}<span className="text-xl md:text-2xl text-[#8A8A9A]">/mo</span>
                     </h3>
-                    <p className="text-[#8A8A9A] text-lg leading-relaxed max-w-sm">
+                    <p className="text-[#8A8A9A] text-lg leading-relaxed max-w-sm font-body">
                       {plans[activeTab].description}
                     </p>
                   </div>
 
                   <Link 
                     href="#booking"
-                    className="flex h-16 items-center justify-center bg-white text-black font-heading font-black text-sm uppercase tracking-widest rounded-2xl hover:bg-[#00D4FF] transition-all group/btn"
+                    className="flex h-20 items-center justify-center bg-[#00D4FF] text-black font-heading font-black text-sm uppercase tracking-widest rounded-3xl hover:bg-white hover:scale-[1.02] transition-all group/btn shadow-[0_15px_40px_rgba(0,212,255,0.3)]"
                   >
-                    SELECT {plans[activeTab].name} PLAN <ArrowRight className="ml-3 w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+                    SELECT {plans[activeTab].name} PLAN <ArrowRight className="ml-3 w-6 h-6 group-hover/btn:translate-x-1 transition-transform" />
                   </Link>
 
-                  <div className="flex items-center gap-4 text-white/30 font-mono text-[10px] uppercase tracking-widest">
-                     <ShieldCheck className="w-4 h-4 text-[#00D4FF]" /> SECURE CHECKOUT — Stripe Verified
+                  <div className="flex items-center gap-4 text-white/40 font-mono text-[10px] uppercase tracking-[0.3em] font-black">
+                     <ShieldCheck className="w-4 h-4 text-[#00D4FF] shadow-[0_0_10px_#00D4FF]" /> SECURE CHECKOUT — Stripe Verified
                   </div>
                 </div>
 
-                <div className="bg-black/40 border border-white/5 rounded-[2.5rem] p-8 md:p-12">
-                   <h4 className="font-heading font-black text-white uppercase tracking-widest text-xs mb-8">What's included:</h4>
-                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="glass-premium border border-white/5 rounded-[2.5rem] p-10 md:p-14 relative overflow-hidden group/list">
+                   <div className="absolute inset-0 bg-white/[0.01] pointer-events-none" />
+                   <h4 className="font-heading font-black text-white uppercase tracking-widest text-xs mb-10 text-white/60">What's included in {plans[activeTab].name}:</h4>
+                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       {plans[activeTab].features.map((feature, i) => (
-                        <div key={i} className="flex items-center gap-3">
-                           <Check className="w-5 h-5 text-[#00D4FF]" />
-                           <span className="text-white/80 font-heading font-bold uppercase text-xs tracking-wide">{feature}</span>
+                        <div key={i} className="flex items-center gap-4 group/item">
+                           <div className="w-6 h-6 rounded-full bg-[#00D4FF]/10 flex items-center justify-center border border-[#00D4FF]/30 group-hover/item:bg-[#00D4FF]/20 transition-colors">
+                            <Check className="w-3.5 h-3.5 text-[#00D4FF]" />
+                           </div>
+                           <span className="text-white/80 font-heading font-bold uppercase text-xs tracking-wide group-hover/item:text-white transition-colors">{feature}</span>
                         </div>
                       ))}
                    </div>
                    <div className="mt-12 pt-8 border-t border-white/5 text-center lg:text-left">
-                      <Link href="/pricing" className="text-[10px] font-mono font-black text-[#00D4FF] uppercase tracking-[0.3em] hover:text-white transition-colors">
-                        VIEW ALL ADD-ONS & FULL COMPARISON →
+                      <Link href="/pricing" className="text-[10px] font-mono font-black text-[#00D4FF] uppercase tracking-[0.4em] hover:text-white transition-all group/link">
+                        VIEW ALL ADD-ONS & FULL COMPARISON <ArrowRight className="inline ml-2 w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
                       </Link>
                    </div>
                 </div>

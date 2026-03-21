@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Check, X, Shield, Star, Zap, Users, MessageSquare, Clock, Globe, ShieldCheck } from 'lucide-react';
+import { Check, X, Shield, Star, Zap, Users, MessageSquare, Clock, Globe, ShieldCheck, Building2, DollarSign, Timer, Bot } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 
 const comparisonData = [
@@ -71,22 +71,101 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Trust Points */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {[
-            { icon: Users, title: "Partner, Not Vendor", desc: "We sit on your side of the table. Your business metrics are our primary focus." },
-            { icon: Zap, title: "1-Week Velocity", desc: "We build at the speed of high-performance startups, not slow corporate timelines." },
-            { icon: Globe, title: "Global Standards", desc: "Based in India, serving the world with elite architectures and communication." },
-          ].map((item, i) => (
-            <AnimatedSection key={i} delay={0.5 + i * 0.1}>
-              <div className="p-8 bg-[#111118] border border-white/5 rounded-3xl group hover:border-[#00D4FF]/30 transition-all duration-500">
-                <div className="w-12 h-12 rounded-xl bg-[#00D4FF]/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-6 h-6 text-[#00D4FF]" />
-                </div>
-                <h4 className="text-lg font-heading font-black text-white uppercase mb-3 tracking-tight">{item.title}</h4>
-                <p className="text-[#8A8A9A] font-body text-sm leading-relaxed">{item.desc}</p>
+        {/* Dashboard Grid */}
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {/* Column: Freelancers */}
+          <div className="glass-premium p-8 rounded-[2rem] border-white/5 opacity-40 hover:opacity-100 transition-all duration-500 group">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors">
+                <Users className="w-6 h-6 text-white/40" />
               </div>
-            </AnimatedSection>
-          ))}
+              <div>
+                <h4 className="font-heading font-black text-white/40 uppercase tracking-widest text-sm">Freelancers</h4>
+                <p className="text-[10px] font-mono uppercase text-white/20">Solo Operation</p>
+              </div>
+            </div>
+            
+            <ul className="space-y-6">
+              {[
+                { label: 'Price', value: 'Cheap / Unreliable', icon: DollarSign },
+                { label: 'Speed', value: '4–8 Weeks+', icon: Timer },
+                { label: 'AI expertise', value: 'Surface Level', icon: Bot },
+                { label: 'Security', value: 'High Risk', icon: ShieldCheck },
+              ].map((item) => (
+                <li key={item.label} className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <item.icon className="w-3 h-3 text-white/20" />
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/20">{item.label}</span>
+                  </div>
+                  <p className="text-white/40 text-sm font-bold">{item.value}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column: VEDASTRA (Center Spotlight) */}
+          <div className="glass-holographic p-10 rounded-[2.5rem] border-[#00D4FF]/30 relative overflow-hidden group hover:shadow-[0_0_50px_rgba(0,212,255,0.15)] transition-all duration-700 shimmer-border">
+            <div className="absolute top-0 right-0 p-4">
+              <div className="px-3 py-1 rounded-full bg-[#00D4FF] text-black font-mono text-[9px] font-black uppercase tracking-tighter">Recommended</div>
+            </div>
+
+            <div className="flex items-center gap-4 mb-10">
+              <div className="w-14 h-14 rounded-2xl bg-[#00D4FF]/10 flex items-center justify-center border border-[#00D4FF]/20 shadow-[0_0_20px_rgba(0,212,255,0.2)]">
+                <Zap className="w-7 h-7 text-[#00D4FF]" />
+              </div>
+              <div>
+                <h4 className="font-heading font-black text-white uppercase tracking-widest text-lg text-glow">Vedastra</h4>
+                <p className="text-[10px] font-mono uppercase text-[#00D4FF] font-bold">Elite Engineering</p>
+              </div>
+            </div>
+            
+            <ul className="space-y-8">
+              {[
+                { label: 'Price', value: 'Fixed / Premium Value', icon: DollarSign, color: '#00D4FF' },
+                { label: 'Speed', value: '1–2 Week Launch', icon: Timer, color: '#00FF88' },
+                { label: 'AI expertise', value: 'Specialized Labs', icon: Bot, color: '#7B2FFF' },
+                { label: 'Security', value: 'Bank-Grade Protocol', icon: ShieldCheck, color: '#00D4FF' },
+              ].map((item) => (
+                <li key={item.label} className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <item.icon className="w-3.5 h-3.5" style={{ color: item.color }} />
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/40">{item.label}</span>
+                  </div>
+                  <p className="text-white text-base font-black tracking-tight drop-shadow-[0_2px_10px_rgba(255,255,255,0.1)]">{item.value}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column: Big Agencies */}
+          <div className="glass-premium p-8 rounded-[2rem] border-white/5 opacity-40 hover:opacity-100 transition-all duration-500 group">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors">
+                <Building2 className="w-6 h-6 text-white/40" />
+              </div>
+              <div>
+                <h4 className="font-heading font-black text-white/40 uppercase tracking-widest text-sm">Big Agencies</h4>
+                <p className="text-[10px] font-mono uppercase text-white/20">Corporate Bloat</p>
+              </div>
+            </div>
+            
+            <ul className="space-y-6">
+              {[
+                { label: 'Price', value: '$50k - $200k+', icon: DollarSign },
+                { label: 'Speed', value: '6-12 Months', icon: Timer },
+                { label: 'AI expertise', value: 'Outsourced / Basic', icon: Bot },
+                { label: 'Communication', value: 'Junior Managers', icon: MessageSquare },
+              ].map((item) => (
+                <li key={item.label} className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <item.icon className="w-3 h-3 text-white/20" />
+                    <span className="text-[10px] font-mono uppercase tracking-widest text-white/20">{item.label}</span>
+                  </div>
+                  <p className="text-white/40 text-sm font-bold">{item.value}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

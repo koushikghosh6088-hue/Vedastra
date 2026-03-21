@@ -124,13 +124,15 @@ export default function ServicesSection() {
         </AnimatedSection>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24 relative z-10">
           {services.map((service, i) => (
             <AnimatedSection key={service.id} delay={i * 0.1}>
-              <div className="group relative h-full p-8 bg-[#111118] border border-white/5 rounded-3xl hover:border-[#00D4FF]/30 transition-all duration-500 flex flex-col">
+              <div className="group relative h-full p-8 glass-premium rounded-[2.5rem] border-white/5 hover:border-white/20 transition-all duration-700 flex flex-col shimmer-border overflow-hidden">
+                <div className="grainy-overlay opacity-[0.03]" />
+                
                 <div className="mb-10 relative">
                    <div 
-                    className="absolute inset-0 blur-2xl opacity-20 group-hover:opacity-60 transition-opacity"
+                    className="absolute inset-0 blur-3xl opacity-20 group-hover:opacity-60 transition-opacity"
                     style={{ background: service.accent }}
                   />
                   <Image 
@@ -138,34 +140,34 @@ export default function ServicesSection() {
                     alt={service.title} 
                     width={150} 
                     height={150} 
-                    className="relative z-10 w-24 h-24 object-contain group-hover:scale-110 transition-transform duration-700"
+                    className="relative z-10 w-24 h-24 object-contain group-hover:scale-110 group-hover:rotate-3 transition-all duration-700"
                   />
                 </div>
 
                 <div className="flex-grow">
                   <div className="flex items-center gap-2 mb-3">
-                    <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] font-mono text-white/40 uppercase tracking-widest">
+                    <span className="px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[9px] font-mono text-white/50 uppercase tracking-widest font-black group-hover:border-[#00D4FF]/30 transition-colors">
                       {service.tech}
                     </span>
                   </div>
-                  <h3 className="text-xl md:text-2xl font-heading font-black text-white uppercase tracking-tight mb-4 group-hover:text-[#00D4FF] transition-colors leading-tight">
+                  <h3 className="text-xl md:text-2xl font-heading font-black text-white uppercase tracking-tight mb-4 group-hover:text-glow transition-all leading-tight">
                     {service.title}
                   </h3>
-                  <p className="text-[#8A8A9A] font-body text-sm leading-relaxed mb-8">
+                  <p className="text-[#8A8A9A] font-body text-sm leading-relaxed mb-8 group-hover:text-white/60 transition-colors">
                     {service.description}
                   </p>
                 </div>
 
-                <div className="pt-6 border-t border-white/5 flex items-end justify-between">
+                <div className="pt-6 border-t border-white/5 flex items-end justify-between relative z-10">
                   <div>
-                    <div className="text-2xl font-heading font-black" style={{ color: service.accent }}>
+                    <div className="text-2xl font-heading font-black text-glow" style={{ color: service.accent }}>
                       {service.metric}
                     </div>
-                    <div className="text-[9px] font-mono text-[#8A8A9A] uppercase tracking-widest">
+                    <div className="text-[9px] font-mono text-[#8A8A9A] uppercase tracking-widest font-bold">
                       {service.metricLabel}
                     </div>
                   </div>
-                  <Link href={service.link} className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 group-hover:bg-[#00D4FF] group-hover:text-black transition-all duration-500">
+                  <Link href={service.link} className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 group-hover:bg-[#00D4FF] group-hover:text-black group-hover:shadow-[0_0_20px_rgba(0,212,255,0.4)] transition-all duration-500">
                     <ArrowUpRight className="w-5 h-5" />
                   </Link>
                 </div>

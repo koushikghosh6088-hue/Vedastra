@@ -299,6 +299,8 @@ export default function HomePage() {
 
   return (
     <>
+      <div className="grainy-overlay" />
+      
       {/* 01–03 — HERO SECTION (REDESIGNED) */}
       <section className="relative min-h-[95vh] flex items-center pt-24 lg:pt-0 overflow-hidden bg-[#0A0A0F]">
         {/* Animated Grid Background */}
@@ -309,8 +311,10 @@ export default function HomePage() {
           }} 
         />
         
-        {/* Decorative Glowing Orb (Top Right) */}
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-[#00D4FF]/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
+        {/* Dynamic Atmospheric Layer (Nebula Blobs) */}
+        <div className="absolute top-1/4 -left-24 w-96 h-96 bg-[#00D4FF]/10 rounded-full blur-[120px] animate-float pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-24 w-[500px] h-[500px] bg-[#7B2FFF]/5 rounded-full blur-[150px] animate-pulse pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(circle_at_center,rgba(0,212,255,0.03)_0%,transparent_70%)] pointer-events-none" />
 
         <div className="relative z-20 max-w-[1550px] mx-auto px-6 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
@@ -322,41 +326,42 @@ export default function HomePage() {
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
               className="text-center lg:text-left space-y-8"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00D4FF]/30 bg-[#00D4FF]/5">
-                <Zap className="w-3.5 h-3.5 text-[#00D4FF]" />
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#00D4FF]">
-                  AI-Powered Digital Agency
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#00D4FF]/30 bg-[#00D4FF]/5 backdrop-blur-md">
+                <Zap className="w-3.5 h-3.5 text-[#00D4FF] animate-pulse" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#00D4FF] font-bold">
+                  AI-Powered Digital Excellence
                 </span>
               </div>
 
               <h1 className="text-[2.2rem] sm:text-[3.2rem] md:text-[3.2rem] font-heading font-black leading-[1] tracking-tighter uppercase text-white">
-                WE BUILD DIGITAL<br />
-                PRODUCTS THAT <span className="italic text-[#00D4FF]">GROW</span> YOUR BUSINESS.
+                <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">WE BUILD DIGITAL</span><br />
+                <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">PRODUCTS THAT</span> <br className="lg:hidden" />
+                <span className="italic gradient-text-premium text-glow">GROW</span> YOUR BUSINESS.
               </h1>
 
               <p className="text-base sm:text-lg text-[#8A8A9A] max-w-[540px] mx-auto lg:mx-0 font-body leading-relaxed">
                 Websites. Mobile Apps. AI Agents. Built for businesses serious about growth. 
-                Fast delivery. Real results. <span className="text-white font-medium">Zero confusion.</span>
+                Fast delivery. Real results. <span className="text-white font-medium border-b border-[#00D4FF]/30">Zero confusion.</span>
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-                <Link href="#booking" className="btn-primary w-full sm:w-auto px-10 py-5 flex items-center justify-center gap-2 text-sm">
+                <Link href="#booking" className="btn-primary w-full sm:w-auto px-10 py-5 flex items-center justify-center gap-2 text-sm shadow-[0_0_40px_rgba(0,212,255,0.2)] hover:shadow-[0_0_60px_rgba(0,212,255,0.4)]">
                   🚀 START MY PROJECT <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link href="/portfolio" className="btn-outline w-full sm:w-auto px-10 py-5 flex items-center justify-center gap-2 text-sm border-white/10 text-white/60 hover:text-white">
+                <Link href="/portfolio" className="btn-secondary w-full sm:w-auto px-10 py-5 flex items-center justify-center gap-2 text-sm border-white/5 text-white/50 hover:text-white hover:border-white/20">
                   ▶ See Our Work
                 </Link>
               </div>
 
               {/* Trust Micro-Stats */}
-              <div className="grid grid-cols-2 sm:flex items-center gap-3 sm:gap-4 pt-8">
+              <div className="grid grid-cols-2 sm:flex items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-8">
                 {[
                   { icon: Zap, text: '1–2 Wk Delivery' },
                   { icon: Bot, text: 'AI-First Tech' },
                   { icon: CheckCircle, text: '100% Satisfaction' },
                   { icon: Phone, text: '24/7 Support' },
                 ].map((s) => (
-                  <div key={s.text} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10">
+                  <div key={s.text} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-white/5 border border-white/10 hover:border-[#00D4FF]/30 transition-colors">
                     <s.icon className="w-3.5 h-3.5 text-[#00D4FF]" />
                     <span className="font-heading font-bold text-[9px] uppercase tracking-wider text-white">
                       {s.text}
@@ -367,16 +372,17 @@ export default function HomePage() {
             </motion.div>
 
             {/* RIGHT COLUMN: Visual (Always Visible) */}
-            <div className="relative h-[400px] lg:h-[600px] w-full order-first lg:order-last">
-              <div className="absolute inset-0 z-10 scale-[1.1] lg:scale-[1.2] lg:translate-x-12">
+            <div className="relative h-[400px] lg:h-[650px] w-full order-first lg:order-last">
+              {/* Internal Robot Atmosphere Glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#00D4FF]/20 rounded-full blur-[100px] opacity-60 animate-pulse pointer-events-none" />
+              
+              <div className="absolute inset-0 z-10 scale-[1.1] lg:scale-[1.3] lg:translate-x-12">
                 <SplineScene 
                   scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                   className="w-full h-full"
                 />
               </div>
-              {/* Optional: Floating Mockup Overlay can be added here */}
             </div>
-            
           </div>
         </div>
 

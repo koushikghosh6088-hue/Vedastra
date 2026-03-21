@@ -99,31 +99,33 @@ export default function Testimonials() {
 
 function TestimonialCard({ quote, author, role, accent }: any) {
   return (
-    <div className="w-[450px] p-8 bg-[#111118] border border-white/5 rounded-[2.5rem] relative overflow-hidden group hover:border-[#00D4FF]/30 transition-all duration-500">
+    <div className="w-[450px] p-8 glass-premium rounded-[2.5rem] relative overflow-hidden group hover:border-white/20 transition-all duration-700 shimmer-border">
+      <div className="grainy-overlay opacity-[0.03]" />
+      
       <div 
         className="absolute top-0 right-0 w-32 h-32 blur-[80px] opacity-10 group-hover:opacity-30 transition-opacity"
         style={{ background: accent }}
       />
       
-      <Quote className="w-10 h-10 mb-6 opacity-20 group-hover:opacity-100 transition-opacity" style={{ color: accent }} />
+      <Quote className="w-10 h-10 mb-8 opacity-20 group-hover:opacity-100 transition-opacity" style={{ color: accent }} />
       
-      <p className="text-white/80 font-heading font-bold uppercase text-base leading-relaxed mb-10 tracking-tight">
+      <p className="text-white font-heading font-black uppercase text-lg leading-[1.3] mb-12 tracking-tight group-hover:text-glow transition-all">
         "{quote}"
       </p>
 
-      <div className="flex items-center gap-4 border-t border-white/5 pt-6">
-        <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center">
-          <User className="w-6 h-6 text-white/20" />
+      <div className="flex items-center gap-4 pt-8 border-t border-white/5 mt-auto relative z-10">
+        <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 group-hover:border-white/20 transition-all">
+          <User className="w-7 h-7 text-white/30 group-hover:text-[#00D4FF]" />
         </div>
         <div>
           <div className="text-white font-heading font-black text-sm uppercase tracking-widest">{author}</div>
-          <div className="text-[#8A8A9A] font-mono text-[10px] uppercase tracking-widest">{role}</div>
+          <div className="text-[#8A8A9A] font-mono text-[10px] uppercase tracking-[0.2em]">{role}</div>
         </div>
-      </div>
-
-      <div className="absolute bottom-6 right-8 opacity-20 group-hover:opacity-100 transition-opacity">
-        <div className="flex gap-0.5">
-          {[1, 2, 3, 4, 5].map(s => <Star key={s} className="w-3 h-3 fill-[#00D4FF] text-[#00D4FF]" />)}
+        
+        <div className="ml-auto opacity-20 group-hover:opacity-100 transition-opacity">
+          <div className="flex gap-0.5">
+            {[1, 2, 3, 4, 5].map(s => <Star key={s} className={`w-3 h-3 fill-[${accent}] text-[${accent}]`} />)}
+          </div>
         </div>
       </div>
     </div>

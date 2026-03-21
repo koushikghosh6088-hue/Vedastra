@@ -36,49 +36,43 @@ export default function Navbar() {
       }`}
     >
       {/* Frosted Glass Background */}
-      <div className="absolute inset-0 bg-[#0A0A0F]/85 backdrop-blur-[20px] transition-all duration-300" />
+      <div className="absolute inset-0 glass-premium transition-all duration-300" />
       
       {/* Bottom Glowing Line */}
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00D4FF]/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-[#00D4FF]/20 to-transparent" />
 
       <div className="max-w-[1550px] mx-auto px-6 relative flex items-center justify-between">
         {/* Left: Logo */}
         <Link href="/" className="flex items-center gap-3 group">
           <div className="relative w-10 h-10 flex items-center justify-center">
-            <div className="absolute inset-0 bg-[#00D4FF]/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute inset-0 bg-[#00D4FF]/20 blur-xl rounded-full opacity-30 group-hover:opacity-60 transition-opacity" />
             <Image 
               src="/logo.png" 
               alt="Vedastra Logo" 
               width={40} 
               height={40} 
               priority
-              className="relative z-10 w-auto h-8 object-contain"
+              className="relative z-10 w-auto h-8 object-contain drop-shadow-[0_0_10px_rgba(0,212,255,0.4)]"
             />
           </div>
-          <span className="font-heading font-black text-xl tracking-tighter uppercase text-white">
+          <span className="font-heading font-black text-xl tracking-tighter uppercase text-white group-hover:text-glow transition-all">
             Vedastra <span className="text-[#00D4FF]">AI</span>
           </span>
         </Link>
 
         {/* Center: Desktop Nav Links */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-10">
           {navLinks.map((link) => {
             const isActive = pathname === link.href;
             return (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-[0.75rem] font-heading font-bold uppercase tracking-widest transition-all hover:text-[#00D4FF] relative ${
-                  isActive ? 'text-[#00D4FF]' : 'text-white/60'
+                className={`text-[0.7rem] font-heading font-black uppercase tracking-[0.2em] transition-all hover:text-[#00D4FF] relative ${
+                  isActive ? 'text-[#00D4FF] nav-glow' : 'text-white/40'
                 }`}
               >
                 {link.label}
-                {isActive && (
-                  <motion.div
-                    layoutId="activeNav"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-[#00D4FF]"
-                  />
-                )}
               </Link>
             );
           })}

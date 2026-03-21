@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { AlertCircle, ArrowRight, Zap, Ban, MousePointerClick, Smartphone, Bot, Clock, Flame } from 'lucide-react';
+import { AlertCircle, ArrowRight, Zap, Ban, MousePointerClick, Smartphone, Bot, Clock, Flame, TrendingDown, ShieldAlert, MessageSquareX, Lock, Database, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 import AnimatedSection from './AnimatedSection';
 
@@ -66,34 +66,68 @@ export default function ProblemSolution() {
           </p>
         </AnimatedSection>
 
-        {/* 3x2 Grid of Pain Point Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {painPoints.map((point, index) => (
-            <motion.div
-              key={point.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group relative p-8 bg-[#111118] border border-white/5 rounded-2xl hover:border-[#FF2D55]/30 transition-all duration-500"
-            >
-              <div className="absolute top-0 left-0 bottom-0 w-[2px] bg-[#FF2D55] rounded-l-full opacity-0 group-hover:opacity-100 transition-opacity blur-[2px]" />
-              
-              <div className="relative z-10">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-[#FF2D55]/10 mb-6 group-hover:scale-110 transition-transform duration-500">
-                  <point.icon className="w-6 h-6 text-[#FF2D55]" />
+        {/* Problem Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 relative z-10">
+          {[
+            { 
+              title: "LEAKING REVENUE", 
+              desc: "Your current systems are failing to convert visitors, costing you thousands in lost opportunities every month.",
+              icon: TrendingDown,
+              accent: "#FF2D55" 
+            },
+            { 
+              title: "MANUAL CHAOS", 
+              desc: "Wasting hours on repetitive tasks that a custom AI agent could handle in seconds with 100% accuracy.",
+              icon: ShieldAlert,
+              accent: "#FF2D55" 
+            },
+            { 
+              title: "GHOSTED LEADS", 
+              desc: "Failing to respond to inquiries instantly. 78% of customers buy from the company that responds first.",
+              icon: MessageSquareX,
+              accent: "#FF2D55" 
+            },
+            { 
+              title: "STAGNANT GROWTH", 
+              desc: "Using outdated tech that can't scale. Your competitors are already using AI to outpace you.",
+              icon: Lock,
+              accent: "#FF2D55" 
+            },
+            { 
+              title: "DATA BLINDNESS", 
+              desc: "Making decisions based on gut feeling rather than verified, real-time data insights.",
+              icon: Database,
+              accent: "#FF2D55" 
+            },
+            { 
+              title: "ZERO VISIBILITY", 
+              desc: "Invisible on search engines and social platforms. If they can't find you, they can't buy from you.",
+              icon: EyeOff,
+              accent: "#FF2D55" 
+            },
+          ].map((item, i) => (
+            <AnimatedSection key={i} delay={0.1 * i}>
+              <div className="group relative glass-premium p-8 rounded-[2rem] border-white/5 hover:border-[#FF2D55]/30 transition-all duration-700 overflow-hidden h-full shimmer-border">
+                <div className="grainy-overlay opacity-[0.03]" />
+                
+                {/* Holographic Scanner Effect */}
+                <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#FF2D55]/50 to-transparent opacity-0 group-hover:opacity-100 -translate-y-full group-hover:translate-y-[400px] transition-all duration-[2.5s] ease-in-out pointer-events-none" />
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-[#FF2D55]/5 flex items-center justify-center mb-8 border border-[#FF2D55]/20 group-hover:scale-110 group-hover:shadow-[0_0_30px_rgba(255,45,85,0.2)] transition-all duration-500">
+                    <item.icon className="w-7 h-7 text-[#FF2D55]" />
+                  </div>
+                  
+                  <h3 className="text-xl font-heading font-black text-white mb-4 uppercase tracking-tight group-hover:text-[#FF2D55] transition-colors">{item.title}</h3>
+                  <p className="text-[#8A8A9A] font-body text-sm leading-relaxed mb-6 group-hover:text-white/70 transition-colors">{item.desc}</p>
+                  
+                  <div className="flex items-center gap-2 text-[10px] font-mono text-[#FF2D55] uppercase tracking-widest font-black opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all">
+                    <span>Critical Priority</span>
+                    <ArrowRight className="w-3 h-3" />
+                  </div>
                 </div>
-                <h3 className="text-xl font-heading font-black text-white mb-3 uppercase tracking-tight group-hover:text-[#FF2D55] transition-colors">
-                  {point.title}
-                </h3>
-                <p className="text-[#8A8A9A] font-body text-sm leading-relaxed">
-                  {point.desc}
-                </p>
               </div>
-              
-              {/* Subtle Red Pulse on Hover */}
-              <div className="absolute inset-0 bg-[#FF2D55]/[0.02] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
-            </motion.div>
+            </AnimatedSection>
           ))}
         </div>
 
