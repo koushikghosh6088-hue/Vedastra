@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
-import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, AnimatePresence, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
@@ -259,7 +259,24 @@ export default function HomePage() {
   const [isTabActive, setIsTabActive] = useState(true);
   const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [heroServiceIndex, setHeroServiceIndex] = useState(0);
   const isMarqueeInView = useInView(marqueeRef, { amount: 0.1 });
+
+  const heroServices = [
+    'We Build Websites.',
+    'We Build Mobile Apps.',
+    'We Build AI Agents.',
+    'We Build Automation.',
+    'We Build AI Chatbots.',
+    'We Build Web Apps.',
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setHeroServiceIndex((prev) => (prev + 1) % heroServices.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [heroServices.length]);
 
   useEffect(() => {
     setMounted(true);
@@ -325,14 +342,29 @@ export default function HomePage() {
 
               <h1 className="text-[1.7rem] xs:text-[2rem] sm:text-[3.2rem] md:text-[4rem] font-heading font-black leading-[1.1] tracking-tighter uppercase text-white">
                 <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">WE BUILD DIGITAL</span><br />
-                <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">PRODUCTS THAT</span> <br className="lg:hidden" />
+                <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">PRODUCTS THAT</span><br />
                 <span className="italic gradient-text-premium text-glow">GROW</span> YOUR BUSINESS.
               </h1>
 
               <p className="text-sm sm:text-lg text-[#8A8A9A] max-w-[540px] mx-auto lg:mx-0 font-body leading-relaxed px-4 sm:px-0">
-                Websites. Mobile Apps. AI Agents. Automation. Built for businesses that are serious about growth. 
-                <span className="text-[#00D4FF] ml-1 font-black">We Build Websites. |</span>
+                Websites. Mobile Apps. AI Agents. Automation. Built for businesses that are serious about growth.
               </p>
+
+              {/* Animated Cycling Service Text */}
+              <div className="h-8 sm:h-10 flex items-center justify-center lg:justify-start overflow-hidden px-4 sm:px-0">
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={heroServiceIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.4, ease: 'easeInOut' }}
+                    className="text-[#00D4FF] font-heading font-black text-sm sm:text-lg uppercase tracking-wider"
+                  >
+                    {heroServices[heroServiceIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
 
               <div className="flex flex-col xs:flex-row items-center justify-center lg:justify-start gap-4 pt-2 sm:pt-4">
                 <Link href="#booking" className="btn-primary w-full xs:w-auto sm:w-80 px-8 py-4 sm:py-5 flex items-center justify-center gap-2 text-xs sm:text-sm shadow-[0_0_40px_rgba(0,212,255,0.2)] hover:shadow-[0_0_60px_rgba(0,212,255,0.4)] transition-all">
