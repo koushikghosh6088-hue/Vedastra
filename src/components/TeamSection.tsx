@@ -7,14 +7,14 @@ import { Shield, Sparkles } from 'lucide-react';
 const team = [
   {
     name: "Koushik Ghosh",
-    role: "Founder & Visionary",
+    role: "Founder",
     img: "/team/koushik-ghosh.png",
     color: "#0066ff",
     bio: "Architecting the technical core and high-performance neural systems."
   },
   {
     name: "Anirban",
-    role: "Co-Founder & Lead",
+    role: "Founder",
     img: "/team/anirban-co-founder.png",
     color: "#ccff00",
     bio: "Defining elite logic architectures and cutting-edge AI integrations."
@@ -23,8 +23,8 @@ const team = [
 
 export default function TeamSection() {
   return (
-    <div className="relative w-full max-w-4xl mx-auto py-12">
-      <div className="flex flex-row items-center justify-center gap-4 sm:gap-12 md:gap-20">
+    <div className="relative w-full max-w-6xl mx-auto py-12">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-12 sm:gap-16 md:gap-24">
         {team.map((member, i) => (
           <motion.div
             key={i}
@@ -34,8 +34,8 @@ export default function TeamSection() {
             transition={{ duration: 0.8, delay: i * 0.2 }}
             className="flex flex-col items-center text-center group"
           >
-            {/* Round Image Container */}
-            <div className={`relative w-28 h-28 sm:w-40 sm:h-40 md:w-56 md:h-56 mb-6 p-1 rounded-full bg-gradient-to-br from-white/10 to-transparent border border-white/5 overflow-hidden group-hover:border-[${member.color}]/50 transition-all duration-700 shadow-2xl`}>
+            {/* Round Image Container - Enlarged */}
+            <div className={`relative w-48 h-48 sm:w-64 sm:h-64 lg:w-80 lg:h-80 mb-8 p-1.5 rounded-full bg-gradient-to-br from-white/10 to-transparent border border-white/5 overflow-hidden group-hover:border-[${member.color}]/50 transition-all duration-1000 shadow-2xl hover:scale-105`}>
               <div className="relative w-full h-full rounded-full overflow-hidden bg-black/40 backdrop-blur-md">
                 <Image
                   src={member.img}
@@ -48,14 +48,14 @@ export default function TeamSection() {
             </div>
 
             {/* Info */}
-            <div className="space-y-1">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-heading font-black text-white uppercase tracking-tighter transition-colors group-hover:text-white">
+            <div className="space-y-2">
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-white uppercase tracking-tighter transition-colors group-hover:text-white">
                 {member.name}
               </h3>
-              <p className="font-mono text-[10px] sm:text-xs uppercase tracking-widest font-bold" style={{ color: member.color }}>
+              <p className="font-mono text-xs sm:text-sm uppercase tracking-[0.3em] font-bold" style={{ color: member.color }}>
                 {member.role}
               </p>
-              <p className="hidden md:block text-[10px] text-white/40 max-w-[180px] mt-2 leading-relaxed italic">
+              <p className="hidden md:block text-xs text-white/40 max-w-[220px] mt-4 leading-relaxed italic font-light">
                 {member.bio}
               </p>
             </div>
