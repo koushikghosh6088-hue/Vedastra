@@ -164,12 +164,12 @@ function Floating3DNeuralCore() {
   );
 }
 
-// Mini Typewriter Component
+// Cyber-Glitch Typewriter Component
 function TypewriterSubline() {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const [isShuffling, setIsShuffling] = useState(false);
 
   const phrases = [
     "We Build Websites.",
@@ -178,31 +178,57 @@ function TypewriterSubline() {
     "We Run Marketing Campaigns."
   ];
 
+  const chars = "!@#$%^&*()_+{}[];:<>?,./|~";
+
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
+    const currentPhrase = phrases[loopNum % phrases.length];
+
     const handleTyping = () => {
-      const i = loopNum % phrases.length;
-      const fullText = phrases[i];
-
-      setText(isDeleting 
-        ? fullText.substring(0, text.length - 1) 
-        : fullText.substring(0, text.length + 1)
-      );
-
-      setTypingSpeed(isDeleting ? 50 : 150);
-
-      if (!isDeleting && text === fullText) {
-        setTimeout(() => setIsDeleting(true), 1500);
-      } else if (isDeleting && text === '') {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
+      if (isDeleting) {
+        setText(prev => prev.substring(0, prev.length - 1));
+        if (text === '') {
+          setIsDeleting(false);
+          setLoopNum(prev => prev + 1);
+        }
+      } else {
+        if (text.length < currentPhrase.length) {
+          setIsShuffling(true);
+          // Shuffle effect before setting the real character
+          setTimeout(() => {
+            setText(currentPhrase.substring(0, text.length + 1));
+            setIsShuffling(false);
+          }, 50);
+        } else {
+          timeout = setTimeout(() => setIsDeleting(true), 2500);
+        }
       }
     };
 
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [text, isDeleting, loopNum, typingSpeed, phrases]);
+    timeout = setTimeout(handleTyping, isDeleting ? 40 : 120);
+    return () => clearTimeout(timeout);
+  }, [text, isDeleting, loopNum, phrases]);
 
-  return <span className="text-[#0066ff] border-r-2 border-[#0066ff] ml-1 pr-1">{text}</span>;
+  return (
+    <span className="relative inline-block border-r-4 border-[#0066ff] pr-2 ml-1 min-h-[1.2em]">
+      <span className={`text-[#0066ff] drop-shadow-[0_0_15px_rgba(0,102,255,0.6)] ${isShuffling ? 'opacity-70 blur-[1px]' : 'opacity-100'} transition-all`}>
+        {isShuffling ? text + chars[Math.floor(Math.random() * chars.length)] : text}
+      </span>
+      {/* Glitch Overlay (Subtle) */}
+      <AnimatePresence>
+        {isShuffling && (
+          <motion.span 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 0.2 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 text-[#ccff00] translate-x-[2px] blur-[2px]"
+          >
+            {text}
+          </motion.span>
+        )}
+      </AnimatePresence>
+    </span>
+  );
 }
 
 // Stats Counter Component
