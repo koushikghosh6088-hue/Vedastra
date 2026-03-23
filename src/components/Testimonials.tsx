@@ -56,7 +56,7 @@ export default function Testimonials() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0066ff]/10 border border-[#0066ff]/20 mb-6 font-mono text-[10px] uppercase tracking-widest text-[#0066ff] font-black">
             Partners & Proof
           </div>
-          <h2 className="text-[2.2rem] md:text-[4rem] font-heading font-black uppercase tracking-tighter text-white mb-6">
+          <h2 className="text-4xl md:text-[3rem] font-heading font-black uppercase tracking-tighter text-white mb-6">
             PROOF IN THE <span className="italic text-[#0066ff]">PERFORMANCE</span>
           </h2>
           <p className="text-[#8A8A9A] text-lg max-w-2xl mx-auto font-body">

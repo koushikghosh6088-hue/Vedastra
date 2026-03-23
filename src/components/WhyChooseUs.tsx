@@ -10,8 +10,8 @@ import {
 } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 
-// Optimized Grain Texture (Local)
-const GRAIN_DATA_URL = `data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E`;
+// Optimized CSS Noise Pattern (Hardware Accelerated)
+const NOISE_OVERLAY = "after:content-[''] after:fixed after:inset-0 after:opacity-[0.03] after:pointer-events-none after:z-[9999] after:bg-[url('https://grainy-gradients.vercel.app/noise.svg')]";
 
 const whyVedastra = [
   {
@@ -142,11 +142,6 @@ function PremiumCard({ item, i }: { item: any, i: number }) {
       {/* Optimized Background Micro-Grid */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:20px_20px]" />
       
-      {/* Optimized Local Noise Overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay" 
-        style={{ backgroundImage: `url("${GRAIN_DATA_URL}")` }}
-      />
 
       {/* Dynamic Glow Border (Mouse Target) */}
       <motion.div
@@ -244,7 +239,7 @@ export default function WhyChooseUs() {
                <Fingerprint className="w-5 h-5 text-[#0066ff]" />
                <h4 className="font-mono text-xs uppercase tracking-[0.5em] text-[#0066ff] font-black">ESTABLISHING_PREMIUM_CREDENTIALS</h4>
             </div>
-            <h2 className="text-[3.5rem] md:text-[7rem] lg:text-[10rem] font-heading font-black leading-[0.75] tracking-tighter uppercase text-white italic">
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-heading font-black leading-[0.85] tracking-tighter uppercase text-white italic">
               WHY <br/>
               <span className="text-[#0066ff] drop-shadow-[0_0_80px_rgba(0,102,255,0.6)]">VEDASTRA?</span>
             </h2>
@@ -301,10 +296,6 @@ export default function WhyChooseUs() {
           <motion.div 
             className="hidden lg:flex glass-premium rounded-[5rem] p-20 flex-col items-center justify-center text-center border-[#0066ff]/30 hover:border-[#0066ff]/60 transition-all duration-1000 bg-[radial-gradient(circle_at_center,rgba(0,102,255,0.1)_0%,transparent_70%)] group relative overflow-hidden"
           >
-             <div 
-                className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-overlay" 
-                style={{ backgroundImage: `url("${GRAIN_DATA_URL}")` }}
-             />
              <div className="relative z-10 scale-125">
                 <Cpu className="w-32 h-32 text-[#0066ff] mb-16 animate-[spin_30s_linear_infinite] drop-shadow-[0_0_60px_rgba(0,102,255,0.8)]" />
                 <h4 className="font-heading font-black text-white text-4xl uppercase tracking-[0.4em] mb-8 italic">THE_ENGINE_</h4>

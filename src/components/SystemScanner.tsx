@@ -18,9 +18,10 @@ export default function SystemScanner() {
   const meshRef = useRef<THREE.Mesh>(null);
   const beamRef = useRef<THREE.Group>(null);
   const particlesRef = useRef<THREE.Group>(null);
-
+  const isInView = useRef(true);
 
   useFrame((state) => {
+    if (!isInView.current) return;
     const t = state.clock.getElapsedTime();
     
     // Animate scanning beam
@@ -47,7 +48,10 @@ export default function SystemScanner() {
 
   return (
     <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
-      <group>
+      <group 
+        onPointerEnter={() => { isInView.current = true; }}
+        onPointerLeave={() => { /* keep active */ }}
+      >
         {/* The Diagnostic Luxury Mainframe (Red & Chrome - High Visibility) */}
         <group ref={meshRef}>
           {/* Main Chassis: Polished Red & Chrome */}

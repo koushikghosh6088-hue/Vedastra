@@ -52,7 +52,7 @@ export default function PricingSection() {
             <Rocket className="w-3.5 h-3.5 text-[#0066ff]" />
             <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[#0066ff] font-black">Investment Plans</span>
           </div>
-          <h2 className="text-[2.2rem] md:text-[3.8rem] font-heading font-black uppercase tracking-tighter text-white mb-6 leading-[1]">
+          <h2 className="text-3xl md:text-[3rem] font-heading font-black uppercase tracking-tighter text-white mb-6 leading-[1]">
             READY TO <span className="italic text-[#0066ff]">ACCELERATE?</span>
           </h2>
           <p className="text-[#8A8A9A] text-lg max-w-2xl mx-auto font-body">

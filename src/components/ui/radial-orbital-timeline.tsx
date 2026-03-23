@@ -7,12 +7,17 @@ import { motion, AnimatePresence, useAnimationFrame } from "framer-motion";
 export interface ServiceItem {
   id: number;
   title: string;
-  headline: string;
+  headline?: string;
   content: string;
-  benefits: string[];
+  benefits?: string[];
   icon: React.ElementType;
   accent?: string;
   secondary?: string;
+  date?: string;
+  category?: string;
+  status?: string;
+  energy?: number;
+  relatedIds?: number[];
 }
 
 interface ServiceOrbitalProps {
@@ -135,12 +140,14 @@ export default function ServiceOrbital({
       onMouseDown={(e) => handleStart(e.clientX, e.clientY)}
       onMouseMove={(e) => handleMove(e.clientX, e.clientY)}
       onMouseUp={handleEnd}
-      onMouseLeave={handleEnd}
+      onMouseLeave={() => {
+        handleEnd();
+        if (!isMobile) setIsHovered(false);
+      }}
       onTouchStart={(e) => handleStart(e.touches[0].clientX, e.touches[0].clientY)}
       onTouchMove={(e) => handleMove(e.touches[0].clientX, e.touches[0].clientY)}
       onTouchEnd={handleEnd}
       onMouseEnter={() => !isMobile && setIsHovered(true)}
-      onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
       {/* Visual Rings */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -164,14 +171,12 @@ export default function ServiceOrbital({
 
         {/* Satellite Dot */}
         <div className="absolute inset-0 flex items-center justify-center">
-           <motion.div 
-             className="absolute w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_10px_#00D4FF]"
-             animate={{ 
-               rotate: (time) => time * 0.05, // Constant speed
-               x: RADIUS,
-             }}
-             style={{ offsetPath: `circle(${RADIUS}px)`, animation: 'orbit-satellite 10s linear infinite' }}
-           />
+            <motion.div 
+              className="absolute w-2 h-2 bg-cyan-400 rounded-full shadow-[0_0_10px_#00D4FF]"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+              style={{ x: RADIUS }}
+            />
         </div>
 
         {/* Drag Hint Circle */}
@@ -251,9 +256,7 @@ export default function ServiceOrbital({
               >
                 <motion.div
                   whileHover={{ scale: 1.2 }}
-                  className={`
-                    w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 border-2
-                  `}
+                  className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 border-2"
                   style={{
                     backgroundColor: isActive ? service.accent : '#111118',
                     borderColor: isActive ? service.secondary : `${service.accent || '#00D4FF'}44`,
@@ -263,7 +266,10 @@ export default function ServiceOrbital({
                   aria-label={`Explore ${service.title}`}
                   role="button"
                 >
-                  <Icon className={`w-6 h-6 transition-colors duration-300`} />
+                  {(() => {
+                    const NodeIcon = service.icon as any;
+                    return <NodeIcon className="w-6 h-6 transition-colors duration-300" />;
+                  })()}
                 </motion.div>
 
                 {/* Tooltip (Desktop) */}
@@ -292,12 +298,6 @@ export default function ServiceOrbital({
         )}
       </AnimatePresence>
 
-      <style jsx global>{`
-        @keyframes orbit-satellite {
-          from { transform: rotate(0deg) translateX(${RADIUS}px) rotate(0deg); }
-          to { transform: rotate(360deg) translateX(${RADIUS}px) rotate(-360deg); }
-        }
-      `}</style>
     </div>
   );
 }

@@ -76,7 +76,7 @@ export default function ServicesDeepDive() {
                       <service.icon className="w-3.5 h-3.5 text-blue-400" />
                       <span className="font-mono text-[10px] uppercase tracking-widest text-blue-400">{service.subtitle}</span>
                     </div>
-                    <h2 className="text-[3rem] md:text-[5rem] font-heading font-black leading-[0.9] tracking-tighter uppercase mb-8">
+                    <h2 className="text-[3rem] md:text-5xl lg:text-6xl font-heading font-black leading-[0.9] tracking-tighter uppercase mb-8">
                       {service.title.split(' & ')[0]} <br/>
                       <span className="italic text-blue-400 opacity-90">{service.title.split(' & ').slice(1).join(' & ')}</span>
                     </h2>

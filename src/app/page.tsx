@@ -35,7 +35,7 @@ import { View, Preload } from '@react-three/drei';
 
 import { SplineScene } from '@/components/ui/splite';
 import { Spotlight } from '@/components/ui/spotlight';
-import RadialOrbitalTimeline, { TimelineItem } from "@/components/ui/radial-orbital-timeline";
+import RadialOrbitalTimeline, { ServiceItem } from "@/components/ui/radial-orbital-timeline";
 
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
@@ -52,7 +52,7 @@ const services = [
 
 // Redundant projects array removed (moved to FeaturedArchive.tsx)
 
-const aboutUsTimelineData: TimelineItem[] = [
+const aboutUsTimelineData: ServiceItem[] = [
   {
     id: 1,
     title: "Web Intel",
@@ -152,7 +152,6 @@ function Floating3DNeuralCore() {
           height={400}
           className="w-full h-full object-contain pointer-events-none mix-blend-screen drop-shadow-[0_0_60px_rgba(14,165,233,0.3)] group-hover:scale-105 transition-transform duration-700" 
           priority
-          loading="eager"
           sizes="(max-width: 768px) 250px, 400px"
         />
       </motion.div>
@@ -366,7 +365,7 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <h1 className="text-[1.7rem] xs:text-[2rem] sm:text-[3.2rem] md:text-[4rem] font-heading font-black leading-[1.1] tracking-tighter uppercase text-white">
+              <h1 className="text-[1.7rem] xs:text-[2rem] sm:text-[3.2rem] md:text-5xl lg:text-7xl font-heading font-black leading-[1.1] tracking-tighter uppercase text-white">
                 <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">WE BUILD DIGITAL</span><br />
                 <span className="text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]">PRODUCTS THAT</span><br />
                 <span className="italic gradient-text-premium text-glow">GROW</span> YOUR BUSINESS.
@@ -376,26 +375,22 @@ export default function HomePage() {
                 Websites. Mobile Apps. AI Agents. Automation. Built for businesses that are serious about growth.
               </p>
 
-              {/* Animated Cycling Service Text (Lukritive Upgrade) */}
-              <div className="h-16 sm:h-24 flex items-center justify-center lg:justify-start overflow-hidden px-4 sm:px-0">
-                <AnimatePresence mode="wait">
-                  <motion.span
+              {/* Sleek Animated Cycling Service Text */}
+              <div className="h-16 sm:h-20 flex items-center justify-center lg:justify-start overflow-hidden px-4 sm:px-0 mt-4">
+                <AnimatePresence mode="popLayout">
+                  <motion.div
                     key={heroServiceIndex}
-                    initial={{ opacity: 0, scale: 0.8, y: 50, rotateX: 45 }}
-                    animate={{ opacity: 1, scale: 1, y: 0, rotateX: 0 }}
-                    exit={{ opacity: 0, scale: 1.1, y: -50, rotateX: -45 }}
+                    initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
+                    animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                    exit={{ opacity: 0, y: -40, filter: 'blur(8px)' }}
                     transition={{ 
-                      duration: 0.6, 
+                      duration: 0.5, 
                       ease: [0.23, 1, 0.32, 1] 
                     }}
-                    className="text-[#0066ff] font-heading font-black text-3xl sm:text-5xl md:text-6xl uppercase tracking-[0.05em] drop-shadow-[0_0_25px_rgba(0,102,255,0.6)] italic select-none"
-                    style={{ 
-                      textShadow: '0 0 30px rgba(0, 102, 255, 0.4), 0 0 60px rgba(0, 102, 255, 0.2)',
-                      WebkitTextStroke: '1px rgba(0, 102, 255, 0.2)'
-                    }}
+                    className="text-[#0066ff] font-heading font-black text-3xl sm:text-5xl md:text-6xl uppercase tracking-tight"
                   >
                     {heroServices[heroServiceIndex]}
-                  </motion.span>
+                  </motion.div>
                 </AnimatePresence>
               </div>
 
@@ -425,12 +420,11 @@ export default function HomePage() {
               </div>
             </motion.div>
 
-            {/* RIGHT COLUMN: Visual (Backdrop on Mobile) */}
-            <div className="absolute lg:relative inset-0 lg:inset-auto h-[550px] lg:h-[800px] w-full z-10 pointer-events-none lg:pointer-events-auto overflow-hidden">
+            <div className="absolute lg:relative inset-0 lg:inset-auto h-[550px] lg:h-[800px] w-full z-10 pointer-events-auto overflow-hidden">
               {/* Internal Robot Atmosphere Glow */}
-              <div className="absolute top-[35%] lg:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#0066ff]/20 rounded-full blur-[100px] opacity-30 animate-pulse" />
+              <div className="absolute top-[40%] lg:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#0066ff]/20 rounded-full blur-[120px] opacity-60 animate-pulse pointer-events-none" />
               
-              <div className="absolute inset-0 z-10 scale-[1.1] sm:scale-[1.2] lg:scale-[1.3] translate-y-[-5%] lg:translate-y-[10%] lg:translate-x-12">
+              <div className="absolute inset-0 z-10 scale-[1.3] sm:scale-[1.4] lg:scale-[1.5] translate-y-[-2%] lg:translate-y-[15%] lg:translate-x-20 pointer-events-auto filter brightness-125 contrast-125 drop-shadow-[0_0_30px_rgba(0,102,255,0.15)]">
                 <SplineScene 
                   scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
                   className="w-full h-full"

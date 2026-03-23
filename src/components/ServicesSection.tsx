@@ -121,7 +121,7 @@ export default function ServicesSection() {
         
         {/* Header Section */}
         <AnimatedSection className="text-center mb-20 max-w-4xl mx-auto">
-          <h2 className="text-[2.5rem] md:text-[5rem] font-heading font-black leading-[0.9] tracking-tighter uppercase mb-6 text-white text-glow mx-auto">
+          <h2 className="text-[2.5rem] md:text-5xl lg:text-6xl font-heading font-black leading-[0.9] tracking-tighter uppercase mb-6 text-white text-glow mx-auto">
             EXPLORE WHAT <br/> WE BUILD
           </h2>
           <div className="flex flex-col items-center">

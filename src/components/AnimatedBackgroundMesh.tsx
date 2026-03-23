@@ -97,7 +97,7 @@ function NebulaBackground() {
   });
 
   return (
-    <Plane ref={meshRef} args={[25, 25, 48, 48]} rotation={[-Math.PI / 4, 0, 0]}>
+    <Plane ref={meshRef} args={[25, 25, 24, 24]} rotation={[-Math.PI / 4, 0, 0]}>
       <shaderMaterial
         transparent
         vertexShader={vertexShader}
@@ -111,8 +111,8 @@ function NebulaBackground() {
 }
 
 export default function AnimatedBackgroundMesh() {
-  const container = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+  const container = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Staggered initialization to avoid blocking the main thread during hydration
@@ -127,15 +127,6 @@ export default function AnimatedBackgroundMesh() {
       <View track={container as any}>
         <NebulaBackground />
       </View>
-      
-      {/* Drifting Macro-Orbs */}
-      <div className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-blue-500/5 blur-[120px] animate-orb-float" />
-      <div className="absolute bottom-[20%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-blue-400/5 blur-[150px] animate-orb-float [animation-delay:-5s]" />
-      <div className="absolute top-[60%] left-[-10%] w-[30vw] h-[30vw] rounded-full bg-purple-500/5 blur-[100px] animate-orb-float [animation-delay:-12s]" />
-
-      {/* Atmospheric Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none opacity-60" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,black_100%)] pointer-events-none opacity-40" />
     </div>
   );
 }
