@@ -173,7 +173,10 @@ export default function ServicesSection() {
                              boxShadow: `0 0 20px ${activeService.accent}33`
                            }}
                          >
-                            <activeService.icon className="w-8 h-8" />
+                            {(() => {
+                              const ActiveIcon = activeService.icon as any;
+                              return <ActiveIcon className="w-8 h-8" />;
+                            })()}
                          </div>
                          <h3 className="text-3xl font-heading font-black text-white uppercase tracking-tighter">
                             {activeService.title}
@@ -189,7 +192,7 @@ export default function ServicesSection() {
                       </p>
 
                       <div className="space-y-4 mb-12 relative z-10">
-                         {activeService.benefits.map((benefit, i) => (
+                         {activeService.benefits?.map((benefit, i) => (
                            <div key={i} className="flex items-center gap-4 text-white/80">
                               <CheckCircle2 className="w-5 h-5 flex-shrink-0" style={{ color: activeService.accent }} />
                               <span className="font-mono text-sm uppercase tracking-wide">{benefit}</span>
@@ -203,7 +206,7 @@ export default function ServicesSection() {
                            className="px-8 py-4 text-black font-heading font-black text-xs uppercase tracking-widest rounded-2xl hover:bg-white transition-all"
                            style={{ 
                              backgroundColor: activeService.accent,
-                             shadow: `0 0 30px ${activeService.accent}66`
+                             boxShadow: `0 0 30px ${activeService.accent}66`
                            }}
                         >
                            GET STARTED <ArrowRight className="w-4 h-4 ml-2 inline" />
@@ -234,7 +237,7 @@ export default function ServicesSection() {
 
         {/* Mobile Bottom Sheet */}
         <AnimatePresence>
-          {isMobile && activeService && (
+          {isMobile && activeService ? (
             <>
               {/* Backdrop */}
               <motion.div
@@ -280,7 +283,10 @@ export default function ServicesSection() {
                              color: activeService.accent 
                            }}
                          >
-                            <activeService.icon className="w-7 h-7" />
+                            {(() => {
+                              const ActiveIcon = activeService.icon as any;
+                              return <ActiveIcon className="w-7 h-7" />;
+                            })()}
                          </div>
                          <h3 className="text-2xl font-heading font-black text-white uppercase tracking-tighter">
                             {activeService.title}
@@ -296,7 +302,7 @@ export default function ServicesSection() {
                       </p>
 
                       <div className="space-y-4 mb-10">
-                         {activeService.benefits.map((benefit, i) => (
+                         {activeService.benefits?.map((benefit, i) => (
                            <div key={i} className="flex items-center gap-4 text-white/80">
                               <CheckCircle2 className="w-4 h-4 flex-shrink-0" style={{ color: activeService.accent }} />
                               <span className="font-mono text-[11px] uppercase tracking-wide">{benefit}</span>
@@ -323,7 +329,7 @@ export default function ServicesSection() {
                    </div>
                 </motion.div>
             </>
-          )}
+          ) : null}
         </AnimatePresence>
 
         {/* Tactical Footer CTA */}
