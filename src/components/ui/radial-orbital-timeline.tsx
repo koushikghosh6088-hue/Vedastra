@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Play, Square, X, Info } from "lucide-react";
-import { motion, AnimatePresence, useAnimationFrame } from "framer-motion";
+import { motion, AnimatePresence, useAnimationFrame, MotionValue } from "framer-motion";
 
 export interface ServiceItem {
   id: number;
@@ -25,6 +25,7 @@ interface ServiceOrbitalProps {
   activeServiceId: number | null;
   onServiceSelect: (id: number | null) => void;
   isMobile?: boolean;
+  scrollYProgress?: MotionValue<number>;
 }
 
 export default function ServiceOrbital({
@@ -32,6 +33,7 @@ export default function ServiceOrbital({
   activeServiceId,
   onServiceSelect,
   isMobile = false,
+  scrollYProgress
 }: ServiceOrbitalProps) {
   const [rotation, setRotation] = useState(0);
   const [velocity, setVelocity] = useState(0);
@@ -68,11 +70,28 @@ export default function ServiceOrbital({
     return () => clearTimeout(timer);
   }, []);
 
+  const previousScroll = useRef(0);
+
   // Physics Engine
   useAnimationFrame((time, delta) => {
     if (isDragging.current) return;
 
     let currentVelocity = velocityRef.current;
+
+    // --- Scroll Injection ---
+    if (scrollYProgress) {
+        const currentScroll = scrollYProgress.get();
+        const scrollDelta = currentScroll - previousScroll.current;
+        previousScroll.current = currentScroll;
+        
+        // Inject frame-by-frame scroll delta into structural velocity
+        if (Math.abs(scrollDelta) > 0.0001) {
+           currentVelocity += scrollDelta * 2500; // Translate fractional scroll to momentum
+           
+           if (showHint) setShowHint(false);
+           if (isSpinning) setIsSpinning(false); // Let scroll override auto-spin
+        }
+    }
 
     if (isSpinning) {
       // Accelerate to max
@@ -158,7 +177,7 @@ export default function ServiceOrbital({
         />
         {/* Secondary Inner Ring */}
         <div 
-          className="absolute rounded-full border border-cyan-400/5"
+          className="absolute rounded-full border border-cyan-400/10 shadow-[inset_0_0_50px_rgba(0,212,255,0.05)]"
           style={{ width: RADIUS * 1.7, height: RADIUS * 1.7 }}
         />
         
@@ -256,11 +275,11 @@ export default function ServiceOrbital({
               >
                 <motion.div
                   whileHover={{ scale: 1.2 }}
-                  className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center transition-all duration-300 border-2"
+                  className="w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center transition-all duration-500 border-2 backdrop-blur-md"
                   style={{
-                    backgroundColor: isActive ? service.accent : '#111118',
-                    borderColor: isActive ? service.secondary : `${service.accent || '#00D4FF'}44`,
-                    boxShadow: isActive ? `0 0 30px ${service.accent}` : 'none',
+                    backgroundColor: isActive ? service.accent : 'rgba(10, 10, 15, 0.8)',
+                    borderColor: isActive ? '#FFF' : `${service.accent || '#00D4FF'}55`,
+                    boxShadow: isActive ? `0 0 40px ${service.accent}, inset 0 0 20px rgba(255,255,255,0.5)` : `inset 0 0 15px ${service.accent}11`,
                     color: isActive ? '#000' : (service.accent || '#fff')
                   }}
                   aria-label={`Explore ${service.title}`}
@@ -284,19 +303,20 @@ export default function ServiceOrbital({
         })}
       </div>
 
-      {/* Hint Label */}
-      <AnimatePresence>
-        {showHint && (
-           <motion.div
-             initial={{ opacity: 0, y: 10 }}
-             animate={{ opacity: 1, y: 0 }}
-             exit={{ opacity: 0 }}
-             className="absolute bottom-10 font-mono text-cyan-400 text-[10px] tracking-widest flex items-center gap-2"
-           >
-             <span className="animate-pulse">↻</span> DRAG TO SPIN OR CLICK THE BUTTON
-           </motion.div>
-        )}
-      </AnimatePresence>
+       {/* Hint Label */}
+       <AnimatePresence>
+         {showHint && (
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0 }}
+              className="absolute bottom-10 font-mono text-cyan-400 text-[10px] tracking-widest flex flex-col items-center gap-2"
+            >
+              <span className="animate-pulse text-lg">↓</span> 
+              <span>DRAG OR SCROLL TO SPIN</span>
+            </motion.div>
+         )}
+       </AnimatePresence>
 
     </div>
   );

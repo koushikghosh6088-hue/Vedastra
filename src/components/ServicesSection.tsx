@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { 
   Globe, Smartphone, MessageSquare, Phone, Cog, Target, 
   CheckCircle2, ArrowRight, Zap, X, ChevronRight
@@ -110,9 +110,16 @@ export default function ServicesSection() {
 
   const activeService = services.find(s => s.id === activeId);
 
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"]
+  });
+
   return (
-    <section id="services" className="relative py-24 md:py-32 bg-black overflow-hidden z-10">
-      
+    <section ref={sectionRef} id="services" className="relative h-[300vh] bg-black z-10">
+      <div className="sticky top-0 h-screen overflow-hidden flex flex-col justify-center">
+
       {/* Background Ambience */}
       <div className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-cyan-500/[0.03] rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[800px] h-[800px] bg-blue-500/[0.03] rounded-full blur-[150px] pointer-events-none" />
@@ -141,6 +148,7 @@ export default function ServicesSection() {
                 activeServiceId={activeId}
                 onServiceSelect={(id) => setActiveId(id)}
                 isMobile={isMobile}
+                scrollYProgress={scrollYProgress}
               />
            </div>
 
@@ -353,6 +361,7 @@ export default function ServicesSection() {
            </div>
         </AnimatedSection>
 
+        </div>
       </div>
     </section>
   );

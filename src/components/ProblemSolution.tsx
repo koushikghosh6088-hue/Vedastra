@@ -118,13 +118,20 @@ export default function ProblemSolution() {
                       setExpandedIndex(index);
                    }
                 }}
-                viewport={{ margin: "-30% 0px -30% 0px", amount: "some" }}
+                viewport={{ margin: "-45% 0px -45% 0px", amount: "some" }}
                 onClick={() => setExpandedIndex(isExpanded ? -1 : index)}
                 className={`
-                  relative overflow-hidden cursor-pointer rounded-2xl border transition-all duration-500
-                  ${isExpanded ? 'bg-[#0A0A0E] border-[#FF2D55]/50 shadow-[0_0_30px_rgba(255,45,85,0.15)] scale-[1.02]' : 'bg-black/40 border-white/5 hover:border-[#FF2D55]/30 hover:bg-[#FF2D55]/5 scale-100 opacity-60 hover:opacity-100'}
+                  relative overflow-hidden cursor-pointer border transition-all duration-500
+                  ${isExpanded ? 'bg-[#0A0A0E] border-[#FF2D55]/80 shadow-[0_0_40px_rgba(255,45,85,0.2)] scale-[1.02]' : 'bg-black/40 border-white/10 hover:border-[#FF2D55]/50 hover:bg-[#FF2D55]/5 scale-100 opacity-60 hover:opacity-100'}
                 `}
+                style={{
+                   clipPath: "polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px)"
+                }}
               >
+                {/* Cyberpunk Scanline Background */}
+                {isExpanded && (
+                  <div className="absolute inset-0 bg-[linear-gradient(rgba(255,45,85,0.05)_1px,transparent_1px)] bg-[size:100%_4px] pointer-events-none z-0 mix-blend-screen" />
+                )}
                 {/* Glowing Node on Timeline Connection (Graphical) */}
                 <div className={`
                     absolute top-10 -left-[32px] md:-left-[46px] w-4 h-4 rounded-full border-2 transition-all duration-500 z-20
@@ -135,13 +142,16 @@ export default function ProblemSolution() {
                 <div className="p-5 md:p-6 flex items-center justify-between">
                   <div className="flex items-center gap-4 md:gap-6">
                     <div className={`
-                      flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-500
-                      ${isExpanded ? 'bg-[#FF2D55]/20 border-[#FF2D55] text-[#FF2D55]' : 'bg-white/5 border-white/10 text-white/40'}
-                    `}>
+                      flex-shrink-0 w-12 h-12 flex items-center justify-center border transition-all duration-500 relative z-10
+                      ${isExpanded ? 'bg-[#FF2D55]/20 border-[#FF2D55] text-[#FF2D55] shadow-[0_0_15px_rgba(255,45,85,0.4)]' : 'bg-white/5 border-white/20 text-white/40'}
+                    `}
+                    style={{
+                       clipPath: "polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px)"
+                    }}>
                       <item.icon className="w-6 h-6" />
                     </div>
                     <div>
-                      <h3 className={`text-lg md:text-2xl font-heading font-black tracking-tight uppercase transition-colors duration-300 ${isExpanded ? 'text-white' : 'text-white/70'}`}>
+                      <h3 className={`text-lg md:text-2xl font-heading font-black tracking-tight uppercase transition-colors duration-300 relative z-10 ${isExpanded ? 'text-white' : 'text-white/70'}`}>
                         {item.label}
                       </h3>
                       <p className={`font-mono text-[10px] uppercase tracking-widest mt-1 font-black transition-colors ${isExpanded ? 'text-[#FF2D55]' : 'text-white/30'}`}>
