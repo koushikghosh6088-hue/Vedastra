@@ -90,20 +90,47 @@ export default function ProblemSolution() {
           </p>
         </div>
 
-        {/* Compact Accordion Layout for Phones & Desktop */}
-        <div className="w-full max-w-4xl flex flex-col gap-4">
+        {/* Compact Accordion Layout with Graphical Vertical Timeline */}
+        <div className="w-full max-w-4xl relative">
+          
+          {/* Background Timeline Track */}
+          <div className="absolute left-[30px] md:left-[40px] top-12 bottom-12 w-[2px] bg-white/5 rounded-full" />
+          
+          {/* Animated Red Timeline Fill */}
+          <motion.div 
+            className="absolute left-[30px] md:left-[40px] top-12 w-[2px] bg-[#FF2D55] shadow-[0_0_15px_rgba(255,45,85,0.8)] rounded-full z-10"
+            animate={{ 
+               height: `calc(${(expandedIndex / Math.max(1, threatPoints.length - 1)) * 100}% - 24px)` 
+            }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+          />
+
+          <div className="flex flex-col gap-4 md:gap-6 w-full pl-[55px] md:pl-[80px]">
           {threatPoints.map((item, index) => {
             const isExpanded = expandedIndex === index;
 
             return (
-              <div 
+              <motion.div 
                 key={item.id} 
+                onViewportEnter={() => {
+                   // Only auto-expand if we scroll to it naturally, preventing jumpy race conditions 
+                   if (expandedIndex !== index) {
+                      setExpandedIndex(index);
+                   }
+                }}
+                viewport={{ margin: "-30% 0px -30% 0px", amount: "some" }}
                 onClick={() => setExpandedIndex(isExpanded ? -1 : index)}
                 className={`
                   relative overflow-hidden cursor-pointer rounded-2xl border transition-all duration-500
-                  ${isExpanded ? 'bg-[#0A0A0E] border-[#FF2D55]/50 shadow-[0_0_30px_rgba(255,45,85,0.15)]' : 'bg-black/40 border-white/5 hover:border-[#FF2D55]/30 hover:bg-[#FF2D55]/5'}
+                  ${isExpanded ? 'bg-[#0A0A0E] border-[#FF2D55]/50 shadow-[0_0_30px_rgba(255,45,85,0.15)] scale-[1.02]' : 'bg-black/40 border-white/5 hover:border-[#FF2D55]/30 hover:bg-[#FF2D55]/5 scale-100 opacity-60 hover:opacity-100'}
                 `}
               >
+                {/* Glowing Node on Timeline Connection (Graphical) */}
+                <div className={`
+                    absolute top-10 -left-[32px] md:-left-[46px] w-4 h-4 rounded-full border-2 transition-all duration-500 z-20
+                    ${isExpanded ? 'bg-[#FF2D55] border-black scale-125 shadow-[0_0_20px_rgba(255,45,85,0.8)]' : 'bg-[#111] border-white/20 scale-100'}
+                `} />
+
                 {/* Accordion Header */}
                 <div className="p-5 md:p-6 flex items-center justify-between">
                   <div className="flex items-center gap-4 md:gap-6">
@@ -161,9 +188,10 @@ export default function ProblemSolution() {
                     </motion.div>
                   )}
                 </AnimatePresence>
-              </div>
+              </motion.div>
             );
           })}
+          </div>
         </div>
 
         {/* Mobile Action Hub */}
